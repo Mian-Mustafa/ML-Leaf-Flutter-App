@@ -1,0 +1,11 @@
+# App launcher icon generation (Android-only per spec).
+# Source art: assets/icons/app_icon.png (leaf + circuit, dark-teal ground).
+# Regenerate after changing the source:  dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  # Android 8+ adaptive icon: dark-teal ground + padded leaf foreground.
+  adaptive_icon_background: "#073E43"
+  adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"

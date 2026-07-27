@@ -1,0 +1,75 @@
+{
+  "contentVersion": 1,
+  "modules": [
+    {
+      "id": "foundations",
+      "order": 1,
+      "title": "Introduction to Machine Learning",
+      "summary": "What machine learning is, key terminology, and how learning from data differs from traditional programming.",
+      "icon": "foundations"
+    },
+    {
+      "id": "data_preprocessing",
+      "order": 2,
+      "title": "Data Preprocessing",
+      "summary": "Cleaning data, handling missing values, scaling features and preparing datasets for training.",
+      "icon": "data"
+    },
+    {
+      "id": "supervised_learning",
+      "order": 3,
+      "title": "Supervised Learning",
+      "summary": "Learning from labelled examples, the train/test split, and the difference between regression and classification.",
+      "icon": "supervised"
+    },
+    {
+      "id": "regression",
+      "order": 4,
+      "title": "Regression",
+      "summary": "Predicting continuous values with linear and polynomial regression, and how errors are measured.",
+      "icon": "regression"
+    },
+    {
+      "id": "classification",
+      "order": 5,
+      "title": "Classification",
+      "summary": "Assigning categories with algorithms like logistic regression, k-NN, decision trees and SVMs.",
+      "icon": "classification"
+    },
+    {
+      "id": "unsupervised_learning",
+      "order": 6,
+      "title": "Unsupervised Learning",
+      "summary": "Finding structure in unlabelled data through clustering and dimensionality reduction.",
+      "icon": "unsupervised"
+    },
+    {
+      "id": "model_evaluation",
+      "order": 7,
+      "title": "Model Evaluation & Validation",
+      "summary": "Accuracy, precision, recall, cross-validation, and diagnosing overfitting and underfitting.",
+      "icon": "evaluation"
+    },
+    {
+      "id": "feature_engineering",
+      "order": 8,
+      "title": "Feature Engineering",
+      "summary": "Creating, selecting and transforming features to help models learn more effectively.",
+      "icon": "features"
+    },
+    {
+      "id": "ensemble_methods",
+      "order": 9,
+      "title": "Ensemble Methods",
+      "summary": "Combining models with bagging, boosting and random forests for stronger predictions.",
+      "icon": "ensemble"
+    },
+    {
+      "id": "neural_networks",
+      "order": 10,
+      "title": "Neural Networks — Introduction",
+      "summary": "Neurons, layers, activation functions and how networks learn through backpropagation.",
+      "icon": "neural"
+    }
+  ]
+}

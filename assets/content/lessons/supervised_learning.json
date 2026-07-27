@@ -1,0 +1,2503 @@
+{
+  "contentVersion": 1,
+  "lessons": [
+    {
+      "id": "supervised_01_what_is_supervised",
+      "moduleId": "supervised_learning",
+      "order": 1,
+      "title": "What is Supervised Learning?",
+      "summary": "How a model learns from labelled examples, why it is called 'supervised', and the notation used throughout the module.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "supervised learning",
+        "labelled data",
+        "training loop",
+        "notation",
+        "target"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Supervised learning is the branch of machine learning where every training example already comes with the correct answer. Each example pairs some input data with a known target, the model studies how the two relate, and it then predicts the target for new cases it has never seen."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "A teacher hands a student practice questions together with the correct answers. Once the student has learned the pattern, they can tackle fresh questions on their own. In supervised learning, the labelled dataset plays the role of that teacher.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig01_supervised_overview.webp",
+          "caption": "Figure 1. Supervised learning uses labelled examples to learn a mapping from inputs to outputs."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why is it called “supervised”?"
+        },
+        {
+          "type": "paragraph",
+          "text": "The labels act as a supervisor. During training the model makes a guess, checks it against the known answer, measures how wrong it was, and nudges itself to do better next time. Repeat that thousands of times and a useful pattern emerges."
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Receive an input example.",
+            "Produce a prediction.",
+            "Compare the prediction with the known label.",
+            "Measure the error with a loss function.",
+            "Update the model to reduce that error.",
+            "Repeat across many examples."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "A tiny labelled dataset"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is what labelled data actually looks like. The first two columns are features (the clues); the last column is the label the model must learn to predict."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Hours studied",
+            "Past attendance",
+            "Result (label)"
+          ],
+          "rows": [
+            [
+              "8",
+              "95%",
+              "Pass"
+            ],
+            [
+              "2",
+              "60%",
+              "Fail"
+            ],
+            [
+              "5",
+              "80%",
+              "Pass"
+            ],
+            [
+              "1",
+              "45%",
+              "Fail"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The model studies rows like these, works out how study hours and attendance relate to the result, and then predicts Pass or Fail for a brand-new student it was never shown."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Core notation"
+        },
+        {
+          "type": "paragraph",
+          "text": "A few symbols appear again and again in this module. It is worth getting comfortable with them now, using a spam filter as the running example."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Symbol",
+            "Meaning",
+            "Spam example"
+          ],
+          "rows": [
+            [
+              "X",
+              "Input feature matrix — rows are observations, columns are features",
+              "Email length, word counts, number of links, sender info"
+            ],
+            [
+              "xᵢ",
+              "One individual observation",
+              "One email"
+            ],
+            [
+              "y",
+              "Target vector with the correct outputs",
+              "Spam = 1, not spam = 0"
+            ],
+            [
+              "ŷ",
+              "The model's prediction",
+              "Predicted spam probability or predicted class"
+            ],
+            [
+              "f(X)",
+              "The learned mapping from inputs to outputs",
+              "A classifier from email features to spam / not spam"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "The learning algorithm searches for a good mapping f. The model is the specific f it finds after training. The algorithm learns; the model is the learned result.",
+          "title": "Algorithm vs model"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Give supervised learning labelled examples and it returns a reusable rule: a model that turns new inputs into predictions.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Supervised learning trains on examples that already include the correct answer.",
+        "The label acts as a supervisor: predict, measure the error, adjust, repeat.",
+        "X holds the features, y holds the targets, and the model learns a mapping f(X) ≈ y.",
+        "The algorithm is the learning procedure; the model is what it produces."
+      ],
+      "commonMistakes": [
+        "Confusing the learning algorithm with the trained model it produces."
+      ]
+    },
+    {
+      "id": "supervised_02_features_and_labels",
+      "moduleId": "supervised_learning",
+      "order": 2,
+      "title": "Features and Target Labels",
+      "summary": "The two halves of every supervised dataset: the input features that describe each case, and the target label the model must predict.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 1,
+      "keywords": [
+        "feature",
+        "target label",
+        "regression",
+        "classification",
+        "data leakage"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every supervised dataset splits into two parts. The features describe each observation, and the target is the value or category you want the model to predict. Getting this split right — and keeping the target out of the features — is the foundation of everything that follows."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig02_features_labels.webp",
+          "caption": "Figure 2. Features describe each email, while the target column provides the correct class."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Features"
+        },
+        {
+          "type": "definition",
+          "term": "Feature",
+          "text": "One measurable detail about each example, used as an input to the model — for instance an email's length, how many links it contains, or the hour it was sent. Features come in several flavours: numerical, categorical, binary, text-derived or time-based."
+        },
+        {
+          "type": "paragraph",
+          "text": "Different feature types need different preparation before a model can use them well."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Feature type",
+            "Example",
+            "Possible preparation"
+          ],
+          "rows": [
+            [
+              "Numerical",
+              "Email length, number of links",
+              "Scaling may help some algorithms"
+            ],
+            [
+              "Binary",
+              "Contains “free”: yes / no",
+              "Encode as 1 / 0"
+            ],
+            [
+              "Categorical",
+              "Sender domain category",
+              "One-hot or another suitable encoding"
+            ],
+            [
+              "Text-derived",
+              "TF–IDF score for each word",
+              "Text vectorization"
+            ],
+            [
+              "Time-based",
+              "Hour sent",
+              "Extract useful parts such as hour or weekday"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Target labels"
+        },
+        {
+          "type": "definition",
+          "term": "Target label",
+          "text": "The correct answer the model learns from during training — for example the exam score you want to predict (a number, so regression) or the spam / not-spam verdict (a category, so classification)."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Features are only the information you would genuinely have at the moment of prediction. The target is the answer you are trying to predict. Never let the target — or a sneaky disguised copy of it — slip into the features. That mistake is called data leakage, and it quietly ruins models.",
+          "title": "Never leak the target"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Features are the clues; the label is the answer. Keep them cleanly separated.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "A supervised dataset has input features (X) and a target label (y).",
+        "Features can be numerical, binary, categorical, text-derived or time-based, each needing its own preparation.",
+        "A numerical target means regression; a categorical target means classification.",
+        "Never include the target, or a disguised copy of it, among the features."
+      ],
+      "commonMistakes": [
+        "Letting a copy of the answer leak into the features.",
+        "Forgetting to encode categorical or text features into numbers before training."
+      ]
+    },
+    {
+      "id": "supervised_03_training_on_labelled_data",
+      "moduleId": "supervised_learning",
+      "order": 3,
+      "title": "Training on Labelled Data",
+      "summary": "What 'training' really means: using a loss function to measure mistakes, and the difference between parameters the model learns and hyperparameters you choose.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 1,
+      "keywords": [
+        "training",
+        "loss function",
+        "parameter",
+        "hyperparameter",
+        "optimization"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Training simply means estimating the model's parameters from labelled examples. Algorithms go about it in very different ways, but they all chase the same goal: find a rule whose predictions land close to the known labels."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Loss function"
+        },
+        {
+          "type": "definition",
+          "term": "Loss function",
+          "text": "A number that captures how wrong the predictions are. Lower loss means the predictions sit closer to the correct answers. Regression often uses mean squared error; binary classification often uses log loss."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "If the true house price is 200 and the model predicts 180, the error is 20. Squaring it (20² = 400) makes big misses hurt far more than small ones — so training works hardest to wipe out the large errors first.",
+          "title": "Worked example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Training is really an optimisation loop: measure the loss, adjust the model to shrink it, and repeat until the loss stops improving."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Task",
+            "What the error captures",
+            "What the model tries to do"
+          ],
+          "rows": [
+            [
+              "Regression",
+              "The gap between the predicted and actual number",
+              "Make the numerical errors as small as possible"
+            ],
+            [
+              "Classification",
+              "The penalty for giving the true class a low probability",
+              "Raise the probability it assigns to the correct class"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Parameters and hyperparameters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two kinds of numbers shape a model, and it is important not to confuse them."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Meaning",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Parameter",
+              "Learned automatically from the training data",
+              "Linear-regression coefficients; tree split thresholds"
+            ],
+            [
+              "Hyperparameter",
+              "Set before or around training, then tuned on validation data",
+              "Tree depth, number of neighbours K, SVM C value"
+            ]
+          ]
+        },
+        {
+          "type": "definition",
+          "term": "Parameter",
+          "text": "A value the model learns from the training data, such as a regression coefficient."
+        },
+        {
+          "type": "definition",
+          "term": "Hyperparameter",
+          "text": "A setting you choose outside the normal fitting process, then tune using validation data — for example how deep a tree may grow."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Think of baking a cake. The oven temperature and timer you set are hyperparameters — your choices before baking. How much the cake actually rises is a parameter — it emerges from the process. You pick the settings; the model learns the rest.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Training data teaches the parameters. Validation data helps you choose the hyperparameters. Test data estimates the final performance once every choice is locked in.",
+          "title": "Which data does what"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Parameters are learned; hyperparameters are chosen. The loss function is the scoreboard that guides the learning.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Training estimates model parameters so predictions match the labels.",
+        "A loss function turns prediction mistakes into a single number to minimise.",
+        "Parameters are learned from data; hyperparameters are set by you and tuned on validation data.",
+        "Training data fits parameters, validation data tunes settings, test data gives the final score."
+      ],
+      "commonMistakes": [
+        "Tuning hyperparameters on the test set instead of validation data."
+      ]
+    },
+    {
+      "id": "supervised_04_regression_vs_classification",
+      "moduleId": "supervised_learning",
+      "order": 4,
+      "title": "Regression vs Classification",
+      "summary": "The two main supervised tasks: predicting a number versus predicting a category, plus binary, multiclass and multilabel problems.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 1,
+      "keywords": [
+        "regression",
+        "classification",
+        "binary",
+        "multiclass",
+        "multilabel",
+        "threshold"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Supervised problems come in two main shapes, decided entirely by the target. If the answer is a number, it is regression; if the answer is a category, it is classification."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig03_regression_vs_classification.webp",
+          "caption": "Figure 3. Regression predicts a numerical value; classification predicts a category or class."
+        },
+        {
+          "type": "definition",
+          "term": "Regression",
+          "text": "Predicting a number that can sit anywhere on a scale, such as a house price, a temperature or next week's demand."
+        },
+        {
+          "type": "definition",
+          "term": "Classification",
+          "text": "Predicting which category something belongs to, such as sorting an email into spam or not spam."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Question",
+            "Regression",
+            "Classification"
+          ],
+          "rows": [
+            [
+              "Output",
+              "Continuous number",
+              "Discrete category or class"
+            ],
+            [
+              "Examples",
+              "House price, temperature, demand",
+              "Spam / not spam, disease class, product category"
+            ],
+            [
+              "Common metrics",
+              "MAE, MSE, RMSE, R²",
+              "Accuracy, precision, recall, F1, ROC–AUC"
+            ],
+            [
+              "Typical algorithms",
+              "Linear regression, tree regression, random-forest regression",
+              "Logistic regression, tree, random forest, KNN, SVM, Naive Bayes"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Flavours of classification"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Binary classification has exactly two classes, such as spam and not spam.",
+            "Multiclass classification has more than two, such as tagging a news article as sport, business, technology or health.",
+            "Multilabel classification lets one example carry several labels at once, such as an image tagged “person”, “car” and “street”."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Many classifiers first estimate a probability or score, then apply a threshold — for example, predict spam when P(spam) ≥ 0.50. You can move that threshold when false positives and false negatives carry different costs.",
+          "title": "From probability to decision"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Quick test: “How much will this house sell for?” expects a number, so it is regression. “Will this email bounce?” expects yes or no, so it is classification. The kind of answer the question wants decides the task.",
+          "title": "Spot the task"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Number to predict? Regression. Category to predict? Classification. The choice sets your metrics and algorithms.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Regression predicts a continuous number; classification predicts a category.",
+        "The task decides which metrics and algorithms are appropriate.",
+        "Classification can be binary, multiclass or multilabel.",
+        "Classifiers often output a probability, then apply a threshold to make the final decision."
+      ],
+      "commonMistakes": [
+        "Reporting regression metrics for a classification task, or vice versa."
+      ]
+    },
+    {
+      "id": "supervised_05_workflow",
+      "moduleId": "supervised_learning",
+      "order": 5,
+      "title": "The Supervised-Learning Workflow",
+      "summary": "The end-to-end path from defining the problem to deploying and monitoring, and why the order of steps protects you from mistakes.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 1,
+      "keywords": [
+        "workflow",
+        "pipeline",
+        "problem definition",
+        "baseline",
+        "deployment"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "A supervised-learning project is a sequence, not a single 'train' command. Following the steps in order — especially splitting the data before fitting anything data-dependent — is what keeps your final results honest."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig04_workflow.webp",
+          "caption": "Figure 4. A reliable workflow separates problem definition, data preparation, model development and final testing."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step by step"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Stage",
+            "What happens"
+          ],
+          "rows": [
+            [
+              "1. Define the problem",
+              "Specify the prediction target, the users, the decision it supports and the success criteria."
+            ],
+            [
+              "2. Collect labelled data",
+              "Gather representative examples with reliable labels."
+            ],
+            [
+              "3. Explore and clean",
+              "Understand data types, missing values, duplicates, outliers and class balance."
+            ],
+            [
+              "4. Engineer features",
+              "Create useful inputs without using future or target-derived information."
+            ],
+            [
+              "5. Split correctly",
+              "Create train, validation and test partitions before fitting any data-dependent preprocessing."
+            ],
+            [
+              "6. Train baselines",
+              "Start with a simple, understandable model."
+            ],
+            [
+              "7. Compare and tune",
+              "Use validation or cross-validation to compare models and settings."
+            ],
+            [
+              "8. Final test and deploy",
+              "Evaluate once on the untouched test set, then monitor real-world performance."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Write down every preprocessing, splitting and modelling decision as you go. Reproducibility is part of model quality, not an afterthought.",
+          "title": "Professional practice"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Define the target, prepare the data, split early, baseline first, then compare, test once and monitor.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "A reliable workflow runs from problem definition through to deployment and monitoring.",
+        "Split the data before fitting any data-dependent preprocessing.",
+        "Always establish a simple baseline before reaching for complex models.",
+        "Touch the test set only once, at the very end.",
+        "Record decisions so the whole process is reproducible."
+      ],
+      "commonMistakes": [
+        "Fitting preprocessing on the whole dataset before splitting.",
+        "Skipping a simple baseline and jumping straight to a complex model."
+      ]
+    },
+    {
+      "id": "supervised_06_train_val_test",
+      "moduleId": "supervised_learning",
+      "order": 6,
+      "title": "Training, Validation and Testing",
+      "summary": "Why data is split three ways, how cross-validation squeezes more from limited data, and when to split by group or by time.",
+      "difficulty": "intermediate",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "train validation test",
+        "cross-validation",
+        "stratified split",
+        "group split",
+        "time split"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "A fair evaluation uses data the model has never seen. That is why a dataset is split into distinct parts, each with a strict job — and each with things it must never be used for."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Think of studying for an exam. The training set is your practice questions with answers. The validation set is a mock exam you use to decide what to revise next. The test set is the real exam — you sit it once, and peeking at it beforehand to revise would be cheating.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig05_train_val_test_split.webp",
+          "caption": "Figure 5. A common split is 70% training, 15% validation and 15% testing, but no single ratio is mandatory."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Dataset part",
+            "Purpose",
+            "Must not be used for"
+          ],
+          "rows": [
+            [
+              "Training set",
+              "Fit model parameters and fit preprocessing steps",
+              "Reporting unbiased final performance"
+            ],
+            [
+              "Validation set",
+              "Choose algorithms, features, thresholds and hyperparameters",
+              "Repeatedly claiming final performance"
+            ],
+            [
+              "Test set",
+              "One final, unbiased evaluation after all decisions",
+              "Tuning or selecting the model"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "For classification, stratified splitting keeps roughly the same class proportions in every split. This matters most when one class is rare.",
+          "title": "Stratification"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cross-validation"
+        },
+        {
+          "type": "paragraph",
+          "text": "When data is limited, k-fold cross-validation reuses it cleverly through rotating train/validation splits. In 5-fold cross-validation the data is divided into five parts; the model trains five times, each time validating on a different part. Averaging the five scores gives a steadier estimate than a single lucky (or unlucky) split."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Split by group or by time when needed"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Use group-aware splitting when rows from the same person, customer, patient or device must not appear in both training and testing.",
+            "Use time-aware splitting when predicting the future: train on earlier records and test on later ones instead of mixing time periods at random."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Train to learn, validate to choose, test once to judge. Stratify for imbalance; split by group or time when the data demands it.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Training fits the model, validation tunes choices, and the test set gives one final unbiased score.",
+        "Never use the test set to select or tune the model.",
+        "Cross-validation averages several rotating splits for a more stable estimate on limited data.",
+        "Use stratified, group-aware or time-aware splitting when the data requires it."
+      ],
+      "commonMistakes": [
+        "Reusing the test set to make model choices.",
+        "Random splitting when rows share a group or a time order."
+      ]
+    },
+    {
+      "id": "supervised_07_generalization",
+      "moduleId": "supervised_learning",
+      "order": 7,
+      "title": "Generalization",
+      "summary": "The real goal of machine learning: doing well on new data, and the underfitting-to-overfitting balance that gets you there.",
+      "difficulty": "intermediate",
+      "readingMinutes": 6,
+      "contentVersion": 1,
+      "keywords": [
+        "generalization",
+        "underfitting",
+        "overfitting",
+        "regularization",
+        "model complexity"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "definition",
+          "term": "Generalization",
+          "text": "How well a trained model performs on new data it did not see during training. Memorising the training set is not enough — the pattern has to stay useful outside the sample."
+        },
+        {
+          "type": "paragraph",
+          "text": "Generalisation is the whole point. A model that scores perfectly on training data but stumbles on new data has learned the wrong thing."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "A student who memorises last year's exam paper word-for-word may still fail this year's reworded questions. Genuinely understanding the method — not memorising the answers — is what generalisation means for a model.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig06_generalization_curve.webp",
+          "caption": "Figure 6. The best model balances underfitting and overfitting to achieve low validation error."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Condition",
+            "What it means",
+            "Typical sign"
+          ],
+          "rows": [
+            [
+              "Underfitting",
+              "The model is too simple or the features are weak",
+              "Training and validation performance are both poor"
+            ],
+            [
+              "Good fit",
+              "The model captures useful signal without memorising noise",
+              "Training and validation scores are both strong and reasonably close"
+            ],
+            [
+              "Overfitting",
+              "The model learns noise or accidental details",
+              "Training score is excellent but validation/test score is much lower"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How to improve generalization"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Collect more representative labelled data.",
+            "Improve data quality and feature definitions.",
+            "Reduce model complexity or apply regularization.",
+            "Use cross-validation for model selection.",
+            "Apply early stopping when appropriate.",
+            "Remove leakage and duplicates across splits."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Aim for the sweet spot: complex enough to catch the real pattern, simple enough to ignore the noise.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Generalization is good performance on genuinely unseen data — the real goal.",
+        "Underfitting is too simple; overfitting memorises noise; a good fit sits between them.",
+        "A large gap between training and validation scores signals overfitting.",
+        "More/better data, simpler models, regularization and cross-validation all improve generalization."
+      ],
+      "commonMistakes": [
+        "Judging a model by its training score alone.",
+        "Increasing complexity to chase a higher training score."
+      ]
+    },
+    {
+      "id": "supervised_08_algorithms_linear_logistic",
+      "moduleId": "supervised_learning",
+      "order": 8,
+      "title": "Algorithms I: Linear and Logistic Regression",
+      "summary": "Two workhorse baselines: linear regression for numbers and logistic regression for classes, plus a map of all seven algorithms.",
+      "difficulty": "intermediate",
+      "readingMinutes": 10,
+      "contentVersion": 1,
+      "keywords": [
+        "linear regression",
+        "logistic regression",
+        "sigmoid",
+        "baseline",
+        "coefficients"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "No single algorithm wins on every dataset. A professional workflow compares a few sensible candidates under the same preprocessing, the same split and the same evaluation. Here is the map of the seven algorithms this module covers."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Algorithm",
+            "Main task",
+            "Core idea",
+            "Main strength"
+          ],
+          "rows": [
+            [
+              "Linear regression",
+              "Regression",
+              "Fit a weighted straight-line relationship",
+              "Simple and interpretable"
+            ],
+            [
+              "Logistic regression",
+              "Classification",
+              "Estimate class probability from a linear score",
+              "Strong baseline; interpretable"
+            ],
+            [
+              "Decision tree",
+              "Both",
+              "Split data with if–then rules",
+              "Easy to explain; handles nonlinearity"
+            ],
+            [
+              "Random forest",
+              "Both",
+              "Average or vote across many trees",
+              "Reliable on tabular data"
+            ],
+            [
+              "K-nearest neighbours",
+              "Both",
+              "Use labels/values of nearby examples",
+              "Simple, flexible, non-parametric"
+            ],
+            [
+              "Support-vector machine",
+              "Both",
+              "Find a high-margin boundary",
+              "Effective in high-dimensional spaces"
+            ],
+            [
+              "Naive Bayes",
+              "Classification",
+              "Combine feature evidence with probability",
+              "Fast; great text baseline"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Linear Regression"
+        },
+        {
+          "type": "paragraph",
+          "text": "Linear regression predicts a continuous number by adding up weighted features. With one feature it is a straight line; with many features it becomes a flat surface in higher dimensions."
+        },
+        {
+          "type": "formula",
+          "expression": "ŷ = b₀ + b₁x₁ + b₂x₂ + … + bₚpxₚ",
+          "explanation": "Each coefficient shows how the prediction changes when its feature changes by one unit, assuming the other features stay fixed."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig07_linear_regression_line.webp",
+          "caption": "Figure 7. The best-fit line minimizes prediction errors across the observed data."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Example: predict a house price from its size, number of bedrooms, location indicators and age.",
+          "title": "Worked example"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Say the fitted model is price = 20,000 + 300 × size(m²) + 10,000 × bedrooms. A 50 m² two-bedroom flat is predicted at 20,000 + 300×50 + 10,000×2 = 55,000. Each coefficient is just the price change for one more unit of its feature.",
+          "title": "Worked example with numbers"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Fast to train and predict",
+              "Cannot naturally capture complex nonlinear patterns"
+            ],
+            [
+              "Coefficients can be interpreted",
+              "Sensitive to outliers and multicollinearity"
+            ],
+            [
+              "Useful baseline for numerical prediction",
+              "Assumptions should be checked for inference work"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Logistic Regression"
+        },
+        {
+          "type": "paragraph",
+          "text": "Despite the name, logistic regression is a classification algorithm. It computes a weighted score from the features, then squashes that score into a probability between 0 and 1 with the sigmoid function."
+        },
+        {
+          "type": "formula",
+          "expression": "σ(z) = 1 / (1 + e⁻ᶻ)",
+          "explanation": "The sigmoid turns any real-valued score z into a probability; a threshold (often 0.50) converts that probability into a class."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig08_sigmoid.webp",
+          "caption": "Figure 8. The sigmoid function maps any numerical score to a probability between 0 and 1."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Example: predict whether an email is spam from word-frequency and sender-risk features.",
+          "title": "Worked example"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Score z",
+            "Sigmoid probability σ(z)",
+            "Decision at 0.50"
+          ],
+          "rows": [
+            [
+              "−2",
+              "0.12",
+              "Not spam"
+            ],
+            [
+              "0",
+              "0.50",
+              "Borderline"
+            ],
+            [
+              "2",
+              "0.88",
+              "Spam"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The higher the score, the closer the probability creeps to 1. The 0.50 threshold is just a cut-off you can slide when one kind of mistake is costlier than the other."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Strong, fast classification baseline",
+              "Linear decision boundary unless features are transformed"
+            ],
+            [
+              "Outputs useful probabilities",
+              "Can struggle with highly complex interactions"
+            ],
+            [
+              "Coefficients support interpretation",
+              "Scaling and regularization choices can matter"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Reach for linear regression as your number-predicting baseline and logistic regression as your class-predicting baseline. Both are fast, interpretable and hard to beat as a starting point.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "No algorithm is best everywhere; compare candidates under identical conditions.",
+        "Linear regression predicts a number as a weighted sum of features.",
+        "Logistic regression predicts a class by passing a linear score through the sigmoid.",
+        "Both are fast, interpretable baselines but assume mostly linear relationships."
+      ],
+      "commonMistakes": [
+        "Assuming logistic regression predicts a number because of its name.",
+        "Expecting a linear model to capture strongly nonlinear patterns without transformed features."
+      ]
+    },
+    {
+      "id": "supervised_09_algorithms_trees_forests",
+      "moduleId": "supervised_learning",
+      "order": 9,
+      "title": "Algorithms II: Decision Trees and Random Forests",
+      "summary": "Rule-based models you can read, and the ensemble that makes them far more reliable.",
+      "difficulty": "intermediate",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "decision tree",
+        "random forest",
+        "ensemble",
+        "feature importance",
+        "overfitting"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Decision Trees"
+        },
+        {
+          "type": "paragraph",
+          "text": "A decision tree keeps splitting the data with simple questions — “Is the number of links greater than 3?” — and each path ends at a leaf that gives a prediction. Read from the top down, a small tree is just a chain of if–then rules."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig09_decision_tree.webp",
+          "caption": "Figure 9. A small tree can be read as human-friendly if–then rules."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Easy to visualize and explain",
+              "Deep trees overfit easily"
+            ],
+            [
+              "Handles nonlinear relationships and interactions",
+              "Small data changes can produce a different tree"
+            ],
+            [
+              "Requires little feature scaling",
+              "Greedy splits may miss the globally best tree"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Maximum depth, minimum samples per split/leaf and the split criterion are the main dials that control how complex a tree becomes.",
+          "title": "Main hyperparameters"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Random Forests"
+        },
+        {
+          "type": "paragraph",
+          "text": "A random forest trains many decision trees, each on a different random sample of rows and a random subset of features. For classification the trees vote; for regression their predictions are averaged. The diversity is the point — many varied trees cancel out each other's mistakes."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig10_random_forest.webp",
+          "caption": "Figure 10. Combining many diverse trees usually reduces the instability and overfitting of one tree."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Strong default for many tabular datasets",
+              "Less interpretable than one small tree"
+            ],
+            [
+              "Handles nonlinear patterns and interactions",
+              "Larger models need more memory and computation"
+            ],
+            [
+              "Usually robust without extensive scaling",
+              "Probability estimates may need calibration"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Feature importance can reveal which inputs drive predictions most, but read it carefully — correlated or high-cardinality features can distort the picture.",
+          "title": "Useful outputs"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "One tree is readable but jumpy; a forest of many trees is steadier and is a strong default for tabular data.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "A decision tree splits data with if–then questions ending in leaf predictions.",
+        "Single trees are easy to read but overfit and are unstable.",
+        "A random forest averages or votes across many diverse trees to reduce that instability.",
+        "Random forests are a strong, low-effort baseline for tabular data."
+      ],
+      "commonMistakes": [
+        "Letting a single tree grow unlimited depth and overfit.",
+        "Over-trusting feature-importance values with correlated features."
+      ]
+    },
+    {
+      "id": "supervised_10_algorithms_knn_svm_nb",
+      "moduleId": "supervised_learning",
+      "order": 10,
+      "title": "Algorithms III: KNN, SVM and Naive Bayes",
+      "summary": "Three more tools: nearest-neighbour voting, wide-margin boundaries, and probability-based text classification.",
+      "difficulty": "intermediate",
+      "readingMinutes": 11,
+      "contentVersion": 1,
+      "keywords": [
+        "KNN",
+        "SVM",
+        "naive bayes",
+        "margin",
+        "kernel",
+        "feature scaling"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "K-Nearest Neighbours (KNN)"
+        },
+        {
+          "type": "paragraph",
+          "text": "KNN barely trains at all — it just stores the examples. To predict a new case it finds the K most similar stored examples and lets them decide: neighbours vote for classification, or their values are averaged for regression."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "To guess whether you will enjoy a new restaurant, you compare it with the handful of most similar places you already know and liked. KNN predicts in exactly that way — by looking at the nearest examples.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig11_knn.webp",
+          "caption": "Figure 11. The new email is classified using the labels of its nearest neighbours."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Very simple concept",
+              "Prediction gets slow on large datasets"
+            ],
+            [
+              "Can model irregular decision boundaries",
+              "Sensitive to feature scales and irrelevant features"
+            ],
+            [
+              "No complex training phase",
+              "Performance degrades in very high-dimensional spaces"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "K controls smoothness: a very small K can overfit, a very large K can oversimplify. Because KNN measures distances, standardising features first is usually essential.",
+          "title": "Choosing K"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Imagine two features: age (18–70) and salary (20,000–90,000). Left unscaled, the salary numbers are so much bigger that distance is driven almost entirely by salary, and age barely counts. Rescaling both to a common range lets each feature pull its fair weight.",
+          "title": "Why scaling matters"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Support-Vector Machines (SVM)"
+        },
+        {
+          "type": "paragraph",
+          "text": "An SVM looks for the decision boundary that separates the classes with the widest possible margin. The points sitting closest to that boundary are the support vectors — they alone pin the boundary in place."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Picture drawing the widest possible street between two neighbourhoods, keeping the dividing line as far as possible from the nearest house on each side. Those nearest houses are the support vectors.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig12_svm_margin.webp",
+          "caption": "Figure 12. SVM aims for a large margin between classes; kernels can create nonlinear boundaries."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Effective with many features, including text vectors",
+              "Training can be slow on very large datasets"
+            ],
+            [
+              "The kernel trick can model nonlinear boundaries",
+              "Requires tuning and feature scaling"
+            ],
+            [
+              "Often strong when classes have a clear margin",
+              "Raw outputs are not naturally calibrated probabilities"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "C trades off a wider margin against training errors. When using kernels such as RBF, the kernel and gamma settings shape how nonlinear the boundary becomes.",
+          "title": "Important settings"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Naive Bayes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Naive Bayes uses Bayes' theorem to estimate the probability of each class after seeing the features. It naively assumes the features are independent given the class — often unrealistic, yet it still works remarkably well, especially for text."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Naive Bayes works like a suspicious-word tally: spotting “free”, “winner” and “click” each nudges the spam probability upward, and the method simply combines those nudges into a final verdict.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig13_naive_bayes.webp",
+          "caption": "Figure 13. Naive Bayes combines evidence from several observed features to update class probability."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Variant",
+            "Suitable data"
+          ],
+          "rows": [
+            [
+              "Multinomial Naive Bayes",
+              "Word counts or non-negative text-frequency features"
+            ],
+            [
+              "Bernoulli Naive Bayes",
+              "Binary features such as word present / absent"
+            ],
+            [
+              "Gaussian Naive Bayes",
+              "Continuous features that are roughly Gaussian within each class"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Extremely fast and memory efficient",
+              "The independence assumption may be unrealistic"
+            ],
+            [
+              "Excellent baseline for high-dimensional text",
+              "Probability estimates may be overconfident"
+            ],
+            [
+              "Works well with limited training data",
+              "The feature representation must match the chosen variant"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "KNN and SVM both rely on distances, so feature scaling is not optional for them — unscaled features let large-magnitude columns dominate.",
+          "title": "Scale before distance-based models"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "KNN asks the nearest examples, SVM draws the widest boundary, and Naive Bayes tallies probability evidence — fast and excellent for text.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "KNN predicts from the K most similar stored examples and needs scaled features.",
+        "SVM finds the widest-margin boundary and can go nonlinear with kernels.",
+        "Naive Bayes combines feature probabilities and is a fast, strong text baseline.",
+        "Distance-based models (KNN, SVM) require feature scaling."
+      ],
+      "commonMistakes": [
+        "Running KNN or SVM on unscaled features.",
+        "Using the wrong Naive Bayes variant for the feature type."
+      ]
+    },
+    {
+      "id": "supervised_11_choosing_algorithm",
+      "moduleId": "supervised_learning",
+      "order": 11,
+      "title": "Choosing the Right Algorithm",
+      "summary": "A practical decision process: the questions to ask, a side-by-side comparison, and a professional selection habit.",
+      "difficulty": "intermediate",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "model selection",
+        "algorithm comparison",
+        "interpretability",
+        "scaling",
+        "baseline"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Algorithm choice should follow the task, the data size and type, the need for interpretation, your compute limits and — above all — validation results, not just what is popular this year."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig14_algorithm_guide.webp",
+          "caption": "Figure 14. A practical starting guide; final choice should be supported by validation results."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Questions that guide the choice"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Is the target numerical or categorical?",
+            "How many rows and features are available?",
+            "Are the features mainly tabular, text, images or time series?",
+            "Is a linear relationship plausible?",
+            "Does the user need an explanation for each prediction?",
+            "How costly are false positives versus false negatives?",
+            "How fast must training and prediction be?",
+            "Does the model need calibrated probabilities?",
+            "How stable is performance across cross-validation folds and relevant groups?"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Side-by-side comparison"
+        },
+        {
+          "type": "paragraph",
+          "text": "First, how each algorithm behaves on three practical questions — does it need feature scaling, how easy is it to interpret, and can it capture nonlinear patterns?"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Algorithm",
+            "Needs scaling?",
+            "Interpretability",
+            "Nonlinear patterns"
+          ],
+          "rows": [
+            [
+              "Linear regression",
+              "Often helpful",
+              "High",
+              "Low unless transformed"
+            ],
+            [
+              "Logistic regression",
+              "Usually helpful",
+              "High",
+              "Low unless transformed"
+            ],
+            [
+              "Decision tree",
+              "Not usually",
+              "High if small",
+              "High"
+            ],
+            [
+              "Random forest",
+              "Not usually",
+              "Medium/low",
+              "High"
+            ],
+            [
+              "KNN",
+              "Yes",
+              "Medium",
+              "High"
+            ],
+            [
+              "SVM",
+              "Yes",
+              "Medium/low",
+              "High with kernel"
+            ],
+            [
+              "Naive Bayes",
+              "Depends on variant",
+              "Medium",
+              "Class-probability model"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "And a one-line suggestion for where each one makes a sensible starting point:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Algorithm",
+            "Good starting use"
+          ],
+          "rows": [
+            [
+              "Linear regression",
+              "Simple numerical prediction"
+            ],
+            [
+              "Logistic regression",
+              "Binary or multiclass baseline"
+            ],
+            [
+              "Decision tree",
+              "Explainable rules on tabular data"
+            ],
+            [
+              "Random forest",
+              "Strong tabular baseline"
+            ],
+            [
+              "KNN",
+              "Small, low-dimensional datasets"
+            ],
+            [
+              "SVM",
+              "High-dimensional or medium-size data"
+            ],
+            [
+              "Naive Bayes",
+              "Fast text classification baseline"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Start with a simple baseline, build a leakage-safe preprocessing pipeline, compare several suitable algorithms under the same cross-validation, and report both performance and practical trade-offs.",
+          "title": "Recommended practice"
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Let the problem's needs shortlist the candidates, then let validation results — not hype — make the final call.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Choose algorithms from task, data, interpretability, compute and validation results.",
+        "Answering a short list of questions narrows the sensible candidates quickly.",
+        "Compare scaling needs, interpretability and nonlinear capacity side by side.",
+        "Baseline first, keep preprocessing leakage-safe, and compare under identical cross-validation."
+      ],
+      "commonMistakes": [
+        "Picking a complex model before establishing a simple baseline.",
+        "Choosing an algorithm on popularity rather than validation evidence."
+      ]
+    },
+    {
+      "id": "supervised_12_applications_pros_cons",
+      "moduleId": "supervised_learning",
+      "order": 12,
+      "title": "Applications, Advantages and Disadvantages",
+      "summary": "Where supervised learning fits across industries, when it is the wrong tool, and an honest look at its strengths and weaknesses.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 1,
+      "keywords": [
+        "applications",
+        "use cases",
+        "advantages",
+        "disadvantages",
+        "suitability"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Supervised learning shows up almost everywhere a clear target can be labelled. The same task types — regression and classification — recur across very different domains."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Domain",
+            "Regression example",
+            "Classification example"
+          ],
+          "rows": [
+            [
+              "Finance",
+              "Predict transaction value or credit loss",
+              "Fraud / not fraud; default-risk class"
+            ],
+            [
+              "Healthcare",
+              "Predict hospital stay length",
+              "Disease / no disease; diagnostic category"
+            ],
+            [
+              "Education",
+              "Predict final score",
+              "At-risk / not-at-risk student"
+            ],
+            [
+              "Retail",
+              "Predict sales or customer lifetime value",
+              "Churn / not churn; product category"
+            ],
+            [
+              "Manufacturing",
+              "Predict remaining useful life",
+              "Defective / not defective"
+            ],
+            [
+              "Cybersecurity",
+              "Predict response time",
+              "Spam, phishing or malware classification"
+            ],
+            [
+              "Transport",
+              "Predict journey duration",
+              "Incident type or driver-risk category"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "When supervised learning is a good fit"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "A clear prediction target exists.",
+            "Reliable labels can be collected.",
+            "Historical examples are relevant to future cases.",
+            "The prediction supports a defined decision or user need.",
+            "Performance and risks can be measured with suitable metrics."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "When it may not be appropriate"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "No labels exist and discovering structure is the real goal.",
+            "The environment changes so fast that past examples no longer represent it.",
+            "The target is poorly defined or the labels are inconsistent.",
+            "A simple rule or statistical summary already solves the problem.",
+            "Errors would cause unacceptable harm without human review and safeguards."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Advantages and disadvantages"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Disadvantages"
+          ],
+          "rows": [
+            [
+              "Clear objective because the target is defined",
+              "Label collection can be expensive and slow"
+            ],
+            [
+              "Performance can be measured against known answers",
+              "Biased or wrong labels teach biased or wrong patterns"
+            ],
+            [
+              "Supports many practical prediction problems",
+              "May fail when future data differs from training data"
+            ],
+            [
+              "Wide range of mature algorithms and tools",
+              "High scores can hide leakage, imbalance or poor split design"
+            ],
+            [
+              "Can output values, classes, probabilities or rankings",
+              "Some models are difficult to explain"
+            ],
+            [
+              "Improves with more high-quality labelled data",
+              "Deployment needs monitoring, maintenance and retraining"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Supervised learning shines when you have a clear target and trustworthy labels — and struggles when either is missing.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Supervised learning applies across finance, healthcare, education, retail and more.",
+        "It fits when a clear target exists, labels are reliable, and history predicts the future.",
+        "It is a poor fit without labels, with unstable environments, or where errors are unacceptable.",
+        "Its clear metrics come with costs: labelling effort, label bias and deployment upkeep."
+      ],
+      "commonMistakes": [
+        "Applying supervised learning where no reliable labels exist.",
+        "Trusting a high score without checking leakage, imbalance or split design."
+      ]
+    },
+    {
+      "id": "supervised_13_challenges_and_risks",
+      "moduleId": "supervised_learning",
+      "order": 13,
+      "title": "Common Challenges and Risks",
+      "summary": "The four issues that quietly wreck supervised models: overfitting, class imbalance, poor data quality and data leakage.",
+      "difficulty": "intermediate",
+      "readingMinutes": 10,
+      "contentVersion": 1,
+      "keywords": [
+        "overfitting",
+        "class imbalance",
+        "data quality",
+        "data leakage",
+        "concept drift"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Four problems undermine supervised models more than any others. Spotting them early is a core professional skill."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overfitting"
+        },
+        {
+          "type": "paragraph",
+          "text": "Overfitting is when a model learns the training data too closely — noise, quirks and all. It looks brilliant on training examples but disappoints on new ones."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Overfitting is like a student who memorises the exact answers to the practice questions but cannot handle the same question reworded in the real exam.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig15_overfitting_curve.webp",
+          "caption": "Figure 15. Validation performance may peak and then decline while training performance keeps improving."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Cause",
+            "Possible response"
+          ],
+          "rows": [
+            [
+              "Model is too complex",
+              "Reduce depth, features or parameters; use regularization"
+            ],
+            [
+              "Dataset is small",
+              "Collect more data or use simpler models"
+            ],
+            [
+              "Training continues too long",
+              "Use early stopping"
+            ],
+            [
+              "Noisy or irrelevant features",
+              "Improve feature selection and data quality"
+            ],
+            [
+              "Repeated tuning on one validation set",
+              "Use cross-validation and keep an untouched test set"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Class imbalance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Class imbalance is when some classes appear far more often than others. Accuracy turns misleading, because a model can score high just by ignoring the rare — but important — class."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig16_imbalance_accuracy.webp",
+          "caption": "Figure 16. A high accuracy can be meaningless when the minority class is ignored."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Suppose 95 of every 100 emails are legitimate and only 5 are spam. A lazy model that labels everything “not spam” scores 95% accuracy — while catching zero spam. Impressive number, useless filter.",
+          "title": "Worked example"
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "In spam filtering, false positives push legitimate mail into the spam folder, while false negatives let spam through. Precision and recall must be read together, never accuracy alone.",
+          "title": "Why accuracy misleads"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Use precision, recall, F1-score, PR–AUC and confusion matrices instead of accuracy alone.",
+            "Use stratified splitting.",
+            "Adjust class weights or the decision threshold.",
+            "Try careful oversampling, undersampling or synthetic methods inside the training pipeline only.",
+            "Collect more examples of the minority class when possible."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Poor data quality"
+        },
+        {
+          "type": "paragraph",
+          "text": "A model cannot learn reliable patterns from unreliable data. Missing values, duplicates, inconsistent formats, wrong labels, outliers and unrepresentative sampling all hurt both performance and fairness."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Improving labels and sampling often creates more value than switching to a fancier algorithm.",
+          "title": "Data-first principle"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Data leakage"
+        },
+        {
+          "type": "paragraph",
+          "text": "Data leakage happens when training uses information that would not be available at prediction time, or when validation/test data influences the fitting. It inflates evaluation scores that then collapse in the real world."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Leakage is like revising with the answer key open beside you: you ace the practice, then fail the real exam where the key is gone. The score was never real.",
+          "title": "Everyday analogy"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig17_data_leakage.webp",
+          "caption": "Figure 17. Leakage makes evaluation look excellent but causes failure on genuinely new data."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Leakage type",
+            "Example",
+            "Prevention"
+          ],
+          "rows": [
+            [
+              "Target leakage",
+              "A feature includes a spam flag created after human review",
+              "Use only information available before prediction"
+            ],
+            [
+              "Train–test contamination",
+              "A duplicate email lands in both sets",
+              "Deduplicate and group related records before splitting"
+            ],
+            [
+              "Preprocessing leakage",
+              "TF–IDF vocabulary or a scaler fitted on all data",
+              "Fit preprocessing only on training folds, inside a pipeline"
+            ],
+            [
+              "Time leakage",
+              "Future sender reputation used to predict an earlier email",
+              "Use chronological splitting and timestamp checks"
+            ],
+            [
+              "Selection leakage",
+              "The test set is reused to choose features/models",
+              "Use validation for choices and test only once"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Overfitting, imbalance, poor data and leakage all produce scores that lie. Guard against each one before trusting a result.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "Overfitting memorises noise — fight it with simpler models, more data and cross-validation.",
+        "Class imbalance makes accuracy misleading; use precision, recall, F1 and stratified splits.",
+        "Unreliable data caps model quality; better labels beat fancier algorithms.",
+        "Data leakage inflates scores that fail in production; keep future and test information out of training."
+      ],
+      "commonMistakes": [
+        "Reporting accuracy without checking class balance.",
+        "Fitting scalers or TF–IDF on the full dataset before splitting.",
+        "Letting future or post-outcome information become a feature."
+      ]
+    },
+    {
+      "id": "supervised_14_spam_case_study",
+      "moduleId": "supervised_learning",
+      "order": 14,
+      "title": "Case Study: Email-Spam Classification",
+      "summary": "An end-to-end walkthrough: from raw emails to TF–IDF features, a leakage-safe pipeline, and an honest evaluation.",
+      "difficulty": "intermediate",
+      "readingMinutes": 11,
+      "contentVersion": 1,
+      "keywords": [
+        "case study",
+        "spam classification",
+        "TF-IDF",
+        "pipeline",
+        "confusion matrix",
+        "evaluation"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Goal: build a binary classifier that labels each incoming email as spam or not spam. The focus here is the machine-learning process end to end, not production email-security engineering."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig18_spam_pipeline.webp",
+          "caption": "Figure 18. End-to-end pipeline for converting raw email text into a supervised classification prediction."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "1. Define the problem"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Item",
+            "Decision"
+          ],
+          "rows": [
+            [
+              "Observation",
+              "One email message"
+            ],
+            [
+              "Target",
+              "Spam = 1; not spam = 0"
+            ],
+            [
+              "Primary user",
+              "Email recipient or mail service"
+            ],
+            [
+              "Prediction time",
+              "When a new message arrives"
+            ],
+            [
+              "Possible action",
+              "Move to spam, warn the user, or allow into the inbox"
+            ],
+            [
+              "Important error",
+              "A legitimate email wrongly classified as spam"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "2. Collect and inspect labelled data"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every email needs a reliable label. Inspect the class balance, duplicate campaigns, language mix, message length, missing sender fields and the collection period. Strip out direct leakage such as post-delivery user actions that would not exist when the message first arrives."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Email text (shortened)",
+            "Label"
+          ],
+          "rows": [
+            [
+              "“Congratulations! Claim your free prize now. Click here.”",
+              "Spam"
+            ],
+            [
+              "“Please review the attached meeting notes before Friday.”",
+              "Not spam"
+            ],
+            [
+              "“Limited offer—winner selected today. Verify account.”",
+              "Spam"
+            ],
+            [
+              "“Your course timetable has been updated.”",
+              "Not spam"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "3. Prepare text features"
+        },
+        {
+          "type": "paragraph",
+          "text": "Algorithms need numbers, not raw text. A common approach is TF–IDF, which gives higher weight to words that matter in a particular message but are not common across every message."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "A word earns a high TF–IDF score when it appears often in one email but rarely across all emails. “The” is everywhere, so it scores low; “lottery” is rare and spammy, so when it does appear it scores high and becomes a strong clue.",
+          "title": "TF–IDF in plain words"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Preparation step",
+            "Purpose"
+          ],
+          "rows": [
+            [
+              "Normalize basic text",
+              "Handle case and selected formatting consistently"
+            ],
+            [
+              "Tokenize",
+              "Break text into words or n-grams"
+            ],
+            [
+              "Build vocabulary",
+              "Define the text features learned from training data"
+            ],
+            [
+              "Calculate TF–IDF",
+              "Convert each email into a sparse numerical vector"
+            ],
+            [
+              "Optional metadata",
+              "Add sender reputation, number of links or attachment indicators"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "The vocabulary and TF–IDF weights must be learned from the training data inside the pipeline — never from the full dataset. Fitting on everything leaks test information.",
+          "title": "Leakage-safe rule"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "4. Split the data"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use a stratified train/test split so both sets carry similar spam proportions. If emails belong to campaigns or threads, group them so near-duplicates cannot straddle both sides. For a time-based use case, train on older emails and test on newer ones."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "5. Choose baseline models"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Why compare it"
+          ],
+          "rows": [
+            [
+              "Multinomial Naive Bayes",
+              "Very fast and often effective for word-frequency features"
+            ],
+            [
+              "Logistic Regression",
+              "Strong linear text classifier with interpretable coefficients"
+            ],
+            [
+              "Linear SVM",
+              "Often performs well on high-dimensional sparse text"
+            ],
+            [
+              "Decision Tree / Random Forest",
+              "Useful comparison, especially when metadata features matter"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "6. Example Python pipeline"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.model_selection import train_test_split\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import classification_report, confusion_matrix\n\n# X contains email text; y contains 0 = not spam, 1 = spam\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.20, stratify=y, random_state=42\n)\n\nmodel = Pipeline([\n    (\"tfidf\", TfidfVectorizer(\n        lowercase=True,\n        ngram_range=(1, 2),\n        min_df=2\n    )),\n    (\"classifier\", LogisticRegression(\n        max_iter=1000,\n        class_weight=\"balanced\"\n    ))\n])\n\nmodel.fit(X_train, y_train)\ny_pred = model.predict(X_test)\n\nprint(classification_report(y_test, y_pred))\nprint(confusion_matrix(y_test, y_pred))",
+          "explanation": "The pipeline learns TF–IDF only from the training portion on each fit, which keeps the workflow reproducible and safe from preprocessing leakage."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "7. Evaluate the classifier"
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not rely on accuracy alone. Judge a spam model with a confusion matrix plus class-specific precision, recall and F1-score."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig19_confusion_matrix.webp",
+          "caption": "Figure 19. Illustrative confusion matrix: 180 true negatives, 10 false positives, 15 false negatives and 95 true positives."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Metric",
+            "Meaning in spam detection",
+            "Formula"
+          ],
+          "rows": [
+            [
+              "Accuracy",
+              "Share of all emails classified correctly",
+              "(TP + TN) / All"
+            ],
+            [
+              "Precision (spam)",
+              "Of emails predicted spam, how many truly were?",
+              "TP / (TP + FP)"
+            ],
+            [
+              "Recall (spam)",
+              "Of all true spam, how many were caught?",
+              "TP / (TP + FN)"
+            ],
+            [
+              "F1-score",
+              "Balance between spam precision and recall",
+              "2 × P × R / (P + R)"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/fig20_evaluation_scores.webp",
+          "caption": "Figure 20. Illustrative evaluation scores derived from the example confusion matrix."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "High spam precision keeps legitimate email out of the spam folder; high spam recall catches more unwanted messages. The right balance depends on product risk and user expectations.",
+          "title": "Reading the metrics"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "8. Inspect errors"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Error type",
+            "Example",
+            "Possible improvement"
+          ],
+          "rows": [
+            [
+              "False positive",
+              "A genuine discount email looks like spam",
+              "Adjust threshold; add sender/domain reputation; improve labels"
+            ],
+            [
+              "False negative",
+              "Spam uses neutral wording with a malicious link",
+              "Add URL, sender and attachment features; collect newer spam"
+            ],
+            [
+              "Language error",
+              "Model trained mainly on English email",
+              "Collect multilingual data or build language-aware pipelines"
+            ],
+            [
+              "Campaign leakage",
+              "Near-identical messages split across train/test",
+              "Group by campaign/template before splitting"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "9. Improve and deploy responsibly"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Tune n-gram range, regularization and decision threshold using validation data.",
+            "Compare Logistic Regression, Naive Bayes and Linear SVM under identical cross-validation.",
+            "Calibrate probabilities when probability quality matters.",
+            "Monitor precision, recall, complaint rate and class distribution after deployment.",
+            "Track concept drift as spammers change wording, domains and tactics.",
+            "Provide a safe recovery path so users can restore legitimate messages.",
+            "Retrain only with carefully reviewed labels and versioned data."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Define, label, vectorize inside a pipeline, split with stratification, compare baselines, then evaluate with a confusion matrix — accuracy alone is never enough.",
+          "title": "In short"
+        }
+      ],
+      "keyPoints": [
+        "A spam filter is a binary classification problem: spam = 1, not spam = 0.",
+        "TF–IDF turns text into numbers and must be fitted inside the pipeline to avoid leakage.",
+        "Use a stratified split and group by campaign to prevent near-duplicate contamination.",
+        "Evaluate with a confusion matrix plus precision, recall and F1 — not accuracy alone.",
+        "After deployment, monitor drift and give users a way to recover legitimate mail."
+      ],
+      "commonMistakes": [
+        "Fitting TF–IDF on the full dataset before splitting.",
+        "Reporting only accuracy on an imbalanced spam dataset.",
+        "Splitting near-identical campaign emails across train and test."
+      ]
+    },
+    {
+      "id": "supervised_15_revision_and_check",
+      "moduleId": "supervised_learning",
+      "order": 15,
+      "title": "Revision and Knowledge Check",
+      "summary": "A one-page recap of every concept and algorithm, the mistakes to avoid, a self-test with answers, and a glossary.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "revision",
+        "summary",
+        "glossary",
+        "knowledge check",
+        "memory aids"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use this lesson to consolidate. Skim the memory aids, avoid the classic mistakes, test yourself, then check the glossary for any term that still feels shaky."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Concept memory aids"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concept",
+            "One-sentence memory aid"
+          ],
+          "rows": [
+            [
+              "Supervised learning",
+              "Learn a mapping from labelled examples to predict new outputs."
+            ],
+            [
+              "Feature",
+              "Input information used to make a prediction."
+            ],
+            [
+              "Target label",
+              "The correct value or class the model must learn."
+            ],
+            [
+              "Regression",
+              "Predict a continuous number."
+            ],
+            [
+              "Classification",
+              "Predict a category or class."
+            ],
+            [
+              "Training set",
+              "Fits model and preprocessing parameters."
+            ],
+            [
+              "Validation set",
+              "Chooses models, settings and thresholds."
+            ],
+            [
+              "Test set",
+              "Provides one final unbiased evaluation."
+            ],
+            [
+              "Generalization",
+              "Good performance on genuinely unseen data."
+            ],
+            [
+              "Overfitting",
+              "Great training performance but weaker new-data performance."
+            ],
+            [
+              "Class imbalance",
+              "One class is much rarer than another."
+            ],
+            [
+              "Data leakage",
+              "The model receives information it should not have."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Algorithm memory aids"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Algorithm",
+            "Memory aid"
+          ],
+          "rows": [
+            [
+              "Linear Regression",
+              "Fit a weighted straight-line relationship for a number."
+            ],
+            [
+              "Logistic Regression",
+              "Convert a weighted score into a class probability."
+            ],
+            [
+              "Decision Tree",
+              "Ask a sequence of if–then questions."
+            ],
+            [
+              "Random Forest",
+              "Let many different trees vote or average."
+            ],
+            [
+              "KNN",
+              "Look at the most similar stored examples."
+            ],
+            [
+              "SVM",
+              "Find a boundary with the widest margin."
+            ],
+            [
+              "Naive Bayes",
+              "Combine probability evidence from features."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Common mistakes to avoid"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Using test data to make model choices.",
+            "Fitting scalers, imputers or TF–IDF on the complete dataset before splitting.",
+            "Reporting accuracy without checking class imbalance.",
+            "Ignoring duplicate users, campaigns or time order across splits.",
+            "Selecting a complex model before establishing a simple baseline.",
+            "Assuming a high score proves the model is valid.",
+            "Deploying without monitoring data drift and errors."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Knowledge check"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "What makes a learning problem “supervised”?",
+            "Which part of the dataset should be used to tune hyperparameters?",
+            "Why is logistic regression used for classification?",
+            "Why does KNN usually require feature scaling?",
+            "How does a random forest improve on a single decision tree?",
+            "Why can 95% accuracy be misleading in spam detection?",
+            "Give one example of target leakage.",
+            "Which metrics help compare false positives and false negatives?",
+            "Why should TF–IDF be fitted inside a pipeline?",
+            "What is the difference between training performance and generalization?"
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "1. Training examples include known target labels. 2. The validation set, or validation folds in cross-validation. 3. It maps a linear feature score through a sigmoid to estimate class probability. 4. KNN uses distances, so large-scale features can dominate small-scale ones. 5. It combines many varied trees, reducing variance and instability. 6. A model could predict the majority class every time and miss all spam. 7. Using a post-review spam flag or other future information as a feature. 8. Precision, recall, F1-score and the confusion matrix. 9. So the vocabulary and weights are learned only from training data, preventing leakage. 10. Training performance measures fitted examples; generalization measures new, unseen examples.",
+          "title": "Answers"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Glossary"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Easy definition"
+          ],
+          "rows": [
+            [
+              "Baseline",
+              "A simple reference model used before trying more complex methods."
+            ],
+            [
+              "Class",
+              "A category in a classification problem."
+            ],
+            [
+              "Decision boundary",
+              "The rule or surface separating predicted classes."
+            ],
+            [
+              "Feature engineering",
+              "Creating or transforming inputs to make useful patterns easier to learn."
+            ],
+            [
+              "Hyperparameter",
+              "A setting chosen outside normal parameter fitting."
+            ],
+            [
+              "Label noise",
+              "Incorrect or inconsistent target labels."
+            ],
+            [
+              "Loss function",
+              "A numerical measure of prediction error used during training."
+            ],
+            [
+              "Model parameter",
+              "A value learned from training data."
+            ],
+            [
+              "Probability calibration",
+              "Making predicted probabilities match observed event frequencies."
+            ],
+            [
+              "Regularization",
+              "A method that discourages unnecessary model complexity."
+            ],
+            [
+              "Sparse vector",
+              "A vector that is mostly zeros, common in text features."
+            ],
+            [
+              "Threshold",
+              "A cutoff that converts a probability or score into a class."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "You can now explain the supervised-learning process, compare the common algorithms, spot the major evaluation risks and describe a real spam-classification pipeline. That is Module 3 complete.",
+          "title": "End of Module 3"
+        }
+      ],
+      "keyPoints": [
+        "Every concept and algorithm has a one-line memory aid for quick revision.",
+        "The classic mistakes all involve leaking information or skipping a baseline.",
+        "The knowledge check and glossary let you self-test and fill any gaps.",
+        "You can now describe the workflow, compare algorithms and run a spam-classification pipeline."
+      ]
+    }
+  ]
+}

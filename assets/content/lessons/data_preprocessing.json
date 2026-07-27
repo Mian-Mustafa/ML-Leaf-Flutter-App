@@ -1,0 +1,2041 @@
+{
+  "contentVersion": 1,
+  "lessons": [
+    {
+      "id": "dp_01_why_preprocessing",
+      "moduleId": "data_preprocessing",
+      "order": 1,
+      "title": "Why Preprocessing Matters",
+      "summary": "How raw records become a reliable, leakage-free feature matrix, and why preprocessing is part of the model.",
+      "difficulty": "beginner",
+      "readingMinutes": 6,
+      "contentVersion": 1,
+      "keywords": [
+        "data preprocessing",
+        "feature matrix",
+        "leakage",
+        "fit on training",
+        "data quality"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "definition",
+          "term": "Data preprocessing",
+          "text": "Getting raw data ready for a model: inspecting it, fixing problems, and reshaping it into clean, consistent inputs before any training begins."
+        },
+        {
+          "type": "paragraph",
+          "text": "Preprocessing is not one button you press. It is a series of small, careful decisions that turn messy real-world records into a clean, consistent set of inputs (the feature matrix X) and answers (the target y). Because the model can only learn from what you feed it, this stage largely decides how well it can do."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig01_pipeline_overview.webp",
+          "caption": "Figure 1. From raw records to a model-ready matrix: inspect, clean, transform, then produce leakage-safe features."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "The core rule",
+          "text": "Any preprocessing step that estimates a quantity from data (a median, a category set, a mean and standard deviation) is a learned component. Fit it on training data only, then apply it unchanged to validation, test and future data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why raw data is rarely model-ready"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Raw-data problem",
+            "Churn example",
+            "Risk if ignored"
+          ],
+          "rows": [
+            [
+              "Missing information",
+              "Age or contract type is blank",
+              "Rows are lost or estimates become biased"
+            ],
+            [
+              "Inconsistent labels",
+              "M2M, month to month, Month-to-month",
+              "One category is treated as several"
+            ],
+            [
+              "Duplicate records",
+              "A customer appears twice",
+              "Some observations get extra influence"
+            ],
+            [
+              "Different scales",
+              "Tenure 60, charge 85, tickets 2",
+              "Large-magnitude features dominate"
+            ],
+            [
+              "Outliers",
+              "Charge entered as 420 instead of 42",
+              "Means, scales and boundaries distort"
+            ],
+            [
+              "Class imbalance",
+              "Few customers churn",
+              "Accuracy looks high while churners are missed"
+            ],
+            [
+              "Leakage",
+              "Scaler fitted using the test set",
+              "Evaluation becomes unrealistically optimistic"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig21_record_transform.webp",
+          "caption": "One record moving from raw, to cleaned, to a model-ready vector. The target is separated from features first."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Good preprocessing makes the data representation accurate, consistent, reproducible and free from leakage. Treat every learned transform as part of the model."
+        }
+      ],
+      "keyPoints": [
+        "Preprocessing turns raw records into a consistent X (features) and y (target).",
+        "It is a chain of decisions, not a one-off clean-up.",
+        "Any step that learns a value from data must be fitted on training data only.",
+        "Ignoring quality issues risks bias, distortion and optimistic evaluation."
+      ]
+    },
+    {
+      "id": "dp_02_understanding_dataset",
+      "moduleId": "data_preprocessing",
+      "order": 2,
+      "title": "Understanding the Dataset",
+      "summary": "Inspect first, transform second: define the task, audit the data, and read a raw sample before touching it.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "audit",
+        "unit of analysis",
+        "pandas",
+        "data quality log",
+        "inspection"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before you even open the file, be clear about what you are predicting. In our example the job is a yes/no question: will this customer leave (churn) or stay? Each row is one customer, the answer is churn, and anything known before the prediction date is a possible feature."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Dataset audit checklist"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Confirm the unit of analysis: one row should represent one customer, transaction, image or time point.",
+            "Inspect the shape: number of rows and columns.",
+            "Read column names and data types; identify accidental index columns.",
+            "Separate the target from predictor variables.",
+            "Check unique identifiers and whether they should be excluded from modelling.",
+            "Summarise numerical distributions and categorical frequencies.",
+            "Measure missingness, duplicates, impossible values and rare categories.",
+            "Check time coverage and whether records are independent.",
+            "Document all decisions in a data-quality log."
+          ]
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "import pandas as pd\n\nraw = pd.read_csv(\"customer_churn.csv\")\n\nprint(raw.shape)                     # rows, columns\nprint(raw.head())                    # first observations\nprint(raw.info())                    # data types and non-null counts\nprint(raw.describe(include=\"all\"))   # numerical + categorical summary\nprint(raw.nunique())                 # distinct values per column\nprint(raw[\"churn\"].value_counts(normalize=True))",
+          "explanation": "A first pass in pandas: shape, types, summaries, distinct counts and the target balance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "A small raw churn sample"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Charge",
+            "Contract",
+            "Satisfaction",
+            "Churn"
+          ],
+          "rows": [
+            [
+              "85.50",
+              "M2M",
+              "Satisfied",
+              "Yes"
+            ],
+            [
+              "310.00",
+              "month to month",
+              "Dissatisfied",
+              "No"
+            ],
+            [
+              "85.50",
+              "M2M",
+              "Satisfied",
+              "Yes"
+            ],
+            [
+              "(blank)",
+              "One-Year",
+              "Very satisfied",
+              "No"
+            ],
+            [
+              "39.99",
+              "Two year",
+              "(blank)",
+              "No"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "What this sample already shows",
+          "text": "A missing charge, a duplicate row, inconsistent contract labels, a possible charge outlier and a missing satisfaction value. Preprocessing begins by identifying these issues, not by immediately calling fit()."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Define the task and unit of analysis, then audit shape, types, missingness and duplicates. Understand the data before you transform it."
+        }
+      ],
+      "keyPoints": [
+        "State the prediction task and unit of analysis first.",
+        "Audit shape, types, distributions, missingness and duplicates.",
+        "Identifiers like customer ID are usually excluded from features.",
+        "Record every decision in a data-quality log."
+      ]
+    },
+    {
+      "id": "dp_03_data_types",
+      "moduleId": "data_preprocessing",
+      "order": 3,
+      "title": "Data Types",
+      "summary": "Choose transformations by meaning, not storage format: numerical, categorical, ordinal, text and date-time variables.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "numerical",
+        "categorical",
+        "ordinal",
+        "text",
+        "date-time",
+        "variable types"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "How you should treat a column depends on what it means, not how it happens to be stored. A number is not always a quantity, and text can still carry a hidden order."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig02_data_types.webp",
+          "caption": "Figure 2. Major data types and the preprocessing choices that suit each one."
+        },
+        {
+          "type": "definition",
+          "term": "Numerical",
+          "text": "A quantity where the size and the gaps between values mean something, like a monthly charge or a count of support tickets. Typical steps: fill gaps, scale, tame skew and check outliers."
+        },
+        {
+          "type": "definition",
+          "term": "Categorical (nominal)",
+          "text": "A named group with no natural order, like contract type or city. Most models cannot read the raw words, so these are usually one-hot encoded and mode-filled when missing."
+        },
+        {
+          "type": "definition",
+          "term": "Ordinal",
+          "text": "Categories that do have a sensible order, but with unequal gaps, like satisfaction from very low to very high. Encode them with the order stated explicitly."
+        },
+        {
+          "type": "definition",
+          "term": "Text",
+          "text": "Free-form language, like a complaint or a chat message. Typical steps: lowercasing, splitting into tokens, and turning words into numbers (TF-IDF or embeddings), checked so useful signal is not thrown away."
+        },
+        {
+          "type": "definition",
+          "term": "Date and time",
+          "text": "A moment in time. Read it as a real date, then derive useful pieces like month, weekday or how long someone has been a customer, without peeking into the future."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "raw[\"signup_date\"] = pd.to_datetime(raw[\"signup_date\"], errors=\"coerce\")\nreference_date = pd.Timestamp(\"2026-07-01\")\n\nraw[\"customer_age_days\"] = (reference_date - raw[\"signup_date\"]).dt.days\nraw[\"signup_month\"]   = raw[\"signup_date\"].dt.month\nraw[\"signup_weekday\"] = raw[\"signup_date\"].dt.dayofweek",
+          "explanation": "Parse dates, then derive useful time features relative to a fixed reference date."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Common mistake",
+          "text": "A column stored as an integer is not automatically numerical. Customer ID 10045 is an identifier, not a measurable quantity. Likewise, satisfaction stored as text is ordinal because of its meaning."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Classify each variable by meaning, then pick the transformation. Numbers, nominal categories, ordered categories, text and dates each need different handling."
+        }
+      ],
+      "keyPoints": [
+        "Transformations follow meaning, not storage format.",
+        "Nominal categories are one-hot encoded; ordinal ones use an explicit order.",
+        "Dates are parsed then turned into derived features, avoiding future leakage.",
+        "An integer ID is not a numerical feature."
+      ],
+      "commonMistakes": [
+        "Treating an ID column as a numeric predictor.",
+        "Encoding an ordinal variable as unordered categories, losing the rank."
+      ]
+    },
+    {
+      "id": "dp_04_missing_values",
+      "moduleId": "data_preprocessing",
+      "order": 4,
+      "title": "Handling Missing Values",
+      "summary": "Detect and quantify missingness, understand its mechanism, and choose between deletion and imputation methods.",
+      "difficulty": "intermediate",
+      "readingMinutes": 12,
+      "contentVersion": 1,
+      "keywords": [
+        "missing values",
+        "imputation",
+        "MCAR",
+        "MAR",
+        "MNAR",
+        "median",
+        "SimpleImputer"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Real datasets are full of blanks: a survey a customer skipped, a sensor that dropped a reading, a field that did not apply. Missing values are not just cosmetic. If handled carelessly they shrink your data, bias estimates or crash an algorithm. The right response depends on how much is missing and, crucially, why it is missing."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Everyday analogy",
+          "text": "Imagine a class register with some attendance cells blank. Before averaging attendance, you must ask whether those students were truly absent, or the teacher simply forgot to mark them. The reason changes the fair way to fill the gaps."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Detect and quantify missingness"
+        },
+        {
+          "type": "paragraph",
+          "text": "Start by measuring how much is missing and where. A missing-value map and a per-column percentage make the problem visible before you decide what to do."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig03_missing_matrix.webp",
+          "caption": "Figure 3. Missing-value map: green means present, red means missing."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig04_missing_profile.webp",
+          "caption": "Figure 4. Percentage of missing entries by column in the raw dataset."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "missing_count   = raw.isna().sum()\nmissing_percent = raw.isna().mean().mul(100).round(2)\n\nmissing_report = pd.DataFrame({\n    \"count\": missing_count,\n    \"percent\": missing_percent,\n}).sort_values(\"percent\", ascending=False)",
+          "explanation": "Build a per-column missing-data report, sorted by percentage."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Missingness mechanisms"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Mechanism",
+            "Meaning",
+            "Implication"
+          ],
+          "rows": [
+            [
+              "MCAR",
+              "Missing completely at random",
+              "Complete-case analysis is less biased but wastes data"
+            ],
+            [
+              "MAR",
+              "Depends on observed variables",
+              "Model-based imputation can use observed predictors"
+            ],
+            [
+              "MNAR",
+              "Depends on the unobserved value itself",
+              "Simple imputation may stay biased; needs domain analysis"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Strategy 1: remove records or columns"
+        },
+        {
+          "type": "paragraph",
+          "text": "Removing rows is reasonable when missingness is rare, approximately random and enough data remains. Removing a column may be justified when most values are missing or its collection is unreliable. There is no universal threshold; it depends on sample size, feature importance, mechanism and deployment."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "# The target must be known for supervised training\nclean = raw.dropna(subset=[\"churn\"])\n\n# Drop a severely incomplete, non-essential column\nclean = clean.drop(columns=[\"unused_optional_field\"], errors=\"ignore\")",
+          "explanation": "Delete only when justified: always drop rows with a missing target; drop columns only when appropriate."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Strategy 2: mean, median and mode imputation"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig05a_observed_charges.webp",
+          "caption": "Figure 5a. Distribution of observed monthly charges (some values missing)."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig05b_mean_imputation.webp",
+          "caption": "Figure 5b. Mean imputation can create an artificial spike at the mean."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig05c_median_imputation.webp",
+          "caption": "Figure 5c. Median imputation is more robust to skew and extreme values."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Method",
+            "Suitable for",
+            "Limitation"
+          ],
+          "rows": [
+            [
+              "Mean",
+              "Approximately symmetric numerical data",
+              "Sensitive to outliers; reduces variance"
+            ],
+            [
+              "Median",
+              "Skewed data or data with outliers",
+              "Still creates repeated artificial values"
+            ],
+            [
+              "Mode / most frequent",
+              "Categorical or discrete variables",
+              "Can exaggerate the majority category"
+            ],
+            [
+              "Constant / unknown",
+              "Missingness that may carry meaning",
+              "Adds a new category to handle consistently"
+            ]
+          ]
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.impute import SimpleImputer\n\nnumeric_imputer     = SimpleImputer(strategy=\"median\")\ncategorical_imputer = SimpleImputer(strategy=\"most_frequent\")\n\n# Optional: keep a flag showing that a value was missing\nnumeric_with_flag = SimpleImputer(strategy=\"median\", add_indicator=True)",
+          "explanation": "scikit-learn imputers learn their fill values from training data only."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Advanced imputation"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Method",
+            "When useful",
+            "Caution"
+          ],
+          "rows": [
+            [
+              "KNN",
+              "Local relationships; features are scaled",
+              "Heavier; sensitive to distance and irrelevant features"
+            ],
+            [
+              "Iterative (MICE idea)",
+              "Several related incomplete variables",
+              "Adds assumptions; fit inside training folds"
+            ],
+            [
+              "Model-based",
+              "Strong predictors of the missing value exist",
+              "Can overfit; more complex pipeline"
+            ],
+            [
+              "Time-series interpolation",
+              "Ordered, regularly sampled data",
+              "Unsafe for random tabular data; can leak future"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Best practice",
+          "text": "Record both the imputed value and, where useful, a missingness indicator. A blank field may itself carry predictive information, but this must reflect the real prediction environment."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Quantify missingness, consider the mechanism (MCAR/MAR/MNAR), then choose: delete only when justified, otherwise impute with a method that suits the data, fitted on training only."
+        }
+      ],
+      "keyPoints": [
+        "Measure missingness per column before deciding anything.",
+        "MCAR, MAR and MNAR mechanisms lead to different safe choices.",
+        "Median imputation resists skew; mode suits categories.",
+        "Fit imputers on training data and consider a missingness indicator."
+      ],
+      "commonMistakes": [
+        "Imputing before splitting, leaking test information into fill values.",
+        "Using mean imputation on strongly skewed data."
+      ]
+    },
+    {
+      "id": "dp_05_duplicates_inconsistent",
+      "moduleId": "data_preprocessing",
+      "order": 5,
+      "title": "Duplicates and Inconsistent Values",
+      "summary": "Remove accidental repetition and standardise category labels with an explicit, auditable mapping.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "duplicates",
+        "inconsistent labels",
+        "standardisation",
+        "mapping",
+        "validation"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two problems quietly distort many datasets: the same record entered more than once, and the same category written in several ways. Both make a model over-count or mis-count reality. Cleaning them is less about fancy techniques and more about careful, documented rules."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Everyday analogy",
+          "text": "A shop's mailing list has the same person as 'Mohammed Ali', 'mohammed ali' and 'M. Ali'. Counted naively, one customer looks like three, and any average per customer is wrong."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Duplicate records"
+        },
+        {
+          "type": "paragraph",
+          "text": "An exact duplicate repeats every column, while a business duplicate repeats the same entity under slightly different formatting. Handle duplicates according to the unit of analysis: two identical transactions may both be valid, but two identical customer snapshots may indicate accidental replication."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "# Exact duplicates\nduplicate_mask = raw.duplicated(keep=False)\nduplicates = raw.loc[duplicate_mask].sort_values(\"customer_id\")\nclean = raw.drop_duplicates()\n\n# Business-key duplicates: inspect before deleting\npossible_customer_duplicates = raw[raw.duplicated(subset=[\"customer_id\"], keep=False)]",
+          "explanation": "Find exact duplicates and, separately, review rows that repeat a business key."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Inconsistent categorical values"
+        },
+        {
+          "type": "paragraph",
+          "text": "Inconsistent spelling, case, whitespace and abbreviations split one true category into several machine-readable categories. Standardisation should be explicit and auditable; never silently replace values without saving a mapping table."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Raw value",
+            "Standardised value",
+            "Reason"
+          ],
+          "rows": [
+            [
+              "M2M",
+              "Month-to-month",
+              "Known abbreviation"
+            ],
+            [
+              "month to month",
+              "Month-to-month",
+              "Whitespace and hyphen normalisation"
+            ],
+            [
+              "MONTH-TO-MONTH",
+              "Month-to-month",
+              "Case normalisation"
+            ],
+            [
+              "One-Year",
+              "One year",
+              "Hyphen and case normalisation"
+            ],
+            [
+              "two years",
+              "Two year",
+              "Canonical category label"
+            ]
+          ]
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "contract_map = {\n    \"m2m\": \"Month-to-month\",\n    \"month to month\": \"Month-to-month\",\n    \"month-to-month\": \"Month-to-month\",\n    \"one-year\": \"One year\",\n    \"one year\": \"One year\",\n    \"two-year\": \"Two year\",\n    \"two years\": \"Two year\",\n}\n\ns = raw[\"contract_type\"].astype(\"string\").str.strip().str.lower()\nraw[\"contract_type\"] = s.map(contract_map).fillna(raw[\"contract_type\"])",
+          "explanation": "Normalise case and whitespace, then map variants to canonical labels."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Do not confuse inconsistency with diversity",
+          "text": "A rare category is not automatically an error. Standardise only when domain knowledge confirms that values represent the same concept."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Invalid or impossible values"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Range checks: age should not be negative; a percentage should fall between 0 and 100.",
+            "Cross-field checks: a contract end date should not precede the signup date.",
+            "Domain checks: a customer with No internet should not have an internet-speed value.",
+            "Type checks: text like unknown should not sit in a numeric column; convert it to missing and handle it explicitly."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Remove only confirmed duplicates using the correct key, and standardise labels through an explicit, saved mapping. Validate values against range, cross-field, domain and type rules."
+        }
+      ],
+      "keyPoints": [
+        "Distinguish exact duplicates from business-key duplicates before deleting.",
+        "Standardise labels with an auditable mapping table, never silently.",
+        "A rare value may be genuine diversity, not an error.",
+        "Validate values with range, cross-field, domain and type checks."
+      ]
+    },
+    {
+      "id": "dp_06_outliers",
+      "moduleId": "data_preprocessing",
+      "order": 6,
+      "title": "Detecting and Treating Outliers",
+      "summary": "Investigate unusual observations before changing them, using the IQR rule, z-scores and model-aware treatment.",
+      "difficulty": "intermediate",
+      "readingMinutes": 10,
+      "contentVersion": 1,
+      "keywords": [
+        "outlier",
+        "IQR",
+        "z-score",
+        "winsorise",
+        "robust scaling"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Outliers are the observations that sit far from the crowd. Some are mistakes; some are the most interesting customers you have. The skill is not spotting them (a chart does that) but deciding what each one means before you change anything."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Everyday analogy",
+          "text": "In a list of monthly phone bills, one entry reads 4200 instead of 42. It could be a typo (an error to fix) or a genuine business account (a rare but real customer). Deleting it blindly could erase a real, important case."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What is an outlier?"
+        },
+        {
+          "type": "definition",
+          "term": "Outlier",
+          "text": "A value that sits far from the rest of the data. It might be a genuine rare case or just a typo, so investigate which before you touch it."
+        },
+        {
+          "type": "paragraph",
+          "text": "Detection is not the same as deletion. First determine whether the value is impossible, implausible or merely uncommon."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig06_boxplot.webp",
+          "caption": "Figure 6. Monthly-charge boxplot: unusually high charges appear beyond the upper whisker."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The IQR rule"
+        },
+        {
+          "type": "formula",
+          "expression": "IQR = Q3 - Q1\nLower = Q1 - 1.5 x IQR\nUpper = Q3 + 1.5 x IQR",
+          "explanation": "Values outside the fences are flags for investigation, not automatic deletion commands."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig07_iqr_rule.webp",
+          "caption": "Figure 7. Visual interpretation of the interquartile-range rule."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "q1 = raw[\"monthly_charge\"].quantile(0.25)\nq3 = raw[\"monthly_charge\"].quantile(0.75)\niqr = q3 - q1\nlower = q1 - 1.5 * iqr\nupper = q3 + 1.5 * iqr\n\noutliers = raw.loc[(raw[\"monthly_charge\"] < lower) | (raw[\"monthly_charge\"] > upper)]",
+          "explanation": "Flag IQR-based outlier candidates for review."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The z-score method"
+        },
+        {
+          "type": "formula",
+          "expression": "z = (x - mu) / sigma",
+          "explanation": "A common rule flags |z| > 3, but it assumes a roughly normal distribution and is itself sensitive to extreme values."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Treatment options"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Treatment",
+            "Use when",
+            "Risk"
+          ],
+          "rows": [
+            [
+              "Correct from source",
+              "A clear data-entry or unit error is confirmed",
+              "Requires traceability to the original record"
+            ],
+            [
+              "Remove record",
+              "The observation is invalid and cannot be corrected",
+              "May remove genuine rare cases and bias the sample"
+            ],
+            [
+              "Cap / winsorise",
+              "Values are plausible but destabilise the model",
+              "Changes information; use training-derived thresholds"
+            ],
+            [
+              "Transform",
+              "Positive skew is strong, e.g. log1p(amount)",
+              "Interpretation changes; zeros and negatives need care"
+            ],
+            [
+              "Robust scaling",
+              "Values are genuine and should be retained",
+              "Reduces scale distortion but keeps the outlier"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Model-aware decision",
+          "text": "Tree-based models are generally less sensitive to monotonic scaling than k-nearest neighbours, SVMs and gradient-based linear models. Outlier treatment should consider both data validity and algorithm behaviour."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Flag outliers with the IQR or z-score rule, then investigate. Correct clear errors; otherwise retain, cap, transform or robust-scale based on validity and the model."
+        }
+      ],
+      "keyPoints": [
+        "An IQR or z-score flag means investigate, not delete.",
+        "IQR uses Q1, Q3 and 1.5x fences; z-scores assume near-normal data.",
+        "Choose treatment by whether the value is impossible, implausible or rare.",
+        "The right treatment also depends on the algorithm you will use."
+      ],
+      "commonMistakes": [
+        "Deleting every boxplot outlier, losing genuine rare customers.",
+        "Capping using thresholds derived from the whole dataset instead of training data."
+      ]
+    },
+    {
+      "id": "dp_07_encoding",
+      "moduleId": "data_preprocessing",
+      "order": 7,
+      "title": "Categorical Encoding",
+      "summary": "Convert categories into numbers without inventing false order: label, one-hot and ordinal encoding.",
+      "difficulty": "intermediate",
+      "readingMinutes": 10,
+      "contentVersion": 1,
+      "keywords": [
+        "label encoding",
+        "one-hot",
+        "ordinal",
+        "OneHotEncoder",
+        "cardinality"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most algorithms only do arithmetic, so words like Fiber optic or Two year must become numbers. The danger is inventing meaning that was never there: if we number contract types 0, 1, 2, the model may believe one contract is twice another. Encoding is about turning categories into numbers without smuggling in a false order."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Why it matters",
+          "text": "The goal is a faithful numerical representation. Nominal categories (no order) and ordinal categories (a real order) must be encoded differently, or the model learns relationships that do not exist."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Label encoding"
+        },
+        {
+          "type": "paragraph",
+          "text": "Label encoding maps each class label to an integer. It is appropriate for the target y in many classification tasks, such as No to 0 and Yes to 1. It is usually unsafe for nominal input features, because assigning Fiber optic to 0, DSL to 1 and No to 2 creates an artificial numerical ordering."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.preprocessing import LabelEncoder\n\ny_encoder = LabelEncoder()\ny = y_encoder.fit_transform(raw[\"churn\"])   # No -> 0, Yes -> 1",
+          "explanation": "Use LabelEncoder for the target, not for nominal input features."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "One-hot encoding"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig08_onehot.webp",
+          "caption": "Figure 8. One-hot encoding creates one binary indicator per category, with no false ranking."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Strength: imposes no rank; widely supported by linear and distance-based estimators.",
+            "Limitation: high-cardinality features can generate thousands of sparse columns.",
+            "Unseen categories: use handle_unknown='ignore' so production values do not crash the model.",
+            "Dropping a level: drop='first' can reduce collinearity in some linear models, but is not always needed."
+          ]
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.preprocessing import OneHotEncoder\n\nencoder = OneHotEncoder(handle_unknown=\"ignore\", sparse_output=True)\nencoded_contract = encoder.fit_transform(raw[[\"contract_type\"]])",
+          "explanation": "Modern OneHotEncoder: ignore unknown categories at prediction time."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ordinal encoding"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig09_ordinal.webp",
+          "caption": "Figure 9. Ordinal encoding preserves a known order, used only when the order is defensible."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.preprocessing import OrdinalEncoder\n\nsatisfaction_order = [[\n    \"Very dissatisfied\", \"Dissatisfied\", \"Neutral\",\n    \"Satisfied\", \"Very satisfied\",\n]]\n\nordinal = OrdinalEncoder(\n    categories=satisfaction_order,\n    handle_unknown=\"use_encoded_value\",\n    unknown_value=-1,\n)",
+          "explanation": "State the order explicitly so the encoder respects the intended rank."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Choosing an encoder"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Situation",
+            "Recommended start",
+            "Why"
+          ],
+          "rows": [
+            [
+              "Binary target",
+              "LabelEncoder or direct mapping",
+              "Compact target representation"
+            ],
+            [
+              "Nominal feature, few categories",
+              "OneHotEncoder",
+              "No false order"
+            ],
+            [
+              "Ordinal feature, known order",
+              "OrdinalEncoder with explicit categories",
+              "Preserves rank"
+            ],
+            [
+              "Very high-cardinality",
+              "Frequency, hashing or target encoding with cross-fitting",
+              "Controls dimensionality; manage leakage"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Terminology note",
+          "text": "Reserve label encoding for target labels. For ordered input features, use an ordinal encoder and document the order."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "One-hot nominal categories, ordinal-encode ordered ones with an explicit order, and keep label encoding for the target. Handle unseen categories safely."
+        }
+      ],
+      "keyPoints": [
+        "Label encoding suits the target, not nominal features.",
+        "One-hot encoding avoids false order but can explode high-cardinality features.",
+        "Ordinal encoding needs an explicit, documented order.",
+        "Always handle unseen categories to avoid production failures."
+      ],
+      "commonMistakes": [
+        "Using LabelEncoder on a nominal feature like contract type, inventing an order.",
+        "Forgetting handle_unknown, so unseen production categories crash the pipeline."
+      ]
+    },
+    {
+      "id": "dp_08_scaling",
+      "moduleId": "data_preprocessing",
+      "order": 8,
+      "title": "Feature Scaling",
+      "summary": "Place numerical features on comparable scales with standardization, min-max, robust and vector normalization.",
+      "difficulty": "intermediate",
+      "readingMinutes": 10,
+      "contentVersion": 1,
+      "keywords": [
+        "scaling",
+        "standardization",
+        "min-max",
+        "robust scaling",
+        "normalization"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why scaling matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Features often live on very different scales: tenure in months, charge in currency, tickets as a small count. Many algorithms (those based on distance, dot products or gradients) then let the big-number features shout over the rest. Scaling puts features on comparable footing; it changes the numbers, not the order of the observations."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "A concrete example",
+          "text": "A customer has tenure 60 (months) and support_tickets 2. Measured by raw distance, the tenure difference between two customers can be tens of units while the tickets differ by ones, so a k-NN model is dominated by tenure and almost ignores tickets. After scaling, both features contribute on comparable terms."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Standardization"
+        },
+        {
+          "type": "formula",
+          "expression": "z = (x - mu) / sigma",
+          "explanation": "After fitting, the training feature has approximately mean 0 and standard deviation 1."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig10_standardization.webp",
+          "caption": "Figure 10. Standardized values; an extreme observation still has a large z-score."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Common for logistic regression, linear SVM, neural networks, PCA and k-nearest neighbours.",
+            "Sensitive to extreme values, because mean and standard deviation are sensitive.",
+            "Stores training means and standard deviations and reuses them for new data."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Normalization (min-max scaling)"
+        },
+        {
+          "type": "formula",
+          "expression": "x' = (x - x_min) / (x_max - x_min)",
+          "explanation": "The training minimum maps to 0 and maximum maps to 1."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig11_minmax.webp",
+          "caption": "Figure 11. Min-max scaling compresses normal observations when an extreme maximum exists."
+        },
+        {
+          "type": "paragraph",
+          "text": "Min-max scaling is useful when bounded inputs are desirable, such as some neural-network inputs or image intensities. New observations can fall outside the fitted range unless clipping is enabled, and the method is highly affected by outliers."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Robust scaling"
+        },
+        {
+          "type": "formula",
+          "expression": "x' = (x - median) / IQR",
+          "explanation": "Center by the median and scale using the interquartile range."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig12_robust.webp",
+          "caption": "Figure 12. Robust scaling reduces the influence of an extreme observation on the main data cloud."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Vector normalization"
+        },
+        {
+          "type": "formula",
+          "expression": "L1: x / sum|x_i|      L2: x / sqrt(sum x_i^2)",
+          "explanation": "Scales each row rather than each feature; common for text vectors and cosine similarity."
+        },
+        {
+          "type": "paragraph",
+          "text": "L1 normalization makes the sum of absolute values equal to 1; L2 normalization makes the Euclidean length equal to 1. Use it when the direction of a feature vector matters more than its overall magnitude. It is different from min-max feature scaling."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Comparison"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Method",
+            "Learns from",
+            "Outlier sensitivity",
+            "Typical use"
+          ],
+          "rows": [
+            [
+              "StandardScaler",
+              "Mean and standard deviation",
+              "High",
+              "Linear models, SVM, PCA, KNN"
+            ],
+            [
+              "MinMaxScaler",
+              "Minimum and maximum",
+              "Very high",
+              "Bounded inputs, image-like variables"
+            ],
+            [
+              "RobustScaler",
+              "Median and IQR",
+              "Lower",
+              "Skewed features with genuine extremes"
+            ],
+            [
+              "Normalizer",
+              "Each row norm",
+              "Depends on row",
+              "Text vectors, cosine comparisons"
+            ],
+            [
+              "No scaling",
+              "Nothing",
+              "Not applicable",
+              "Many tree-based models"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Language precision",
+          "text": "Some texts use normalization for row-wise L1 scaling and scaling for min-max; others use normalization to mean min-max scaling. Always define the exact formula you mean."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Match the scaler to the model and the data: StandardScaler for many linear models, RobustScaler when genuine outliers exist, MinMax for bounded inputs. Fit on training data only."
+        }
+      ],
+      "keyPoints": [
+        "Scaling stops large-magnitude features from dominating distance and gradient methods.",
+        "StandardScaler and MinMaxScaler are outlier-sensitive; RobustScaler is less so.",
+        "Vector normalization scales rows, not columns.",
+        "Tree-based models often need no scaling."
+      ]
+    },
+    {
+      "id": "dp_09_train_test_split",
+      "moduleId": "data_preprocessing",
+      "order": 9,
+      "title": "Train-Test Split",
+      "summary": "Create an honest simulation of future predictions by splitting before fitting any learned transform.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "train-test split",
+        "stratification",
+        "group split",
+        "time split",
+        "leakage"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Purpose"
+        },
+        {
+          "type": "paragraph",
+          "text": "The test set is your dress rehearsal for unseen data. To stay honest, it must not help you pick features, preprocessing rules, settings or the 'best' model, all of those choices belong to the training data, usually via cross-validation or a separate validation set."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig13_split_leakage.webp",
+          "caption": "Figure 13. Correct order: split first, then fit learned preprocessing on the training set and reuse it on the test set."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.model_selection import train_test_split\n\nX = raw.drop(columns=\"churn\")\ny = raw[\"churn\"].map({\"No\": 0, \"Yes\": 1})\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.20, random_state=42, stratify=y,\n)",
+          "explanation": "A stratified split keeps the class balance similar in train and test."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Stratification"
+        },
+        {
+          "type": "paragraph",
+          "text": "Stratification preserves approximately the same target-class proportion in both training and test sets. It is especially useful for imbalanced classification. It does not guarantee balance; it preserves the original distribution."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Time-aware and group-aware splits"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Data structure",
+            "Unsafe split",
+            "Preferred split"
+          ],
+          "rows": [
+            [
+              "Customer snapshots across time",
+              "Same customer in train and test",
+              "Group split by customer ID"
+            ],
+            [
+              "Transactions in time order",
+              "Random trains on future, tests on past",
+              "Train earlier dates, test later dates"
+            ],
+            [
+              "Patients from several hospitals",
+              "Random mixes site-specific patterns",
+              "Group or site-based validation"
+            ],
+            [
+              "Multiple crops per image",
+              "Crops of one image in both sets",
+              "Group by original image"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Reproducibility",
+          "text": "Set random_state for reproducible experimental splits. However, a single seed is not proof of stability; cross-validation gives a stronger estimate."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Split before fitting anything learned. Stratify for imbalance, and use group or time-aware splits when rows are related or ordered."
+        }
+      ],
+      "keyPoints": [
+        "The test set simulates future data; never use it to make choices.",
+        "Split before fitting imputers, encoders, scalers or resamplers.",
+        "Stratify to preserve class proportions under imbalance.",
+        "Use group or time splits when rows share an entity or an order."
+      ],
+      "commonMistakes": [
+        "Fitting a scaler or imputer before splitting.",
+        "Random splitting time-ordered data, training on the future."
+      ]
+    },
+    {
+      "id": "dp_10_imbalanced",
+      "moduleId": "data_preprocessing",
+      "order": 10,
+      "title": "Handling Imbalanced Datasets",
+      "summary": "Improve minority-class learning without corrupting evaluation, using metrics, resampling, SMOTE and class weights.",
+      "difficulty": "intermediate",
+      "readingMinutes": 12,
+      "contentVersion": 1,
+      "keywords": [
+        "class imbalance",
+        "SMOTE",
+        "oversampling",
+        "undersampling",
+        "class weights",
+        "recall"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What is class imbalance?"
+        },
+        {
+          "type": "definition",
+          "term": "Class imbalance",
+          "text": "When one outcome is much rarer than another in your data, like very few churners among many stayers."
+        },
+        {
+          "type": "paragraph",
+          "text": "In churn data, most customers stay, so 'No churn' is the common case. A lazy model that simply predicts 'No churn' for everyone can look accurate on paper while completely failing the real goal: spotting the customers about to leave."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig14_imbalance.webp",
+          "caption": "Figure 14. Imbalanced churn target: many more No than Yes."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "The accuracy trap",
+          "text": "If only 5 in 100 customers churn, a lazy model that always predicts No churn is 95% accurate, yet it catches zero churners and is useless for the business. This is why accuracy alone must never be trusted under imbalance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Evaluate with suitable metrics"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Metric",
+            "Question answered",
+            "Use in churn"
+          ],
+          "rows": [
+            [
+              "Precision",
+              "Of predicted churners, how many actually churned?",
+              "Controls unnecessary interventions"
+            ],
+            [
+              "Recall",
+              "Of actual churners, how many were detected?",
+              "Important when missing a churner is costly"
+            ],
+            [
+              "F1-score",
+              "Harmonic balance of precision and recall",
+              "Useful single summary under imbalance"
+            ],
+            [
+              "PR-AUC",
+              "How strong is precision-recall performance?",
+              "Informative when the positive class is rare"
+            ],
+            [
+              "Balanced accuracy",
+              "Average recall across classes",
+              "Prevents the majority class dominating"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Oversampling"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig15a_oversampling.webp",
+          "caption": "Figure 15a. Random oversampling duplicates minority observations until balanced."
+        },
+        {
+          "type": "paragraph",
+          "text": "Random oversampling duplicates minority observations until the desired ratio is reached. It retains majority data but may overfit exact minority examples. It must be performed only inside the training set or inside each cross-validation fold."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Undersampling"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig15b_undersampling.webp",
+          "caption": "Figure 15b. Random undersampling removes majority observations."
+        },
+        {
+          "type": "paragraph",
+          "text": "Random undersampling removes majority observations. It is fast and can be effective for very large datasets, but discards information and may remove useful majority patterns."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "SMOTE"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig16_smote.webp",
+          "caption": "Figure 16. SMOTE creates a synthetic point on the line between two minority neighbours."
+        },
+        {
+          "type": "formula",
+          "expression": "x_new = x_i + lambda (x_neighbor - x_i),   0 <= lambda <= 1",
+          "explanation": "A synthetic minority point lies on the segment between two nearby minority observations."
+        },
+        {
+          "type": "paragraph",
+          "text": "The Synthetic Minority Over-sampling Technique interpolates between nearby minority examples rather than copying rows. Standard SMOTE assumes a meaningful numerical feature space; for mixed data use a variant such as SMOTENC or encode carefully first."
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from imblearn.over_sampling import SMOTE\nfrom imblearn.pipeline import Pipeline as ImbPipeline\n\nmodel = ImbPipeline(steps=[\n    (\"preprocess\", preprocessor),\n    (\"smote\", SMOTE(random_state=42)),\n    (\"classifier\", LogisticRegression(max_iter=2000)),\n])\n# SMOTE is applied only during fit, never to the test set.",
+          "explanation": "Placing SMOTE inside an imbalanced-learn pipeline keeps it on training folds only."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Alternatives and cautions"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Class weights: penalise minority errors more without synthesising data; often a strong first option.",
+            "Threshold tuning: choose a probability threshold aligned with business costs using validation data.",
+            "SMOTE caveat: synthetic points can overlap the majority class or be unrealistic in constrained domains.",
+            "Evaluation rule: never oversample the validation or test set; keep the real operating distribution."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Practical starting point",
+          "text": "Compare an unresampled model with class_weight='balanced' against a carefully validated resampling pipeline. Choose using minority-class metrics and business costs, not accuracy alone."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Judge imbalance with recall, precision, F1 and PR-AUC, not accuracy. Try class weights first; resample training folds only; never balance the test set."
+        }
+      ],
+      "keyPoints": [
+        "Accuracy is misleading under imbalance; use recall, F1 and PR-AUC.",
+        "Resample only the training data, inside a pipeline or fold.",
+        "SMOTE interpolates new minority points; it does not copy rows.",
+        "Class weights are often a strong, simple first option."
+      ],
+      "commonMistakes": [
+        "Applying SMOTE before the train-test split.",
+        "Balancing the test set, which distorts real-world metrics."
+      ]
+    },
+    {
+      "id": "dp_11_leakage",
+      "moduleId": "data_preprocessing",
+      "order": 11,
+      "title": "Data Leakage",
+      "summary": "Prevent hidden information from entering training, with a simple test and a map of common leakage pathways.",
+      "difficulty": "intermediate",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "data leakage",
+        "target leakage",
+        "temporal leakage",
+        "group leakage",
+        "prevention"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Data leakage happens when information that would not really be available at prediction time sneaks into training or testing. The result flatters you: scores look great in testing, then collapse once the model is deployed."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Everyday analogy",
+          "text": "Leakage is like revising for an exam using the actual answer key. You score brilliantly in practice, then fail the real exam because the answer key is gone. The model, too, only looked good because it secretly saw information it will never have in production."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig17_leakage.webp",
+          "caption": "Figure 17. Leakage makes evaluation look better than real deployment performance; the fix is to split first and fit only on training data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Common leakage pathways"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Leakage type",
+            "Example",
+            "Prevention"
+          ],
+          "rows": [
+            [
+              "Preprocessing",
+              "Impute or scale before splitting",
+              "Fit preprocessing inside a training-fold pipeline"
+            ],
+            [
+              "Target",
+              "Use a post-churn cancellation reason as a predictor",
+              "Use only information available at prediction time"
+            ],
+            [
+              "Temporal",
+              "Train on December to predict October churn",
+              "Respect chronological order and the cut-off"
+            ],
+            [
+              "Group",
+              "Same customer in train and test",
+              "Use group-aware splitting"
+            ],
+            [
+              "Feature-selection",
+              "Select features on the full dataset first",
+              "Select inside the pipeline / cross-validation"
+            ],
+            [
+              "Resampling",
+              "Apply SMOTE before the split",
+              "Resample training folds only"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The leakage test"
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "For every feature and every transformation, ask: could this exact information and fitted parameter be available at the moment the prediction is made? If the answer is no, the variable or operation leaks information."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Red flag",
+          "text": "A surprisingly large jump in validation performance after adding a feature should trigger a leakage investigation, especially when the feature is recorded after the outcome or closely derived from it."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Leakage inflates scores and collapses in production. Split first, pipeline every learned step, respect time and groups, and question any feature that seems too good."
+        }
+      ],
+      "keyPoints": [
+        "Leakage uses information unavailable at real prediction time.",
+        "Preprocessing, target, temporal, group and resampling leakage are common.",
+        "The test: could this be known when the prediction is made?",
+        "Suspiciously large gains often signal leakage."
+      ],
+      "commonMistakes": [
+        "Scaling or imputing before splitting.",
+        "Using a feature recorded after the outcome as a predictor."
+      ]
+    },
+    {
+      "id": "dp_12_pipelines",
+      "moduleId": "data_preprocessing",
+      "order": 12,
+      "title": "Preprocessing Pipelines",
+      "summary": "Make the workflow reproducible and cross-validation safe with ColumnTransformer and Pipeline.",
+      "difficulty": "intermediate",
+      "readingMinutes": 12,
+      "contentVersion": 1,
+      "keywords": [
+        "pipeline",
+        "ColumnTransformer",
+        "fit",
+        "transform",
+        "reproducibility"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "A pipeline bundles every preprocessing step and the model into one object that always runs in the same order. Instead of cleaning, scaling and encoding by hand each time, you define the steps once and the pipeline applies them identically to training data, test data and future data — which is exactly what keeps results honest and reproducible."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why pipelines are essential"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "The same operations are applied in the same order at training and prediction time.",
+            "Learned parameters are fitted only on the correct training fold during cross-validation.",
+            "The model and preprocessing can be saved as one object.",
+            "Column names and feature transformations remain explicit.",
+            "Preprocessing and estimator hyperparameters can be tuned together."
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig18_pipeline_arch.webp",
+          "caption": "Figure 18. A mixed-type architecture: numerical, nominal and ordinal branches joined by a ColumnTransformer."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "A complete preprocessing pipeline"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.compose import ColumnTransformer\nfrom sklearn.impute import SimpleImputer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, RobustScaler\n\nnumeric_features = [\"age\", \"tenure_months\", \"monthly_charge\", \"support_tickets\"]\nnominal_features = [\"contract_type\", \"internet_service\"]\nordinal_features = [\"satisfaction\"]\n\nnumeric_pipe = Pipeline([\n    (\"imputer\", SimpleImputer(strategy=\"median\", add_indicator=True)),\n    (\"scaler\", RobustScaler()),\n])\n\nnominal_pipe = Pipeline([\n    (\"imputer\", SimpleImputer(strategy=\"most_frequent\")),\n    (\"encoder\", OneHotEncoder(handle_unknown=\"ignore\")),\n])\n\nordinal_pipe = Pipeline([\n    (\"imputer\", SimpleImputer(strategy=\"most_frequent\")),\n    (\"encoder\", OrdinalEncoder(\n        categories=[[\"Very dissatisfied\", \"Dissatisfied\", \"Neutral\",\n                     \"Satisfied\", \"Very satisfied\"]],\n        handle_unknown=\"use_encoded_value\", unknown_value=-1,\n    )),\n])\n\npreprocessor = ColumnTransformer([\n    (\"num\", numeric_pipe, numeric_features),\n    (\"nom\", nominal_pipe, nominal_features),\n    (\"ord\", ordinal_pipe, ordinal_features),\n])\n\nchurn_model = Pipeline([\n    (\"preprocess\", preprocessor),\n    (\"classifier\", LogisticRegression(max_iter=2000, class_weight=\"balanced\")),\n])\n\nchurn_model.fit(X_train, y_train)",
+          "explanation": "One object handles imputation, encoding, scaling and the classifier, fitted together on training data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What fit and transform mean"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Method",
+            "What it does",
+            "Where to use"
+          ],
+          "rows": [
+            [
+              "fit",
+              "Learns parameters (medians, categories, coefficients)",
+              "Training data only"
+            ],
+            [
+              "transform",
+              "Applies already-learned rules",
+              "Train, validation, test and production"
+            ],
+            [
+              "fit_transform",
+              "Fits and immediately transforms",
+              "Training fold only"
+            ],
+            [
+              "predict / predict_proba",
+              "Produces outputs after internal preprocessing",
+              "Validation, test or new data"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Production advantage",
+          "text": "Saving the complete pipeline prevents training-serving skew, where production code transforms data differently from the training notebook."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "A pipeline binds every learned step and the model into one reproducible object, fitted on training data and reused unchanged everywhere else."
+        }
+      ],
+      "keyPoints": [
+        "Pipelines apply the same steps in the same order everywhere.",
+        "ColumnTransformer routes each column type to its own branch.",
+        "fit learns on training only; transform reuses learned parameters.",
+        "Saving the whole pipeline prevents training-serving skew."
+      ]
+    },
+    {
+      "id": "dp_13_churn_practical",
+      "moduleId": "data_preprocessing",
+      "order": 13,
+      "title": "Practical: Cleaning a Customer-Churn Dataset",
+      "summary": "A worked sequence from raw records to evaluation-ready data, applying every technique in the module.",
+      "difficulty": "intermediate",
+      "readingMinutes": 16,
+      "contentVersion": 1,
+      "keywords": [
+        "case study",
+        "customer churn",
+        "pipeline",
+        "evaluation",
+        "end-to-end"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Scenario and schema"
+        },
+        {
+          "type": "paragraph",
+          "text": "A telecom company wants to spot customers who are about to leave. Each row is a snapshot of one customer taken before the outcome is known, and the yes/no target is churn. The (synthetic) raw dataset has 223 rows after three accidental duplicates, ten columns, some missing values, inconsistent contract labels and a few extreme monthly charges, exactly the kind of mess real data brings."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Variable",
+            "Type",
+            "Planned treatment"
+          ],
+          "rows": [
+            [
+              "customer_id",
+              "Identifier",
+              "Exclude from model features"
+            ],
+            [
+              "age",
+              "Numerical",
+              "Median impute + indicator + robust scale"
+            ],
+            [
+              "tenure_months",
+              "Numerical",
+              "Median impute + robust scale"
+            ],
+            [
+              "monthly_charge",
+              "Numerical",
+              "Investigate outliers; median impute + robust scale"
+            ],
+            [
+              "contract_type",
+              "Nominal",
+              "Standardise labels, impute mode, one-hot"
+            ],
+            [
+              "internet_service",
+              "Nominal",
+              "Impute mode, one-hot"
+            ],
+            [
+              "support_tickets",
+              "Numerical count",
+              "Median impute + robust scale"
+            ],
+            [
+              "satisfaction",
+              "Ordinal",
+              "Impute mode, explicit ordinal encoding"
+            ],
+            [
+              "signup_date",
+              "Date-time",
+              "Derive tenure features; avoid future info"
+            ],
+            [
+              "churn",
+              "Binary target",
+              "Map No=0, Yes=1; stratify split"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step 1 - Load and preserve the raw data"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from pathlib import Path\nimport pandas as pd\n\nraw = pd.read_csv(Path(\"customer_churn.csv\"))\ndata = raw.copy()   # never overwrite the original source\n\nprint(f\"Rows: {len(data):,}\")\nprint(f\"Columns: {data.shape[1]}\")",
+          "explanation": "Keep an immutable raw copy and work on a duplicate."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step 2 - Clean labels and remove duplicates"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "s = data[\"contract_type\"].astype(\"string\").str.strip().str.lower()\ncontract_map = {\n    \"m2m\": \"Month-to-month\", \"month to month\": \"Month-to-month\",\n    \"month-to-month\": \"Month-to-month\", \"one-year\": \"One year\",\n    \"one year\": \"One year\", \"two-year\": \"Two year\",\n    \"two years\": \"Two year\", \"two year\": \"Two year\",\n}\ndata[\"contract_type\"] = s.map(contract_map)\n\ndata = data.drop_duplicates().reset_index(drop=True)",
+          "explanation": "Standardise contract labels, then drop reviewed exact duplicates."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step 3 - Validate values and derive time features"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "data[\"signup_date\"] = pd.to_datetime(data[\"signup_date\"], errors=\"coerce\")\n\ninvalid_age    = ~data[\"age\"].between(18, 100) & data[\"age\"].notna()\ninvalid_charge = (data[\"monthly_charge\"] <= 0) & data[\"monthly_charge\"].notna()\n\ncutoff = pd.Timestamp(\"2026-07-01\")\ndata[\"account_age_days\"] = (cutoff - data[\"signup_date\"]).dt.days",
+          "explanation": "Apply domain checks and derive an account-age feature from the signup date."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step 4 - Split before fitting transformations"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.model_selection import train_test_split\n\nX = data.drop(columns=[\"churn\", \"customer_id\", \"signup_date\"])\ny = data[\"churn\"].map({\"No\": 0, \"Yes\": 1})\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.20, stratify=y, random_state=42,\n)",
+          "explanation": "The leakage-safe split happens before any imputer, encoder or scaler is fitted."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step 5 - Build and fit the pipeline"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the pipeline from the previous lesson. The numerical branch imputes medians and scales robustly; the nominal branch imputes the most frequent category and one-hot encodes; the satisfaction branch applies the specified order. The classifier uses balanced class weights as the first imbalance strategy."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig19_workflow.webp",
+          "caption": "Figure 19. End-to-end workflow: audit, clean, split, fit, balance, evaluate."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Step 6 - Evaluate beyond accuracy"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.metrics import (\n    classification_report, confusion_matrix,\n    roc_auc_score, average_precision_score,\n)\n\npred  = churn_model.predict(X_test)\nproba = churn_model.predict_proba(X_test)[:, 1]\n\nprint(confusion_matrix(y_test, pred))\nprint(classification_report(y_test, pred, digits=3))\nprint(\"ROC-AUC:\", roc_auc_score(y_test, proba))\nprint(\"PR-AUC:\", average_precision_score(y_test, proba))",
+          "explanation": "Judge the model with a confusion matrix, precision, recall, ROC-AUC and PR-AUC."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Before versus after"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Issue in raw data",
+            "Action",
+            "Result"
+          ],
+          "rows": [
+            [
+              "3 exact duplicate rows",
+              "Reviewed and removed",
+              "Each snapshot contributes once"
+            ],
+            [
+              "Multiple contract spellings",
+              "Mapped to canonical labels",
+              "Stable categorical vocabulary"
+            ],
+            [
+              "Missing values",
+              "Imputed inside training pipeline",
+              "No lost rows; test stays unseen"
+            ],
+            [
+              "Extreme monthly charges",
+              "Investigated; retained",
+              "RobustScaler limits distortion"
+            ],
+            [
+              "Mixed data types",
+              "Separate branches",
+              "Right transform per semantic type"
+            ],
+            [
+              "Imbalanced target",
+              "Stratified split + balanced weights",
+              "Minority errors weighted more"
+            ],
+            [
+              "Potential leakage",
+              "Split before fitting transforms",
+              "Honest, repeatable evaluation"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Interpretation",
+          "text": "A clean dataset is not necessarily one with no missing values or outliers. It is one in which every retained value has a defensible meaning and every transformation can be reproduced on unseen data."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Audit, clean obvious errors, split, then fit every learned transform inside a pipeline, and evaluate beyond accuracy. That is a reproducible, leakage-safe workflow."
+        }
+      ],
+      "keyPoints": [
+        "Preserve the raw data and work on a copy.",
+        "Clean labels and duplicates, validate values, then split before fitting.",
+        "Fit all transforms inside a pipeline on training data only.",
+        "Evaluate with a confusion matrix and imbalance-aware metrics."
+      ]
+    },
+    {
+      "id": "dp_14_decision_guide",
+      "moduleId": "data_preprocessing",
+      "order": 14,
+      "title": "Decision Guide and Review",
+      "summary": "Consolidate the module into a quick decision guide, a checklist, and the most common mistakes to avoid.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 1,
+      "keywords": [
+        "decision guide",
+        "checklist",
+        "common mistakes",
+        "review",
+        "summary"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "This final lesson pulls the module together into quick-reference tools: a guide for matching a data problem to a sensible first fix, a checklist to run before training, and the common mistakes to avoid. Keep it as a map for whenever you start cleaning a new dataset."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Quick decision guide"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/data_preprocessing/fig20_decision_guide.webp",
+          "caption": "Preprocessing decision guide: start with the issue type and data validity."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Problem",
+            "First question",
+            "Strong starting option"
+          ],
+          "rows": [
+            [
+              "Missing numerical",
+              "How much is missing? Is it skewed?",
+              "Median impute; add indicator if it may matter"
+            ],
+            [
+              "Missing categorical",
+              "Unknown or accidental?",
+              "Most-frequent or explicit Missing category"
+            ],
+            [
+              "Duplicate rows",
+              "Valid repeat or accidental?",
+              "Remove only confirmed duplicates by key"
+            ],
+            [
+              "Inconsistent labels",
+              "Same category in variants?",
+              "Canonical mapping with an audit table"
+            ],
+            [
+              "Outliers",
+              "Error, impossible or rare?",
+              "Correct, else retain, cap, transform or robust-scale"
+            ],
+            [
+              "Nominal categories",
+              "Any real order?",
+              "One-hot encoding"
+            ],
+            [
+              "Ordinal categories",
+              "Order known and defensible?",
+              "Explicit ordinal encoding"
+            ],
+            [
+              "Different scales",
+              "Which algorithm? Outliers?",
+              "Standard or Robust scaler inside pipeline"
+            ],
+            [
+              "Imbalanced target",
+              "Which error costs more?",
+              "Class weights; then validated resampling"
+            ],
+            [
+              "Leakage risk",
+              "Learned from test or future?",
+              "Split first; pipeline every learned step"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Preprocessing checklist"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Prediction time and unit of analysis are defined.",
+            "Target y is separated from features X.",
+            "Identifiers and post-outcome variables are excluded from predictors.",
+            "Missingness is quantified and its mechanism considered.",
+            "Categorical labels are standardised through explicit mappings.",
+            "Duplicates are assessed using the correct business key.",
+            "Impossible values and outliers are investigated, not auto-deleted.",
+            "The train-test split occurs before fitting any learned transform.",
+            "Nominal and ordinal categories use different encoders.",
+            "Scaling matches the model and distribution.",
+            "Imbalance strategies are applied to training data only.",
+            "All preprocessing is encapsulated in a Pipeline / ColumnTransformer, validated and saved."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Common mistakes and corrections"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Mistake",
+            "Why it is wrong",
+            "Correction"
+          ],
+          "rows": [
+            [
+              "Fill missing values before splitting",
+              "Test info influences imputation",
+              "Split first; impute inside the pipeline"
+            ],
+            [
+              "LabelEncoder on contract type",
+              "Invents a false numerical order",
+              "Use one-hot encoding"
+            ],
+            [
+              "SMOTE on the full dataset",
+              "Synthetic test samples contaminate",
+              "SMOTE training folds only"
+            ],
+            [
+              "Delete every boxplot outlier",
+              "Loses legitimate rare cases",
+              "Investigate and justify treatment"
+            ],
+            [
+              "Judge imbalance by accuracy",
+              "Majority predictions look successful",
+              "Use recall, precision, F1, PR-AUC"
+            ],
+            [
+              "Manually transform production data",
+              "Training-serving skew",
+              "Deploy the fitted pipeline as one object"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "Module takeaway",
+          "text": "Preprocessing is not cosmetic clean-up. It defines the information representation, protects evaluation integrity and determines whether a model can be reproduced safely on future data."
+        }
+      ],
+      "keyPoints": [
+        "Match each data problem to a defensible first choice.",
+        "Split before fitting, and pipeline every learned step.",
+        "Use different encoders for nominal and ordinal categories.",
+        "Judge imbalanced models by minority-class metrics, not accuracy."
+      ]
+    }
+  ]
+}

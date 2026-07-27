@@ -1,0 +1,1503 @@
+{
+  "contentVersion": 2,
+  "lessons": [
+    {
+      "id": "foundations_01_what_is_ml",
+      "moduleId": "foundations",
+      "order": 1,
+      "title": "What is Machine Learning?",
+      "summary": "How computers learn patterns from data instead of being told every rule, and the core pieces that make it work.",
+      "difficulty": "beginner",
+      "readingMinutes": 8,
+      "contentVersion": 2,
+      "keywords": [
+        "machine learning",
+        "definition",
+        "model",
+        "algorithm",
+        "data",
+        "experience",
+        "prediction"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Machine learning is a way of getting computers to learn from examples. Instead of writing out every rule by hand, we show the computer plenty of past data and let it discover the pattern itself, then reuse that pattern to make predictions or decisions on new cases."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "Simple definition",
+          "text": "Machine learning teaches a computer by examples. The computer studies past data, learns a pattern and applies that pattern to new cases."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Two classic definitions"
+        },
+        {
+          "type": "definition",
+          "term": "Learning without explicit programming",
+          "source": "Samuel, 1959",
+          "text": "Machine learning gives computers the ability to learn without being explicitly programmed."
+        },
+        {
+          "type": "definition",
+          "term": "The T, E, P definition",
+          "source": "Mitchell, 1997",
+          "text": "A program learns from experience E for a task T and performance measure P when its performance on T, measured by P, improves with E."
+        },
+        {
+          "type": "paragraph",
+          "text": "In plain words, Mitchell's definition says a system is learning if it gets better at a job (the task) as it sees more data (the experience), where 'better' is judged by an agreed score (the performance measure)."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig01_supervised_overview.webp",
+          "caption": "Figure 1. Supervised learning converts labeled examples into a model that can predict outcomes for new cases."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The core components"
+        },
+        {
+          "type": "paragraph",
+          "text": "Almost every machine-learning system is built from the same five pieces. Learning the names now makes every later topic easier to follow."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Role"
+          ],
+          "rows": [
+            [
+              "Data",
+              "Examples that describe the problem."
+            ],
+            [
+              "Learning algorithm",
+              "The procedure that searches for a useful pattern."
+            ],
+            [
+              "Model",
+              "The learned mathematical or logical representation."
+            ],
+            [
+              "Prediction / decision",
+              "The output produced when the model receives new input."
+            ],
+            [
+              "Evaluation metric",
+              "A measure used to judge whether the model performs well."
+            ]
+          ]
+        },
+        {
+          "type": "definition",
+          "term": "Algorithm",
+          "text": "The step-by-step recipe that studies the data and works out the pattern. It is the method you run, not the finished result."
+        },
+        {
+          "type": "definition",
+          "term": "Model",
+          "text": "What the algorithm produces after learning. It is the trained 'thing' that takes a new input and gives back a prediction."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "The algorithm is not the model",
+          "text": "The algorithm is the learning procedure. The model is the result of applying that procedure to data. For example, a decision-tree algorithm produces a trained tree containing learned if-then decisions."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Task, experience and performance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Any ML problem can be described with three questions: what should it do (task), what does it learn from (experience), and how do we score it (performance)?"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Element",
+            "Meaning",
+            "Student example"
+          ],
+          "rows": [
+            [
+              "Task (T)",
+              "What the system must do",
+              "Predict whether a student may need academic support"
+            ],
+            [
+              "Experience (E)",
+              "Data used for learning",
+              "Past attendance, study time, assessments and outcomes"
+            ],
+            [
+              "Performance (P)",
+              "How success is measured",
+              "Recall, F1-score or another suitable metric"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Where you already meet ML"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Email apps filtering spam from your inbox.",
+            "Streaming and shopping apps recommending what to watch or buy.",
+            "Maps estimating travel time from live and historical traffic.",
+            "Phones recognizing your face or voice to unlock and assist.",
+            "Banks flagging unusual card transactions as possible fraud."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "A system predicts tomorrow's electricity demand using several years of historical demand and weather data. Identify the task, experience and one performance measure. Suggested answer: task = forecast demand; experience = historical demand and weather records; performance = MAE or RMSE."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Machine learning turns examples into a reusable pattern. Give it data and an algorithm; it gives you a model that makes predictions on new cases."
+        }
+      ],
+      "keyPoints": [
+        "Machine learning finds patterns from data rather than following hand-written rules.",
+        "The algorithm learns; the model is the learned result.",
+        "Every ML system needs data, an algorithm, a model, predictions and an evaluation metric.",
+        "A task is measured by a performance metric and improves with experience (data).",
+        "ML already powers spam filters, recommendations, maps, face unlock and fraud detection."
+      ],
+      "commonMistakes": [
+        "Confusing the learning algorithm with the trained model it produces.",
+        "Assuming more data always helps, regardless of its quality or relevance."
+      ]
+    },
+    {
+      "id": "foundations_02_ai_ml_dl",
+      "moduleId": "foundations",
+      "order": 2,
+      "title": "AI vs ML vs Deep Learning",
+      "summary": "How artificial intelligence, machine learning and deep learning relate, and when each term applies.",
+      "difficulty": "beginner",
+      "readingMinutes": 6,
+      "contentVersion": 2,
+      "keywords": [
+        "artificial intelligence",
+        "deep learning",
+        "neural network",
+        "representation",
+        "scope"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "People often use these three terms as if they mean the same thing, but each is broader than the next. Artificial intelligence is the big goal, machine learning is one way to reach it, and deep learning is a specific ML technique."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig02_ai_ml_dl.webp",
+          "caption": "Figure 2. AI is the broad field; ML is a major approach within AI; deep learning is a family of ML methods."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Three definitions"
+        },
+        {
+          "type": "definition",
+          "term": "Artificial Intelligence (AI)",
+          "text": "Getting machines to do things we would call smart, such as planning, understanding or deciding. AI can work from fixed rules or by learning."
+        },
+        {
+          "type": "definition",
+          "term": "Machine Learning (ML)",
+          "text": "A type of AI where the system learns patterns from examples, instead of being told every rule by hand."
+        },
+        {
+          "type": "definition",
+          "term": "Deep Learning (DL)",
+          "text": "A powerful branch of ML that stacks many layers of simple 'neurons' to learn complex patterns. It usually needs a lot of data and computing power."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Main idea",
+            "Examples"
+          ],
+          "rows": [
+            [
+              "Artificial Intelligence (AI)",
+              "Perform tasks associated with intelligence, using rules, search, optimization or learning.",
+              "Planning, expert systems, robotics"
+            ],
+            [
+              "Machine Learning (ML)",
+              "Learn patterns from data or experience.",
+              "Spam filtering, price prediction, fraud detection"
+            ],
+            [
+              "Deep Learning (DL)",
+              "Multi-layer neural networks that learn complex representations.",
+              "Image and speech recognition, language models"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Remember",
+          "text": "Not every AI system uses machine learning, and not every machine-learning system uses deep learning. A rule-based chess program may be AI without ML; linear regression is ML without deep learning."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How deep learning builds representations"
+        },
+        {
+          "type": "paragraph",
+          "text": "In traditional image pipelines, engineers manually design features such as edges or shapes. A deep neural network can learn a hierarchy automatically: pixels, then edges, then textures, then parts, then whole objects. Each layer builds on the one below it."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "When deep learning is worth it"
+        },
+        {
+          "type": "paragraph",
+          "text": "This automatic feature learning is powerful, but it comes with higher requirements for data, computing resources and careful validation. For small or simple datasets, a classic ML model is often faster, cheaper and easier to explain."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "AI is the goal, ML is a route to it, and deep learning is one powerful ML technique. Pick deep learning when data is large and patterns are complex; otherwise a simpler model usually wins."
+        }
+      ],
+      "keyPoints": [
+        "AI is the broadest field; ML learns from data; DL uses multi-layer neural networks.",
+        "A system can be AI without being ML, and ML without being deep learning.",
+        "Deep learning can learn features automatically but needs more data and compute.",
+        "Prefer a simpler model when the dataset is small or explanations matter."
+      ]
+    },
+    {
+      "id": "foundations_03_programming_vs_ml",
+      "moduleId": "foundations",
+      "order": 3,
+      "title": "Traditional Programming vs Machine Learning",
+      "summary": "When to write rules by hand and when to let a model learn them from examples.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 2,
+      "keywords": [
+        "rules",
+        "data-driven",
+        "generalization",
+        "self-driving",
+        "when to use ml"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Both traditional programming and machine learning turn inputs into useful outputs, but they get there in opposite ways. In traditional programming a person writes the rules; in machine learning the model discovers the rules from examples."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig03_traditional_vs_ml.webp",
+          "caption": "Figure 3. Traditional programming applies human-written rules; machine learning discovers a model from examples."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "One line to remember",
+          "text": "Traditional programming = we program the computer. Machine learning = we teach the computer using examples."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Side by side"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Aspect",
+            "Traditional programming",
+            "Machine learning"
+          ],
+          "rows": [
+            [
+              "Knowledge source",
+              "Rules written by developers",
+              "Patterns learned from data"
+            ],
+            [
+              "Best suited for",
+              "Clear, stable, describable rules",
+              "Complex patterns hard to specify manually"
+            ],
+            [
+              "Improvement",
+              "Change the code or rules",
+              "Improve data, features, algorithm or training"
+            ],
+            [
+              "Main risk",
+              "Missing an edge-case rule",
+              "Learning bias, noise or shortcuts from data"
+            ],
+            [
+              "Output",
+              "Direct program result",
+              "A trained model and its prediction"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Self-driving-car illustration"
+        },
+        {
+          "type": "paragraph",
+          "text": "A rule-based detector might say: four wheels means car; two wheels means bicycle. This fails when vehicles are partly hidden, viewed from unusual angles or affected by poor lighting. An ML detector instead studies many labeled images of cars, bicycles and pedestrians and learns visual patterns that generalize to new images."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "Use the right approach",
+          "text": "Machine learning is not automatically better. If a reliable rule exists, such as calculating tax from a fixed formula, ordinary programming is usually simpler, cheaper and more transparent."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Hand-written rules are best when the logic is clear and stable. Reach for ML when the pattern is too complex or messy to describe by hand."
+        }
+      ],
+      "keyPoints": [
+        "Both approaches turn inputs into outputs, but ML learns the rules from data.",
+        "Traditional programming: we write the rules. Machine learning: the model learns them.",
+        "Use ML for complex patterns that are hard to describe by hand.",
+        "Prefer plain programming when a clear, reliable rule already exists."
+      ]
+    },
+    {
+      "id": "foundations_04_types_of_ml",
+      "moduleId": "foundations",
+      "order": 4,
+      "title": "Types of Machine Learning",
+      "summary": "Supervised, unsupervised, semi-supervised and reinforcement learning, and how their data and feedback differ.",
+      "difficulty": "beginner",
+      "readingMinutes": 9,
+      "contentVersion": 2,
+      "keywords": [
+        "supervised",
+        "unsupervised",
+        "semi-supervised",
+        "reinforcement",
+        "regression",
+        "classification",
+        "clustering"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "There are four main styles of machine learning. What separates them is simple: what kind of data you have, and what feedback the learner receives while it studies."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig04_ml_types.webp",
+          "caption": "Figure 4. The four learning paradigms differ mainly in the data available and the feedback supplied to the learner."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Type",
+            "Training information",
+            "Primary goal",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Supervised",
+              "Inputs with correct answers (labels)",
+              "Predict an output for a new input",
+              "Predict a house price or classify spam"
+            ],
+            [
+              "Unsupervised",
+              "Inputs without labels",
+              "Discover structure or unusual cases",
+              "Group customers into segments"
+            ],
+            [
+              "Semi-supervised",
+              "Small labeled set plus larger unlabeled set",
+              "Use unlabeled data to improve learning",
+              "Classify images when labels are expensive"
+            ],
+            [
+              "Reinforcement",
+              "Rewards received after actions",
+              "Learn a strategy for sequential decisions",
+              "Game playing or robot navigation"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "4.1 Supervised learning"
+        },
+        {
+          "type": "paragraph",
+          "text": "Supervised learning uses labeled examples. Each training observation contains input features X and a known answer y. The algorithm learns a mapping from X to y and then predicts y for unseen inputs."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Regression"
+        },
+        {
+          "type": "definition",
+          "term": "Regression",
+          "text": "Predicting a number that can sit anywhere on a scale, such as a house price, a temperature or an exam score."
+        },
+        {
+          "type": "paragraph",
+          "text": "Examples include house price, temperature, electricity demand, rainfall amount, student score and daily step count."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Classification"
+        },
+        {
+          "type": "definition",
+          "term": "Classification",
+          "text": "Predicting which group something belongs to, such as sorting an email into spam or not spam."
+        },
+        {
+          "type": "paragraph",
+          "text": "Binary classification has two classes, such as spam or not spam. Multiclass classification has more than two classes, such as grade A/B/C/D/F. Multilabel classification can assign several labels to one observation."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Output test",
+          "text": "Ask: is the answer a number on a meaningful scale, or a category? A continuous number usually indicates regression; a category usually indicates classification."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "4.2 Unsupervised learning"
+        },
+        {
+          "type": "paragraph",
+          "text": "Unsupervised learning works with unlabeled data. The learner is not told the correct output. Instead, it searches for structure, similarity, compressed representations or unusual observations."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Clustering: place similar observations into groups.",
+            "Dimensionality reduction: represent many features using fewer informative dimensions.",
+            "Anomaly detection: identify observations that differ strongly from normal patterns.",
+            "Association analysis: identify items or events that commonly occur together."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "4.3 Semi-supervised learning"
+        },
+        {
+          "type": "paragraph",
+          "text": "Semi-supervised learning combines a small amount of labeled data with a much larger quantity of unlabeled data. This is useful when raw data is easy to obtain but human labeling is slow, expensive or requires expertise."
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Train an initial model on the labeled examples.",
+            "Use the model to assign provisional labels to selected unlabeled observations.",
+            "Keep only reliable provisional labels or use a method designed for unlabeled data.",
+            "Retrain with the expanded dataset and validate carefully."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Important caution",
+          "text": "Incorrect pseudo-labels can reinforce the model's own mistakes. Confidence thresholds and independent validation are essential."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "4.4 Reinforcement learning"
+        },
+        {
+          "type": "paragraph",
+          "text": "In reinforcement learning, an agent repeatedly observes a state, chooses an action and receives a reward from the environment. The objective is to learn a policy that maximizes long-term reward rather than only an immediate result."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Agent",
+              "The learner or decision-maker."
+            ],
+            [
+              "Environment",
+              "The world with which the agent interacts."
+            ],
+            [
+              "State",
+              "Information describing the current situation."
+            ],
+            [
+              "Action",
+              "A choice available to the agent."
+            ],
+            [
+              "Reward",
+              "Feedback indicating how useful an action was."
+            ],
+            [
+              "Policy",
+              "The strategy used to choose actions."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Exploration vs exploitation",
+          "text": "The agent must balance trying unfamiliar actions to discover better strategies (exploration) with using actions already known to work well (exploitation)."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Have labels and a target to predict? Supervised. Only raw data and want structure? Unsupervised. A few labels plus lots of unlabeled data? Semi-supervised. Learning from rewards over time? Reinforcement."
+        }
+      ],
+      "keyPoints": [
+        "Supervised learning predicts a target from labeled examples.",
+        "Regression predicts a number; classification predicts a category.",
+        "Unsupervised learning finds structure in unlabeled data.",
+        "Semi-supervised learning mixes a little labeled data with much unlabeled data.",
+        "Reinforcement learning learns a policy from rewards over time."
+      ]
+    },
+    {
+      "id": "foundations_05_features_labels",
+      "moduleId": "foundations",
+      "order": 5,
+      "title": "Features, Labels and Observations",
+      "summary": "The vocabulary of a dataset: rows, feature columns, the target, and what makes a good feature.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 2,
+      "keywords": [
+        "feature",
+        "label",
+        "observation",
+        "target",
+        "feature vector",
+        "leakage"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before diving into algorithms, it pays to name the parts of a dataset, because these words come up in every topic that follows. Each row is an observation, the input columns are the features (X), and the column you want to predict is the target (y)."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig05_dataset_anatomy.webp",
+          "caption": "Figure 5. Rows are observations; feature columns form X; the target column forms y."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key terms"
+        },
+        {
+          "type": "definition",
+          "term": "Observation",
+          "text": "A single example in your data, shown as one row in the table, such as one customer or one house."
+        },
+        {
+          "type": "definition",
+          "term": "Feature",
+          "text": "One input the model learns from: a single measurable detail about each example, like age, floor area or study hours."
+        },
+        {
+          "type": "definition",
+          "term": "Label (target)",
+          "text": "The answer you want the model to predict. In training data it is the known outcome for each example, such as the sale price."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Definition",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Observation / sample",
+              "One case represented by a row.",
+              "One student or one house"
+            ],
+            [
+              "Feature / input",
+              "A measurable property used by the model.",
+              "Study hours, area, number of rooms"
+            ],
+            [
+              "Label / target",
+              "The value to predict in supervised learning.",
+              "Final score or sale price"
+            ],
+            [
+              "Feature vector",
+              "All feature values for one observation.",
+              "[4.5 hours, 88% attendance, score 76]"
+            ],
+            [
+              "Dataset",
+              "A collection of observations.",
+              "Records for 2,000 students"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Notation",
+          "text": "X usually represents the feature matrix. y represents the target vector. A model may be written as y-hat = f(X), where y-hat is the predicted output."
+        },
+        {
+          "type": "formula",
+          "expression": "y-hat = f(X)",
+          "explanation": "The model f maps a feature matrix X to a predicted output y-hat."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What makes a good feature?"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Relevant to the problem and available when the prediction is made.",
+            "Measured consistently and with acceptable quality.",
+            "Not a disguised copy of the target.",
+            "Appropriate to use legally and ethically.",
+            "Stable enough to remain meaningful after deployment."
+          ]
+        },
+        {
+          "type": "definition",
+          "term": "Data leakage",
+          "text": "When the model accidentally learns from information it will not actually have at prediction time. It then looks great in testing but disappoints in the real world."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Leakage example",
+          "text": "Using a final examination result to predict whether the same student will pass that examination gives the model information that would not exist at the intended prediction time."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Rows are observations, feature columns are X, and the target column is y. Good features are relevant, reliable, available at prediction time, and free of leakage."
+        }
+      ],
+      "keyPoints": [
+        "An observation is one row; features are input columns; the label is the target.",
+        "X is the feature matrix and y is the target vector.",
+        "Good features are relevant, reliable, available at prediction time and ethical.",
+        "Data leakage uses information that would not exist when predicting for real."
+      ],
+      "commonMistakes": [
+        "Including a feature that secretly encodes the answer (leakage).",
+        "Using a feature that is unavailable at the moment of prediction."
+      ]
+    },
+    {
+      "id": "foundations_06_train_val_test",
+      "moduleId": "foundations",
+      "order": 6,
+      "title": "Training, Validation and Test Data",
+      "summary": "Why data is split into subsets, how to split it correctly, and cross-validation in one minute.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 2,
+      "keywords": [
+        "training set",
+        "validation set",
+        "test set",
+        "cross-validation",
+        "split",
+        "stratified",
+        "hyperparameter"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "A fair test uses data the model has never seen. That is why we split a dataset into separate parts, so we can measure how well the model handles genuinely new cases instead of ones it has already memorised."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig06_dataset_split.webp",
+          "caption": "Figure 6. Training learns parameters, validation guides model choices, and testing estimates final performance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The three subsets"
+        },
+        {
+          "type": "definition",
+          "term": "Training set",
+          "text": "The examples the model actually learns from."
+        },
+        {
+          "type": "definition",
+          "term": "Validation set",
+          "text": "A separate slice used while you are still building the model, to compare options and tune settings, without touching the final test."
+        },
+        {
+          "type": "definition",
+          "term": "Test set",
+          "text": "Data you keep sealed until the very end. You use it once to get an honest estimate of real-world performance."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Subset",
+            "Purpose",
+            "What must not happen"
+          ],
+          "rows": [
+            [
+              "Training set",
+              "Fit model parameters such as coefficients or weights.",
+              "Do not report training performance as proof of generalization."
+            ],
+            [
+              "Validation set",
+              "Compare models, select features, tune hyperparameters.",
+              "Do not tune endlessly and overfit to validation data."
+            ],
+            [
+              "Test set",
+              "Give a final, independent estimate after choices are fixed.",
+              "Do not inspect it repeatedly during development."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Splitting correctly"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Use stratified splitting when class proportions must be preserved.",
+            "Use group-aware splitting when several rows belong to the same person or device.",
+            "Use chronological splitting for forecasting and time-dependent problems.",
+            "Fit preprocessing steps only on the training data, then apply them to validation and test data.",
+            "Use cross-validation when a single validation split would be unstable."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cross-validation in one minute"
+        },
+        {
+          "type": "definition",
+          "term": "k-fold cross-validation",
+          "text": "Split the training data into k equal parts, then train k times so each part takes a turn as the validation set. Averaging the scores gives a steadier estimate than a single split."
+        },
+        {
+          "type": "paragraph",
+          "text": "This gives a more stable estimate than a single split, because every observation is used for both training and validation across the folds."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig07_cross_validation.webp",
+          "caption": "Figure 7. In 5-fold cross-validation, each fold serves as validation data once while the remaining folds train the model."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Example",
+          "text": "With 5-fold cross-validation, four folds train the model and one fold validates it. This repeats five times. The untouched test set is still used only after all model choices are complete."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Train to learn, validate to choose, test once to report. Keep the test set sealed until the very end, and cross-validate when a single split would be shaky."
+        }
+      ],
+      "keyPoints": [
+        "Training fits parameters, validation guides choices, testing gives the final estimate.",
+        "Keep the test set untouched until the very end.",
+        "Fit preprocessing on training data only, then apply it elsewhere.",
+        "Cross-validation averages several splits for a more stable estimate."
+      ],
+      "commonMistakes": [
+        "Reporting training accuracy as evidence the model generalizes.",
+        "Peeking at the test set repeatedly, which leaks information."
+      ]
+    },
+    {
+      "id": "foundations_07_workflow",
+      "moduleId": "foundations",
+      "order": 7,
+      "title": "The Machine-Learning Workflow",
+      "summary": "The eight-step lifecycle of an ML project, and where it is applied across industries.",
+      "difficulty": "beginner",
+      "readingMinutes": 7,
+      "contentVersion": 2,
+      "keywords": [
+        "workflow",
+        "lifecycle",
+        "baseline",
+        "deployment",
+        "monitoring",
+        "applications"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "A machine-learning project is a loop, not a single 'train' button. Teams move through the steps, learn from the results, and circle back to improve the data, the features or the model."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig08_workflow.webp",
+          "caption": "Figure 8. A machine-learning project is an iterative lifecycle rather than a one-time training command."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The eight steps"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Define the problem: specify the user need, prediction target, decision context, constraints and success metric. Confirm that ML is necessary.",
+            "Collect data: gather representative, lawful and diverse examples. Record provenance and limitations.",
+            "Explore and prepare: inspect distributions, missing values, errors, duplicates, imbalance and leakage. Build a reproducible preprocessing pipeline.",
+            "Establish a baseline: use a simple rule or simple model first. A complex model must beat a meaningful baseline.",
+            "Train candidate models: fit several appropriate algorithms using the training set.",
+            "Validate and tune: compare models on validation data, tune hyperparameters and perform error analysis.",
+            "Test once: freeze the full pipeline and evaluate on the untouched test set.",
+            "Deploy and monitor: integrate the model, monitor performance and fairness, detect drift and retrain when justified."
+          ]
+        },
+        {
+          "type": "definition",
+          "term": "Baseline",
+          "text": "A deliberately simple model or rule you compare against. A fancy model is only worth it if it clearly beats this reference."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "Problem first, algorithm second",
+          "text": "Do not start by selecting a fashionable algorithm. Start with the real decision, the available data, the cost of errors and the required level of explanation."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Where machine learning is applied"
+        },
+        {
+          "type": "paragraph",
+          "text": "ML is used across sectors whenever data contains patterns useful for prediction or discovery."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig09_applications.webp",
+          "caption": "Figure 9. ML is applied across sectors when data contains patterns useful for prediction or discovery."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Domain",
+            "Example task",
+            "Likely ML type"
+          ],
+          "rows": [
+            [
+              "Healthcare",
+              "Classify medical images or estimate readmission risk",
+              "Supervised classification"
+            ],
+            [
+              "Finance",
+              "Detect unusual transactions",
+              "Anomaly detection"
+            ],
+            [
+              "Education",
+              "Identify learners who may need support",
+              "Supervised classification"
+            ],
+            [
+              "Manufacturing",
+              "Predict equipment failure",
+              "Classification / time-series"
+            ],
+            [
+              "Retail",
+              "Group customers or recommend products",
+              "Clustering / recommendation"
+            ],
+            [
+              "Transport",
+              "Detect objects and optimize control",
+              "Deep / reinforcement learning"
+            ],
+            [
+              "Language",
+              "Translate, summarize or classify text",
+              "Supervised / deep learning"
+            ],
+            [
+              "Cybersecurity",
+              "Detect intrusions or malicious behavior",
+              "Classification / anomaly detection"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Define the problem, get good data, set a baseline, train and tune, test once, then deploy and keep watching. The loop never truly ends."
+        }
+      ],
+      "keyPoints": [
+        "ML projects are an iterative lifecycle, not a single training run.",
+        "Always define the problem and a baseline before chasing complex models.",
+        "Test only once on the frozen pipeline, then deploy and keep monitoring.",
+        "The same paradigms apply across healthcare, finance, education and more."
+      ]
+    },
+    {
+      "id": "foundations_08_over_underfitting",
+      "moduleId": "foundations",
+      "order": 8,
+      "title": "Underfitting and Overfitting",
+      "summary": "Why a model can be too simple or too flexible, how to tell, when ML is the wrong choice, and its advantages and limits.",
+      "difficulty": "intermediate",
+      "readingMinutes": 8,
+      "contentVersion": 2,
+      "keywords": [
+        "overfitting",
+        "underfitting",
+        "generalization",
+        "regularization",
+        "noise",
+        "advantages",
+        "limitations"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "The whole challenge is generalisation, doing well on new data rather than just the examples the model already saw. Too simple and the model misses the pattern; too flexible and it starts chasing random noise."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig10_fit_spectrum.webp",
+          "caption": "Figure 10. Underfitting misses the pattern; a suitable model captures the signal; overfitting follows noise in the training data."
+        },
+        {
+          "type": "definition",
+          "term": "Generalization",
+          "text": "How well a model works on fresh data it has never seen. This is the real goal, not just scoring well on the training data."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Condition",
+            "Training",
+            "Validation/test",
+            "Typical cause"
+          ],
+          "rows": [
+            [
+              "Underfitting",
+              "Poor",
+              "Poor",
+              "Model too simple or weak features"
+            ],
+            [
+              "Good generalization",
+              "Good",
+              "Good and close to training",
+              "Appropriate complexity"
+            ],
+            [
+              "Overfitting",
+              "Very good",
+              "Noticeably worse",
+              "Too flexible, limited or noisy data"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "title": "Generalization first",
+          "text": "The purpose of ML is not to memorize the training set. The goal is to perform well on new observations drawn from the intended real-world population."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Reducing underfitting"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Use more informative features.",
+            "Choose a model capable of representing the pattern.",
+            "Reduce excessive regularization.",
+            "Train sufficiently and check optimization settings."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Reducing overfitting"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Collect more representative data.",
+            "Use cross-validation and an untouched test set.",
+            "Reduce model complexity.",
+            "Apply regularization or early stopping.",
+            "Remove leakage and noisy features.",
+            "Perform error analysis instead of repeatedly tuning to one score."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Advantages and limitations of ML"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations / risks"
+          ],
+          "rows": [
+            [
+              "Learns complex patterns that are hard to write as rules.",
+              "Depends heavily on the quality and representativeness of data."
+            ],
+            [
+              "Improves as new high-quality data arrives.",
+              "May fail when the real environment differs from training data."
+            ],
+            [
+              "Automates repetitive predictions at scale.",
+              "Complex models can be hard to explain or audit."
+            ],
+            [
+              "Supports personalization and earlier risk detection.",
+              "Errors can be costly, unfair or unsafe when decisions affect people."
+            ],
+            [
+              "Finds hidden structure and relationships.",
+              "Correlation learned from data does not prove causation."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "When ML may be the wrong choice"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "A reliable formula or small set of rules already solves the problem.",
+            "The dataset is too small, biased or unrelated to the deployment population.",
+            "The target cannot be defined or measured consistently.",
+            "The cost of an error is unacceptable without guaranteed human review.",
+            "A simpler statistical or rule-based method meets the requirement more transparently."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Underfitting is too simple; overfitting memorizes noise. Aim for the middle, judge by validation, and remember ML is powerful but not always the right tool."
+        }
+      ],
+      "keyPoints": [
+        "Underfitting is poor on both training and validation; overfitting is great on training but poor on validation.",
+        "The goal is generalization to new data, not memorizing the training set.",
+        "Fix underfitting with better features or more capacity; fix overfitting with more data, simpler models or regularization.",
+        "ML is powerful but depends on data quality, and it is not always the right tool."
+      ],
+      "commonMistakes": [
+        "Judging a model only by its training score.",
+        "Increasing complexity to chase a single validation number until it overfits."
+      ]
+    },
+    {
+      "id": "foundations_09_bias_variance",
+      "moduleId": "foundations",
+      "order": 9,
+      "title": "Bias and Variance",
+      "summary": "The two technical sources of prediction error and how to diagnose which one you are facing.",
+      "difficulty": "intermediate",
+      "readingMinutes": 6,
+      "contentVersion": 2,
+      "keywords": [
+        "bias",
+        "variance",
+        "trade-off",
+        "model complexity",
+        "diagnosis"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here, bias and variance are two technical reasons a model gets predictions wrong. This is different from social or unfair bias, which we cover in the ethics lesson."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig11_bias_variance.webp",
+          "caption": "Figure 11. Increasing complexity may reduce bias but increase variance; model selection seeks a useful balance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Two kinds of error"
+        },
+        {
+          "type": "definition",
+          "term": "High bias",
+          "text": "When a model is too simple to capture the real pattern, so it makes mistakes even on the training data. This is underfitting."
+        },
+        {
+          "type": "definition",
+          "term": "High variance",
+          "text": "When a model is so flexible that it memorises the noise in the training data. It shines in training but stumbles on new data. This is overfitting."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concept",
+            "Meaning",
+            "Typical symptom"
+          ],
+          "rows": [
+            [
+              "High bias",
+              "Strong simplifying assumptions; cannot capture the true pattern.",
+              "Training and validation errors both high."
+            ],
+            [
+              "High variance",
+              "Changes too much with small data changes; learns noise.",
+              "Low training error but high validation error."
+            ],
+            [
+              "Bias-variance trade-off",
+              "Reducing one source of error can increase the other.",
+              "Best complexity lies between extremes."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "As model complexity increases, bias tends to fall while variance tends to rise. The expected test error is lowest at a balanced complexity, not at either extreme."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Diagnostic questions"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Is the training score already poor? This often points to high bias or an optimization problem.",
+            "Is training excellent but validation much worse? This often points to high variance.",
+            "Do results vary greatly between folds or random splits? This may indicate instability or limited data.",
+            "Does performance drop for a subgroup or new time period? Investigate distribution shift, data quality and fairness."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "High bias underfits (poor everywhere); high variance overfits (great on training, weak on validation). Tune complexity toward the balanced middle."
+        }
+      ],
+      "keyPoints": [
+        "High bias underfits; high variance overfits and is unstable.",
+        "There is usually a trade-off, the best complexity lies between extremes.",
+        "Diagnose by comparing training vs validation performance and stability across splits.",
+        "Technical bias is different from unfair social bias."
+      ]
+    },
+    {
+      "id": "foundations_10_ethics_and_example",
+      "moduleId": "foundations",
+      "order": 10,
+      "title": "Responsible ML and a Worked Example",
+      "summary": "The ethical questions every ML system should answer, followed by a full house-price prediction walkthrough.",
+      "difficulty": "intermediate",
+      "readingMinutes": 9,
+      "contentVersion": 2,
+      "keywords": [
+        "ethics",
+        "fairness",
+        "privacy",
+        "accountability",
+        "house price",
+        "regression",
+        "workflow"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Machine-learning systems now touch education, health, jobs, money, transport and the information we all see. Because real people are affected, being accurate is not enough on its own."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig12_responsible_ml.webp",
+          "caption": "Figure 12. Responsible ML requires fairness, privacy, transparency, safety, accountability and protection against misuse."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Questions to ask before deployment"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Concern",
+            "Question to ask",
+            "Example control"
+          ],
+          "rows": [
+            [
+              "Fairness",
+              "Does performance differ across groups?",
+              "Group metrics, better representation, review proxies."
+            ],
+            [
+              "Privacy",
+              "Is personal data necessary and lawful?",
+              "Data minimization, access control, retention limits."
+            ],
+            [
+              "Transparency",
+              "Can users understand purpose and limits?",
+              "Model cards, clear notices, documented limitations."
+            ],
+            [
+              "Safety",
+              "What happens when the model is wrong?",
+              "Fallback rules, human review, safe failure modes."
+            ],
+            [
+              "Accountability",
+              "Who owns approval and remediation?",
+              "Named owners, audit logs, escalation routes."
+            ],
+            [
+              "Security & misuse",
+              "Can data or access be attacked or abused?",
+              "Threat modeling, secure deployment, monitoring."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Accuracy is not enough",
+          "text": "A model can have high overall accuracy and still cause harm, for example by missing most at-risk students in a smaller subgroup. Choose metrics and safeguards based on the real cost of false positives and false negatives."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Student-risk prediction example"
+        },
+        {
+          "type": "paragraph",
+          "text": "A model may identify students who could benefit from support. It must not be used to stigmatize learners or deny opportunities. The institution should verify data quality, avoid using protected characteristics as shortcuts, evaluate performance across relevant groups, explain the purpose, limit access and ensure a trained human reviews recommendations."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Worked example: predicting house prices"
+        },
+        {
+          "type": "paragraph",
+          "text": "House-price prediction is a supervised regression problem because the training examples include known sale prices and the target is a continuous numerical value."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/foundations/fig13_house_prices.webp",
+          "caption": "Figure 13. A regression model learns a relationship from past houses and estimates the price of a new house. Values shown are synthetic and for learning only."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Item",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Goal",
+              "Estimate the sale price of a residential property."
+            ],
+            [
+              "Observation",
+              "One previously sold house."
+            ],
+            [
+              "Possible features",
+              "Area, bedrooms, bathrooms, age, location, condition."
+            ],
+            [
+              "Label / target",
+              "Recorded sale price."
+            ],
+            [
+              "ML type",
+              "Supervised learning - regression."
+            ],
+            [
+              "Possible metrics",
+              "MAE, RMSE and R-squared, with business context."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Mini workflow"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Collect historical sales records that match the intended location and property type.",
+            "Inspect missing values, extreme prices, duplicated listings and changes over time.",
+            "Split data so the test set represents genuinely unseen houses; use a time split when future sales are the target.",
+            "Prepare numerical and categorical features using a pipeline.",
+            "Train a simple baseline, such as predicting the median price, then train regression models.",
+            "Use validation or cross-validation to compare models and tune settings.",
+            "Evaluate the frozen pipeline on the test set and inspect large errors.",
+            "Deploy only with a clear statement that the estimate is not a guaranteed valuation; monitor market drift."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Interpreting the example"
+        },
+        {
+          "type": "paragraph",
+          "text": "The line in Figure 13 represents the pattern learned from the synthetic training data. The star is a prediction for a new house. Real property values depend on many factors, so area alone is insufficient. Adding useful features may reduce error, but poor-quality or leaked information can make the model unreliable."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "In short",
+          "text": "Build responsibly: check fairness, privacy, transparency, safety and accountability, not just accuracy. The house-price example shows the full path from problem to a monitored, honestly-described model."
+        }
+      ],
+      "keyPoints": [
+        "Technical accuracy is not enough, consider fairness, privacy, transparency, safety and accountability.",
+        "High overall accuracy can still hide harm to a subgroup.",
+        "House-price prediction is supervised regression with a continuous target.",
+        "Baseline first, test once, and be honest about a model's limits when deploying."
+      ],
+      "commonMistakes": [
+        "Judging a sensitive model by overall accuracy alone.",
+        "Presenting a synthetic or narrow model as a guaranteed real-world valuation."
+      ]
+    }
+  ]
+}
