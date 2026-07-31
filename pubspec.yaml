@@ -75,6 +75,8 @@ flutter:
     - assets/images/foundations/
     - assets/images/data_preprocessing/
     - assets/images/supervised_learning/
+    - assets/images/regression/
+    - assets/images/classification/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

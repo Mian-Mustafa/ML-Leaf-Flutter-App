@@ -930,7 +930,7 @@
         },
         {
           "type": "formula",
-          "expression": "ŷ = b₀ + b₁x₁ + b₂x₂ + … + bₚpxₚ",
+          "expression": "ŷ = b₀ + b₁x₁ + b₂x₂ + … + bₚxₚ",
           "explanation": "Each coefficient shows how the prediction changes when its feature changes by one unit, assuming the other features stay fixed."
         },
         {
