@@ -1,0 +1,2756 @@
+{
+  "contentVersion": 1,
+  "lessons": [
+    {
+      "id": "ensemble_methods_01_meaning_of_ensemble",
+      "moduleId": "ensemble_methods",
+      "order": 1,
+      "title": "Meaning of Ensemble Learning",
+      "summary": "What ensemble learning is and why combining several models can beat a single one. Covers the definition (base learners combined by a rule into one prediction), the error-cancelling intuition, single-model vs ensemble, the panel-of-experts analogy, the core components (base learners, diversity, combination rule, final prediction), the basic workflow, a spam-detection majority-voting example and a house-price averaging example, why combining helps, why diversity matters, a preview of the common forms (voting, bagging, boosting, stacking), advantages and limitations, common misunderstandings, key terms, and a concept check.",
+      "difficulty": "beginner",
+      "readingMinutes": 11,
+      "contentVersion": 1,
+      "keywords": [
+        "ensemble learning",
+        "base learner",
+        "diversity",
+        "combination rule",
+        "majority voting",
+        "averaging",
+        "bagging",
+        "boosting",
+        "stacking",
+        "generalisation"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Many models, one decision"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every model you have met so far makes its own single judgement — and lives or dies by it. Ensemble learning takes a different view: instead of trusting one model, it asks several and combines their answers into one. Like a panel of experts reviewing a case from different angles, a group of models can catch each other's mistakes and reach a more reliable conclusion than any one member alone."
+        },
+        {
+          "type": "definition",
+          "term": "Ensemble learning",
+          "text": "A machine-learning approach in which predictions from multiple models are combined to produce one final prediction. The individual models are often called base learners or member models."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Instead of trusting one model, ensemble learning asks several models and combines their answers.",
+          "title": "Simple definition"
+        },
+        {
+          "type": "formula",
+          "expression": "Final prediction = Combine(Model 1, Model 2, …, Model n)",
+          "explanation": "The Combine step is a defined rule — a majority vote, an average, or a weighted average."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "These notes stay focused on the meaning, basic idea, and simple operation of ensemble learning.",
+          "title": "Scope"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What you'll be able to do"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Define ensemble learning in simple and technical terms.",
+            "Explain why combining several models can beat using one.",
+            "Understand the roles of base learners, diversity, and a combination rule.",
+            "Describe a simple majority-voting example.",
+            "Recognise the main benefits and basic limitations of ensemble learning."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The main idea and intuition"
+        },
+        {
+          "type": "paragraph",
+          "text": "A single model may err because it sees only one pattern, carries limited assumptions, or reacts strongly to noise. Different models tend to make different errors. When their predictions are combined carefully, some individual errors cancel out — making the final prediction more stable and accurate."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Single model",
+            "Ensemble of models"
+          ],
+          "rows": [
+            [
+              "Uses one learned decision process",
+              "Uses several learned decision processes"
+            ],
+            [
+              "Its error directly becomes the final error",
+              "One model's error may be corrected by others"
+            ],
+            [
+              "Can be sensitive to data changes",
+              "Often gives more stable predictions"
+            ],
+            [
+              "Usually simpler and faster",
+              "Usually needs more computation and coordination"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "A real-life analogy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Picture an important decision reviewed by a panel of experts. Each studies the case from a slightly different angle, and the final call is made by majority agreement or a weighted combination of their opinions. Ensemble learning applies exactly this principle to machine-learning models."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figEL01_el_panel.webp",
+          "caption": "Figure 1. Ensemble learning as a panel-of-experts decision: each expert contributes a different view (symptoms, test results, history) before one joint decision is made."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Core components of an ensemble"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Meaning",
+            "Simple example"
+          ],
+          "rows": [
+            [
+              "Base learners",
+              "The individual models that produce predictions",
+              "Decision tree, logistic regression, KNN"
+            ],
+            [
+              "Diversity",
+              "The models should not make the same mistakes",
+              "Different algorithms, samples, or features"
+            ],
+            [
+              "Combination rule",
+              "The method used to merge predictions",
+              "Majority vote, average, weighted average"
+            ],
+            [
+              "Final prediction",
+              "The single result the ensemble returns",
+              "Spam / Not Spam; a predicted house price"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "An ensemble is useful when its member models are both reasonably accurate and sufficiently different from one another.",
+          "title": "Key highlight"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "How ensemble learning works"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Prepare the training data and target variable.",
+            "Train two or more base models.",
+            "Ask every trained model to predict the same new observation.",
+            "Combine the predictions using a defined rule.",
+            "Return the combined result as the final prediction."
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figEL02_el_workflow.webp",
+          "caption": "Figure 2. The basic ensemble workflow: training data trains several models (A, B, C); their predictions are combined into one final prediction."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Classification example: spam detection"
+        },
+        {
+          "type": "paragraph",
+          "text": "Three classifiers examine the same email. Two predict “Spam” and one predicts “Not Spam.” With majority voting, the ensemble returns “Spam” — it received the most votes."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Prediction",
+            "Vote"
+          ],
+          "rows": [
+            [
+              "Decision Tree",
+              "Spam",
+              "1 vote for Spam"
+            ],
+            [
+              "Logistic Regression",
+              "Not Spam",
+              "1 vote for Not Spam"
+            ],
+            [
+              "K-Nearest Neighbours",
+              "Spam",
+              "1 vote for Spam"
+            ],
+            [
+              "Final ensemble result",
+              "Spam",
+              "Spam wins 2–1"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figEL03_el_voting.webp",
+          "caption": "Figure 3. Majority voting combines three classification predictions — two of three models agree on Spam, so the final label is Spam."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Regression example: house price"
+        },
+        {
+          "type": "paragraph",
+          "text": "For a regression task, the predictions can be averaged. Suppose three models predict a house price:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Predicted price"
+          ],
+          "rows": [
+            [
+              "Model A",
+              "$198,000"
+            ],
+            [
+              "Model B",
+              "$205,000"
+            ],
+            [
+              "Model C",
+              "$202,000"
+            ],
+            [
+              "Average ensemble prediction",
+              "$201,667"
+            ]
+          ]
+        },
+        {
+          "type": "formula",
+          "expression": "($198,000 + $205,000 + $202,000) ÷ 3 = $201,666.67 ≈ $201,667",
+          "explanation": "The mean of the three predictions is the ensemble's single output."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Why combining models can help"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Reason",
+            "Explanation"
+          ],
+          "rows": [
+            [
+              "Error reduction",
+              "Different models make different errors, so combining reduces an individual mistake's effect"
+            ],
+            [
+              "Better stability",
+              "The final result changes less when training data changes slightly"
+            ],
+            [
+              "Improved generalisation",
+              "Combining complementary patterns can perform better on unseen data"
+            ],
+            [
+              "Balanced strengths",
+              "One model may capture linear patterns while another captures non-linear ones"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figEL04_el_accuracy.webp",
+          "caption": "Figure 4. Illustrative accuracy: three individual models (78%, 81%, 79%) versus their ensemble (86%). Example values only — an ensemble is not always better on every dataset."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Why diversity matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "If all member models are nearly identical, they make the same mistakes — and combining identical mistakes provides little benefit. Diversity means the models learn different patterns or have different error behaviours. Ways to create it:"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Use different learning algorithms.",
+            "Train models on different samples of the data.",
+            "Use different subsets of features.",
+            "Use different model settings or training stages."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Diversity does not mean using random weak models. The members should still have useful predictive ability.",
+          "title": "Important"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Common ensemble forms (a preview)"
+        },
+        {
+          "type": "paragraph",
+          "text": "These names describe common ways of building ensembles — introduced here only to connect the definition with later topics:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Form",
+            "Basic meaning",
+            "Typical combination"
+          ],
+          "rows": [
+            [
+              "Voting / averaging",
+              "Trained models predict independently",
+              "Majority vote or numerical average"
+            ],
+            [
+              "Bagging",
+              "Models trained on different sampled data",
+              "Usually voting or averaging"
+            ],
+            [
+              "Boosting",
+              "Models trained in sequence, fixing earlier errors",
+              "Weighted combination"
+            ],
+            [
+              "Stacking",
+              "A second-level model learns how to combine base predictions",
+              "Meta-model prediction"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Advantages and limitations"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Can improve predictive performance",
+              "Requires more computation than one model"
+            ],
+            [
+              "Can reduce variance and instability",
+              "Can be harder to interpret and explain"
+            ],
+            [
+              "Combines different modelling strengths",
+              "Poor or identical base models add little value"
+            ],
+            [
+              "Often performs well on complex problems",
+              "More components mean more training and maintenance"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Common misunderstandings"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Misunderstanding",
+            "Correct concept"
+          ],
+          "rows": [
+            [
+              "“More models always guarantee better results.”",
+              "Quality, diversity, validation, and the combination method still matter"
+            ],
+            [
+              "“Every model must use the same algorithm.”",
+              "An ensemble may use the same or different algorithms"
+            ],
+            [
+              "“The ensemble removes all errors.”",
+              "It reduces some errors but cannot guarantee perfect prediction"
+            ],
+            [
+              "“Ensemble learning is only for classification.”",
+              "It is used for classification, regression, and other tasks"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Key terms"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Ensemble",
+              "A group of models used together"
+            ],
+            [
+              "Base learner",
+              "An individual model inside the ensemble"
+            ],
+            [
+              "Diversity",
+              "Differences in how member models learn or make errors"
+            ],
+            [
+              "Voting",
+              "Selecting the class receiving the most model votes"
+            ],
+            [
+              "Averaging",
+              "Taking the mean of numerical predictions or probabilities"
+            ],
+            [
+              "Weighted combination",
+              "Giving some models more influence than others"
+            ],
+            [
+              "Generalisation",
+              "Performance on new, unseen data"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Summary"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Ensemble learning combines predictions from multiple models into one final prediction.",
+            "The individual models are called base learners.",
+            "The models should be useful and preferably make different mistakes.",
+            "Classification predictions can be combined by voting.",
+            "Regression predictions can be combined by averaging.",
+            "The ensemble may improve accuracy and stability, but it also increases complexity and computation."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Ensemble learning combines predictions from multiple models to create one final prediction that is often more accurate and stable than the prediction of a single model.",
+          "title": "One-sentence summary"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Later sub-modules explain bagging, random forests, boosting, AdaBoost, gradient boosting, and stacking in detail. This one covers only the meaning and foundation.",
+          "title": "What's next"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Quick concept check"
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "1. What is ensemble learning? 2. What is a base learner? 3. Why is model diversity helpful? 4. How can classification outputs be combined? 5. How can regression outputs be combined?",
+          "title": "Test yourself"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Answers"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Combining predictions from multiple models to produce one final prediction.",
+            "An individual model that is a member of an ensemble.",
+            "Different models may make different errors, so the combination can correct some individual mistakes.",
+            "Using majority voting or probability averaging.",
+            "Using an average or weighted average of the predicted values."
+          ]
+        }
+      ],
+      "keyPoints": [
+        "Ensemble learning combines predictions from multiple base learners into one final prediction, often more accurate and stable than any single model.",
+        "It works because different models make different errors, so combining them (by voting or averaging) cancels some individual mistakes.",
+        "An ensemble needs base learners that are both reasonably accurate and diverse — identical models make identical mistakes and add little value.",
+        "Classification outputs are usually combined by majority voting; regression outputs by an average or weighted average.",
+        "The gain comes at a cost: more computation, harder interpretation, and more maintenance, and it is not guaranteed to beat a single model on every dataset."
+      ],
+      "commonMistakes": [
+        "Assuming more models always guarantee better results, ignoring diversity, quality, and the combination method.",
+        "Thinking every base model must use the same algorithm (they can be the same or different).",
+        "Believing an ensemble removes all errors or is only for classification.",
+        "Adding random weak or near-identical models that share the same mistakes."
+      ]
+    },
+    {
+      "id": "ensemble_methods_02_why_combining_improves",
+      "moduleId": "ensemble_methods",
+      "order": 2,
+      "title": "Why Combining Models Can Improve Performance",
+      "summary": "Why merging several models' predictions can beat a single model. Covers the 'many useful opinions' intuition and the six mechanisms — error cancellation, variance reduction, bias reduction, complementary strengths, robustness, and generalization — with a majority-voting spam example and a house-price averaging example. Includes the variance-of-the-average formula (σ²/M), the error-correlation formula (ρ + (1−ρ)/M) and why diversity is the key requirement, where diversity comes from, the bias/variance/irreducible-noise split, a single-vs-combined comparison, when combining fails, a loan-approval case study, a practical checklist, and a self-check.",
+      "difficulty": "beginner",
+      "readingMinutes": 14,
+      "contentVersion": 1,
+      "keywords": [
+        "ensemble",
+        "variance reduction",
+        "error cancellation",
+        "bias reduction",
+        "diversity",
+        "error correlation",
+        "majority voting",
+        "averaging",
+        "generalization",
+        "bias-variance"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Why a crowd of models can beat a soloist"
+        },
+        {
+          "type": "paragraph",
+          "text": "The previous sub-module introduced the idea of combining models. Now the natural question: why does it actually help? The answer is not magic — it comes down to how errors behave. A single model has its own blind spots, and when several reasonably good models make partly different mistakes, combining them lets those mistakes cancel while the shared, correct signal survives. This lesson unpacks each mechanism behind that effect."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWC01_wc_combine.webp",
+          "caption": "Figure 1. Different models (decision tree, logistic, k-NN) make partly different errors; a combiner keeps the shared signal and reduces some individual mistakes to reach one final prediction."
+        },
+        {
+          "type": "definition",
+          "term": "Combining models",
+          "text": "Using predictions from two or more machine-learning models and merging them into one final prediction. The models may be the same type trained differently, or different types of algorithms."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "An ensemble improves performance by allowing several models to contribute, so one model's mistake may be corrected by the others.",
+          "title": "Simple definition"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "These notes stay focused on why combining models can improve predictive performance. Detailed algorithms appear only where needed to explain the concept.",
+          "title": "Scope"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What you'll be able to do"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Explain the 'many useful opinions' intuition behind ensembles.",
+            "Describe the six mechanisms that can improve performance.",
+            "Work through majority-voting and averaging examples.",
+            "Use the variance-reduction and error-correlation formulas.",
+            "Recognise where diversity comes from — and when combining won't help."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The core idea: many useful opinions"
+        },
+        {
+          "type": "paragraph",
+          "text": "A single model learns one representation of the data. It may perform well, but it can still be swayed by noise, unusual training examples, limited assumptions, or unstable decision boundaries. Other models may see the same data differently. When the models are reasonably accurate and make different mistakes, combining their predictions can produce a more reliable result."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Individual models are imperfect — each has its own strengths, assumptions, and errors.",
+            "Errors can differ — a case one model misclassifies may be classified correctly by another.",
+            "Combination reduces dependence on one model — the final answer isn't controlled by one unusual prediction.",
+            "Agreement increases confidence — when several diverse models reach the same answer, the result is often more stable."
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "A group is useful only when its members provide meaningful and somewhat different information. Ten identical opinions do not create ten times more knowledge.",
+          "title": "Important condition"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Medical second opinions: one doctor may overlook a symptom, but a team of specialists can compare observations and reach a more dependable decision. Ensembles work the same way — multiple models contribute their 'opinions,' and a rule such as voting or averaging produces the final result.",
+          "title": "Real-life analogy"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The six reasons performance can improve"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Mechanism",
+            "Problem in a single model",
+            "How combination helps"
+          ],
+          "rows": [
+            [
+              "Error cancellation",
+              "An isolated wrong prediction",
+              "Others vote against it or offset it by averaging"
+            ],
+            [
+              "Variance reduction",
+              "Prediction shifts with a different sample",
+              "Average many models on different samples/features"
+            ],
+            [
+              "Bias reduction",
+              "Repeatedly underfits a pattern",
+              "Later models focus on cases handled poorly"
+            ],
+            [
+              "Complementarity",
+              "Captures only one kind of relationship",
+              "Mix models with different learning behaviours"
+            ],
+            [
+              "Robustness",
+              "Disturbed by noise or an outlier",
+              "Limit the influence of one extreme prediction"
+            ],
+            [
+              "Generalization",
+              "Fits training details too closely",
+              "Aggregation smooths unstable boundaries"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In short: error cancellation and variance reduction come from averaging/voting diverse models; bias reduction comes from sequential correction; complementarity, robustness, and generalization come from combining models that behave differently."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWC02_wc_accuracy.webp",
+          "caption": "Figure 2. Illustrative test accuracy: a single tree (78%), a logistic model (82%), and k-NN (80%) versus their voting ensemble (86%). Example values only, to explain the concept."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Classification example: majority voting"
+        },
+        {
+          "type": "paragraph",
+          "text": "Five models classify an email as Spam or Not spam (the true class is Spam):"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Prediction",
+            "Correct?"
+          ],
+          "rows": [
+            [
+              "Model 1",
+              "Spam",
+              "Yes"
+            ],
+            [
+              "Model 2",
+              "Spam",
+              "Yes"
+            ],
+            [
+              "Model 3",
+              "Not spam",
+              "No"
+            ],
+            [
+              "Model 4",
+              "Spam",
+              "Yes"
+            ],
+            [
+              "Model 5",
+              "Not spam",
+              "No"
+            ]
+          ]
+        },
+        {
+          "type": "formula",
+          "expression": "Final prediction = mode(Spam, Spam, Not spam, Spam, Not spam) = Spam",
+          "explanation": "The most common vote (3 Spam vs 2 Not spam) wins."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWC03_wc_voting.webp",
+          "caption": "Figure 3. Three correct votes overcome two incorrect votes: the final label is Spam (3 out of 5)."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "The ensemble succeeds because the incorrect models are in the minority. If most models repeat the same error, voting will not correct it.",
+          "title": "Key lesson"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Regression example: averaging"
+        },
+        {
+          "type": "paragraph",
+          "text": "Three models predict the price of a house:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Predicted price"
+          ],
+          "rows": [
+            [
+              "Model A",
+              "$198,000"
+            ],
+            [
+              "Model B",
+              "$210,000"
+            ],
+            [
+              "Model C",
+              "$204,000"
+            ]
+          ]
+        },
+        {
+          "type": "formula",
+          "expression": "Average = (198,000 + 210,000 + 204,000) / 3 = $204,000",
+          "explanation": "Averaging reduces the effect of one prediction being unusually high or low — provided the individual errors are not all identical."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The maths of variance reduction"
+        },
+        {
+          "type": "paragraph",
+          "text": "For M independent models with the same error variance σ², the variance of their average shrinks with M:"
+        },
+        {
+          "type": "formula",
+          "expression": "Variance of the average = σ² / M",
+          "explanation": "Averaging 10 equally noisy independent models gives one-tenth the variance of a single model."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWC04_wc_averaging.webp",
+          "caption": "Figure 4. Simulated noisy predictions: a single model (light line) swings widely around the true value, while the average of 10 diverse models (orange) fluctuates far less."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Diversity is the key requirement"
+        },
+        {
+          "type": "paragraph",
+          "text": "In real ensembles, model errors are usually correlated, not independent. A useful simplified formula introduces the error correlation ρ (rho):"
+        },
+        {
+          "type": "formula",
+          "expression": "Relative variance ≈ ρ + (1 − ρ) / M",
+          "explanation": "When ρ is small, adding models reduces variance a lot; when ρ is near 1, the models make almost the same errors, so extra models help little."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWC05_wc_correlation.webp",
+          "caption": "Figure 5. Ensemble benefit falls as error correlation rises: with ρ = 0 the average's variance drops steeply with more models, but at ρ = 1 (identical errors) it never improves."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Low-diversity ensemble",
+            "High-diversity ensemble"
+          ],
+          "rows": [
+            [
+              "Almost the same data, features, assumptions",
+              "Differ in samples, features, algorithms, or seeds"
+            ],
+            [
+              "Tend to make the same mistakes",
+              "Tend to make partly different mistakes"
+            ],
+            [
+              "Combining adds little new information",
+              "Combining can cancel errors and improve stability"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Where useful diversity comes from"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Different training samples — each model learns from a bootstrap or resampled dataset.",
+            "Different feature subsets — models see different combinations of input variables.",
+            "Different algorithms — e.g. a tree, a linear model, and a nearest-neighbour model.",
+            "Different hyperparameters — varying depth, regularization, or neighbourhood settings.",
+            "Different random seeds — random initialization creates slightly different models.",
+            "Sequential correction — each new learner concentrates on examples previous learners handled poorly."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Bias, variance, and noise"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every model's error can be split into three sources — and combining helps with two of them, not the third:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Error source",
+            "Meaning",
+            "Can combining help?"
+          ],
+          "rows": [
+            [
+              "Bias",
+              "Systematic error from an overly simple model",
+              "Yes — especially with sequential (boosting) learners"
+            ],
+            [
+              "Variance",
+              "Sensitivity to the specific training sample",
+              "Yes — averaging diverse models is very effective"
+            ],
+            [
+              "Irreducible noise",
+              "Randomness or missing info in the data",
+              "Usually no — no model can predict pure randomness"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Bagging-type combinations mainly reduce variance; boosting-type combinations can reduce bias and also influence variance.",
+          "title": "Exam point"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Single vs combined models"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Aspect",
+            "Single model",
+            "Combined models"
+          ],
+          "rows": [
+            [
+              "Decision source",
+              "One learned model",
+              "Several learned models"
+            ],
+            [
+              "Sensitivity",
+              "May depend heavily on one sample",
+              "Usually less dependent on one model"
+            ],
+            [
+              "Stability",
+              "Can fluctuate (unstable algorithms)",
+              "Often more stable through aggregation"
+            ],
+            [
+              "Pattern coverage",
+              "Limited to one model's assumptions",
+              "Can combine complementary patterns"
+            ],
+            [
+              "Interpretability",
+              "Usually easier to explain",
+              "Often harder to explain"
+            ],
+            [
+              "Computation",
+              "Usually lower",
+              "Usually higher"
+            ],
+            [
+              "Performance",
+              "May be strong but variable",
+              "Can be stronger when models are accurate and diverse"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "More models do not automatically mean better performance. Quality, diversity, and a suitable combination method matter more than quantity alone.",
+          "title": "Important"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "When combining may not help"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Identical errors — all models make the same mistakes because they are too similar.",
+            "Very weak members — many models perform worse than chance or provide mostly noise.",
+            "Poor combination rule — unreliable models receive too much weight.",
+            "Data quality problems — incorrect labels, leakage, or missing information affect every model.",
+            "A strong single model already dominates — adding weaker models can dilute the best prediction.",
+            "Overfitting in the ensemble process — combination choices are tuned excessively to validation data."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Mini case study: loan approval"
+        },
+        {
+          "type": "paragraph",
+          "text": "A bank uses three complementary models:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Main strength",
+            "Possible weakness"
+          ],
+          "rows": [
+            [
+              "Logistic regression",
+              "Clear linear risk relationships",
+              "May miss complex interactions"
+            ],
+            [
+              "Decision tree",
+              "Nonlinear rules and interactions",
+              "May overfit and be unstable"
+            ],
+            [
+              "k-nearest neighbours",
+              "Similarity to past applicants",
+              "Sensitive to scaling and local noise"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Combined, the ensemble can benefit from the logistic model's stability, the tree's nonlinear rules, and k-NN's local pattern recognition. An applicant misjudged by one model can still be handled correctly by the other two.",
+          "title": "Why it works here"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Checklist for a useful combination"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Choose individual models that perform better than a naive baseline.",
+            "Encourage diversity through different samples, features, algorithms, or settings.",
+            "Use a suitable rule: majority vote, probability averaging, weighted averaging, or a learned combiner.",
+            "Evaluate the ensemble on unseen validation or test data.",
+            "Compare performance, stability, calibration, speed, and interpretability with the best single model.",
+            "Avoid data leakage by training and validating every member correctly."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Key highlights"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "A model ensemble is valuable because different models provide complementary information.",
+            "Voting helps classification; averaging helps regression and probability estimates.",
+            "Averaging is especially effective for reducing variance when errors are weakly correlated.",
+            "Diversity is essential — identical models making identical errors provide little improvement.",
+            "Combining models cannot remove irreducible noise or repair poor-quality data by itself."
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Question",
+            "Answer"
+          ],
+          "rows": [
+            [
+              "Why combine models?",
+              "For a more accurate, stable, robust final prediction"
+            ],
+            [
+              "How does it work?",
+              "Models vote, average, or pass predictions to a learned combiner"
+            ],
+            [
+              "Main benefit?",
+              "Reduced individual errors and variance; some methods also reduce bias"
+            ],
+            [
+              "What makes it succeed?",
+              "Accurate members, diverse errors, a suitable combination rule"
+            ],
+            [
+              "What can limit it?",
+              "Correlated errors, weak models, bad data, overfitting, extra complexity"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Several different, useful models can collectively make a better decision than one model alone.",
+          "title": "Main takeaway"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Self-check"
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "1. Why can majority voting correct an individual classification error? 2. How does averaging reduce variance? 3. Why is model diversity important? 4. What happens when all models make highly correlated errors? 5. Can an ensemble remove irreducible noise? 6. Give one classification and one regression combination method.",
+          "title": "Test yourself"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Answers"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "If the wrong models are in the minority, the majority of correct votes outweighs them.",
+            "The variance of the average of M independent models is σ²/M, so more diverse models mean less fluctuation.",
+            "Diverse models make different errors that can cancel; identical models repeat the same errors and add nothing.",
+            "With ρ near 1 the models share almost the same errors, so averaging barely reduces variance — little benefit.",
+            "No — irreducible noise is randomness in the data itself; no model can reliably predict it.",
+            "Classification: majority voting (or probability averaging). Regression: averaging (or weighted averaging) the predictions."
+          ]
+        }
+      ],
+      "keyPoints": [
+        "Combining models helps because reasonably accurate models that make partly different errors let those errors cancel while the shared correct signal survives.",
+        "The mechanisms are error cancellation, variance reduction, bias reduction (via sequential learners), complementary strengths, robustness, and better generalization.",
+        "Averaging M independent models cuts variance to σ²/M; with error correlation ρ the relative variance is ρ + (1−ρ)/M, so low-correlation (diverse) errors give the biggest gain.",
+        "Diversity is the key requirement — identical models make identical mistakes and add nothing; it comes from different samples, features, algorithms, hyperparameters, seeds, or sequential correction.",
+        "Ensembles reduce bias and variance but cannot remove irreducible noise or fix bad data, and more models is not automatically better than a diverse, well-combined few."
+      ],
+      "commonMistakes": [
+        "Adding many near-identical models with highly correlated errors, expecting a variance drop that never comes.",
+        "Believing more models always improve performance regardless of quality, diversity, or combination rule.",
+        "Expecting an ensemble to remove irreducible noise or repair mislabeled/leaky data.",
+        "Diluting a strong single model with weak members, or overfitting the combination rule to validation data."
+      ]
+    },
+    {
+      "id": "ensemble_methods_03_weak_strong_learners",
+      "moduleId": "ensemble_methods",
+      "order": 3,
+      "title": "Weak Learners and Strong Learners",
+      "summary": "What weak and strong learners are and how many weak learners can form a strong one. Covers the definitions (predictive ability relative to a baseline, not simplicity), the characteristics and examples of each (decision stump, shallow tree, linear classifier vs boosted trees, random forest, deep nets, SVM), a weak-vs-strong comparison across accuracy/complexity/bias/variance/interpretability, the weak-to-strong process with majority-vote and weighted-vote (sign of weighted sum) examples, why combining works (error cancellation, repeated evidence, bias/variance reduction via bagging/boosting/stacking), a loan-approval worked example, common misunderstandings, an identification checklist, and a self-check.",
+      "difficulty": "beginner",
+      "readingMinutes": 13,
+      "contentVersion": 1,
+      "keywords": [
+        "weak learner",
+        "strong learner",
+        "decision stump",
+        "baseline",
+        "diversity",
+        "majority voting",
+        "weighted voting",
+        "bias",
+        "variance",
+        "boosting"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Weak, strong — and how one becomes the other"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ensemble learning rests on a surprising idea: a pile of mediocre models can add up to an excellent one. To see why, you first need the two words that describe a model's predictive ability — weak and strong. Crucially, these describe how well a learner predicts relative to a baseline, not whether the algorithm is 'good' or 'bad' in general. A humble decision stump and a deep neural network sit at opposite ends of this scale, yet both have their place."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWL01_wl_combine.webp",
+          "caption": "Figure 1. The core idea: training data feeds several weak learners (simple rules); their predictions are combined by a vote or weighted vote into one strong final prediction."
+        },
+        {
+          "type": "definition",
+          "term": "Learner",
+          "text": "A machine-learning algorithm or trained model that learns patterns from data and makes predictions. 'Weak' and 'strong' describe its predictive ability — not whether the algorithm is good or bad in every situation."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "These notes focus on weak learners, strong learners, their differences, examples, and how weak learners can contribute to a strong ensemble.",
+          "title": "Scope"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What you'll be able to do"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Define weak learners and strong learners in simple terms.",
+            "Identify their main characteristics and common examples.",
+            "Explain why a weak learner is not the same as a useless model.",
+            "Understand how several weak learners can form a strong learner.",
+            "Compare them using accuracy, complexity, bias, variance, and interpretability."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The weak learner"
+        },
+        {
+          "type": "definition",
+          "term": "Weak learner",
+          "text": "A simple model that makes predictions with limited accuracy but performs slightly better than chance or a basic baseline. Its individual rule is often easy to understand, but it may underfit complex data when used alone."
+        },
+        {
+          "type": "paragraph",
+          "text": "Binary intuition: if random guessing gives about 50% accuracy, a weak learner may reach 52–60%. For a K-class problem the random baseline is near 1/K — though with class imbalance, a majority-class baseline is often more appropriate."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "A weak learner still has some useful predictive skill. A model performing at or below the appropriate baseline is not a useful weak learner for boosting.",
+          "title": "Important"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Main characteristics"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Simple structure — often a small number of rules, features, or parameters.",
+            "Limited standalone performance — it may make many errors by itself.",
+            "Usually fast — training and prediction are often inexpensive.",
+            "Often interpretable — its rule can usually be explained easily.",
+            "May have high bias — too simple to capture the true relationship.",
+            "Useful in groups — several diverse weak learners can be combined to reduce errors."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Common examples"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Weak learner example",
+            "Why it may be weak",
+            "Typical use"
+          ],
+          "rows": [
+            [
+              "Decision stump",
+              "A tree with only one split — one simple rule",
+              "Base estimator in AdaBoost"
+            ],
+            [
+              "Very shallow tree",
+              "A few levels; can't model complex boundaries alone",
+              "Bagging, boosting, random forests"
+            ],
+            [
+              "Simple linear classifier",
+              "Only a linear boundary; may miss non-linear patterns",
+              "Base model or baseline"
+            ],
+            [
+              "Single-rule classifier",
+              "One if-then rule, e.g. age > 30",
+              "Rule-based ensemble"
+            ],
+            [
+              "Small neural network",
+              "Limited hidden units miss complex structure",
+              "Component in an ensemble"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWL02_wl_boundaries.webp",
+          "caption": "Figure 2. A weak learner uses one simple split (left) that mislabels much of the data; a stronger model represents a richer combined boundary (right) that separates the classes far better."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The strong learner"
+        },
+        {
+          "type": "definition",
+          "term": "Strong learner",
+          "text": "A model that can achieve high predictive performance and learn a complex target relationship given sufficiently good training data. Its predictions are substantially more reliable than a random or naive baseline."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Main characteristics"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "High predictive power — captures a large part of the useful pattern.",
+            "Lower overall error — usually more accurate than an individual weak learner.",
+            "Can model complexity — represents non-linear relationships or feature interactions.",
+            "May require more computation — training and tuning can take longer.",
+            "May be less interpretable — a strong ensemble can be harder to explain than one rule.",
+            "Can be a single model or an ensemble — a deep tree can be strong, and so can a group of weak trees."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Common examples"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Strong learner example",
+            "Why it can be strong"
+          ],
+          "rows": [
+            [
+              "Gradient-boosted trees",
+              "Many trees added sequentially to correct previous errors"
+            ],
+            [
+              "Random forest",
+              "Many trees vote/average, reducing unstable individual errors"
+            ],
+            [
+              "Well-trained deep neural network",
+              "Learns complex hierarchical and non-linear patterns"
+            ],
+            [
+              "SVM with a suitable kernel",
+              "Creates a flexible non-linear decision boundary"
+            ],
+            [
+              "A carefully tuned complex tree",
+              "Fits difficult patterns — though it may overfit"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Strong does not automatically mean complex, and weak does not automatically mean simple. Strength is mainly about learnability and predictive performance relative to the task and baseline.",
+          "title": "Key distinction"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Weak vs strong at a glance"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Aspect",
+            "Weak learner",
+            "Strong learner"
+          ],
+          "rows": [
+            [
+              "Predictive ability",
+              "Slightly above a suitable baseline",
+              "Substantially above the baseline"
+            ],
+            [
+              "Model complexity",
+              "Usually low",
+              "Often medium to high, but not always"
+            ],
+            [
+              "Standalone use",
+              "Often insufficient for hard tasks",
+              "Can often be used directly"
+            ],
+            [
+              "Bias",
+              "Often relatively high",
+              "Usually lower if fitted well"
+            ],
+            [
+              "Variance",
+              "Often low for very simple models",
+              "Can be higher for complex single models"
+            ],
+            [
+              "Training time",
+              "Usually short",
+              "May be longer"
+            ],
+            [
+              "Interpretability",
+              "Often high",
+              "May be lower"
+            ],
+            [
+              "Role in ensembles",
+              "A building block",
+              "May be the final combined model"
+            ],
+            [
+              "Example",
+              "Decision stump",
+              "Boosted tree ensemble"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The same algorithm can be weak or strong depending on its depth, parameters, data, features, noise, and evaluation metric.",
+          "title": "Remember"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "How weak learners become strong"
+        },
+        {
+          "type": "paragraph",
+          "text": "The central ensemble idea is error reduction through combination. Each weak learner contributes a small amount of useful information. When their predictions are combined correctly, common patterns are reinforced and some individual errors cancel out."
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Train several weak learners — on the data, on different samples, or in a sequence.",
+            "Let learners focus on different observations, features, or previous mistakes.",
+            "Collect their predictions.",
+            "Combine them by majority vote, averaging, or a weighted vote.",
+            "Return the combined result as the final strong prediction."
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWL03_wl_accuracy.webp",
+          "caption": "Figure 3. Illustrative: three weak learners barely beat the random baseline (54%, 57%, 55%), but their combined prediction reaches 82% — a strong learner."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Majority vote example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Five weak classifiers predict whether an email is spam:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Learner",
+            "Prediction"
+          ],
+          "rows": [
+            [
+              "Weak learner 1",
+              "Spam"
+            ],
+            [
+              "Weak learner 2",
+              "Spam"
+            ],
+            [
+              "Weak learner 3",
+              "Not spam"
+            ],
+            [
+              "Weak learner 4",
+              "Spam"
+            ],
+            [
+              "Weak learner 5",
+              "Not spam"
+            ],
+            [
+              "Final majority vote",
+              "Spam (3 out of 5)"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "No single weak learner controls the result. The group selects the class supported by most learners.",
+          "title": "Interpretation"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Weighted vote example"
+        },
+        {
+          "type": "paragraph",
+          "text": "In a weighted vote, more reliable learners get greater influence. For binary predictions represented as +1 and −1:"
+        },
+        {
+          "type": "formula",
+          "expression": "Final prediction = sign(w₁h₁(x) + w₂h₂(x) + … + wₘhₘ(x))",
+          "explanation": "hᵢ(x) is learner i's prediction and wᵢ its weight; a larger positive weight affects the final result more strongly."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Why combining weak learners works"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Different errors can cancel"
+        },
+        {
+          "type": "paragraph",
+          "text": "An ensemble gains more when its learners do not make exactly the same mistakes — a property called diversity. If every learner is identical, combining them adds little value."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figWL04_wl_diversity.webp",
+          "caption": "Figure 4. Potential ensemble benefit is highest with high error diversity (85), lower with medium diversity (65), and small with low diversity (30) — conceptual scale."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Repeated evidence becomes stronger"
+        },
+        {
+          "type": "paragraph",
+          "text": "When many weak learners independently detect the same useful pattern, the combined vote gives that pattern greater confidence. Random mistakes are less likely to receive consistent support."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Bias and variance can be reduced"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Combination approach",
+            "Main effect",
+            "Weak-to-strong intuition"
+          ],
+          "rows": [
+            [
+              "Bagging-style",
+              "Mainly reduces variance",
+              "Many unstable learners averaged/voted together"
+            ],
+            [
+              "Boosting-style",
+              "Often reduces bias and training error",
+              "Later learners focus on hard cases / residuals"
+            ],
+            [
+              "Stacking-style",
+              "Learns how to combine models",
+              "A meta-model decides which learner to trust"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Adding more weak learners does not guarantee improvement. Learners must contain useful signal, and the combination must control overfitting, noise, and correlated errors.",
+          "title": "Caution"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Worked example: loan approval"
+        },
+        {
+          "type": "paragraph",
+          "text": "Goal: predict whether a loan application is low risk or high risk. Each individual rule is weak because it uses only one narrow view of risk:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Weak rule",
+            "Simple decision",
+            "Limitation"
+          ],
+          "rows": [
+            [
+              "Rule 1",
+              "Income above threshold → low risk",
+              "Ignores debt and repayment history"
+            ],
+            [
+              "Rule 2",
+              "Low debt ratio → low risk",
+              "Ignores income stability"
+            ],
+            [
+              "Rule 3",
+              "No missed payments → low risk",
+              "Ignores current affordability"
+            ],
+            [
+              "Rule 4",
+              "Long employment → low risk",
+              "May disadvantage new workers"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "An ensemble can combine the rules with weights learned from past outcomes — e.g. repayment history weighted more than employment length. The final model considers affordability, debt, repayment history, and employment together instead of trusting one rule.",
+          "title": "Combined strong decision"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Concepts and misunderstandings"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Statement",
+            "Correct explanation"
+          ],
+          "rows": [
+            [
+              "“A weak learner is useless.”",
+              "False — it must have some predictive skill to contribute"
+            ],
+            [
+              "“Every simple model is weak.”",
+              "False — a simple model can be strong when the relationship is simple"
+            ],
+            [
+              "“Every complex model is strong.”",
+              "False — a complex model may overfit and generalize poorly"
+            ],
+            [
+              "“More learners always improve accuracy.”",
+              "False — correlated, noisy, or overfit learners add little"
+            ],
+            [
+              "“Weak means accuracy just above 50%.”",
+              "Only for balanced binary; the baseline depends on task/metric"
+            ],
+            [
+              "“A strong learner must be an ensemble.”",
+              "False — a single well-fitted model can be strong"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Identification checklist"
+        },
+        {
+          "type": "paragraph",
+          "text": "When deciding whether a model acts as a weak or strong learner for a specific task, ask:"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "What is the correct baseline — random guessing, majority class, mean prediction, or another naive method?",
+            "How much better is the model than the baseline on validation or test data?",
+            "Does the model capture only one or two simple patterns?",
+            "Is the model underfitting, fitting appropriately, or overfitting?",
+            "Does combining it with other diverse learners improve generalization?",
+            "Are its errors correlated with the errors of other learners?",
+            "Is the evaluation metric appropriate, especially with imbalanced classes?"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Quick summary"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "One-line meaning"
+          ],
+          "rows": [
+            [
+              "Weak learner",
+              "Limited but useful skill, often slightly above a suitable baseline"
+            ],
+            [
+              "Strong learner",
+              "High predictive ability; learns the task reliably from suitable data"
+            ],
+            [
+              "Diversity",
+              "Learners make different errors, so the combination gains more"
+            ],
+            [
+              "Voting",
+              "Choose the class predicted by most learners"
+            ],
+            [
+              "Weighted voting",
+              "Give more influence to stronger, more reliable learners"
+            ],
+            [
+              "Weak-to-strong learning",
+              "Combine many limited learners into a much better predictor"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "A weak learner is a useful but limited predictor; a strong learner is a substantially more reliable one. Ensemble learning can turn many weak learners into a strong learner when their predictions contain useful information and their errors are not perfectly identical.",
+          "title": "Final takeaway"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Self-check"
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "1. What makes a weak learner different from random guessing? 2. Why is a decision stump commonly a weak learner? 3. Can a simple linear model be a strong learner? 4. Why does learner diversity matter in an ensemble? 5. What is the difference between majority voting and weighted voting? 6. Why can a complex model still fail to be a strong learner?",
+          "title": "Test yourself"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Answers"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "It performs better than the appropriate random or naive baseline, so it contains useful predictive signal.",
+            "It has only one split, so it captures one simple pattern and usually has limited standalone accuracy.",
+            "Yes — if the real relationship is approximately linear and the data are suitable, a linear model may perform strongly.",
+            "Different errors let some mistakes cancel; identical errors are repeated rather than corrected.",
+            "Majority voting gives equal influence; weighted voting gives different influence to different learners.",
+            "It may overfit noise, use poor features, be poorly tuned, or fail to generalize to unseen data."
+          ]
+        }
+      ],
+      "keyPoints": [
+        "'Weak' and 'strong' describe predictive ability relative to a baseline, not whether an algorithm is simple or complex.",
+        "A weak learner performs only slightly better than the appropriate random/naive baseline but still contains useful signal; a strong learner is substantially more reliable.",
+        "The same algorithm can be weak or strong depending on depth, parameters, data, features, noise, and the evaluation metric — and a strong learner may be a single model or an ensemble.",
+        "Many weak learners become strong by combining predictions (majority vote, averaging, or weighted vote = sign of a weighted sum) so common patterns reinforce and diverse errors cancel.",
+        "Combining helps only with diverse, useful learners: bagging mainly cuts variance, boosting reduces bias, stacking learns the combination; correlated or noisy learners add little."
+      ],
+      "commonMistakes": [
+        "Treating a weak learner as useless, or assuming every simple model is weak and every complex model is strong.",
+        "Assuming more learners always improve accuracy regardless of diversity, correlation, or overfitting.",
+        "Fixing 'weak' at just-above-50% accuracy when the correct baseline depends on the task, class balance, and metric.",
+        "Believing a strong learner must be an ensemble when a single well-fitted model can be strong."
+      ]
+    },
+    {
+      "id": "ensemble_methods_04_voting_classifiers",
+      "moduleId": "ensemble_methods",
+      "order": 4,
+      "title": "Voting Classifiers: Hard and Soft Voting",
+      "summary": "How a voting classifier combines several trained models into one class prediction, and the difference between hard and soft voting. Covers the definition, components, and workflow; hard voting (majority label / mode) with a five-email worked example; soft voting (average predicted probability, argmax) with a worked calculation and weighted soft voting formula; probability-calibration cautions; a hard-vs-soft comparison and selection guide; a scikit-learn VotingClassifier implementation with pipelines and weights; an example accuracy comparison; advantages, limitations, and best practices; common mistakes; and a self-check.",
+      "difficulty": "beginner",
+      "readingMinutes": 14,
+      "contentVersion": 1,
+      "keywords": [
+        "voting classifier",
+        "hard voting",
+        "soft voting",
+        "majority vote",
+        "predicted probability",
+        "weighted voting",
+        "VotingClassifier",
+        "calibration",
+        "ensemble",
+        "diversity"
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Two ways to let models vote"
+        },
+        {
+          "type": "paragraph",
+          "text": "The simplest way to build an ensemble is to let several trained classifiers vote on the answer. But there are two ways to count those votes. Hard voting counts only each model's final label — like a show of hands. Soft voting counts each model's confidence — like weighing how sure everyone is. The choice matters, and it hinges on one question: can your models produce trustworthy probabilities?"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figVT01_vt_structure.webp",
+          "caption": "Figure 1. A voting classifier feeds one input to several models (logistic regression, decision tree, SVM); a voting rule (hard = majority label, soft = average probability) produces the final class."
+        },
+        {
+          "type": "definition",
+          "term": "Voting classifier",
+          "text": "An ensemble method that trains multiple classification models and combines their predictions to produce one final class prediction."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Different models make different errors. Combining them can reduce the effect of one model's mistake and produce a more stable decision.",
+          "title": "Main idea"
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "These notes stay focused on voting classifiers, hard voting, soft voting, weighting, implementation, and model-selection guidance.",
+          "title": "Scope"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What you'll be able to do"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Define a voting classifier and explain why it is used.",
+            "Apply the majority-vote rule used by hard voting.",
+            "Calculate average and weighted probabilities used by soft voting.",
+            "Differentiate hard from soft voting using clear criteria.",
+            "Implement both with scikit-learn and evaluate them correctly."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Core components and workflow"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Purpose",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Base classifiers",
+              "Learn different decision patterns",
+              "Logistic Regression, Decision Tree, SVM"
+            ],
+            [
+              "Voting rule",
+              "Combines the classifiers' predictions",
+              "Majority label or averaged probability"
+            ],
+            [
+              "Final prediction",
+              "The ensemble's selected class",
+              "Class A, spam, disease present"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Voting works best when the base classifiers are reasonably accurate but do not make exactly the same errors — e.g. combine a linear model, a tree-based model, and a kernel-based model.",
+          "title": "Diversity matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "The basic workflow: (1) choose two or more classification algorithms, (2) train each on the training data, (3) ask each to predict a new observation, (4) combine the predictions using hard or soft voting, (5) return the class the voting rule selects."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Hard voting"
+        },
+        {
+          "type": "definition",
+          "term": "Hard voting",
+          "text": "Selects the class label that receives the largest number of votes from the base classifiers. It uses only each model's final predicted class, not its confidence score."
+        },
+        {
+          "type": "formula",
+          "expression": "ŷ = mode{h₁(x), h₂(x), …, hₘ(x)}",
+          "explanation": "Collect the predicted labels from all m classifiers; the final prediction is the statistical mode (most common label)."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figVT02_vt_hard.webp",
+          "caption": "Figure 2. Hard voting: logistic regression and the decision tree vote Class A, the SVM votes Class B; the majority (2 of 3) makes the final prediction Class A."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Worked example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Three models classify five emails as Spam or Not Spam. The hard-voting result is the majority label for each email (split into two tables so every column stays readable on a phone):"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Email",
+            "Logistic Regression",
+            "Decision Tree",
+            "SVM"
+          ],
+          "rows": [
+            [
+              "1",
+              "Spam",
+              "Spam",
+              "Not Spam"
+            ],
+            [
+              "2",
+              "Not Spam",
+              "Not Spam",
+              "Spam"
+            ],
+            [
+              "3",
+              "Spam",
+              "Spam",
+              "Spam"
+            ],
+            [
+              "4",
+              "Not Spam",
+              "Spam",
+              "Not Spam"
+            ],
+            [
+              "5",
+              "Spam",
+              "Not Spam",
+              "Spam"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Email",
+            "Hard-voting result"
+          ],
+          "rows": [
+            [
+              "1",
+              "Spam"
+            ],
+            [
+              "2",
+              "Not Spam"
+            ],
+            [
+              "3",
+              "Spam"
+            ],
+            [
+              "4",
+              "Not Spam"
+            ],
+            [
+              "5",
+              "Spam"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Characteristics"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Simple to understand and computationally straightforward.",
+            "Works even when a classifier does not provide class probabilities.",
+            "Treats a highly confident vote and a weakly confident vote as equal.",
+            "An odd number of classifiers is often used in binary classification to reduce ties.",
+            "A tie-breaking rule is needed when two or more classes receive the same number of votes."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Soft voting"
+        },
+        {
+          "type": "definition",
+          "term": "Soft voting",
+          "text": "Averages the predicted probability for each class and chooses the class with the highest average probability. It uses both the prediction and the model's confidence."
+        },
+        {
+          "type": "formula",
+          "expression": "P̄(c|x) = [P₁(c|x) + P₂(c|x) + … + Pₘ(c|x)] / m",
+          "explanation": "Average each class's probability across the m classifiers, then choose the class with the largest average."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figVT03_vt_soft.webp",
+          "caption": "Figure 3. Soft voting averages the class probabilities: Class A averages 0.65 vs Class B's 0.35, so Class A is chosen because 0.65 > 0.35."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Worked calculation"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Classifier",
+            "P(Class A)",
+            "P(Class B)"
+          ],
+          "rows": [
+            [
+              "Logistic Regression",
+              "0.80",
+              "0.20"
+            ],
+            [
+              "Decision Tree",
+              "0.45",
+              "0.55"
+            ],
+            [
+              "SVM",
+              "0.70",
+              "0.30"
+            ],
+            [
+              "Average",
+              "0.65",
+              "0.35"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Final prediction = Class A, because 0.65 is greater than 0.35. Note the decision tree favoured Class B, but its lower confidence was outweighed by the two confident Class-A votes."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Weighted soft voting"
+        },
+        {
+          "type": "paragraph",
+          "text": "Weighted voting gives more influence to models that are more reliable. With weights w₁, w₂, …, wₘ:"
+        },
+        {
+          "type": "formula",
+          "expression": "P_weighted(c|x) = [w₁P₁(c|x) + w₂P₂(c|x) + … + wₘPₘ(c|x)] / (w₁ + w₂ + … + wₘ)",
+          "explanation": "With weights [2, 1, 2]: P(A) = (2×0.80 + 1×0.45 + 2×0.70) / 5 = 0.69, P(B) = 0.31 — the final class is still Class A."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Soft voting is most meaningful when probability estimates are trustworthy. Some models need calibration; for SVM in scikit-learn use probability=True, which adds extra training cost.",
+          "title": "Probability calibration"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Hard vs soft voting"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Feature",
+            "Hard voting",
+            "Soft voting"
+          ],
+          "rows": [
+            [
+              "Information used",
+              "Final predicted labels",
+              "Predicted probability per class"
+            ],
+            [
+              "Combination rule",
+              "Majority / mode",
+              "Average or weighted-average probability"
+            ],
+            [
+              "Confidence considered?",
+              "No",
+              "Yes"
+            ],
+            [
+              "Probability support required?",
+              "No",
+              "Yes"
+            ],
+            [
+              "Typical strength",
+              "Simple and widely applicable",
+              "Uses richer confidence information"
+            ],
+            [
+              "Main risk",
+              "Ignores how confident each model is",
+              "Poorly calibrated probabilities mislead"
+            ],
+            [
+              "Tie handling",
+              "May need a tie-breaking rule",
+              "Less common (probabilities are continuous)"
+            ],
+            [
+              "scikit-learn option",
+              "voting='hard'",
+              "voting='soft'"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figVT04_vt_guide.webp",
+          "caption": "Figure 4. Choosing: if the classifiers cannot give reliable probabilities, use hard voting; if they can, prefer soft voting — then validate both with cross-validation and keep the one that performs consistently."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Hard voting asks “Which class received the most votes?” Soft voting asks “Which class received the greatest total confidence?”",
+          "title": "One-line memory aid"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Implementation in scikit-learn"
+        },
+        {
+          "type": "paragraph",
+          "text": "This example uses Logistic Regression, a Decision Tree, and an SVM, with scaling applied to the scale-sensitive models via pipelines:"
+        },
+        {
+          "type": "code",
+          "language": "python",
+          "code": "from sklearn.ensemble import VotingClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.svm import SVC\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\n\nlr = make_pipeline(\n    StandardScaler(),\n    LogisticRegression(max_iter=2000, random_state=42),\n)\ndt = DecisionTreeClassifier(max_depth=4, random_state=42)\nsvm = make_pipeline(\n    StandardScaler(),\n    SVC(probability=True, random_state=42),\n)\n\nhard_voter = VotingClassifier(\n    estimators=[('lr', lr), ('dt', dt), ('svm', svm)],\n    voting='hard',\n)\nsoft_voter = VotingClassifier(\n    estimators=[('lr', lr), ('dt', dt), ('svm', svm)],\n    voting='soft', weights=[2, 1, 2],\n)\n\nhard_voter.fit(X_train, y_train)\nsoft_voter.fit(X_train, y_train)\nhard_predictions = hard_voter.predict(X_test)\nsoft_predictions = soft_voter.predict(X_test)",
+          "explanation": "Wrapping scale-sensitive models in make_pipeline keeps scaling inside the fold; SVC needs probability=True for soft voting."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Parameter",
+            "Meaning",
+            "Example"
+          ],
+          "rows": [
+            [
+              "estimators",
+              "List of named base classifiers",
+              "[('lr', lr), ('dt', dt), ('svm', svm)]"
+            ],
+            [
+              "voting",
+              "The combination method",
+              "'hard' or 'soft'"
+            ],
+            [
+              "weights",
+              "Relative influence of each classifier",
+              "[2, 1, 2]"
+            ],
+            [
+              "flatten_transform",
+              "Shape of probability output in transform",
+              "Usually leave as default"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Example performance comparison"
+        },
+        {
+          "type": "paragraph",
+          "text": "One reproducible train/test experiment — an example, not a universal ranking of algorithms:"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Model",
+            "Test accuracy"
+          ],
+          "rows": [
+            [
+              "Logistic Regression",
+              "98.6%"
+            ],
+            [
+              "Decision Tree",
+              "94.4%"
+            ],
+            [
+              "SVM",
+              "97.9%"
+            ],
+            [
+              "Hard Voting",
+              "98.6%"
+            ],
+            [
+              "Soft Voting",
+              "97.9%"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/ensemble_methods/figVT05_vt_accuracy.webp",
+          "caption": "Figure 5. Test accuracy on one example dataset (Breast Cancer Wisconsin, 75/25 split): the voting ensembles match but do not beat the best single model here — results vary by data and validation design."
+        },
+        {
+          "type": "callout",
+          "variant": "note",
+          "text": "Voting improves robustness only when the component models contribute useful and complementary information. It is not guaranteed to outperform the strongest base classifier on every dataset.",
+          "title": "Interpret the result correctly"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Advantages, limitations, best practices"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Advantages",
+            "Limitations"
+          ],
+          "rows": [
+            [
+              "Can reduce variance and stabilise decisions",
+              "Training/storing several models costs more"
+            ],
+            [
+              "Combines models with different learning biases",
+              "Correlated errors give little benefit"
+            ],
+            [
+              "Easy to build from existing classifiers",
+              "Hard voting discards confidence information"
+            ],
+            [
+              "Supports optional model weights",
+              "Soft voting needs reliable probability estimates"
+            ],
+            [
+              "Can improve generalization when errors complement",
+              "Less interpretable than a single classifier"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Best practices:"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Use diverse algorithms rather than several almost-identical models.",
+            "Evaluate each base classifier before adding it to the ensemble.",
+            "Use stratified cross-validation for classification whenever appropriate.",
+            "Compare hard voting, unweighted soft voting, and weighted soft voting.",
+            "Tune model weights using validation data only, never the test set.",
+            "Use pipelines so preprocessing is learned only from training folds.",
+            "Measure more than accuracy when classes are imbalanced (precision, recall, F1, ROC-AUC, PR-AUC)."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Common mistakes"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Mistake",
+            "Correct approach"
+          ],
+          "rows": [
+            [
+              "Soft voting with a model that has no probabilities",
+              "Enable/add probability estimation, or use hard voting"
+            ],
+            [
+              "Assigning weights from test-set results",
+              "Choose weights via cross-validation or a validation set"
+            ],
+            [
+              "Combining many weak, near-identical models",
+              "Prioritize accuracy plus diversity, not just count"
+            ],
+            [
+              "Scaling before the train/test split",
+              "Put scaling inside a pipeline to prevent leakage"
+            ],
+            [
+              "Assuming the ensemble must be better",
+              "Validate it against each individual model on unseen data"
+            ],
+            [
+              "Ignoring class imbalance",
+              "Use suitable metrics and, if needed, class weights/resampling"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Quick revision"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Hard voting",
+            "Soft voting"
+          ],
+          "rows": [
+            [
+              "Counts predicted labels, picks the majority class",
+              "Averages class probabilities, picks the largest average"
+            ],
+            [
+              "Best when probabilities are unavailable/unreliable",
+              "Preferred when probabilities are available and calibrated"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Ensemble",
+              "A predictive system combining multiple models"
+            ],
+            [
+              "Base classifier",
+              "An individual model inside the ensemble"
+            ],
+            [
+              "Majority vote",
+              "The class with the highest number of votes"
+            ],
+            [
+              "Predicted probability",
+              "A model's estimated likelihood for a class"
+            ],
+            [
+              "Model weight",
+              "How strongly a classifier influences the ensemble"
+            ],
+            [
+              "Calibration",
+              "Agreement between predicted probabilities and observed frequencies"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Self-check"
+        },
+        {
+          "type": "callout",
+          "variant": "quick_check",
+          "text": "1. What type of model output is combined in hard voting? 2. Why can soft voting be more informative than hard voting? 3. Calculate the soft-voting result if two models give P(A) = 0.60 and 0.90. 4. Why should model weights be selected using validation data rather than test data? 5. State one situation in which hard voting is preferable to soft voting.",
+          "title": "Test yourself"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Answers"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "The final predicted class label from each classifier.",
+            "It includes the confidence expressed by predicted probabilities, not just the label.",
+            "Average P(A) = (0.60 + 0.90) / 2 = 0.75; choose A if it has the highest class average.",
+            "Using the test set for weight selection leaks evaluation information and gives an overly optimistic estimate.",
+            "When one or more classifiers cannot produce trustworthy probabilities."
+          ]
+        }
+      ],
+      "keyPoints": [
+        "A voting classifier trains several diverse base models and combines their predictions into one final class.",
+        "Hard voting picks the majority predicted label (mode) and works even without probabilities, but ignores confidence.",
+        "Soft voting averages each class's predicted probability and picks the largest average, using confidence — but needs well-calibrated probabilities.",
+        "Weighted soft voting gives more reliable models greater influence via a weighted average of probabilities; tune weights on validation data only.",
+        "Voting helps only with accurate, diverse, complementary models and is not guaranteed to beat the best single classifier — always validate on unseen data."
+      ],
+      "commonMistakes": [
+        "Using soft voting with a model that provides no (or uncalibrated) probabilities.",
+        "Selecting model weights from test-set results, leaking evaluation information.",
+        "Combining many weak, near-identical models instead of accurate, diverse ones.",
+        "Fitting scaling before the train/test split, or assuming the ensemble must beat every base model."
+      ]
+    },
+    {
+      "id": "ensemble_methods_05_averaging_methods",
+      "moduleId": "ensemble_methods",
+      "order": 5,
+      "title": "Averaging Methods",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_06_bagging",
+      "moduleId": "ensemble_methods",
+      "order": 6,
+      "title": "Bagging",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_07_bootstrap_sampling",
+      "moduleId": "ensemble_methods",
+      "order": 7,
+      "title": "Bootstrap Sampling",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_08_random_forest",
+      "moduleId": "ensemble_methods",
+      "order": 8,
+      "title": "Random Forest",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_09_extra_trees",
+      "moduleId": "ensemble_methods",
+      "order": 9,
+      "title": "Extra Trees",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_10_boosting",
+      "moduleId": "ensemble_methods",
+      "order": 10,
+      "title": "Boosting",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_11_adaboost",
+      "moduleId": "ensemble_methods",
+      "order": 11,
+      "title": "AdaBoost",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_12_gradient_boosting",
+      "moduleId": "ensemble_methods",
+      "order": 12,
+      "title": "Gradient Boosting",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_13_xgboost",
+      "moduleId": "ensemble_methods",
+      "order": 13,
+      "title": "XGBoost",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_14_lightgbm",
+      "moduleId": "ensemble_methods",
+      "order": 14,
+      "title": "LightGBM",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_15_catboost",
+      "moduleId": "ensemble_methods",
+      "order": 15,
+      "title": "CatBoost",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_16_stacking",
+      "moduleId": "ensemble_methods",
+      "order": 16,
+      "title": "Stacking",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_17_blending",
+      "moduleId": "ensemble_methods",
+      "order": 17,
+      "title": "Blending",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_18_bagging_vs_boosting",
+      "moduleId": "ensemble_methods",
+      "order": 18,
+      "title": "Bagging vs Boosting",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_19_ensemble_diversity",
+      "moduleId": "ensemble_methods",
+      "order": 19,
+      "title": "Ensemble Diversity",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_20_feature_importance",
+      "moduleId": "ensemble_methods",
+      "order": 20,
+      "title": "Feature Importance in Ensemble Models",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_21_hyperparameter_tuning",
+      "moduleId": "ensemble_methods",
+      "order": 21,
+      "title": "Hyperparameter Tuning",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_22_advantages_limitations",
+      "moduleId": "ensemble_methods",
+      "order": 22,
+      "title": "Advantages and Limitations",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_23_when_not_to_use",
+      "moduleId": "ensemble_methods",
+      "order": 23,
+      "title": "When Not to Use Ensemble Models",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    },
+    {
+      "id": "ensemble_methods_24_practical_project",
+      "moduleId": "ensemble_methods",
+      "order": 24,
+      "title": "Practical Project: Compare Decision Tree, Random Forest and Gradient Boosting",
+      "summary": "Content coming soon.",
+      "difficulty": "beginner",
+      "readingMinutes": 5,
+      "contentVersion": 1,
+      "keywords": [],
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Content for this sub-module is coming soon."
+        }
+      ],
+      "keyPoints": [],
+      "commonMistakes": []
+    }
+  ]
+}
