@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/bookmarks/bookmarks_screen.dart';
+import '../features/flashcards/flashcard_module_screen.dart';
 import '../features/flashcards/flashcards_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/interview/interview_screen.dart';
@@ -106,6 +107,23 @@ final GoRouter appRouter = GoRouter(
       path: '/flashcards',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const FlashcardsScreen(),
+      routes: [
+        GoRoute(
+          path: ':moduleId',
+          builder: (context, state) => FlashcardModuleScreen(
+            moduleId: state.pathParameters['moduleId']!,
+          ),
+          routes: [
+            GoRoute(
+              path: ':viewId',
+              builder: (context, state) => FlashcardVisualScreen(
+                moduleId: state.pathParameters['moduleId']!,
+                viewId: state.pathParameters['viewId']!,
+              ),
+            ),
+          ],
+        ),
+      ],
     ),
     GoRoute(
       path: '/interview',

@@ -6,166 +6,551 @@
       "moduleId": "supervised_learning",
       "order": 1,
       "title": "What is Supervised Learning?",
-      "summary": "How a model learns from labelled examples, why it is called 'supervised', and the notation used throughout the module.",
+      "summary": "Supervised learning trains on examples with known correct answers. Learn how labeled data guides a model from input features to predictions, and how classification and regression fit into the picture.",
       "difficulty": "beginner",
-      "readingMinutes": 8,
+      "readingMinutes": 15,
       "contentVersion": 1,
       "keywords": [
         "supervised learning",
-        "labelled data",
-        "training loop",
-        "notation",
-        "target"
+        "labeled data",
+        "features",
+        "target",
+        "prediction",
+        "classification",
+        "regression",
+        "training"
       ],
       "content": [
         {
-          "type": "heading",
-          "level": 2,
-          "text": "Overview"
+          "type": "paragraph",
+          "text": "Supervised learning is a way for a computer to learn from examples that already include correct answers. The model studies the relationship between the input information and the known answer, then uses what it learned to predict an answer for a new case."
         },
         {
-          "type": "paragraph",
-          "text": "Supervised learning is the branch of machine learning where every training example already comes with the correct answer. Each example pairs some input data with a known target, the model studies how the two relate, and it then predicts the target for new cases it has never seen."
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figSL01_sl_workflow.webp",
+          "caption": "Figure 1. Labeled data guides training; the trained model then turns a new input into a predicted label or value."
         },
         {
           "type": "callout",
           "variant": "tip",
-          "text": "A teacher hands a student practice questions together with the correct answers. Once the student has learned the pattern, they can tackle fresh questions on their own. In supervised learning, the labelled dataset plays the role of that teacher.",
-          "title": "Everyday analogy"
-        },
-        {
-          "type": "image",
-          "asset": "assets/images/supervised_learning/fig01_supervised_overview.webp",
-          "caption": "Figure 1. Supervised learning uses labelled examples to learn a mapping from inputs to outputs."
+          "title": "Memory rule",
+          "text": "Supervised learning means learning with correct answers provided during training."
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "Why is it called “supervised”?"
+          "level": 1,
+          "text": "Learning Objectives"
         },
         {
-          "type": "paragraph",
-          "text": "The labels act as a supervisor. During training the model makes a guess, checks it against the known answer, measures how wrong it was, and nudges itself to do better next time. Repeat that thousands of times and a useful pattern emerges."
-        },
-        {
-          "type": "numbered",
+          "type": "bullets",
           "items": [
-            "Receive an input example.",
-            "Produce a prediction.",
-            "Compare the prediction with the known label.",
-            "Measure the error with a loss function.",
-            "Update the model to reduce that error.",
-            "Repeat across many examples."
+            "Define supervised learning in simple and technical language.",
+            "Identify inputs, features, labels, targets, training data, and predictions.",
+            "Explain how a model learns from labeled examples.",
+            "Distinguish classification from regression at a basic level.",
+            "Recognize common real-world supervised-learning tasks."
           ]
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "A tiny labelled dataset"
+          "level": 1,
+          "text": "Meaning of Supervised Learning"
+        },
+        {
+          "type": "definition",
+          "term": "Simple definition",
+          "text": "A machine learning method where a computer learns from examples that already have correct answers."
         },
         {
           "type": "paragraph",
-          "text": "Here is what labelled data actually looks like. The first two columns are features (the clues); the last column is the label the model must learn to predict."
+          "text": "The word supervised suggests guidance. During training, each example comes with a known output. That output acts like a teacher's answer key: the model compares its prediction with the truth and gradually learns a better rule."
+        },
+        {
+          "type": "definition",
+          "term": "Technical definition",
+          "text": "Given labeled training data with inputs X and target values y, a supervised algorithm estimates a function f so that f(X) produces predictions close to y for new inputs."
+        },
+        {
+          "type": "formula",
+          "expression": "(x_i, y_i) -> y_hat = f(x)",
+          "explanation": "Each training example pairs an input x_i with its correct output y_i. The learned function f produces a predicted output y_hat for a new input."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Essential Terms"
         },
         {
           "type": "table",
           "headers": [
-            "Hours studied",
-            "Past attendance",
-            "Result (label)"
+            "Term",
+            "Meaning",
+            "Email-spam example"
           ],
           "rows": [
             [
-              "8",
-              "95%",
-              "Pass"
+              "Input or observation",
+              "One example given to the model",
+              "One email message"
             ],
             [
-              "2",
+              "Feature (X)",
+              "A measurable property used for prediction",
+              "Links, sender type, keywords"
+            ],
+            [
+              "Label or target (y)",
+              "Correct output attached to an example",
+              "Spam or not spam"
+            ],
+            [
+              "Labeled data",
+              "Features plus correct target",
+              "Emails already marked spam/not spam"
+            ],
+            [
+              "Model",
+              "Learned rule or mapping",
+              "Trained spam detector"
+            ],
+            [
+              "Prediction (y_hat)",
+              "Estimated output for new data",
+              "This new email is spam"
+            ],
+            [
+              "Error or loss",
+              "Difference between prediction and truth",
+              "Predicted not spam but label is spam"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "What Makes Data Labeled?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A label is the known answer connected to an example. Without this answer, the model cannot directly check whether its prediction was correct during training."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Study hours",
+            "Attendance",
+            "Correct result label"
+          ],
+          "rows": [
+            [
+              "2 hours",
               "60%",
               "Fail"
             ],
             [
-              "5",
-              "80%",
+              "4 hours",
+              "72%",
               "Pass"
             ],
             [
-              "1",
-              "45%",
+              "6 hours",
+              "85%",
+              "Pass"
+            ],
+            [
+              "1 hour",
+              "55%",
               "Fail"
             ]
           ]
         },
         {
-          "type": "paragraph",
-          "text": "The model studies rows like these, works out how study hours and attendance relate to the result, and then predicts Pass or Fail for a brand-new student it was never shown."
+          "type": "callout",
+          "variant": "warning",
+          "title": "Do not confuse this",
+          "text": "Supervised does not mean a person watches every prediction. It means correct outputs are available as guidance during model training."
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "Core notation"
+          "level": 1,
+          "text": "Teacher-and-Student Analogy"
         },
         {
           "type": "paragraph",
-          "text": "A few symbols appear again and again in this module. It is worth getting comfortable with them now, using a spam filter as the running example."
+          "text": "Imagine a teacher showing a student many labeled pictures of apples and oranges. The student notices clues such as color, shape, and texture. Later, a new picture is shown without its name, and the student uses the learned pattern to identify it."
         },
         {
           "type": "table",
           "headers": [
-            "Symbol",
-            "Meaning",
-            "Spam example"
+            "Classroom idea",
+            "Machine-learning equivalent"
           ],
           "rows": [
             [
-              "X",
-              "Input feature matrix — rows are observations, columns are features",
-              "Email length, word counts, number of links, sender info"
+              "Practice question",
+              "Training example"
             ],
             [
-              "xᵢ",
-              "One individual observation",
-              "One email"
+              "Clues in the question",
+              "Input features"
             ],
             [
-              "y",
-              "Target vector with the correct outputs",
-              "Spam = 1, not spam = 0"
+              "Correct answer",
+              "Label or target"
             ],
             [
-              "ŷ",
-              "The model's prediction",
-              "Predicted spam probability or predicted class"
+              "Student learns a rule",
+              "Model learns a relationship"
             ],
             [
-              "f(X)",
-              "The learned mapping from inputs to outputs",
-              "A classifier from email features to spam / not spam"
+              "New exam question",
+              "Unseen input"
+            ],
+            [
+              "Student answer",
+              "Prediction"
+            ],
+            [
+              "Teacher checks answer",
+              "Evaluation against the true target"
             ]
           ]
         },
         {
+          "type": "heading",
+          "level": 1,
+          "text": "How Learning Happens"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Collect historical examples related to the problem.",
+            "Attach trustworthy correct answers to every training example.",
+            "Represent useful input information as features.",
+            "Train the model so its internal rule reduces prediction error.",
+            "Check the model on examples it did not use for fitting.",
+            "Use the trained model to predict new cases."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Learning is repeated error correction: predict, compare with the known answer, measure the error, and update. The goal is not to memorize every row but to learn a pattern that also works on unseen examples."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Input",
+            "Correct target",
+            "Model prediction",
+            "Learning signal"
+          ],
+          "rows": [
+            [
+              "Email with suspicious links",
+              "Spam",
+              "Not spam",
+              "Increase attention to suspicious-link patterns"
+            ],
+            [
+              "Normal work email",
+              "Not spam",
+              "Not spam",
+              "Keep the useful pattern"
+            ],
+            [
+              "Promotional message",
+              "Spam",
+              "Spam",
+              "Prediction matches the label"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Two Basic Task Types"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Type",
+            "Target output",
+            "Main question",
+            "Examples"
+          ],
+          "rows": [
+            [
+              "Classification",
+              "A category or class",
+              "Which group does it belong to?",
+              "Spam/not spam, disease/no disease"
+            ],
+            [
+              "Regression",
+              "A continuous number",
+              "How much or how many?",
+              "House price, temperature, sales amount"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figSL02_sl_classification.webp",
+          "caption": "Figure 2. Classification uses labeled examples to learn a boundary that assigns a new example to a category."
+        },
+        {
+          "type": "paragraph",
+          "text": "In classification, the output is a category. A model learns a decision boundary or rule that separates classes from one another."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figSL03_sl_regression.webp",
+          "caption": "Figure 3. Regression learns a relationship in labeled numeric data, then estimates a number for a new input."
+        },
+        {
+          "type": "paragraph",
+          "text": "In regression, the target is numerical. The model learns a trend or relationship and uses it to estimate a value for a new input."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Worked Mini Example: Student Results"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "In this problem"
+          ],
+          "rows": [
+            [
+              "Inputs or features (X)",
+              "Study hours, attendance, assignment score"
+            ],
+            [
+              "Target or label (y)",
+              "Pass or Fail"
+            ],
+            [
+              "Training data",
+              "Previous students with known results"
+            ],
+            [
+              "Model task",
+              "Learn patterns connecting study behavior to results"
+            ],
+            [
+              "New input",
+              "A current student's study hours, attendance, and score"
+            ],
+            [
+              "Prediction",
+              "Pass or Fail"
+            ]
+          ]
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Historical records show that many students with high attendance and regular study hours passed.",
+            "The model detects a relationship from those labeled records.",
+            "For a new student, it receives the same kind of inputs and predicts Pass or Fail."
+          ]
+        },
+        {
           "type": "callout",
-          "variant": "note",
-          "text": "The learning algorithm searches for a good mapping f. The model is the specific f it finds after training. The algorithm learns; the model is the learned result.",
-          "title": "Algorithm vs model"
+          "variant": "warning",
+          "title": "Use predictions responsibly",
+          "text": "A prediction is an estimate based on learned patterns, not a guaranteed fact. Human judgment and context still matter."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Common Real-World Uses"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Area",
+            "Input examples",
+            "Target output",
+            "Task"
+          ],
+          "rows": [
+            [
+              "Email filtering",
+              "Words, links, sender",
+              "Spam / not spam",
+              "Classification"
+            ],
+            [
+              "Healthcare support",
+              "Symptoms, tests, history",
+              "Risk category",
+              "Classification"
+            ],
+            [
+              "Banking",
+              "Transaction behavior",
+              "Fraud / not fraud",
+              "Classification"
+            ],
+            [
+              "Property market",
+              "Size, location, rooms",
+              "Estimated price",
+              "Regression"
+            ],
+            [
+              "Retail",
+              "Past sales, season, promotion",
+              "Expected sales",
+              "Regression"
+            ],
+            [
+              "Manufacturing",
+              "Sensor readings",
+              "Fault / normal",
+              "Classification"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "What Good Supervised Learning Needs"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Relevant examples that represent future cases.",
+            "Accurate labels; incorrect answers teach incorrect relationships.",
+            "Useful features with information connected to the target.",
+            "Enough variety to cover different situations.",
+            "Separate evaluation data to test performance on unseen examples."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Benefits and Limits"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Why it is useful",
+            "What to remember"
+          ],
+          "rows": [
+            [
+              "Correct outputs give a clear learning objective",
+              "Labels may take time and expertise to obtain"
+            ],
+            [
+              "Predictions can be compared with true answers",
+              "Biased or incorrect labels produce poor predictions"
+            ],
+            [
+              "Useful for many real prediction tasks",
+              "Future data may differ from training data"
+            ],
+            [
+              "Can learn complex relationships",
+              "A high score does not guarantee fairness or suitability"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Supervised vs Unsupervised Learning"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Aspect",
+            "Supervised",
+            "Unsupervised"
+          ],
+          "rows": [
+            [
+              "Correct answers available?",
+              "Yes, labels or targets",
+              "No predefined target"
+            ],
+            [
+              "Main purpose",
+              "Predict output for new data",
+              "Discover structure or groups"
+            ],
+            [
+              "Typical output",
+              "Class label or numerical value",
+              "Clusters, patterns, representation"
+            ],
+            [
+              "Example",
+              "Predict spam from marked emails",
+              "Group customers by behavior"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figSL04_sl_at_glance.webp",
+          "caption": "Figure 4. Supervised learning connects input features X and target y, with classification predicting categories and regression predicting numbers."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Key Takeaways"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Supervised learning learns from labeled examples.",
+            "Each example has input features X and a correct target y.",
+            "The model learns a mapping that predicts an output for new inputs.",
+            "Classification predicts categories; regression predicts numerical values.",
+            "Good predictions depend on relevant data, accurate labels, and evaluation on unseen examples."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Quick Self-Check"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "What does labeled data mean?",
+            "In a house-price problem, which item is the target?",
+            "Is spam detection classification or regression?",
+            "Why should a model be evaluated on unseen examples?",
+            "Complete the sentence: supervised learning learns from ______ examples."
+          ]
         },
         {
           "type": "callout",
           "variant": "tip",
-          "text": "Give supervised learning labelled examples and it returns a reusable rule: a model that turns new inputs into predictions.",
-          "title": "In short"
+          "title": "Final definition",
+          "text": "Supervised learning is a machine-learning method in which a model learns the relationship between inputs and known correct outputs, then uses that learned relationship to predict outputs for new inputs."
         }
       ],
       "keyPoints": [
-        "Supervised learning trains on examples that already include the correct answer.",
-        "The label acts as a supervisor: predict, measure the error, adjust, repeat.",
-        "X holds the features, y holds the targets, and the model learns a mapping f(X) ≈ y.",
-        "The algorithm is the learning procedure; the model is what it produces."
+        "Supervised learning trains on labeled examples with known correct answers.",
+        "Features X describe each example and target y is the answer to predict.",
+        "The model learns through repeated prediction, error measurement, and adjustment.",
+        "The aim is to generalize to unseen inputs, not memorize the training set.",
+        "Classification predicts a category; regression predicts a number.",
+        "Good results require representative examples, useful features, accurate labels, and honest evaluation."
       ],
       "commonMistakes": [
-        "Confusing the learning algorithm with the trained model it produces."
+        "Confusing a feature with the target label.",
+        "Assuming supervised means a person watches every prediction.",
+        "Evaluating only on the examples used to train the model.",
+        "Treating a prediction as a guaranteed fact.",
+        "Using labels that are inaccurate, biased, or collected after the outcome."
       ]
     },
     {
@@ -173,113 +558,442 @@
       "moduleId": "supervised_learning",
       "order": 2,
       "title": "Features and Target Labels",
-      "summary": "The two halves of every supervised dataset: the input features that describe each case, and the target label the model must predict.",
+      "summary": "Learn how a supervised dataset separates the information used to make a prediction from the correct answer a model must learn to predict.",
       "difficulty": "beginner",
-      "readingMinutes": 7,
+      "readingMinutes": 14,
       "contentVersion": 1,
       "keywords": [
-        "feature",
+        "features",
         "target label",
-        "regression",
+        "feature matrix",
+        "target vector",
+        "X",
+        "y",
+        "target leakage",
         "classification",
-        "data leakage"
+        "regression"
       ],
       "content": [
         {
-          "type": "heading",
-          "level": 2,
-          "text": "Overview"
-        },
-        {
           "type": "paragraph",
-          "text": "Every supervised dataset splits into two parts. The features describe each observation, and the target is the value or category you want the model to predict. Getting this split right — and keeping the target out of the features — is the foundation of everything that follows."
+          "text": "Every supervised-learning example has two connected parts: information that describes the example and the correct answer the model should learn to predict. Keeping those parts separate is essential for a useful model."
         },
         {
           "type": "image",
-          "asset": "assets/images/supervised_learning/fig02_features_labels.webp",
-          "caption": "Figure 2. Features describe each email, while the target column provides the correct class."
+          "asset": "assets/images/supervised_learning/figFL01_fl_features_target.webp",
+          "caption": "Figure 1. Input features describe an observation; the target label supplies the correct answer during training."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "title": "Memory rule",
+          "text": "Inputs describe the example; the target states the answer."
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "Features"
+          "level": 1,
+          "text": "Learning Objectives"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Define input features and target labels.",
+            "Separate feature columns from the target column.",
+            "Recognize a feature vector x, feature matrix X, and target vector y.",
+            "Distinguish classification labels from regression targets.",
+            "Spot leakage, irrelevant IDs, and missing or unreliable labels."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Core Meaning"
         },
         {
           "type": "definition",
-          "term": "Feature",
-          "text": "One measurable detail about each example, used as an input to the model — for instance an email's length, how many links it contains, or the hour it was sent. Features come in several flavours: numerical, categorical, binary, text-derived or time-based."
+          "term": "Input features",
+          "text": "Variables or attributes used to describe an observation. They are the evidence available before a prediction is made."
         },
         {
-          "type": "paragraph",
-          "text": "Different feature types need different preparation before a model can use them well."
+          "type": "definition",
+          "term": "Target label or value",
+          "text": "The correct output attached to a training example. It is the answer the model learns to predict."
         },
         {
           "type": "table",
           "headers": [
-            "Feature type",
-            "Example",
-            "Possible preparation"
+            "Part",
+            "Symbol",
+            "Student example"
+          ],
+          "rows": [
+            [
+              "Input features",
+              "x or X",
+              "Study hours, attendance, assignments"
+            ],
+            [
+              "Target",
+              "y",
+              "Pass or Fail"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For one student, x might be [6 hours, 84% attendance, 8 assignments] and y might be Pass. Across many students, the feature vectors form the feature matrix X and their known answers form the target vector y."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Anatomy of a Labeled Dataset"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Dataset element",
+            "Meaning",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Observation",
+              "One person, event, image, or record",
+              "One student"
+            ],
+            [
+              "Feature vector x",
+              "All feature values for one observation",
+              "[6, 81, 7]"
+            ],
+            [
+              "Feature matrix X",
+              "Feature values for all observations",
+              "Input columns of a table"
+            ],
+            [
+              "Target label y",
+              "Known answer for one observation",
+              "Pass"
+            ],
+            [
+              "Target vector y",
+              "All known answers",
+              "[Fail, Fail, Pass, Pass]"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figFL02_fl_matrix_vector.webp",
+          "caption": "Figure 2. Rows are observations; feature columns form X, while the target column forms y."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Important distinction",
+          "text": "The target column is not another ordinary input. It is the answer the model is trained to learn from the input columns."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Feature Types"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Type",
+            "Meaning",
+            "Example"
           ],
           "rows": [
             [
               "Numerical",
-              "Email length, number of links",
-              "Scaling may help some algorithms"
-            ],
-            [
-              "Binary",
-              "Contains “free”: yes / no",
-              "Encode as 1 / 0"
+              "Measurable number",
+              "Age, temperature, income"
             ],
             [
               "Categorical",
-              "Sender domain category",
-              "One-hot or another suitable encoding"
+              "Named group",
+              "City, plan type"
             ],
             [
-              "Text-derived",
-              "TF–IDF score for each word",
-              "Text vectorization"
+              "Binary",
+              "Two possible states",
+              "Yes/No"
             ],
             [
-              "Time-based",
-              "Hour sent",
-              "Extract useful parts such as hour or weekday"
+              "Ordinal",
+              "Ordered categories",
+              "Low, Medium, High"
+            ],
+            [
+              "Text or image-derived",
+              "Information extracted into values",
+              "Word frequency, pixels"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figFL03_fl_feature_vector.webp",
+          "caption": "Figure 3. A feature vector stores the input values for one observation."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Targets Define the Task"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Task",
+            "Target form",
+            "Examples"
+          ],
+          "rows": [
+            [
+              "Classification",
+              "Category or class",
+              "Spam/not spam, fault/normal"
+            ],
+            [
+              "Regression",
+              "Continuous numerical value",
+              "House price, sales, travel time"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figFL04_fl_classification.webp",
+          "caption": "Figure 4. In classification, features locate an observation while its known label identifies the class."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figFL05_fl_regression.webp",
+          "caption": "Figure 5. In regression, the target is a numerical value estimated from the input features."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "title": "Trustworthy labels",
+          "text": "Wrong or ambiguous labels teach the wrong relationship. Missing labels cannot normally serve as ordinary supervised training examples."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Worked Example: Predict Student Results"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Selected variable"
+          ],
+          "rows": [
+            [
+              "Feature 1",
+              "Weekly study hours"
+            ],
+            [
+              "Feature 2",
+              "Attendance percentage"
+            ],
+            [
+              "Feature 3",
+              "Assignments completed"
+            ],
+            [
+              "Target",
+              "Pass / Fail"
+            ]
+          ]
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Collect previous records with known final results.",
+            "Place descriptive variables in X.",
+            "Place Pass/Fail outcomes in y.",
+            "Train a model to learn the relationship from X to y.",
+            "For a new student, provide only features and request a predicted label."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Choosing Good Features"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Property",
+            "Question to ask"
+          ],
+          "rows": [
+            [
+              "Relevant",
+              "Could this information help predict the outcome?"
+            ],
+            [
+              "Available at prediction time",
+              "Will it exist for a new case?"
+            ],
+            [
+              "Consistent",
+              "Are units and rules the same across records?"
+            ],
+            [
+              "Understandable",
+              "Do we know exactly what the column means?"
+            ],
+            [
+              "Reasonably complete",
+              "Is the value present for most samples?"
             ]
           ]
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "Target labels"
+          "level": 1,
+          "text": "Common Mistakes"
         },
         {
-          "type": "definition",
-          "term": "Target label",
-          "text": "The correct answer the model learns from during training — for example the exam score you want to predict (a number, so regression) or the spam / not-spam verdict (a category, so classification)."
+          "type": "table",
+          "headers": [
+            "Mistake",
+            "Why it fails",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Target leakage",
+              "Input reveals the answer or future information",
+              "Final exam grade to predict Pass/Fail"
+            ],
+            [
+              "Identifier as feature",
+              "Names a record but rarely explains outcome",
+              "Student ID"
+            ],
+            [
+              "Wrong target",
+              "Learns the wrong task",
+              "Predict attendance instead of Pass/Fail"
+            ],
+            [
+              "Mixed units",
+              "Makes data inconsistent",
+              "Some heights in cm, others in m"
+            ],
+            [
+              "Noisy labels",
+              "Teaches unreliable patterns",
+              "Passed student labeled Fail"
+            ],
+            [
+              "Unavailable feature",
+              "Cannot be used for new cases",
+              "Value recorded after decision"
+            ]
+          ]
         },
         {
           "type": "callout",
           "variant": "warning",
-          "text": "Features are only the information you would genuinely have at the moment of prediction. The target is the answer you are trying to predict. Never let the target — or a sneaky disguised copy of it — slip into the features. That mistake is called data leakage, and it quietly ruins models.",
-          "title": "Never leak the target"
+          "title": "Leakage check",
+          "text": "Before training, ask: Would this feature genuinely be known at the moment I need the prediction?"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Across Domains"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Area",
+            "Features",
+            "Target",
+            "Task"
+          ],
+          "rows": [
+            [
+              "Healthcare",
+              "Age, symptoms, test values",
+              "Disease present/absent",
+              "Classification"
+            ],
+            [
+              "Banking",
+              "Income, credit history, debt",
+              "Default/no default",
+              "Classification"
+            ],
+            [
+              "Retail",
+              "Price, promotion, season",
+              "Units sold",
+              "Regression"
+            ],
+            [
+              "Transport",
+              "Distance, traffic, weather",
+              "Travel time",
+              "Regression"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Quick Revision"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "x is the feature vector for one observation; X contains feature values for all observations.",
+            "y contains the known targets.",
+            "New prediction data normally has features but not the target; the model estimates y.",
+            "Category targets create classification; numerical targets create regression."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Self-Check"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "In a house-price dataset, are bedrooms and area features or targets?",
+            "What is the target in a spam classifier?",
+            "What symbol represents the complete feature matrix?",
+            "Why should final exam grade not predict Pass/Fail?",
+            "For a new observation, which part is normally unknown: X or y?"
+          ]
         },
         {
           "type": "callout",
           "variant": "tip",
-          "text": "Features are the clues; the label is the answer. Keep them cleanly separated.",
-          "title": "In short"
+          "title": "Final definition",
+          "text": "Input features X describe each observation. The target label or value y is the correct outcome a supervised model learns to predict."
         }
       ],
       "keyPoints": [
-        "A supervised dataset has input features (X) and a target label (y).",
-        "Features can be numerical, binary, categorical, text-derived or time-based, each needing its own preparation.",
-        "A numerical target means regression; a categorical target means classification.",
-        "Never include the target, or a disguised copy of it, among the features."
+        "Features are known inputs; targets are the answers to predict.",
+        "x represents one feature vector, X all feature vectors, and y the known targets.",
+        "The target type determines classification or regression.",
+        "Good features are relevant, consistent, complete, and available at prediction time.",
+        "Target leakage can create unrealistically strong results that fail in real use."
       ],
       "commonMistakes": [
-        "Letting a copy of the answer leak into the features.",
-        "Forgetting to encode categorical or text features into numbers before training."
+        "Putting the target column inside X.",
+        "Using information from after the prediction date.",
+        "Treating IDs as predictive features.",
+        "Using a different target from the real question.",
+        "Training on missing or unreliable labels."
       ]
     },
     {
@@ -287,133 +1001,337 @@
       "moduleId": "supervised_learning",
       "order": 3,
       "title": "Training on Labelled Data",
-      "summary": "What 'training' really means: using a loss function to measure mistakes, and the difference between parameters the model learns and hyperparameters you choose.",
+      "summary": "How a supervised model learns from known input-output pairs through prediction, loss, parameter updates, epochs, and evaluation.",
       "difficulty": "beginner",
-      "readingMinutes": 7,
+      "readingMinutes": 16,
       "contentVersion": 1,
       "keywords": [
+        "labelled data",
         "training",
-        "loss function",
-        "parameter",
-        "hyperparameter",
-        "optimization"
+        "loss",
+        "epoch",
+        "parameters",
+        "validation",
+        "test set",
+        "overfitting"
       ],
       "content": [
         {
-          "type": "heading",
-          "level": 2,
-          "text": "Overview"
-        },
-        {
           "type": "paragraph",
-          "text": "Training simply means estimating the model's parameters from labelled examples. Algorithms go about it in very different ways, but they all chase the same goal: find a rule whose predictions land close to the known labels."
+          "text": "Training using labelled data is an iterative process: a model studies examples with inputs and correct answers, measures mistakes, and adjusts itself to improve future predictions."
         },
         {
-          "type": "heading",
-          "level": 2,
-          "text": "Loss function"
-        },
-        {
-          "type": "definition",
-          "term": "Loss function",
-          "text": "A number that captures how wrong the predictions are. Lower loss means the predictions sit closer to the correct answers. Regression often uses mean squared error; binary classification often uses log loss."
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figTL01_tl_cycle.webp",
+          "caption": "Figure 1. Input plus correct label leads to prediction, error measurement, and improvement."
         },
         {
           "type": "callout",
-          "variant": "note",
-          "text": "If the true house price is 200 and the model predicts 180, the error is 20. Squaring it (20² = 400) makes big misses hurt far more than small ones — so training works hardest to wipe out the large errors first.",
-          "title": "Worked example"
+          "title": "Memory rule",
+          "text": "A label acts like a teaching answer: it lets the model measure how wrong a prediction is and improve.",
+          "variant": "tip"
         },
         {
-          "type": "paragraph",
-          "text": "Training is really an optimisation loop: measure the loss, adjust the model to shrink it, and repeat until the loss stops improving."
+          "type": "heading",
+          "level": 1,
+          "text": "Learning Objectives"
         },
         {
-          "type": "table",
-          "headers": [
-            "Task",
-            "What the error captures",
-            "What the model tries to do"
-          ],
-          "rows": [
-            [
-              "Regression",
-              "The gap between the predicted and actual number",
-              "Make the numerical errors as small as possible"
-            ],
-            [
-              "Classification",
-              "The penalty for giving the true class a low probability",
-              "Raise the probability it assigns to the correct class"
-            ]
+          "type": "bullets",
+          "items": [
+            "Explain why features and labels are both needed.",
+            "Describe prediction, comparison, loss, and update.",
+            "Understand parameters, epochs, and learning curves.",
+            "Separate training, validation, and test data.",
+            "Recognise overfitting, leakage, imbalance, and label-quality risks."
           ]
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "Parameters and hyperparameters"
+          "level": 1,
+          "text": "Labelled Training Examples"
         },
         {
-          "type": "paragraph",
-          "text": "Two kinds of numbers shape a model, and it is important not to confuse them."
+          "type": "table",
+          "headers": [
+            "Element",
+            "Meaning",
+            "Student example"
+          ],
+          "rows": [
+            [
+              "Features X",
+              "Known information",
+              "Study hours, attendance, assignments"
+            ],
+            [
+              "True label y",
+              "Correct answer",
+              "Pass or Fail"
+            ],
+            [
+              "Prediction",
+              "Current model answer",
+              "Predicted Pass"
+            ],
+            [
+              "Loss",
+              "Difference from truth",
+              "Prediction disagrees with label"
+            ],
+            [
+              "Update",
+              "Change reducing future error",
+              "Adjust learned rule"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figTL02_tl_pairs.webp",
+          "caption": "Figure 2. A labelled dataset contains feature values and known answers."
+        },
+        {
+          "type": "callout",
+          "title": "Training vs prediction",
+          "text": "Training sees the true label. Real prediction receives features and estimates the unknown label.",
+          "variant": "warning"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Training Process"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "Collect representative labelled examples.",
+            "Prepare features and labels consistently.",
+            "Produce predictions from batches of features.",
+            "Compare predictions with true labels.",
+            "Calculate loss.",
+            "Adjust internal parameters.",
+            "Repeat across more examples and epochs.",
+            "Check held-out labelled data."
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figTL03_tl_error.webp",
+          "caption": "Figure 3. A wrong prediction generates an error signal that guides a parameter update."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Loss and Epochs"
         },
         {
           "type": "table",
           "headers": [
             "Term",
-            "Meaning",
-            "Example"
+            "Meaning"
           ],
           "rows": [
             [
-              "Parameter",
-              "Learned automatically from the training data",
-              "Linear-regression coefficients; tree split thresholds"
+              "Loss",
+              "Numerical measure of prediction error"
             ],
             [
-              "Hyperparameter",
-              "Set before or around training, then tuned on validation data",
-              "Tree depth, number of neighbours K, SVM C value"
+              "Batch",
+              "Small group of examples"
+            ],
+            [
+              "Iteration",
+              "One parameter-update step"
+            ],
+            [
+              "Epoch",
+              "One full pass through training data"
+            ],
+            [
+              "Learning rate",
+              "Size of each update"
             ]
           ]
         },
         {
-          "type": "definition",
-          "term": "Parameter",
-          "text": "A value the model learns from the training data, such as a regression coefficient."
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figTL04_tl_curve.webp",
+          "caption": "Figure 4. Training and validation errors across epochs."
         },
         {
-          "type": "definition",
-          "term": "Hyperparameter",
-          "text": "A setting you choose outside the normal fitting process, then tune using validation data — for example how deep a tree may grow."
+          "type": "table",
+          "headers": [
+            "Pattern",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Both errors fall",
+              "Learning may generalise"
+            ],
+            [
+              "Training falls, validation rises",
+              "Possible overfitting"
+            ],
+            [
+              "Both remain high",
+              "Model, features, labels, or setup may be inadequate"
+            ]
+          ]
         },
         {
           "type": "callout",
-          "variant": "tip",
-          "text": "Think of baking a cake. The oven temperature and timer you set are hyperparameters — your choices before baking. How much the cake actually rises is a parameter — it emerges from the process. You pick the settings; the model learns the rest.",
-          "title": "Everyday analogy"
+          "title": "Important",
+          "text": "Low training error alone is not enough. The model should also work on examples it did not directly learn from.",
+          "variant": "warning"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Labels Shape Rules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Labels provide evidence rather than a handwritten final rule. In classification, repeated comparison moves a decision boundary toward better separation. In regression, updates move predicted values toward known numerical targets."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figTL05_tl_boundary.webp",
+          "caption": "Figure 5. Labels guide a classifier toward a better decision boundary."
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Training, Validation, and Test"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Data part",
+            "Purpose",
+            "Updates parameters?"
+          ],
+          "rows": [
+            [
+              "Training",
+              "Learn patterns and adjust parameters",
+              "Yes"
+            ],
+            [
+              "Validation",
+              "Monitor generalisation and compare settings",
+              "No"
+            ],
+            [
+              "Test",
+              "Final unbiased check",
+              "No"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figTL06_tl_split.webp",
+          "caption": "Figure 6. Keep evaluation data separate from direct training."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Avoid duplicate records across splits.",
+            "Use time-aware splits for time-based data.",
+            "Consider class proportions in classification.",
+            "Keep the test set untouched until final evaluation."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Quality and Mistakes"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Issue",
+            "Effect",
+            "Better practice"
+          ],
+          "rows": [
+            [
+              "Incorrect labels",
+              "Teaches false relationships",
+              "Review labels and rules"
+            ],
+            [
+              "Imbalanced classes",
+              "May favour majority class",
+              "Use suitable sampling and metrics"
+            ],
+            [
+              "Test labels in training",
+              "Biased evaluation",
+              "Keep test set untouched"
+            ],
+            [
+              "Data leakage",
+              "Unrealistically high scores",
+              "Use only information known at prediction time"
+            ],
+            [
+              "Too many epochs",
+              "Can overfit",
+              "Monitor validation performance"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Key Takeaways"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Training uses X and y to learn a relationship.",
+            "The core cycle is predict, compare, calculate loss, update, repeat.",
+            "An epoch is one full pass through training data.",
+            "Validation and test data check generalisation."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Self-Check"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "What two parts are in a labelled example?",
+            "What does loss measure?",
+            "What is one epoch?",
+            "Which split updates parameters?",
+            "Why must the test set remain separate?"
+          ]
         },
         {
           "type": "callout",
-          "variant": "note",
-          "text": "Training data teaches the parameters. Validation data helps you choose the hyperparameters. Test data estimates the final performance once every choice is locked in.",
-          "title": "Which data does what"
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Parameters are learned; hyperparameters are chosen. The loss function is the scoreboard that guides the learning.",
-          "title": "In short"
+          "title": "Final definition",
+          "text": "Training using labelled data is an iterative process in which a supervised model uses known input-output pairs, measures errors, and adjusts internal parameters to make better predictions.",
+          "variant": "tip"
         }
       ],
       "keyPoints": [
-        "Training estimates model parameters so predictions match the labels.",
-        "A loss function turns prediction mistakes into a single number to minimise.",
-        "Parameters are learned from data; hyperparameters are set by you and tuned on validation data.",
-        "Training data fits parameters, validation data tunes settings, test data gives the final score."
+        "Labelled training uses features X and known targets y.",
+        "Loss turns error into a learning signal.",
+        "Training often spans multiple epochs.",
+        "Validation and test data stay separate from parameter learning.",
+        "Falling training error does not guarantee generalisation."
       ],
       "commonMistakes": [
-        "Tuning hyperparameters on the test set instead of validation data."
+        "Using test data during training.",
+        "Assuming more epochs always help.",
+        "Ignoring label errors or class imbalance.",
+        "Leaking future information into features."
       ]
     },
     {
@@ -421,113 +1339,451 @@
       "moduleId": "supervised_learning",
       "order": 4,
       "title": "Regression vs Classification",
-      "summary": "The two main supervised tasks: predicting a number versus predicting a category, plus binary, multiclass and multilabel problems.",
+      "summary": "Choose the correct supervised-learning task by understanding whether the target is a meaningful numerical value or a category.",
       "difficulty": "beginner",
-      "readingMinutes": 7,
+      "readingMinutes": 15,
       "contentVersion": 1,
       "keywords": [
         "regression",
         "classification",
         "binary",
         "multiclass",
-        "multilabel",
-        "threshold"
+        "target",
+        "MAE",
+        "RMSE",
+        "accuracy",
+        "F1-score"
       ],
       "content": [
         {
-          "type": "heading",
-          "level": 2,
-          "text": "Overview"
-        },
-        {
           "type": "paragraph",
-          "text": "Supervised problems come in two main shapes, decided entirely by the target. If the answer is a number, it is regression; if the answer is a category, it is classification."
+          "text": "Supervised learning commonly predicts either a numerical value or a category. Regression estimates a meaningful numerical magnitude; classification assigns one or more discrete classes."
         },
         {
           "type": "image",
-          "asset": "assets/images/supervised_learning/fig03_regression_vs_classification.webp",
-          "caption": "Figure 3. Regression predicts a numerical value; classification predicts a category or class."
+          "asset": "assets/images/supervised_learning/figRC01_rc_overview.webp",
+          "caption": "Figure 1. Supervised learning produces either numerical predictions or categorical decisions."
         },
         {
-          "type": "definition",
-          "term": "Regression",
-          "text": "Predicting a number that can sit anywhere on a scale, such as a house price, a temperature or next week's demand."
+          "type": "callout",
+          "title": "Decision rule",
+          "text": "The target type determines the task: meaningful number -> regression; category -> classification.",
+          "variant": "tip"
         },
         {
-          "type": "definition",
-          "term": "Classification",
-          "text": "Predicting which category something belongs to, such as sorting an email into spam or not spam."
+          "type": "heading",
+          "level": 1,
+          "text": "Learning Objectives"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Define regression and classification.",
+            "Identify continuous, binary, and multiclass outputs.",
+            "Choose the correct task for a new problem.",
+            "Match metrics to the task.",
+            "Avoid treating category codes as numerical quantities."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Core Comparison"
         },
         {
           "type": "table",
           "headers": [
-            "Question",
+            "Aspect",
             "Regression",
             "Classification"
           ],
           "rows": [
             [
-              "Output",
-              "Continuous number",
+              "Target",
+              "Continuous numerical value",
               "Discrete category or class"
             ],
             [
+              "Question",
+              "How much? How many?",
+              "Which class? Yes or no?"
+            ],
+            [
+              "Output",
+              "Number on a scale",
+              "Label and often probabilities"
+            ],
+            [
               "Examples",
-              "House price, temperature, demand",
-              "Spam / not spam, disease class, product category"
+              "Price, temperature, sales",
+              "Spam, Pass, disease class"
             ],
             [
-              "Common metrics",
-              "MAE, MSE, RMSE, R²",
-              "Accuracy, precision, recall, F1, ROC–AUC"
+              "Metrics",
+              "MAE, MSE, RMSE, R2",
+              "Accuracy, precision, recall, F1"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figRC02_rc_target_types.webp",
+          "caption": "Figure 2. Regression uses a continuous target; classification uses distinct classes."
+        },
+        {
+          "type": "callout",
+          "title": "Important",
+          "text": "A number is not automatically regression. Codes such as 0=Cat, 1=Dog, 2=Bird still represent categories, so the task is classification.",
+          "variant": "warning"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Regression"
+        },
+        {
+          "type": "paragraph",
+          "text": "Regression learns how input features relate to a numerical target and estimates a value for a new example. Numerical distance matters: a predicted price of 238,000 is closer to 245,000 than 120,000 is."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figRC03_rc_regression.webp",
+          "caption": "Figure 3. Regression learns a numerical relationship and estimates a value for a new input."
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Common targets: price, salary, weight, demand, energy use, time, temperature, and rainfall amount.",
+            "Outputs may be whole numbers or decimals; what matters is meaningful magnitude and distance."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Classification"
+        },
+        {
+          "type": "paragraph",
+          "text": "Classification learns patterns that separate classes. A classifier often estimates a probability for every class, then chooses the final label using the highest probability or a decision threshold."
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figRC04_rc_classification.webp",
+          "caption": "Figure 4. A classifier places a new example on one side of a learned decision boundary."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Form",
+            "Classes",
+            "Examples"
+          ],
+          "rows": [
+            [
+              "Binary",
+              "Exactly two",
+              "Fraud/not fraud; Pass/Fail"
             ],
             [
-              "Typical algorithms",
-              "Linear regression, tree regression, random-forest regression",
-              "Logistic regression, tree, random forest, KNN, SVM, Naive Bayes"
+              "Multiclass",
+              "Three or more, one chosen",
+              "Cat/Dog/Bird"
+            ],
+            [
+              "Multilabel",
+              "Several labels may be correct",
+              "Photo: Beach, Sunset, People"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figRC05_rc_class_forms.webp",
+          "caption": "Figure 5. Classification can contain two classes or several classes."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Class",
+            "Probability",
+            "Decision"
+          ],
+          "rows": [
+            [
+              "Cat",
+              "0.10",
+              "Not selected"
+            ],
+            [
+              "Dog",
+              "0.75",
+              "Selected"
+            ],
+            [
+              "Bird",
+              "0.15",
+              "Not selected"
             ]
           ]
         },
         {
           "type": "heading",
-          "level": 2,
-          "text": "Flavours of classification"
+          "level": 1,
+          "text": "Same Features, Different Tasks"
         },
         {
-          "type": "bullets",
+          "type": "table",
+          "headers": [
+            "Input features",
+            "Regression target",
+            "Classification target"
+          ],
+          "rows": [
+            [
+              "House details",
+              "Exact selling price",
+              "Low, Medium, or High band"
+            ],
+            [
+              "Patient measurements",
+              "Exact blood pressure",
+              "Normal or High"
+            ],
+            [
+              "Student information",
+              "Final percentage",
+              "Pass, Merit, Distinction"
+            ],
+            [
+              "Weather observations",
+              "Rainfall amount",
+              "Rain or No rain"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figRC06_rc_same_features.webp",
+          "caption": "Figure 6. The same inputs can support regression or classification when the target definition changes."
+        },
+        {
+          "type": "callout",
+          "title": "Remember",
+          "text": "Input features do not determine the task by themselves. The exact target definition does.",
+          "variant": "note"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "How to Choose"
+        },
+        {
+          "type": "image",
+          "asset": "assets/images/supervised_learning/figRC07_rc_decision.webp",
+          "caption": "Figure 7. A quick decision process for choosing regression or classification."
+        },
+        {
+          "type": "numbered",
           "items": [
-            "Binary classification has exactly two classes, such as spam and not spam.",
-            "Multiclass classification has more than two, such as tagging a news article as sport, business, technology or health.",
-            "Multilabel classification lets one example carry several labels at once, such as an image tagged “person”, “car” and “street”."
+            "Write the exact target to predict.",
+            "List realistic target values.",
+            "Ask whether numerical distance between values is meaningful.",
+            "Choose regression for meaningful numerical magnitude.",
+            "Choose classification for a fixed class set or yes/no decision.",
+            "Choose metrics that match the task."
+          ]
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Problem",
+            "Correct task",
+            "Reason"
+          ],
+          "rows": [
+            [
+              "Tomorrow maximum temperature",
+              "Regression",
+              "Numerical temperature"
+            ],
+            [
+              "Will it rain tomorrow?",
+              "Classification",
+              "Rain or no rain"
+            ],
+            [
+              "Products sold",
+              "Regression",
+              "Count with magnitude"
+            ],
+            [
+              "Product type from image",
+              "Classification",
+              "Named category"
+            ],
+            [
+              "Customer spending amount",
+              "Regression",
+              "Monetary value"
+            ],
+            [
+              "Will customer leave?",
+              "Classification",
+              "Leave or stay"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Metrics and Errors"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Task",
+            "Metric",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Regression",
+              "MAE",
+              "Average absolute numerical distance"
+            ],
+            [
+              "Regression",
+              "RMSE",
+              "Error in target units; emphasizes large mistakes"
+            ],
+            [
+              "Regression",
+              "R2",
+              "Explained target variation"
+            ],
+            [
+              "Classification",
+              "Accuracy",
+              "Share of correct classes"
+            ],
+            [
+              "Classification",
+              "Precision",
+              "Predicted positives that are correct"
+            ],
+            [
+              "Classification",
+              "Recall",
+              "Actual positives found"
+            ],
+            [
+              "Classification",
+              "F1",
+              "Balance of precision and recall"
+            ]
           ]
         },
         {
           "type": "callout",
-          "variant": "note",
-          "text": "Many classifiers first estimate a probability or score, then apply a threshold — for example, predict spam when P(spam) ≥ 0.50. You can move that threshold when false positives and false negatives carry different costs.",
-          "title": "From probability to decision"
+          "title": "Metric check",
+          "text": "Accuracy is not a regression metric, and MAE is not normally used to judge class labels. Match the metric to the output type.",
+          "variant": "warning"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Borderline Cases"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Case",
+            "Task",
+            "Reason"
+          ],
+          "rows": [
+            [
+              "Exact age",
+              "Regression",
+              "Numerical distance matters"
+            ],
+            [
+              "Age group",
+              "Classification",
+              "Named groups"
+            ],
+            [
+              "Star rating 1-5",
+              "Classification or ordinal model",
+              "Ordered categories, not necessarily equal gaps"
+            ],
+            [
+              "Website clicks",
+              "Regression/count model",
+              "Numerical count"
+            ],
+            [
+              "Risk score 0-1",
+              "Regression",
+              "Continuous score"
+            ],
+            [
+              "High/low risk",
+              "Classification",
+              "Risk class"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Key Takeaways"
+        },
+        {
+          "type": "bullets",
+          "items": [
+            "Regression predicts continuous numbers; classification predicts classes.",
+            "The target label, not the inputs or storage format, determines task type.",
+            "Binary has two classes; multiclass has three or more.",
+            "A classifier can output probabilities while remaining a classification task.",
+            "The same problem can be reframed by changing the target."
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Self-Check"
+        },
+        {
+          "type": "numbered",
+          "items": [
+            "What does regression predict?",
+            "Is Pass/Fail regression or classification?",
+            "Why are 0=Cat, 1=Dog, 2=Bird still classification?",
+            "Name two regression metrics.",
+            "Name two classification metrics.",
+            "What single question helps choose the task?"
+          ]
         },
         {
           "type": "callout",
-          "variant": "note",
-          "text": "Quick test: “How much will this house sell for?” expects a number, so it is regression. “Will this email bounce?” expects yes or no, so it is classification. The kind of answer the question wants decides the task.",
-          "title": "Spot the task"
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Number to predict? Regression. Category to predict? Classification. The choice sets your metrics and algorithms.",
-          "title": "In short"
+          "title": "Final definitions",
+          "text": "Use regression when numerical magnitude and distance matter. Use classification when the answer must be selected from categories.",
+          "variant": "tip"
         }
       ],
       "keyPoints": [
-        "Regression predicts a continuous number; classification predicts a category.",
-        "The task decides which metrics and algorithms are appropriate.",
-        "Classification can be binary, multiclass or multilabel.",
-        "Classifiers often output a probability, then apply a threshold to make the final decision."
+        "Regression predicts meaningful numerical values.",
+        "Classification predicts discrete classes.",
+        "Numeric codes can still represent categories.",
+        "The target definition determines the task.",
+        "Evaluation metrics must match the output type."
       ],
       "commonMistakes": [
-        "Reporting regression metrics for a classification task, or vice versa."
+        "Treating category codes as regression targets.",
+        "Using regression for Yes/No tasks.",
+        "Using classification for exact prices.",
+        "Comparing classes with MAE."
       ]
     },
     {

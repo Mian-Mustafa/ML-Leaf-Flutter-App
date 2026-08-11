@@ -63,13 +63,6 @@
       "title": "Ensemble Methods",
       "summary": "Combining models with bagging, boosting and random forests for stronger predictions.",
       "icon": "ensemble"
-    },
-    {
-      "id": "neural_networks",
-      "order": 10,
-      "title": "Neural Networks — Introduction",
-      "summary": "Neurons, layers, activation functions and how networks learn through backpropagation.",
-      "icon": "neural"
     }
   ]
 }

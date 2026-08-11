@@ -6,6 +6,8 @@ import 'app/app.dart';
 import 'core/providers/app_providers.dart';
 import 'core/services/preferences_service.dart';
 
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
