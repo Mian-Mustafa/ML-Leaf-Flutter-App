@@ -1,0 +1,1223 @@
+{
+  "contentVersion": 1,
+  "moduleId": "ensemble_methods",
+  "title": "Ensemble Learning",
+  "levels": {
+    "easy": [
+      {
+        "id": "ensemble_methods_q001",
+        "number": 1,
+        "prompt": "What is ensemble learning?",
+        "options": [
+          "Training one model on many targets",
+          "Combining predictions from multiple models to produce one final prediction",
+          "Removing all weak features before training",
+          "Using only the model with the lowest training error"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q002",
+        "number": 2,
+        "prompt": "An individual model inside an ensemble is commonly called a:",
+        "options": [
+          "Base learner",
+          "Target encoder",
+          "Loss surface",
+          "Validation fold"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q003",
+        "number": 3,
+        "prompt": "Which combination rule is most directly associated with a basic classification ensemble?",
+        "options": [
+          "Normalization",
+          "Differentiation",
+          "Majority voting",
+          "Interpolation"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q004",
+        "number": 4,
+        "prompt": "Which rule is commonly used to combine regression predictions?",
+        "options": [
+          "Bootstrap deletion",
+          "Majority class counting only",
+          "One-hot encoding",
+          "Arithmetic averaging"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q005",
+        "number": 5,
+        "prompt": "Why is diversity useful in an ensemble?",
+        "options": [
+          "It guarantees zero training error",
+          "It removes the need for validation",
+          "It forces all models to learn identical rules",
+          "Different models may make different errors that can partly cancel"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q006",
+        "number": 6,
+        "prompt": "A weak learner is best described as a model that:",
+        "options": [
+          "Performs only slightly better than a simple baseline or chance level",
+          "Has no predictive ability",
+          "Must always be a neural network",
+          "Can never be used in boosting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q007",
+        "number": 7,
+        "prompt": "In hard voting, the final class is selected from:",
+        "options": [
+          "The average feature values",
+          "Only the strongest model\u2019s probability",
+          "The class labels predicted by the member models",
+          "The training residuals"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q008",
+        "number": 8,
+        "prompt": "In soft voting, models usually contribute:",
+        "options": [
+          "Feature names",
+          "Tree depths",
+          "Bootstrap indices",
+          "Class probabilities"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q009",
+        "number": 9,
+        "prompt": "Bagging normally trains its base models:",
+        "options": [
+          "Independently on resampled versions of the data",
+          "Sequentially, each correcting the previous model",
+          "Only on the validation set",
+          "Without any training data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q010",
+        "number": 10,
+        "prompt": "Bootstrap sampling means sampling training observations:",
+        "options": [
+          "Without replacement",
+          "Only from the minority class",
+          "With replacement",
+          "In chronological order"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q011",
+        "number": 11,
+        "prompt": "In bagging, an out-of-bag (OOB) observation is one that:",
+        "options": [
+          "Was deliberately removed from the full dataset",
+          "Has a missing target",
+          "Was not selected in a particular bootstrap sample",
+          "Was predicted incorrectly by every model"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q012",
+        "number": 12,
+        "prompt": "Random Forest is primarily an ensemble of:",
+        "options": [
+          "Decision trees",
+          "Linear regressions only",
+          "K-means clusters",
+          "Support vectors without kernels"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q013",
+        "number": 13,
+        "prompt": "Random Forest adds diversity by considering:",
+        "options": [
+          "All features at every split with no randomness",
+          "Only one fixed feature for every tree",
+          "Only the target variable",
+          "Random subsets of features at candidate splits"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q014",
+        "number": 14,
+        "prompt": "Compared with Random Forest, Extra Trees typically introduces extra randomness by:",
+        "options": [
+          "Choosing split thresholds more randomly",
+          "Removing all trees after training",
+          "Using no features",
+          "Training only one estimator"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q015",
+        "number": 15,
+        "prompt": "Boosting mainly builds learners:",
+        "options": [
+          "In parallel with no dependence",
+          "By taking a simple average before training",
+          "Only on OOB observations",
+          "Sequentially so later learners address earlier errors"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q016",
+        "number": 16,
+        "prompt": "Classical AdaBoost increases attention on training cases that were:",
+        "options": [
+          "Previously misclassified",
+          "Always classified correctly",
+          "Removed from the dataset",
+          "Never assigned a weight"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q017",
+        "number": 17,
+        "prompt": "Gradient Boosting adds new learners to reduce:",
+        "options": [
+          "The number of input columns to zero",
+          "The remaining loss or error",
+          "The test-set size",
+          "The number of classes"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q018",
+        "number": 18,
+        "prompt": "XGBoost is best described as:",
+        "options": [
+          "A bootstrap sampling method with no trees",
+          "A clustering-only algorithm",
+          "A hard-voting rule",
+          "An optimized gradient boosting system with regularization and computational improvements"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q019",
+        "number": 19,
+        "prompt": "LightGBM is designed especially for:",
+        "options": [
+          "Replacing labels with random values",
+          "Image drawing only",
+          "Unsupervised clustering only",
+          "Fast, memory-efficient gradient boosting on large tabular data"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q020",
+        "number": 20,
+        "prompt": "Which method is particularly well known for strong handling of categorical features?",
+        "options": [
+          "Ordinary bagging with no encoder",
+          "K-means",
+          "CatBoost",
+          "Principal Component Analysis"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q021",
+        "number": 21,
+        "prompt": "In stacking, the model that learns how to combine base-model predictions is called the:",
+        "options": [
+          "Bootstrap sampler",
+          "Meta-learner",
+          "Weak labeler",
+          "Splitter"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q022",
+        "number": 22,
+        "prompt": "Blending usually trains its combiner using predictions on:",
+        "options": [
+          "The test labels",
+          "A separate holdout portion of the training data",
+          "Only the original raw features with no base predictions",
+          "Randomly generated labels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q023",
+        "number": 23,
+        "prompt": "Bagging is most directly associated with reducing:",
+        "options": [
+          "The number of classes",
+          "Variance",
+          "The need for any data",
+          "Every possible source of bias"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q024",
+        "number": 24,
+        "prompt": "Useful ensemble diversity means member models should:",
+        "options": [
+          "Make exactly the same errors",
+          "Have some differences in their learned patterns or error behavior",
+          "Always be identical copies",
+          "Use the same bootstrap sample and same seed"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q025",
+        "number": 25,
+        "prompt": "Feature importance is used to estimate:",
+        "options": [
+          "How much features contribute to model predictions or performance",
+          "How many test rows were deleted",
+          "The number of labels in a dataset",
+          "The physical size of a model file only"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q026",
+        "number": 26,
+        "prompt": "Hyperparameter tuning is the process of:",
+        "options": [
+          "Using the test set repeatedly to maximize test score",
+          "Changing the true labels to fit the model",
+          "Selecting model settings using validation evidence",
+          "Removing all parameters from an algorithm"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q027",
+        "number": 27,
+        "prompt": "The hyperparameter n_estimators commonly controls:",
+        "options": [
+          "The number of learners or trees",
+          "The number of target classes only",
+          "The learning rate directly",
+          "The number of missing values"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q028",
+        "number": 28,
+        "prompt": "Early stopping is used to:",
+        "options": [
+          "Stop before any model is trained",
+          "Stop boosting when validation performance no longer improves",
+          "Increase tree depth automatically forever",
+          "Replace validation with training accuracy"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q029",
+        "number": 29,
+        "prompt": "A common limitation of ensembles is:",
+        "options": [
+          "They require no maintenance",
+          "They can never model nonlinear patterns",
+          "Higher computation and lower interpretability",
+          "They always use less memory than one simple model"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q030",
+        "number": 30,
+        "prompt": "When a simple, interpretable model already meets accuracy and operational requirements, the best choice may be to:",
+        "options": [
+          "Always add at least 1,000 models",
+          "Use the simpler model rather than add unnecessary ensemble complexity",
+          "Ignore deployment constraints",
+          "Tune only on the test set"
+        ],
+        "correctOption": 1
+      }
+    ],
+    "medium": [
+      {
+        "id": "ensemble_methods_q031",
+        "number": 31,
+        "prompt": "Five classifiers make the predictions shown in the chart. Under hard majority voting, what is the final class?",
+        "options": [
+          "Spam",
+          "Not Spam",
+          "Tie / no decision",
+          "Cannot be determined"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q031.png"
+      },
+      {
+        "id": "ensemble_methods_q032",
+        "number": 32,
+        "prompt": "Three regression models predict 120, 135, and 129. What is their simple average prediction?",
+        "options": [
+          "128",
+          "126",
+          "129",
+          "131"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q033",
+        "number": 33,
+        "prompt": "A weighted regression ensemble uses weights 0.5, 0.3, 0.2 and predictions 100, 120, 90. What is the final prediction?",
+        "options": [
+          "102",
+          "110",
+          "106",
+          "104"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q034",
+        "number": 34,
+        "prompt": "Which condition gives averaging the greatest variance-reduction benefit?",
+        "options": [
+          "Member errors are highly correlated",
+          "Member errors are weakly correlated and models are useful",
+          "Every model is identical",
+          "All models are trained on the exact same deterministic pipeline with no variation"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q035",
+        "number": 35,
+        "prompt": "For bootstrap samples of size n drawn from n observations with replacement, approximately what fraction of unique observations appears in one large bootstrap sample?",
+        "options": [
+          "About 63%",
+          "About 50%",
+          "About 25%",
+          "About 95%"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q036",
+        "number": 36,
+        "prompt": "What is the main purpose of the OOB score in bagging?",
+        "options": [
+          "To calculate feature scaling constants",
+          "To replace all independent test evaluation permanently",
+          "To estimate performance using training observations omitted from individual bootstrap samples",
+          "To force every tree to have the same depth"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q037",
+        "number": 37,
+        "prompt": "A Random Forest differs from plain bagging of full decision trees mainly because Random Forest also:",
+        "options": [
+          "Fits trees sequentially to residuals",
+          "Uses no bootstrap sampling ever",
+          "Randomly subsamples features at splits",
+          "Requires categorical targets only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q038",
+        "number": 38,
+        "prompt": "Which change would usually increase diversity among trees in a Random Forest?",
+        "options": [
+          "Giving every tree the same sample and all features",
+          "Allowing fewer candidate features at each split",
+          "Fixing every split to the same threshold",
+          "Removing randomness from the algorithm"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q039",
+        "number": 39,
+        "prompt": "The diagram shows two training processes. Which identification is correct?",
+        "options": [
+          "Process A = boosting; Process B = bagging",
+          "Process A = bagging; Process B = boosting",
+          "Both are stacking",
+          "Both are hard voting only"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q039.png"
+      },
+      {
+        "id": "ensemble_methods_q040",
+        "number": 40,
+        "prompt": "Why can Extra Trees train faster than a standard Random Forest in some settings?",
+        "options": [
+          "It has no trees to train",
+          "It can avoid exhaustive threshold optimization by using more randomized split thresholds",
+          "It always uses one feature and one row",
+          "It does not evaluate any split quality"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q041",
+        "number": 41,
+        "prompt": "In AdaBoost, a training observation that is repeatedly misclassified will generally receive:",
+        "options": [
+          "Less influence in subsequent rounds",
+          "More influence in subsequent rounds",
+          "Exactly zero weight immediately",
+          "No relationship to later learners"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q042",
+        "number": 42,
+        "prompt": "A smaller learning_rate in gradient boosting is commonly paired with:",
+        "options": [
+          "More boosting rounds",
+          "Fewer than one estimator",
+          "No validation",
+          "A forced increase in target noise"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q043",
+        "number": 43,
+        "prompt": "Which statement best explains residual learning in gradient boosting regression?",
+        "options": [
+          "The final model uses majority voting over class labels",
+          "Every new tree ignores the existing ensemble",
+          "All trees are trained on separate bootstrap sets only",
+          "Each new tree models what the current ensemble still gets wrong"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q044",
+        "number": 44,
+        "prompt": "What does regularization in XGBoost primarily help control?",
+        "options": [
+          "Whether bootstrap samples contain duplicates",
+          "The spelling of feature names",
+          "The number of classes in the raw dataset",
+          "Excessive model complexity and overfitting"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q045",
+        "number": 45,
+        "prompt": "XGBoost can use first- and second-order information during optimization. The second-order term corresponds to:",
+        "options": [
+          "Feature ranks",
+          "Class labels",
+          "Bootstrap counts",
+          "Hessians / second derivatives"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q046",
+        "number": 46,
+        "prompt": "LightGBM commonly speeds split search by converting continuous feature values into:",
+        "options": [
+          "Random target values",
+          "One giant category",
+          "Only binary labels",
+          "Histogram bins"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q047",
+        "number": 47,
+        "prompt": "Which tree-growth strategy is characteristic of LightGBM?",
+        "options": [
+          "No tree growth after the root",
+          "Always perfectly balanced level-wise growth only",
+          "Leaf-wise growth that expands the leaf with the highest gain",
+          "Sequential linear regression without trees"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q048",
+        "number": 48,
+        "prompt": "A major overfitting control for LightGBM leaf-wise trees is to constrain parameters such as:",
+        "options": [
+          "num_leaves and max_depth",
+          "Only the file name",
+          "The target column name",
+          "The operating system"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q049",
+        "number": 49,
+        "prompt": "CatBoost is often attractive when a tabular dataset has many:",
+        "options": [
+          "Pixels that must be convolved",
+          "Audio waveforms only",
+          "Unlabeled clusters only",
+          "Categorical variables"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q050",
+        "number": 50,
+        "prompt": "Why does CatBoost use ordered target statistics when processing target-related information for categorical features?",
+        "options": [
+          "To eliminate all need for validation",
+          "To guarantee every category appears equally often",
+          "To reduce target leakage and prediction shift",
+          "To convert classification into clustering"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q051",
+        "number": 51,
+        "prompt": "The diagram represents which key ensemble design?",
+        "options": [
+          "K-means initialization",
+          "Bootstrap sampling only",
+          "Single-tree pruning",
+          "Stacking with base models feeding a meta-learner"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q051.png"
+      },
+      {
+        "id": "ensemble_methods_q052",
+        "number": 52,
+        "prompt": "Why are out-of-fold predictions preferred when training a stacking meta-learner?",
+        "options": [
+          "They make every base model identical",
+          "They maximize training leakage intentionally",
+          "They reduce leakage by generating meta-features from models that did not train on those rows",
+          "They eliminate the need to fit base models"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q053",
+        "number": 53,
+        "prompt": "Compared with stacking, blending is usually simpler because it:",
+        "options": [
+          "Uses a dedicated holdout set to train the combiner",
+          "Requires nested cross-validation in every implementation",
+          "Never uses base-model predictions",
+          "Can only be used for regression"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q054",
+        "number": 54,
+        "prompt": "What is a disadvantage of blending compared with out-of-fold stacking?",
+        "options": [
+          "It has no meta-model",
+          "It can never combine probabilities",
+          "It withholds part of the training data from fitting the base models used to create blend features",
+          "It always requires more data than exists"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q055",
+        "number": 55,
+        "prompt": "Which feature has the largest importance in the chart?",
+        "options": [
+          "Debt ratio",
+          "Income",
+          "Age",
+          "Tenure"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q055.png"
+      },
+      {
+        "id": "ensemble_methods_q056",
+        "number": 56,
+        "prompt": "Why can impurity-based feature importance in tree ensembles be misleading?",
+        "options": [
+          "It cannot produce any numeric score",
+          "It is always identical to permutation importance",
+          "It can favor features with many possible split points or high cardinality",
+          "It only works for linear models"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q057",
+        "number": 57,
+        "prompt": "Permutation importance measures a feature by:",
+        "options": [
+          "Counting its missing values only",
+          "Shuffling its values and observing the performance decrease",
+          "Using its alphabetical order",
+          "Deleting the target column"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q058",
+        "number": 58,
+        "prompt": "The validation curve shows the best validation score at approximately which max_depth?",
+        "options": [
+          "2",
+          "4",
+          "10",
+          "6"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q058.png"
+      },
+      {
+        "id": "ensemble_methods_q059",
+        "number": 59,
+        "prompt": "What does the same validation curve suggest at max_depth = 10?",
+        "options": [
+          "Underfitting because both scores are low",
+          "Perfect generalization",
+          "Overfitting because training is near perfect while validation has fallen",
+          "No effect from model complexity"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q060",
+        "number": 60,
+        "prompt": "A fair model-comparison workflow should select hyperparameters primarily using:",
+        "options": [
+          "Repeated test-set optimization",
+          "Validation data or cross-validation, then reserve the test set for final evaluation",
+          "Training accuracy only",
+          "The model with the largest file size"
+        ],
+        "correctOption": 1
+      }
+    ],
+    "hard": [
+      {
+        "id": "ensemble_methods_q061",
+        "number": 61,
+        "prompt": "Suppose M independent base models each have error variance \u03c3\u00b2. What is the variance of their simple average under the independence assumption?",
+        "options": [
+          "\u03c3\u00b2/M",
+          "M\u03c3\u00b2",
+          "\u03c3/M\u00b2",
+          "\u03c3\u00b2 + M"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q062",
+        "number": 62,
+        "prompt": "For an ensemble with M models and pairwise error correlation \u03c1, a useful relative-variance approximation is \u03c1 + (1\u2212\u03c1)/M. With M = 10 and \u03c1 = 0.2, the relative variance is:",
+        "options": [
+          "0.28",
+          "0.20",
+          "0.50",
+          "0.92"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q063",
+        "number": 63,
+        "prompt": "The curve shows relative variance as error correlation rises for 20 models. What is the strongest conclusion?",
+        "options": [
+          "High correlation always lowers variance",
+          "Correlation has no effect on ensemble benefit",
+          "Adding models helps most when their errors are weakly correlated",
+          "The ensemble reaches zero variance whenever rho = 1"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q063.png"
+      },
+      {
+        "id": "ensemble_methods_q064",
+        "number": 64,
+        "prompt": "A collection of shallow learners systematically underfits. Which broad strategy can reduce this bias by sequential correction?",
+        "options": [
+          "OOB estimation only",
+          "Plain averaging of identical constant predictors",
+          "Boosting",
+          "Feature scaling alone"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q065",
+        "number": 65,
+        "prompt": "For a large bootstrap sample of size n from n observations, the probability that a particular observation is not selected approaches approximately:",
+        "options": [
+          "0.632",
+          "1.000",
+          "0.050",
+          "e\u207b\u00b9 \u2248 0.368"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q066",
+        "number": 66,
+        "prompt": "A bagging model uses max_samples = 0.5. What trade-off is most plausible relative to using all rows per estimator?",
+        "options": [
+          "Less diversity and always lower bias",
+          "More diversity but potentially weaker individual learners",
+          "No change to sampling behavior",
+          "Guaranteed higher test accuracy"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q067",
+        "number": 67,
+        "prompt": "Which setting most strongly differentiates Random Forest from Extra Trees in split construction?",
+        "options": [
+          "Extra Trees must use boosting weights",
+          "Random Forest has no trees",
+          "Extra Trees can choose candidate split thresholds randomly rather than optimizing every threshold",
+          "Random Forest cannot do regression"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q068",
+        "number": 68,
+        "prompt": "Extra randomized thresholds can increase bias slightly. Why can the ensemble still generalize well?",
+        "options": [
+          "Randomness removes the target variable",
+          "Aggregation of many diverse trees can substantially reduce variance",
+          "Every random split is guaranteed optimal",
+          "Bias and variance are always identical"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q069",
+        "number": 69,
+        "prompt": "An AdaBoost classifier performs poorly because several training labels are wrong. What mechanism explains its sensitivity?",
+        "options": [
+          "It never changes sample influence",
+          "It discards every hard example after one round",
+          "Misclassified/noisy cases can receive progressively larger weight",
+          "It averages independently trained deep trees only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q070",
+        "number": 70,
+        "prompt": "In gradient boosting, choosing a very high learning rate and many deep trees most directly raises the risk of:",
+        "options": [
+          "Underfitting only",
+          "Overfitting",
+          "No learning",
+          "Bootstrap duplication only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q071",
+        "number": 71,
+        "prompt": "The chart compares two learning rates. Which interpretation is most justified?",
+        "options": [
+          "The higher learning rate improves forever as rounds increase",
+          "Learning rate does not interact with number of rounds",
+          "Both settings are identical at all rounds",
+          "The lower learning rate improves more gradually and remains stable at more rounds, while the higher rate begins to deteriorate"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q071.png"
+      },
+      {
+        "id": "ensemble_methods_q072",
+        "number": 72,
+        "prompt": "In second-order gradient boosting, a candidate split has very small positive gain before applying the split penalty \u03b3. Increasing \u03b3 will most likely:",
+        "options": [
+          "Increase the number of observations",
+          "Force the split to be used",
+          "Remove L2 regularization",
+          "Make the split less likely to be accepted"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q073",
+        "number": 73,
+        "prompt": "In XGBoost, increasing \u03bb (lambda) generally strengthens:",
+        "options": [
+          "L2 regularization on leaf weights",
+          "Bootstrap replacement",
+          "Hard voting",
+          "Categorical hashing only"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q074",
+        "number": 74,
+        "prompt": "Why can XGBoost handle sparse or missing inputs efficiently?",
+        "options": [
+          "It converts the task into unsupervised learning",
+          "It fills every missing value with the target label",
+          "It ignores all nonzero values",
+          "Its tree-building system includes sparsity-aware handling and learned default split directions"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q075",
+        "number": 75,
+        "prompt": "LightGBM uses histogram-based split finding primarily to:",
+        "options": [
+          "Guarantee perfectly balanced trees",
+          "Reduce computation and memory by grouping continuous values into bins",
+          "Eliminate gradients",
+          "Convert every feature into a target"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q076",
+        "number": 76,
+        "prompt": "Why can LightGBM\u2019s leaf-wise growth overfit small datasets if unconstrained?",
+        "options": [
+          "It forces all leaves to the same prediction",
+          "It never creates branches",
+          "It keeps expanding the leaf with highest gain, which can create deep, specialized branches",
+          "It uses only linear functions"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q077",
+        "number": 77,
+        "prompt": "Which pair is correctly matched to LightGBM efficiency techniques?",
+        "options": [
+          "GOSS \u2192 one-hot all rows; EFB \u2192 early stopping only",
+          "GOSS \u2192 hard voting; EFB \u2192 bootstrap labels",
+          "GOSS \u2192 focus on informative gradient samples; EFB \u2192 bundle mutually exclusive sparse features",
+          "GOSS \u2192 target leakage; EFB \u2192 model averaging"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q078",
+        "number": 78,
+        "prompt": "In GOSS, why are observations with large gradients especially informative?",
+        "options": [
+          "They are currently poorly fitted and can strongly influence useful split decisions",
+          "They are guaranteed mislabeled",
+          "They are always out-of-bag",
+          "They have no effect on the loss"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q079",
+        "number": 79,
+        "prompt": "Exclusive Feature Bundling (EFB) is most useful when many sparse features:",
+        "options": [
+          "Are perfectly dense and always identical",
+          "Are rarely nonzero at the same time and can be bundled efficiently",
+          "Are target labels",
+          "Must each become a separate model"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q080",
+        "number": 80,
+        "prompt": "CatBoost\u2019s ordered target statistics are designed to reduce which failure mode when encoding categorical variables?",
+        "options": [
+          "Using target information from the same row in a way that leaks the answer",
+          "High-dimensional image convolution",
+          "Bootstrap under-sampling only",
+          "Class probability calibration only"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q081",
+        "number": 81,
+        "prompt": "Why can naive target encoding before cross-validation inflate model performance?",
+        "options": [
+          "It reduces the number of categories",
+          "The encoding may leak validation-target information into training features",
+          "It uses too little RAM",
+          "It makes all category values zero"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q082",
+        "number": 82,
+        "prompt": "In a stacking classifier, the meta-learner is trained on base-model predictions produced on the same rows the base models fitted directly. What is the key problem?",
+        "options": [
+          "The setup becomes bagging automatically",
+          "Insufficient feature scaling only",
+          "Leakage: the meta-learner sees unrealistically optimistic base predictions",
+          "The base models become unsupervised"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q083",
+        "number": 83,
+        "prompt": "What does K-fold out-of-fold stacking do for each training row?",
+        "options": [
+          "Drops the row permanently",
+          "Predicts it using a base model trained on the row itself every time",
+          "Uses the final test label as a feature",
+          "Generates its meta-feature prediction from a base model fitted without that row\u2019s fold"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q084",
+        "number": 84,
+        "prompt": "After out-of-fold meta-features have been created and the meta-learner is trained, how should base models usually be prepared for inference on new data?",
+        "options": [
+          "Refit base models on the full available training data, then feed their new predictions to the meta-learner",
+          "Delete the base models and use only raw features",
+          "Train base models on the test labels",
+          "Use only the first fold forever"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q085",
+        "number": 85,
+        "prompt": "A blending design reserves 25% of scarce training data to generate meta-features. What is the main concern?",
+        "options": [
+          "The method becomes identical to bagging",
+          "The blend set automatically becomes the external test set",
+          "No meta-model can be trained",
+          "Base learners have less data available for their initial fitting, which may weaken them"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q086",
+        "number": 86,
+        "prompt": "Which comparison between bagging and boosting is most accurate?",
+        "options": [
+          "Bagging always uses residual gradients",
+          "Both require identical sequential weighting",
+          "Bagging emphasizes parallel variance reduction; boosting emphasizes sequential error correction and often bias reduction",
+          "Boosting always uses independent bootstrap trees with equal weights"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q087",
+        "number": 87,
+        "prompt": "A voting ensemble contains three models with validation accuracies 0.91, 0.90, and 0.68. The weak model also makes highly correlated errors with the best model. What is the most defensible action?",
+        "options": [
+          "Give all models equal weight because more models always help",
+          "Evaluate whether excluding or down-weighting the weak redundant model improves validation performance",
+          "Replace validation with training accuracy",
+          "Add copies of the weak model"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q088",
+        "number": 88,
+        "prompt": "The chart reports impurity-based importance. Before concluding that Debt ratio is causally the most important variable, what should be done?",
+        "options": [
+          "Treat importance as predictive attribution, not causality, and validate with methods such as permutation importance or domain analysis",
+          "Declare causality immediately",
+          "Delete all other features",
+          "Assume the score is invariant to correlated predictors"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q088.png"
+      },
+      {
+        "id": "ensemble_methods_q089",
+        "number": 89,
+        "prompt": "Two strongly correlated predictors each carry the same signal. Why can permutation importance underestimate either feature individually?",
+        "options": [
+          "When one is permuted, the other can still supply much of the same predictive information",
+          "Permutation importance always doubles correlated scores",
+          "Correlation removes both features from the model",
+          "Permutation never changes performance"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q090",
+        "number": 90,
+        "prompt": "The validation curve peaks at max_depth = 6 and then declines while training score rises. Which tuning decision is best supported?",
+        "options": [
+          "Set depth to infinity for all datasets",
+          "Choose max_depth = 10 because training score is highest",
+          "Ignore validation and keep increasing depth",
+          "Prefer a depth near the validation optimum rather than the deepest model"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q090.png"
+      },
+      {
+        "id": "ensemble_methods_q091",
+        "number": 91,
+        "prompt": "Why should the final test set not be used repeatedly for hyperparameter selection?",
+        "options": [
+          "It would make training faster",
+          "The test set cannot contain labels",
+          "Hyperparameters cannot affect test results",
+          "Repeated tuning on it leaks information and makes the final performance estimate optimistically biased"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q092",
+        "number": 92,
+        "prompt": "A randomized hyperparameter search can be preferable to an exhaustive grid when:",
+        "options": [
+          "Every parameter is categorical with one value",
+          "There is exactly one possible hyperparameter setting",
+          "No validation metric exists",
+          "The search space is large and only a limited evaluation budget is available"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "ensemble_methods_q093",
+        "number": 93,
+        "prompt": "Which tuning pattern is most likely to overfit the validation process?",
+        "options": [
+          "Applying early stopping on a validation fold",
+          "Using a simple cross-validated search with a held-out final test set",
+          "Trying hundreds of configurations and repeatedly selecting based on the same small validation set without robust cross-validation",
+          "Comparing a tuned ensemble against a baseline"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q094",
+        "number": 94,
+        "prompt": "The model-comparison chart shows Gradient Boosting with the highest validation F1 score. What should you conclude?",
+        "options": [
+          "F1 alone proves no overfitting occurred",
+          "It is guaranteed to be the best model in production",
+          "All other models should be deleted without testing",
+          "It is the current validation leader, but final choice should also consider test performance, stability, speed, interpretability, and deployment constraints"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/ensemble_methods/quiz_figures/ensemble_methods_q094.png"
+      },
+      {
+        "id": "ensemble_methods_q095",
+        "number": 95,
+        "prompt": "A medical decision system requires transparent, auditable reasoning and a simple logistic model is only 0.2 percentage points worse than a large stack. Which choice is often more defensible?",
+        "options": [
+          "The stack solely because it is more complex",
+          "The simple model, if it satisfies required performance and safety constraints",
+          "Whichever has more estimators",
+          "The model with the slowest inference"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q096",
+        "number": 96,
+        "prompt": "A dataset has severe label noise shared by all candidate models. Why might an ensemble fail to help much?",
+        "options": [
+          "Averaging automatically corrects every wrong label",
+          "The members may reproduce the same corrupted signal, so their errors are not meaningfully complementary",
+          "Boosting always removes label noise perfectly",
+          "More models guarantee independent errors"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q097",
+        "number": 97,
+        "prompt": "Which situation most clearly violates good ensemble evaluation practice?",
+        "options": [
+          "Comparing several metrics relevant to the task",
+          "Using cross-validation for tuning and a separate final test set",
+          "Selecting members and weights using the test set, then reporting that same test score as unbiased final performance",
+          "Checking inference latency before deployment"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "ensemble_methods_q098",
+        "number": 98,
+        "prompt": "For an imbalanced fraud classifier, why may accuracy be a poor sole metric for comparing ensembles?",
+        "options": [
+          "Accuracy is never defined for classification",
+          "A model can achieve high accuracy by favoring the majority class while missing fraud cases",
+          "Ensembles cannot output class labels",
+          "Imbalance affects only regression"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "ensemble_methods_q099",
+        "number": 99,
+        "prompt": "A candidate ensemble improves F1 from 0.890 to 0.892 but multiplies inference latency by 20 and makes explanations substantially harder. What principle should guide deployment?",
+        "options": [
+          "Judge whether the small predictive gain justifies the computational and interpretability costs",
+          "Deploy the ensemble automatically because any gain is enough",
+          "Ignore latency because it is not a model property",
+          "Select by training accuracy instead"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "ensemble_methods_q100",
+        "number": 100,
+        "prompt": "Which statement best summarizes a sound ensemble-selection strategy?",
+        "options": [
+          "Use the simplest validated model that meets predictive, operational, interpretability, and risk requirements; add ensemble complexity only when it delivers justified value",
+          "Always choose the ensemble with the most components",
+          "Always prefer boosting over bagging",
+          "Never use a single model"
+        ],
+        "correctOption": 0
+      }
+    ]
+  }
+}

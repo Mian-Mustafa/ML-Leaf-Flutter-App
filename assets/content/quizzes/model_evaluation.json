@@ -1,0 +1,1223 @@
+{
+  "contentVersion": 1,
+  "moduleId": "model_evaluation",
+  "title": "Model Evaluation & Validation",
+  "levels": {
+    "easy": [
+      {
+        "id": "model_evaluation_q001",
+        "number": 1,
+        "prompt": "What is the main purpose of model evaluation?",
+        "options": [
+          "To increase the number of features automatically",
+          "To measure how well a trained model performs, especially on unseen data",
+          "To guarantee that every prediction is correct",
+          "To replace the need for model training"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q002",
+        "number": 2,
+        "prompt": "A model that performs well on new, unseen examples is said to have good:",
+        "options": [
+          "Calibration only",
+          "Compression",
+          "Generalization",
+          "Randomization"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q003",
+        "number": 3,
+        "prompt": "A decision tree has 100% training accuracy but 74% validation accuracy. This pattern most strongly suggests:",
+        "options": [
+          "Overfitting",
+          "Underfitting",
+          "Perfect calibration",
+          "Data stratification"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q004",
+        "number": 4,
+        "prompt": "Which pattern most strongly indicates underfitting?",
+        "options": [
+          "High training score and low validation score",
+          "High training and high validation scores",
+          "Low training score and much higher validation score",
+          "Low training score and low validation score"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q005",
+        "number": 5,
+        "prompt": "Which dataset is normally used to tune hyperparameters and compare candidate models during development?",
+        "options": [
+          "Production data",
+          "Validation data",
+          "Untouched test data only",
+          "Future labels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q006",
+        "number": 6,
+        "prompt": "In the split shown below, which part should normally remain untouched until the final model is locked?",
+        "options": [
+          "Training portion",
+          "Validation portion",
+          "Test portion",
+          "All three portions should be repeatedly used for tuning"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q006.png"
+      },
+      {
+        "id": "model_evaluation_q007",
+        "number": 7,
+        "prompt": "What is holdout validation?",
+        "options": [
+          "Evaluating a model using one fixed train/validation or train/test split",
+          "Leaving out exactly one observation at a time",
+          "Training on future observations and testing on the past",
+          "Using every observation as both training and test data simultaneously"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q008",
+        "number": 8,
+        "prompt": "In k-fold cross-validation, each observation is normally used:",
+        "options": [
+          "Only for training",
+          "Only for validation",
+          "Never more than once in the entire procedure",
+          "For validation once and for training in the other folds"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q009",
+        "number": 9,
+        "prompt": "Why is stratified cross-validation useful for classification?",
+        "options": [
+          "It sorts samples by feature value",
+          "It approximately preserves class proportions in each fold",
+          "It removes all minority-class examples",
+          "It guarantees identical model scores"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q010",
+        "number": 10,
+        "prompt": "A dataset contains n observations. How many validation folds does leave-one-out cross-validation (LOOCV) create?",
+        "options": [
+          "2",
+          "k-1",
+          "n",
+          "n/2"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q011",
+        "number": 11,
+        "prompt": "Why is ordinary random splitting often inappropriate for time-series data?",
+        "options": [
+          "It can allow future information to influence evaluation of the past",
+          "It always produces too few folds",
+          "It prevents any model from training",
+          "It guarantees low accuracy"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q012",
+        "number": 12,
+        "prompt": "Which regression metric is the average absolute prediction error and is expressed in the same unit as the target?",
+        "options": [
+          "R-squared",
+          "MSE",
+          "Adjusted R-squared",
+          "MAE"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q013",
+        "number": 13,
+        "prompt": "Which metric gives larger errors extra influence by squaring them?",
+        "options": [
+          "MAE",
+          "Median absolute error",
+          "MSE",
+          "Accuracy"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q014",
+        "number": 14,
+        "prompt": "RMSE is:",
+        "options": [
+          "The square of MAE",
+          "The square root of MSE",
+          "The mean of R-squared values",
+          "The reciprocal of MSE"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q015",
+        "number": 15,
+        "prompt": "For a regression model, R-squared = 0 on the test set means the model performs approximately like:",
+        "options": [
+          "A mean-target baseline",
+          "A perfect predictor",
+          "A random classifier",
+          "A median classifier"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q016",
+        "number": 16,
+        "prompt": "What is the main reason for using adjusted R-squared instead of ordinary R-squared when comparing linear models with different numbers of predictors?",
+        "options": [
+          "It ignores sample size",
+          "It converts regression into classification",
+          "It always becomes larger after adding variables",
+          "It penalizes unnecessary predictors"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q017",
+        "number": 17,
+        "prompt": "Which formula represents classification accuracy?",
+        "options": [
+          "TP / (TP + FP)",
+          "TN / (TN + FN)",
+          "(TP + TN) / Total",
+          "TP / (TP + FN)"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q018",
+        "number": 18,
+        "prompt": "Precision answers which question?",
+        "options": [
+          "Of all actual negatives, how many were rejected?",
+          "When the model predicts positive, how often is it correct?",
+          "Of all actual positives, how many were found?",
+          "How much target variance is explained?"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q019",
+        "number": 19,
+        "prompt": "Recall (sensitivity) answers:",
+        "options": [
+          "Of all actual positives, how many did the model detect?",
+          "Of all predicted negatives, how many were correct?",
+          "How many total predictions were correct?",
+          "How stable is cross-validation?"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q020",
+        "number": 20,
+        "prompt": "Specificity measures:",
+        "options": [
+          "The fraction of predicted positives that are correct",
+          "The area under the ROC curve",
+          "The harmonic mean of precision and recall",
+          "The fraction of actual negatives correctly identified"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q021",
+        "number": 21,
+        "prompt": "Using the confusion matrix below, how many false negatives are present?",
+        "options": [
+          "8",
+          "42",
+          "5",
+          "45"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q021.png"
+      },
+      {
+        "id": "model_evaluation_q022",
+        "number": 22,
+        "prompt": "The F1-score is the harmonic mean of:",
+        "options": [
+          "Accuracy and specificity",
+          "Precision and recall",
+          "MAE and RMSE",
+          "TPR and FPR"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q023",
+        "number": 23,
+        "prompt": "What is plotted on the horizontal axis of a standard ROC curve?",
+        "options": [
+          "Recall",
+          "Precision",
+          "False Positive Rate",
+          "Accuracy"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q024",
+        "number": 24,
+        "prompt": "An ROC-AUC of about 0.50 generally indicates:",
+        "options": [
+          "Perfect ranking",
+          "No false positives",
+          "Perfect calibration",
+          "Random-like ranking ability"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q025",
+        "number": 25,
+        "prompt": "A precision-recall curve plots:",
+        "options": [
+          "Recall on x-axis and precision on y-axis",
+          "FPR on x-axis and TPR on y-axis",
+          "Training size on x-axis and accuracy on y-axis",
+          "Complexity on x-axis and error on y-axis"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q026",
+        "number": 26,
+        "prompt": "For a highly imbalanced problem with a rare positive class, which curve is often especially informative?",
+        "options": [
+          "A histogram of feature names",
+          "A residual-only plot",
+          "Precision-recall curve",
+          "A pie chart of model file size"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q027",
+        "number": 27,
+        "prompt": "A learning curve typically shows model performance as a function of:",
+        "options": [
+          "Decision threshold only",
+          "Training-set size",
+          "Number of classes only",
+          "Test-set label order"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q028",
+        "number": 28,
+        "prompt": "A validation curve typically studies performance as a function of:",
+        "options": [
+          "Calendar time only",
+          "Target prevalence only",
+          "Number of test labels",
+          "A model hyperparameter or complexity setting"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q029",
+        "number": 29,
+        "prompt": "Why should a baseline model be included in evaluation?",
+        "options": [
+          "To provide a minimum reference showing whether the candidate learned useful signal",
+          "To guarantee statistical significance",
+          "To eliminate the need for validation",
+          "To make every complex model look better"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q030",
+        "number": 30,
+        "prompt": "Which situation is an example of data leakage?",
+        "options": [
+          "Fitting a scaler only on each training fold",
+          "Keeping the test set untouched",
+          "Using information unavailable at prediction time when building features",
+          "Comparing models on identical folds"
+        ],
+        "correctOption": 2
+      }
+    ],
+    "medium": [
+      {
+        "id": "model_evaluation_q031",
+        "number": 31,
+        "prompt": "In a fixed holdout design, increasing the validation-set size while keeping the total dataset fixed usually causes which trade-off?",
+        "options": [
+          "More validation evidence but fewer observations available for training",
+          "More training data and less validation uncertainty at the same time",
+          "No change to model fitting",
+          "The test set automatically becomes unbiased"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q032",
+        "number": 32,
+        "prompt": "In 5-fold cross-validation on 1,000 observations, approximately how many observations are used for validation in each fold?",
+        "options": [
+          "50",
+          "200",
+          "500",
+          "800"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q033",
+        "number": 33,
+        "prompt": "A binary dataset has 95 negative cases and only 5 positive cases. What is the main problem with stratified 10-fold cross-validation?",
+        "options": [
+          "It creates too many training samples",
+          "Stratification forces all folds to be identical",
+          "It converts the task into regression",
+          "There are too few positive examples to place at least one positive in every fold"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q034",
+        "number": 34,
+        "prompt": "How many model fits are required by LOOCV for a dataset with 30 observations?",
+        "options": [
+          "2",
+          "15",
+          "30",
+          "29"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q035",
+        "number": 35,
+        "prompt": "A forecasting process has strong concept drift, so very old observations may no longer represent current behavior. Which validation/training window is often more appropriate to investigate?",
+        "options": [
+          "A random shuffle split",
+          "A sliding/rolling window using recent history",
+          "LOOCV across unordered records",
+          "A single full-data fit with no validation"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q036",
+        "number": 36,
+        "prompt": "Actual values are [10, 8, 6, 4] and predictions are [8, 9, 6, 7]. What is the MAE?",
+        "options": [
+          "1.5",
+          "2.0",
+          "3.5",
+          "6.0"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q037",
+        "number": 37,
+        "prompt": "Using the same errors [2, -1, 0, -3], what is the MSE?",
+        "options": [
+          "1.5",
+          "2.0",
+          "3.5",
+          "14.0"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q038",
+        "number": 38,
+        "prompt": "If MSE = 4, what is RMSE?",
+        "options": [
+          "0.25",
+          "4",
+          "16",
+          "2"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q039",
+        "number": 39,
+        "prompt": "A regression model has test R-squared = -0.20. What is the best interpretation?",
+        "options": [
+          "It explains 20% more variance than a perfect model",
+          "It performs worse than the mean-target baseline",
+          "It has 20% classification error",
+          "It must be overfitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q040",
+        "number": 40,
+        "prompt": "A useless predictor is added to a linear model. Ordinary R-squared rises slightly, but adjusted R-squared falls. What does this most strongly suggest?",
+        "options": [
+          "The added predictor does not justify its complexity",
+          "The test set is necessarily leaked",
+          "The model became perfectly calibrated",
+          "The target is imbalanced"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q041",
+        "number": 41,
+        "prompt": "A spam classifier has TP=70, TN=110, FP=20, FN=10. What is its accuracy?",
+        "options": [
+          "77.8%",
+          "84.6%",
+          "85.7%",
+          "87.5%"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q042",
+        "number": 42,
+        "prompt": "For the same spam classifier (TP=70, FP=20), what is precision?",
+        "options": [
+          "70.0%",
+          "77.8%",
+          "84.6%",
+          "87.5%"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q043",
+        "number": 43,
+        "prompt": "For TP=70 and FN=10, what is recall?",
+        "options": [
+          "77.8%",
+          "84.6%",
+          "85.7%",
+          "87.5%"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q044",
+        "number": 44,
+        "prompt": "For TN=110 and FP=20, what is specificity?",
+        "options": [
+          "84.6%",
+          "77.8%",
+          "87.5%",
+          "90.0%"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q045",
+        "number": 45,
+        "prompt": "For many probability classifiers, what commonly happens when the positive decision threshold is lowered?",
+        "options": [
+          "Recall falls and false negatives fall",
+          "Both precision and recall must increase",
+          "Recall often increases while false positives may increase",
+          "The confusion matrix cannot change"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q046",
+        "number": 46,
+        "prompt": "Using the ROC chart below, which model generally provides the stronger ranking performance across the shown thresholds?",
+        "options": [
+          "Model B, because its curve is closer to the diagonal",
+          "Model A, because its curve is generally closer to the upper-left corner",
+          "Both are identical",
+          "The chart cannot compare ranking performance"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q046.png"
+      },
+      {
+        "id": "model_evaluation_q047",
+        "number": 47,
+        "prompt": "A threshold gives TPR=0.82 and FPR=0.18. What is Youden's J statistic?",
+        "options": [
+          "0.18",
+          "0.46",
+          "1.00",
+          "0.64"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q048",
+        "number": 48,
+        "prompt": "If the positive class prevalence is 10%, what is the approximate no-skill precision baseline on a PR plot?",
+        "options": [
+          "10%",
+          "50%",
+          "90%",
+          "100%"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q049",
+        "number": 49,
+        "prompt": "At recall = 0.6 in the chart below, which model has higher precision?",
+        "options": [
+          "Model B",
+          "The random baseline",
+          "Model A",
+          "Both have exactly the same precision"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q049.png"
+      },
+      {
+        "id": "model_evaluation_q050",
+        "number": 50,
+        "prompt": "In the learning-curve figure below, Pattern X most strongly suggests:",
+        "options": [
+          "Perfect generalization",
+          "Overfitting/high variance because a persistent train-validation gap remains",
+          "A model that cannot fit even the training data",
+          "A data split with no validation set"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q050.png"
+      },
+      {
+        "id": "model_evaluation_q051",
+        "number": 51,
+        "prompt": "In the same learning-curve figure, Pattern Y most strongly suggests:",
+        "options": [
+          "High variance",
+          "Perfect fit",
+          "Data leakage",
+          "Underfitting/high bias because both curves plateau at relatively low scores"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q051.png"
+      },
+      {
+        "id": "model_evaluation_q052",
+        "number": 52,
+        "prompt": "According to the validation curve below, which region is the most reasonable starting choice for the hyperparameter?",
+        "options": [
+          "Around the validation-score peak near complexity 6",
+          "The maximum complexity only",
+          "The minimum complexity only",
+          "Any value because validation score is constant"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q052.png"
+      },
+      {
+        "id": "model_evaluation_q053",
+        "number": 53,
+        "prompt": "Which F-beta score places MORE emphasis on recall than precision?",
+        "options": [
+          "F0.5",
+          "F1 only",
+          "F2",
+          "All F-beta scores weight precision more"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q054",
+        "number": 54,
+        "prompt": "Balanced accuracy is commonly calculated as:",
+        "options": [
+          "Precision + recall",
+          "Average of sensitivity (recall) and specificity",
+          "Accuracy divided by number of classes",
+          "TP divided by total"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q055",
+        "number": 55,
+        "prompt": "A dataset is 95% negative. A classifier predicts every case as negative and gets 95% accuracy. Why is the result misleading?",
+        "options": [
+          "The model has perfect precision for positives",
+          "The model must have high AUC",
+          "The model has no true negatives",
+          "It can have zero recall for the positive class despite high accuracy"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q056",
+        "number": 56,
+        "prompt": "Which regression baseline is a natural reference when MAE is the primary metric and the target has extreme outliers?",
+        "options": [
+          "Median-target baseline",
+          "Maximum-target baseline",
+          "Uniform random classifier",
+          "ROC baseline"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q057",
+        "number": 57,
+        "prompt": "Why should two candidate models be evaluated on the same cross-validation folds and preprocessing policy?",
+        "options": [
+          "To force identical scores",
+          "To prevent all overfitting",
+          "To make the comparison fair and reduce differences caused by evaluation conditions",
+          "To remove the need for a test set"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q058",
+        "number": 58,
+        "prompt": "The chart below shows three models with similar mean F1 but very different latency and variability. Which conclusion is most defensible?",
+        "options": [
+          "Always select Gradient Boosting because its mean is 0.01 higher than Random Forest",
+          "Consider whether the small score gain is worth the higher variability and latency",
+          "Always select the slowest model",
+          "Ignore cross-validation variability"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q058.png"
+      },
+      {
+        "id": "model_evaluation_q059",
+        "number": 59,
+        "prompt": "What is the purpose of the inner loop in nested cross-validation?",
+        "options": [
+          "To create the untouched final test set",
+          "To estimate production latency only",
+          "To guarantee equal class counts in the full dataset",
+          "To select/tune model configurations without using the outer validation fold"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q060",
+        "number": 60,
+        "prompt": "What is the main purpose of error analysis after computing overall metrics?",
+        "options": [
+          "To identify systematic failure patterns, difficult slices, and causes of errors",
+          "To delete every misclassified observation automatically",
+          "To replace validation with training accuracy",
+          "To ensure the model has the largest file size"
+        ],
+        "correctOption": 0
+      }
+    ],
+    "hard": [
+      {
+        "id": "model_evaluation_q061",
+        "number": 61,
+        "prompt": "A team standardizes every feature using the mean and standard deviation of the FULL dataset, then runs 5-fold cross-validation. What is the main problem?",
+        "options": [
+          "The scaler makes the model nonlinear",
+          "The model has too few hyperparameters",
+          "Validation-fold information leaks into preprocessing",
+          "Cross-validation becomes LOOCV"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q062",
+        "number": 62,
+        "prompt": "A researcher chooses the 20 features most correlated with the target using all 5,000 observations and then cross-validates a classifier. What is the best diagnosis?",
+        "options": [
+          "No problem because correlation is unsupervised",
+          "Feature-selection leakage can make cross-validation optimistic",
+          "The model must underfit",
+          "Only the test labels are affected"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q063",
+        "number": 63,
+        "prompt": "SMOTE is applied to the full dataset BEFORE train/validation splitting. Why is this risky?",
+        "options": [
+          "SMOTE can only be used for regression",
+          "It always decreases recall",
+          "It creates no synthetic samples",
+          "Synthetic information derived from future validation samples can contaminate training"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q064",
+        "number": 64,
+        "prompt": "A time-series feature called \"7-day average sales\" accidentally includes tomorrow's sales when predicting today. This is:",
+        "options": [
+          "Temporal leakage",
+          "Proper rolling validation",
+          "A valid baseline",
+          "Stratification"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q065",
+        "number": 65,
+        "prompt": "Multiple rows belong to the same patient, but rows from one patient appear in both training and validation folds. Why can this be problematic?",
+        "options": [
+          "It guarantees low recall",
+          "It makes the target continuous",
+          "The model may exploit patient-specific information, producing group leakage and optimistic validation",
+          "It is required for LOOCV"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q066",
+        "number": 66,
+        "prompt": "A fraud model has TP=30, FN=20, FP=10, TN=940. Its accuracy is 97%, but recall is only 60%. Which conclusion is best?",
+        "options": [
+          "The model is automatically production-ready",
+          "Accuracy alone hides important minority-class misses",
+          "The model has no false positives",
+          "Recall must also be 97%"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q067",
+        "number": 67,
+        "prompt": "For precision=0.75 and recall=0.60, what is the F1-score (approximately)?",
+        "options": [
+          "0.50",
+          "0.60",
+          "0.67",
+          "0.80"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q068",
+        "number": 68,
+        "prompt": "For the fraud model TP=30, FN=20, FP=10, TN=940, balanced accuracy is approximately:",
+        "options": [
+          "79.5%",
+          "60.0%",
+          "97.0%",
+          "99.0%"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q069",
+        "number": 69,
+        "prompt": "Why can Matthews Correlation Coefficient (MCC) be useful for imbalanced binary classification?",
+        "options": [
+          "It uses only true positives",
+          "It is identical to accuracy",
+          "It ignores the negative class",
+          "It summarizes all four confusion-matrix cells in a correlation-like score"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q070",
+        "number": 70,
+        "prompt": "A common ranking interpretation of ROC-AUC is:",
+        "options": [
+          "The probability that every predicted probability is calibrated",
+          "The probability a randomly chosen positive receives a higher score than a randomly chosen negative",
+          "The percentage of positives at threshold 0.5",
+          "The fraction of test samples used in training"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q071",
+        "number": 71,
+        "prompt": "Why can ROC-AUC look strong while PR performance is disappointing on an extremely imbalanced dataset?",
+        "options": [
+          "FPR can remain small because the negative class is huge even when many false positives occur",
+          "ROC-AUC directly equals accuracy",
+          "PR curves ignore false positives",
+          "AUC cannot exceed 0.5 under imbalance"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q072",
+        "number": 72,
+        "prompt": "In a medical screening system, one false negative is estimated to cost 10 times as much as one false positive. All else equal, which threshold change is often reasonable to investigate?",
+        "options": [
+          "Raise the positive threshold sharply to reduce positives",
+          "Keep threshold fixed because costs never matter",
+          "Lower the positive threshold to increase recall",
+          "Convert the model into regression"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q073",
+        "number": 73,
+        "prompt": "A threshold maximizes F1 on validation data. Why might it still NOT be the best deployment threshold?",
+        "options": [
+          "F1 is always calculated incorrectly",
+          "F1 can only be used for regression",
+          "The threshold must always be 0.5",
+          "Deployment error costs, capacity constraints, calibration, or subgroup impacts may favor a different operating point"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q074",
+        "number": 74,
+        "prompt": "A learning curve shows training score ≈0.99 and validation score ≈0.80 even as the training set grows, with a large persistent gap. What is the most likely diagnosis?",
+        "options": [
+          "High bias only",
+          "High variance/overfitting; more data or stronger regularization may help",
+          "Perfect fit",
+          "No need to inspect validation data"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q075",
+        "number": 75,
+        "prompt": "A validation curve for tree depth peaks at depth 6 and then validation score falls while training score continues rising. Which choice is most defensible?",
+        "options": [
+          "Choose a depth near 6 and confirm with cross-validation",
+          "Choose the deepest tree because training score is highest",
+          "Choose depth 1 regardless of validation",
+          "Use the test set repeatedly to find the exact best depth"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q076",
+        "number": 76,
+        "prompt": "As model complexity becomes very high, which bias-variance pattern is generally expected?",
+        "options": [
+          "High bias and low variance",
+          "Both bias and variance must be zero",
+          "Lower bias but higher variance",
+          "Higher bias and lower variance only"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q076.png"
+      },
+      {
+        "id": "model_evaluation_q077",
+        "number": 77,
+        "prompt": "What is the usual effect of stronger regularization, all else equal?",
+        "options": [
+          "Bias decreases and variance always increases",
+          "Both bias and variance become zero",
+          "It changes classification into regression",
+          "Bias tends to increase while variance tends to decrease"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q078",
+        "number": 78,
+        "prompt": "A mean-baseline regression model has RMSE=68 and a candidate has RMSE=39. What is the relative error reduction?",
+        "options": [
+          "29.0%",
+          "42.6%",
+          "57.4%",
+          "74.4%"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q079",
+        "number": 79,
+        "prompt": "A forecasting model has MAE=8.2. A last-value baseline has MAE=9.0, but a seasonal-naive baseline has MAE=7.6. What is the best conclusion?",
+        "options": [
+          "The new model should not yet be accepted because it fails to beat the stronger seasonal baseline",
+          "The new model wins because it beats at least one baseline",
+          "All baselines should be ignored",
+          "MAE cannot compare forecasting models"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q080",
+        "number": 80,
+        "prompt": "Model A has mean CV F1=0.90 with SD=0.08. Model B has mean CV F1=0.89 with SD=0.01. For a risk-sensitive application, which statement is strongest?",
+        "options": [
+          "Model A must be selected because 0.90>0.89",
+          "Model B may be preferable if stability is important, because the tiny mean difference may not justify much higher variability",
+          "Standard deviation should never affect selection",
+          "Both models are guaranteed statistically identical"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q081",
+        "number": 81,
+        "prompt": "When is a paired t-test most appropriate for comparing two models?",
+        "options": [
+          "When models are evaluated on unrelated datasets with no pairing",
+          "When only hard-label disagreements on the same cases are available",
+          "When paired performance differences are approximately normal and the dependence assumptions are reasonable",
+          "Whenever there are three or more models across many datasets"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q082",
+        "number": 82,
+        "prompt": "Which test is a common non-parametric alternative to the paired t-test for paired model scores when normality is doubtful?",
+        "options": [
+          "Friedman test",
+          "Chi-square goodness-of-fit",
+          "ANOVA only",
+          "Wilcoxon signed-rank test"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q083",
+        "number": 83,
+        "prompt": "Two classifiers make predictions on the SAME 1,000 test cases. You want to test whether their correct/incorrect outcomes differ. Which test is designed for this matched setting?",
+        "options": [
+          "McNemar test",
+          "Independent-samples t-test",
+          "Pearson correlation only",
+          "K-means"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q084",
+        "number": 84,
+        "prompt": "In McNemar's test, which observations provide the key evidence?",
+        "options": [
+          "Cases both models classify correctly only",
+          "Discordant cases where one model is correct and the other is wrong",
+          "Cases both models classify incorrectly only",
+          "Only true positives from Model A"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q085",
+        "number": 85,
+        "prompt": "A Friedman test comparing four algorithms across eight datasets gives p=0.0004. What does this establish?",
+        "options": [
+          "Every pair of algorithms is significantly different",
+          "The best algorithm is known without further analysis",
+          "At least one model differs in rank behavior; post-hoc comparisons are needed to identify pairs",
+          "The null hypothesis is certainly true"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q086",
+        "number": 86,
+        "prompt": "Why should multiple pairwise model comparisons often use a correction such as Holm or Nemenyi-style procedures?",
+        "options": [
+          "To increase training accuracy",
+          "To make every p-value zero",
+          "To increase model latency",
+          "To control the elevated chance of Type I errors across many tests"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q087",
+        "number": 87,
+        "prompt": "A mean F1 difference has a 95% confidence interval [0.001, 0.006]. Which interpretation is best?",
+        "options": [
+          "The difference is statistically compatible with being positive, but the effect may still be practically tiny",
+          "The models are exactly equal",
+          "The interval proves a 60% improvement",
+          "Practical significance is guaranteed"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q088",
+        "number": 88,
+        "prompt": "A model-comparison test reports p=0.08 at alpha=0.05. What is the correct conclusion?",
+        "options": [
+          "Prove the two models are identical",
+          "Fail to reject the null at 0.05; this does not prove equality",
+          "Model A is certainly worse",
+          "The test has zero power"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q089",
+        "number": 89,
+        "prompt": "Why can a naive paired t-test on ordinary k-fold CV scores be questionable?",
+        "options": [
+          "K-fold never produces numeric scores",
+          "The test requires exactly 100 folds",
+          "Fold scores are not fully independent because training sets overlap",
+          "Cross-validation cannot compare models"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q090",
+        "number": 90,
+        "prompt": "What is the motivation for the 5x2 cross-validated paired t-test?",
+        "options": [
+          "To eliminate the need for labels",
+          "To compare more than ten models simultaneously",
+          "To estimate calibration only",
+          "To better reflect variability caused by changes in training/test splits for two models"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q091",
+        "number": 91,
+        "prompt": "When constructing a bootstrap confidence interval for a model metric difference, what is crucial?",
+        "options": [
+          "Resample at an appropriate unit that respects the data structure",
+          "Always resample feature columns rather than cases",
+          "Use the final test set for hyperparameter tuning",
+          "Remove all difficult observations first"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q092",
+        "number": 92,
+        "prompt": "Which evaluation is most directly a robustness stress test?",
+        "options": [
+          "Reporting only training accuracy",
+          "Measuring performance after adding realistic noise, missing inputs, or distribution shifts",
+          "Choosing the model with the largest parameter count",
+          "Sorting the validation labels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q093",
+        "number": 93,
+        "prompt": "A model has excellent average recall but very poor recall for one important demographic subgroup. What should the team infer?",
+        "options": [
+          "Average recall overrides subgroup results",
+          "The subgroup result can be ignored if AUC is high",
+          "Aggregate performance may hide a serious reliability/fairness risk that needs investigation",
+          "The model is necessarily underfit"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "model_evaluation_q094",
+        "number": 94,
+        "prompt": "A multiclass confusion matrix shows many Actual Dog -> Predicted Bird errors. What is the most useful next error-analysis step?",
+        "options": [
+          "Increase all metrics by rounding",
+          "Delete the Dog class",
+          "Use only overall accuracy",
+          "Inspect those Dog/Bird cases for shared features, labeling issues, or missing discriminative information"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "model_evaluation_q095",
+        "number": 95,
+        "prompt": "Why should the final test set normally be evaluated only after the model, preprocessing, hyperparameters, and threshold are locked?",
+        "options": [
+          "To preserve an unbiased estimate of the complete selection procedure",
+          "To make the training set larger",
+          "To increase the number of candidate models after testing",
+          "To force accuracy to equal F1"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q096",
+        "number": 96,
+        "prompt": "A team evaluates 30 model variants on the test set and chooses the one with the highest test score. What is the main problem?",
+        "options": [
+          "The chosen model must be underfit",
+          "Repeated test-set peeking creates selection bias and optimistic test performance",
+          "Thirty models are always too few",
+          "The test set becomes a training fold automatically"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "model_evaluation_q097",
+        "number": 97,
+        "prompt": "When is nested cross-validation especially useful?",
+        "options": [
+          "When the dataset is limited and model/hyperparameter selection must be evaluated without optimistic bias",
+          "When no tuning or model choice occurs",
+          "Only when there is a huge independent test set",
+          "Only for unsupervised visualization"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q098",
+        "number": 98,
+        "prompt": "What is the main purpose of a gap/embargo between training and validation periods in some time-series evaluations?",
+        "options": [
+          "To increase class imbalance",
+          "To make future data available to training",
+          "To convert the task into LOOCV",
+          "To reduce leakage from adjacent, overlapping, delayed, or strongly dependent observations"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/model_evaluation/quiz_figures/quiz_q098.png"
+      },
+      {
+        "id": "model_evaluation_q099",
+        "number": 99,
+        "prompt": "For a rare-event task, Model A has ROC-AUC=0.92 and PR-AUC=0.32; Model B has ROC-AUC=0.90 and PR-AUC=0.55. If the primary goal is useful detection of rare positives with manageable false alarms, which model is more compelling from these metrics?",
+        "options": [
+          "Model B, because its substantially stronger PR-AUC is more aligned with the rare-positive objective",
+          "Model A automatically, because ROC-AUC is always the only valid metric",
+          "They are necessarily identical",
+          "Neither metric can be used for rare classes"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "model_evaluation_q100",
+        "number": 100,
+        "prompt": "Model X has F1=0.842, latency=60 ms, high subgroup disparity, and difficult maintenance. Model Y has F1=0.835, latency=8 ms, stable subgroup performance, and simple deployment. What is the best final-selection principle?",
+        "options": [
+          "Always choose X because its F1 is 0.007 higher",
+          "Average the model file sizes only",
+          "Choose based on the complete objective: predictive quality, uncertainty, robustness/fairness, latency, interpretability, and maintenance",
+          "Use the test set repeatedly until X wins by a larger margin"
+        ],
+        "correctOption": 2
+      }
+    ]
+  }
+}

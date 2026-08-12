@@ -1,0 +1,1223 @@
+{
+  "contentVersion": 1,
+  "moduleId": "unsupervised_learning",
+  "title": "Unsupervised Learning",
+  "levels": {
+    "easy": [
+      {
+        "id": "unsupervised_learning_q001",
+        "number": 1,
+        "prompt": "Which statement best defines unsupervised learning?",
+        "options": [
+          "It predicts a known target from labelled examples.",
+          "It always learns through rewards and penalties.",
+          "It requires a correct class label for every record.",
+          "It discovers patterns or structure in data without supplied target labels."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q002",
+        "number": 2,
+        "prompt": "What is a label in machine learning?",
+        "options": [
+          "A distance between two observations.",
+          "The known target answer attached to a record.",
+          "A principal component created by PCA.",
+          "A random identifier added after clustering."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q003",
+        "number": 3,
+        "prompt": "Which dataset is most clearly unlabelled?",
+        "options": [
+          "Customer records containing age, income and spending, but no target category.",
+          "Medical images tagged with diagnoses.",
+          "Houses with features and known sale prices.",
+          "Emails marked spam or not spam."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q004",
+        "number": 4,
+        "prompt": "What is the main goal of clustering?",
+        "options": [
+          "Assign a known class to each observation.",
+          "Estimate a continuous target value.",
+          "Reduce every dataset to exactly two features.",
+          "Group observations so members of the same cluster are relatively similar."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q005",
+        "number": 5,
+        "prompt": "In clustering, strong cohesion means that:",
+        "options": [
+          "points within the same cluster are close or similar.",
+          "all clusters contain exactly the same number of points.",
+          "different clusters have identical centroids.",
+          "the model uses labelled target values."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q006",
+        "number": 6,
+        "prompt": "Which description best matches the pattern shown in Figure 1?",
+        "options": [
+          "Three compact clusters, each represented by a centroid.",
+          "A single cluster with no internal structure.",
+          "A supervised confusion matrix.",
+          "One continuous regression line."
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q006.png"
+      },
+      {
+        "id": "unsupervised_learning_q007",
+        "number": 7,
+        "prompt": "In K-means, what does K represent?",
+        "options": [
+          "The number of labelled classes in a test set.",
+          "The number of anomalies to delete.",
+          "The number of clusters to create.",
+          "The number of input features."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q008",
+        "number": 8,
+        "prompt": "What does a K-means centroid represent?",
+        "options": [
+          "The threshold used by DBSCAN.",
+          "The most distant observation in a cluster.",
+          "A class label supplied by a teacher.",
+          "The mean position of the observations assigned to a cluster."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q009",
+        "number": 9,
+        "prompt": "Why is feature scaling often important before K-means?",
+        "options": [
+          "Scaling converts K-means into supervised learning.",
+          "Large-scale features can otherwise dominate distance calculations.",
+          "Scaling automatically selects the best K.",
+          "K-means can only process integer values."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q010",
+        "number": 10,
+        "prompt": "The Elbow Method is mainly used to:",
+        "options": [
+          "estimate a suitable number of clusters for K-means.",
+          "identify the exact number of anomalies in all datasets.",
+          "calculate labels for supervised learning.",
+          "replace feature scaling."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q011",
+        "number": 11,
+        "prompt": "On a standard Elbow Method graph, the y-axis usually shows:",
+        "options": [
+          "the target label.",
+          "the number of principal components only.",
+          "classification accuracy.",
+          "WCSS (inertia)."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q012",
+        "number": 12,
+        "prompt": "What is the range of the silhouette coefficient?",
+        "options": [
+          "-100 to +100.",
+          "-1 to +1.",
+          "0 to 100 only.",
+          "0 to infinity."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q013",
+        "number": 13,
+        "prompt": "A silhouette value close to +1 usually indicates:",
+        "options": [
+          "a well-matched point that is well separated from neighbouring clusters.",
+          "the point must be an anomaly.",
+          "there is only one cluster.",
+          "a point is probably assigned to the wrong cluster."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q014",
+        "number": 14,
+        "prompt": "Hierarchical clustering is called hierarchical because it:",
+        "options": [
+          "sorts features from largest to smallest.",
+          "always produces exactly two clusters.",
+          "builds nested grouping relationships that can be represented as a tree.",
+          "requires labels arranged in a hierarchy."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q015",
+        "number": 15,
+        "prompt": "What is a dendrogram?",
+        "options": [
+          "A chart of WCSS against K.",
+          "A tree-like diagram showing how observations or clusters merge or split.",
+          "A plot of support against confidence only.",
+          "A table of target labels."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q016",
+        "number": 16,
+        "prompt": "DBSCAN is best described as a:",
+        "options": [
+          "density-based clustering algorithm.",
+          "linear regression algorithm.",
+          "supervised classification algorithm.",
+          "feature-selection algorithm."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q017",
+        "number": 17,
+        "prompt": "Which two parameters are central to DBSCAN?",
+        "options": [
+          "eps and MinPts (min_samples).",
+          "eigenvalue and eigenvector.",
+          "K and inertia.",
+          "support and confidence."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q018",
+        "number": 18,
+        "prompt": "In common DBSCAN implementations, the label -1 represents:",
+        "options": [
+          "noise or an outlier point.",
+          "the largest centroid.",
+          "the first valid cluster.",
+          "a missing target label."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q019",
+        "number": 19,
+        "prompt": "Which method is a probabilistic soft-clustering model?",
+        "options": [
+          "Elbow Method.",
+          "Apriori pruning.",
+          "Gaussian Mixture Model (GMM).",
+          "K-means only."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q020",
+        "number": 20,
+        "prompt": "In a GMM, a responsibility is best understood as:",
+        "options": [
+          "the WCSS of a cluster.",
+          "the distance threshold eps.",
+          "the probability-like degree to which a component explains an observation.",
+          "the number of target labels."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q021",
+        "number": 21,
+        "prompt": "What is the main purpose of dimensionality reduction?",
+        "options": [
+          "Increase every dataset to more features.",
+          "Represent data using fewer dimensions while retaining useful information or structure.",
+          "Create target labels for unlabelled data.",
+          "Guarantee perfect clustering."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q022",
+        "number": 22,
+        "prompt": "Which statement correctly distinguishes feature selection from feature extraction?",
+        "options": [
+          "Feature selection requires t-SNE.",
+          "Both always create new variables.",
+          "Feature extraction only deletes rows.",
+          "Feature selection keeps original variables; feature extraction creates new transformed variables."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q023",
+        "number": 23,
+        "prompt": "PCA is primarily a:",
+        "options": [
+          "rule-mining algorithm.",
+          "linear dimensionality-reduction technique based on directions of high variance.",
+          "density-based clustering method.",
+          "supervised classification metric."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q024",
+        "number": 24,
+        "prompt": "What does PCA create?",
+        "options": [
+          "Association rules only.",
+          "DBSCAN noise points.",
+          "Principal components that are new directions formed from the original features.",
+          "Human-supplied labels."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q025",
+        "number": 25,
+        "prompt": "t-SNE is mainly used to:",
+        "options": [
+          "fit a linear regression target.",
+          "calculate market-basket support.",
+          "choose MinPts for DBSCAN.",
+          "visualize high-dimensional data in two or three dimensions."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q026",
+        "number": 26,
+        "prompt": "What kind of structure does t-SNE emphasize most strongly?",
+        "options": [
+          "Known class labels.",
+          "Exact global distances between all groups.",
+          "Within-cluster sum of squares.",
+          "Local neighbourhood relationships."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q027",
+        "number": 27,
+        "prompt": "Association-rule learning is commonly used for:",
+        "options": [
+          "building dendrogram cut lines.",
+          "computing principal-component loadings only.",
+          "predicting a labelled continuous target.",
+          "finding items or events that frequently occur together."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q028",
+        "number": 28,
+        "prompt": "Which measure tells how frequently an itemset occurs in the full transaction dataset?",
+        "options": [
+          "Inertia.",
+          "Silhouette.",
+          "Support.",
+          "Perplexity."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q029",
+        "number": 29,
+        "prompt": "Anomaly detection aims to identify:",
+        "options": [
+          "observations or patterns that differ substantially from normal behaviour.",
+          "all examples with known labels.",
+          "the first principal component.",
+          "only the largest cluster."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q030",
+        "number": 30,
+        "prompt": "Customer segmentation with K-means is an unsupervised task mainly because:",
+        "options": [
+          "the customer groups are discovered from features rather than supplied as target labels.",
+          "all customers already have correct segment labels.",
+          "K-means predicts a continuous sales target.",
+          "the data contains no numerical features."
+        ],
+        "correctOption": 0
+      }
+    ],
+    "medium": [
+      {
+        "id": "unsupervised_learning_q031",
+        "number": 31,
+        "prompt": "A retailer has numerical variables measured in rupees, visits per month and years. What is the best preparation before distance-based clustering?",
+        "options": [
+          "Sort the rows alphabetically.",
+          "Convert every value into a target label.",
+          "Remove all variables except the largest-scale one.",
+          "Standardize or otherwise scale the features to comparable ranges."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q032",
+        "number": 32,
+        "prompt": "Why can choosing K that is too small be harmful in K-means?",
+        "options": [
+          "The model changes into DBSCAN.",
+          "WCSS becomes exactly zero.",
+          "Every observation becomes its own cluster.",
+          "Distinct natural groups may be merged into overly broad clusters."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q033",
+        "number": 33,
+        "prompt": "Using Figure 2, which K is the strongest elbow candidate?",
+        "options": [
+          "K = 8.",
+          "K = 1.",
+          "K = 6.",
+          "K = 3."
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q033.png"
+      },
+      {
+        "id": "unsupervised_learning_q034",
+        "number": 34,
+        "prompt": "Why is the lowest possible WCSS not automatically the best K-means solution?",
+        "options": [
+          "WCSS always decreases as K increases and can be made trivial with too many clusters.",
+          "WCSS is a supervised metric.",
+          "WCSS cannot be computed for numerical data.",
+          "WCSS becomes negative for good clusters."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q035",
+        "number": 35,
+        "prompt": "Using Figure 3, which candidate K has the best average silhouette score?",
+        "options": [
+          "K = 3.",
+          "K = 7.",
+          "K = 5.",
+          "K = 2."
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q035.png"
+      },
+      {
+        "id": "unsupervised_learning_q036",
+        "number": 36,
+        "prompt": "For a point i, a(i)=1.2 and b(i)=4.8. What is its silhouette coefficient?",
+        "options": [
+          "0.25.",
+          "0.75.",
+          "4.00.",
+          "3.60."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q037",
+        "number": 37,
+        "prompt": "What does a negative silhouette value most strongly suggest for an observation?",
+        "options": [
+          "It may be closer to another cluster than to its assigned cluster.",
+          "It is perfectly centered in its assigned cluster.",
+          "The dataset contains only one feature.",
+          "The point has maximum support."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q038",
+        "number": 38,
+        "prompt": "Which linkage method uses the minimum pairwise distance between two clusters?",
+        "options": [
+          "Ward linkage.",
+          "Single linkage.",
+          "Average linkage.",
+          "Complete linkage."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q039",
+        "number": 39,
+        "prompt": "Which linkage method chooses the merge causing the smallest increase in within-cluster variance?",
+        "options": [
+          "Single linkage.",
+          "Ward linkage.",
+          "Random linkage.",
+          "Complete linkage."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q040",
+        "number": 40,
+        "prompt": "If a horizontal line is drawn across a dendrogram, how is the number of clusters commonly estimated?",
+        "options": [
+          "Count the leaves below the first merge only.",
+          "Always choose two clusters.",
+          "Count the vertical branches intersected by the cut.",
+          "Use the largest target label."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q041",
+        "number": 41,
+        "prompt": "A DBSCAN point has at least MinPts observations in its eps-neighbourhood. It is therefore a:",
+        "options": [
+          "border point only.",
+          "centroid.",
+          "core point.",
+          "noise point."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q042",
+        "number": 42,
+        "prompt": "What usually happens if eps is set far too small in DBSCAN?",
+        "options": [
+          "K-means centroids become fixed.",
+          "Many observations fail to connect and are labelled as noise or tiny fragments.",
+          "All clusters merge into one.",
+          "The number of principal components increases."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q043",
+        "number": 43,
+        "prompt": "Which dataset characteristic is a notable strength of DBSCAN?",
+        "options": [
+          "Clusters can have irregular, non-spherical shapes and include noise.",
+          "Every cluster must be spherical and equally sized.",
+          "All observations must have class labels.",
+          "The correct K must be supplied in advance."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q044",
+        "number": 44,
+        "prompt": "What is the purpose of a k-distance graph in DBSCAN tuning?",
+        "options": [
+          "To compute PCA eigenvectors.",
+          "To measure association-rule confidence.",
+          "To choose a supervised target.",
+          "To identify a knee that can suggest a useful eps value."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q045",
+        "number": 45,
+        "prompt": "In a GMM, which parameter describes the relative prevalence of a component in the mixture?",
+        "options": [
+          "Silhouette coefficient.",
+          "MinPts.",
+          "Mixing weight.",
+          "Rule confidence."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q046",
+        "number": 46,
+        "prompt": "What occurs in the E-step of the EM algorithm for a GMM?",
+        "options": [
+          "A dendrogram is cut into clusters.",
+          "All covariance matrices are set to zero.",
+          "Principal components are deleted.",
+          "Responsibilities of components for observations are estimated using current parameters."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q047",
+        "number": 47,
+        "prompt": "What occurs in the M-step of EM for a GMM?",
+        "options": [
+          "Component parameters are updated using the current responsibilities.",
+          "WCSS is forced to zero.",
+          "The t-SNE perplexity is chosen.",
+          "Labels are supplied by a human."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q048",
+        "number": 48,
+        "prompt": "Why might GMM be preferred over K-means for some data?",
+        "options": [
+          "It always finds arbitrary shapes better than DBSCAN.",
+          "It can model overlapping clusters with probabilistic membership and flexible covariance shapes.",
+          "It never requires parameter estimation.",
+          "It produces only hard 0/1 membership."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q049",
+        "number": 49,
+        "prompt": "Why should numerical features often be standardized before PCA?",
+        "options": [
+          "It guarantees every component explains equal variance.",
+          "Features with larger measurement scales can otherwise dominate the variance.",
+          "PCA requires integer-only data.",
+          "Standardization creates class labels."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q050",
+        "number": 50,
+        "prompt": "If PC1 explains 52% and PC2 explains 28% of variance, how much variance do the first two components explain together?",
+        "options": [
+          "24%.",
+          "104%.",
+          "80%.",
+          "52%."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q051",
+        "number": 51,
+        "prompt": "Using Figure 4, what is the minimum number of components needed to retain at least 80% explained variance?",
+        "options": [
+          "3 components.",
+          "1 component.",
+          "5 components.",
+          "2 components."
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q051.png"
+      },
+      {
+        "id": "unsupervised_learning_q052",
+        "number": 52,
+        "prompt": "Which statement about PCA loadings is most accurate?",
+        "options": [
+          "They describe how strongly original variables contribute to principal components.",
+          "They are association-rule frequencies.",
+          "They are target labels assigned by supervisors.",
+          "They are DBSCAN neighbourhood radii."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q053",
+        "number": 53,
+        "prompt": "Which t-SNE parameter roughly controls the scale of local neighbourhoods considered by the method?",
+        "options": [
+          "Inertia.",
+          "Support.",
+          "Perplexity.",
+          "MinPts only."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q054",
+        "number": 54,
+        "prompt": "Why should a t-SNE map not be interpreted as proof that visible groups are true clusters?",
+        "options": [
+          "t-SNE uses known labels to draw groups.",
+          "A t-SNE plot always preserves exact global distances.",
+          "t-SNE emphasizes local structure and the global layout can change with settings and random initialization.",
+          "t-SNE is identical to K-means."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q055",
+        "number": 55,
+        "prompt": "What does confidence(X → Y) measure?",
+        "options": [
+          "The difference between two cluster centroids.",
+          "The proportion of transactions containing X that also contain Y.",
+          "How often Y appears in the full dataset regardless of X.",
+          "The variance explained by Y."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q056",
+        "number": 56,
+        "prompt": "A rule has lift greater than 1. What does this indicate?",
+        "options": [
+          "The rule has zero support.",
+          "X and Y are independent.",
+          "X and Y co-occur more often than expected under independence.",
+          "X prevents Y with certainty."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q057",
+        "number": 57,
+        "prompt": "Why is Apriori able to prune many candidate itemsets?",
+        "options": [
+          "Confidence always equals support.",
+          "Any subset of a frequent itemset must itself be frequent.",
+          "Rules are supervised labels.",
+          "Every candidate has identical support."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q058",
+        "number": 58,
+        "prompt": "Which algorithm is often preferred over Apriori on large dense transaction data because it avoids explicit candidate generation?",
+        "options": [
+          "FP-Growth.",
+          "K-means.",
+          "Ward linkage.",
+          "PCA."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q059",
+        "number": 59,
+        "prompt": "Which example is a contextual anomaly rather than simply an isolated value?",
+        "options": [
+          "A temperature that is normal in summer but highly unusual for the same location in winter.",
+          "A group of normal transactions with no unusual pattern.",
+          "A centroid near the center of its cluster.",
+          "A single extremely large sensor value regardless of context."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q060",
+        "number": 60,
+        "prompt": "In a customer-segmentation workflow, why should cluster profiles be interpreted after fitting K-means?",
+        "options": [
+          "Numeric cluster IDs have no business meaning until their feature patterns are examined and named.",
+          "Clusters must be converted into target labels before analysis.",
+          "K-means automatically provides marketing names.",
+          "Interpretation is unnecessary when WCSS is low."
+        ],
+        "correctOption": 0
+      }
+    ],
+    "hard": [
+      {
+        "id": "unsupervised_learning_q061",
+        "number": 61,
+        "prompt": "Five transactions are: T1 Bread/Milk/Butter; T2 Bread/Milk/Eggs; T3 Bread/Butter/Diapers; T4 Milk/Butter/Diapers; T5 Bread/Milk/Butter/Eggs/Diapers. What is Support(Bread → Butter)?",
+        "options": [
+          "3/5 = 0.60.",
+          "4/5 = 0.80.",
+          "2/5 = 0.40.",
+          "3/4 = 0.75."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q062",
+        "number": 62,
+        "prompt": "Using the same five-transaction dataset, what is Confidence(Bread → Butter)?",
+        "options": [
+          "4/5 = 0.80.",
+          "0.75/0.80 = 0.9375.",
+          "3/4 = 0.75.",
+          "3/5 = 0.60."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q063",
+        "number": 63,
+        "prompt": "Using the same dataset, Support(Butter)=0.80 and Confidence(Bread → Butter)=0.75. What is the lift?",
+        "options": [
+          "1.25.",
+          "1.75.",
+          "0.9375.",
+          "0.60."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q064",
+        "number": 64,
+        "prompt": "Figure 5 compares rule lift values. Which rule provides evidence of a positive association?",
+        "options": [
+          "Bread → Butter.",
+          "Diapers → Butter.",
+          "Eggs → Bread.",
+          "Milk → Bread."
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q064.png"
+      },
+      {
+        "id": "unsupervised_learning_q065",
+        "number": 65,
+        "prompt": "A rule has 90% confidence but lift = 0.85. What is the best interpretation?",
+        "options": [
+          "The rule proves a strong positive causal effect.",
+          "The rule is guaranteed to generalize.",
+          "The rule must have zero support.",
+          "The consequent is common, and the antecedent does not increase its occurrence above baseline."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q066",
+        "number": 66,
+        "prompt": "Why can X → Y and Y → X have the same support but different confidence?",
+        "options": [
+          "Confidence ignores the antecedent.",
+          "Support is always directional.",
+          "Support depends on co-occurrence, while confidence divides by the support of the antecedent, which changes with direction.",
+          "Lift changes support values."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q067",
+        "number": 67,
+        "prompt": "In K-means, two points (2,4) and (6,8) are assigned to the same cluster. If they are the only points in that cluster, what is the updated centroid?",
+        "options": [
+          "(6,4).",
+          "(2,8).",
+          "(8,12).",
+          "(4,6)."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q068",
+        "number": 68,
+        "prompt": "A K-means model produces WCSS values 700, 390, 205, 172 and 158 for K=1..5. Which K is most defensible by the Elbow Method?",
+        "options": [
+          "K = 1 because it is simplest.",
+          "K = 5 because it has the smallest WCSS.",
+          "K = 3 because improvements become much smaller after that point.",
+          "K = 2 because WCSS first decreases there."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q069",
+        "number": 69,
+        "prompt": "Why should the Elbow Method and silhouette score be combined with domain interpretation?",
+        "options": [
+          "Domain knowledge makes scaling unnecessary.",
+          "Silhouette and WCSS are supervised metrics.",
+          "Both metrics directly provide business names for clusters.",
+          "A mathematically attractive partition may still be unstable, meaningless or unusable in the real problem."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q070",
+        "number": 70,
+        "prompt": "For point P, a(P)=3.0 and b(P)=2.0. What is s(P) and what does it imply?",
+        "options": [
+          "+0.50; P is perfectly separated.",
+          "-0.50; P is necessarily noise.",
+          "-1/3 ≈ -0.33; P may fit a neighbouring cluster better.",
+          "+1/3 ≈ 0.33; P is strongly assigned."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q071",
+        "number": 71,
+        "prompt": "A clustering solution has a high average silhouette score, but one cluster contains many negative individual silhouette values. What should the analyst do?",
+        "options": [
+          "Replace the silhouette score with supervised accuracy.",
+          "Accept the solution automatically because the average is high.",
+          "Delete all negative-valued observations without review.",
+          "Inspect that cluster because the average can hide local misassignment or overlap."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q072",
+        "number": 72,
+        "prompt": "Using Figure 6, how many clusters are obtained by cutting the dendrogram at height 3.5?",
+        "options": [
+          "3 clusters.",
+          "2 clusters.",
+          "1 cluster.",
+          "6 clusters."
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q072.png"
+      },
+      {
+        "id": "unsupervised_learning_q073",
+        "number": 73,
+        "prompt": "In the Figure 6 dendrogram, why do the left and right large groups remain separate at the 3.5 cut?",
+        "options": [
+          "A dendrogram cut always creates exactly two groups.",
+          "Ward linkage forbids their merger.",
+          "They contain different numbers of leaves.",
+          "Their final merge occurs above the cut height."
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q073.png"
+      },
+      {
+        "id": "unsupervised_learning_q074",
+        "number": 74,
+        "prompt": "Which linkage method is most susceptible to a chaining effect where clusters grow through sequences of nearby points?",
+        "options": [
+          "Centroid-free GMM.",
+          "Complete linkage.",
+          "Ward linkage.",
+          "Single linkage."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q075",
+        "number": 75,
+        "prompt": "Why can complete linkage produce more compact clusters than single linkage?",
+        "options": [
+          "It minimizes KL divergence.",
+          "It evaluates the farthest pair of points when deciding how close two clusters are.",
+          "It ignores between-cluster distances.",
+          "It uses only the nearest pair."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q076",
+        "number": 76,
+        "prompt": "A dataset contains two crescent-shaped dense groups plus isolated points, as in Figure 7. Which algorithm is most naturally suited?",
+        "options": [
+          "DBSCAN.",
+          "Linear PCA alone.",
+          "Apriori.",
+          "K-means with K=2 only."
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q076.png"
+      },
+      {
+        "id": "unsupervised_learning_q077",
+        "number": 77,
+        "prompt": "For DBSCAN with MinPts=5, a point has exactly five observations in its eps-neighbourhood when counting itself. How is it classified with respect to density?",
+        "options": [
+          "It must be noise.",
+          "It qualifies as a core point.",
+          "It becomes a centroid.",
+          "It is automatically a border point."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q078",
+        "number": 78,
+        "prompt": "What is the likely effect of making eps too large in DBSCAN?",
+        "options": [
+          "MinPts becomes irrelevant mathematically.",
+          "Separate dense regions may merge into one broad cluster.",
+          "More points necessarily become noise.",
+          "Every point becomes a principal component."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q079",
+        "number": 79,
+        "prompt": "Why can one global eps value be problematic when a dataset contains clusters with very different densities?",
+        "options": [
+          "Different densities make distance undefined.",
+          "DBSCAN requires equal cluster sizes.",
+          "eps controls the number of PCA components.",
+          "An eps suitable for a sparse cluster may merge dense clusters, while one suited to dense clusters may fragment sparse ones."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q080",
+        "number": 80,
+        "prompt": "A k-distance curve remains flat and then rises sharply near distance 0.42. What is a reasonable initial DBSCAN tuning decision?",
+        "options": [
+          "Set eps to the largest observed distance.",
+          "Set K=0.42 in K-means.",
+          "Test eps values around the knee near 0.42 and validate the resulting clusters.",
+          "Use 0.42 as a silhouette score."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q081",
+        "number": 81,
+        "prompt": "A GMM gives an observation responsibilities [0.10, 0.75, 0.15] for components 1-3. What is the hard assignment if one is required?",
+        "options": [
+          "Component 1.",
+          "No component because responsibilities must be equal.",
+          "Component 2.",
+          "Component 3."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q082",
+        "number": 82,
+        "prompt": "Which GMM feature allows clusters to be elongated or differently oriented rather than strictly spherical?",
+        "options": [
+          "The dendrogram cut line.",
+          "The silhouette denominator.",
+          "Component covariance matrices.",
+          "The support threshold."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q083",
+        "number": 83,
+        "prompt": "Why can GMM assign meaningful membership to an observation near the overlap of two clusters?",
+        "options": [
+          "It forces covariance to zero.",
+          "It uses labelled class probabilities from training targets.",
+          "It estimates probabilities/responsibilities for multiple components instead of only a hard nearest-centroid label.",
+          "It removes all overlapping points as noise."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q084",
+        "number": 84,
+        "prompt": "When comparing GMMs with different numbers of components using BIC, which choice is generally preferred?",
+        "options": [
+          "Always the model with the most components.",
+          "The model with the highest BIC.",
+          "Always the model with one component.",
+          "The model with the lower BIC, balancing fit against model complexity."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q085",
+        "number": 85,
+        "prompt": "In EM for a GMM, why are E-steps and M-steps repeated?",
+        "options": [
+          "Each repetition increases the number of features.",
+          "Responsibilities and component parameters depend on each other, so they are iteratively refined until convergence.",
+          "EM must create target labels manually.",
+          "The algorithm alternates between PCA and DBSCAN."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q086",
+        "number": 86,
+        "prompt": "A PCA model has eigenvalues 5, 3, 1 and 1. What percentage of total variance is explained by PC1?",
+        "options": [
+          "50%.",
+          "5%.",
+          "30%.",
+          "80%."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q087",
+        "number": 87,
+        "prompt": "With eigenvalues 5, 3, 1 and 1, how much cumulative variance is explained by the first two PCs?",
+        "options": [
+          "50%.",
+          "30%.",
+          "80%.",
+          "20%."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q088",
+        "number": 88,
+        "prompt": "If two original variables are strongly positively correlated, why can PCA often reduce dimensionality effectively?",
+        "options": [
+          "Correlation forces all eigenvalues to be equal.",
+          "PCA duplicates correlated variables into more dimensions.",
+          "Much of their shared variation can be represented along a smaller number of principal directions.",
+          "PCA converts the variables into target labels."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q089",
+        "number": 89,
+        "prompt": "Why are PCA principal components mutually orthogonal in the standard formulation?",
+        "options": [
+          "They are constructed as perpendicular directions capturing successive, non-redundant variance.",
+          "They are sorted alphabetically.",
+          "DBSCAN forces them to be perpendicular.",
+          "They correspond to independent target classes."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q090",
+        "number": 90,
+        "prompt": "A pipeline scales data and fits PCA before the train-test split. What is the key methodological problem?",
+        "options": [
+          "The number of components must equal the number of rows.",
+          "PCA can only be fitted after K-means.",
+          "Information from the future test set leaks into the fitted preprocessing transformation.",
+          "Scaling makes PCA supervised."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q091",
+        "number": 91,
+        "prompt": "Figure 4 shows PC1=52%, PC2=28%, PC3=12%, PC4=5%, PC5=3%. If the retention target is at least 90%, what is the minimum number of PCs?",
+        "options": [
+          "3 components.",
+          "1 component.",
+          "2 components.",
+          "5 components."
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q091.png"
+      },
+      {
+        "id": "unsupervised_learning_q092",
+        "number": 92,
+        "prompt": "Why might PCA be a poor choice when the most important structure is strongly nonlinear?",
+        "options": [
+          "PCA always keeps every original feature unchanged.",
+          "PCA cannot process numerical data.",
+          "PCA only finds linear projection directions and may miss curved manifold structure.",
+          "PCA requires labelled targets."
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "unsupervised_learning_q093",
+        "number": 93,
+        "prompt": "Which claim about the visible spacing between groups in Figure 8 is safest?",
+        "options": [
+          "The plot guarantees K=4 is the optimal clustering solution.",
+          "The four groups are proven ground-truth classes.",
+          "Nearby points within a group may indicate local similarity, but large between-group distances should not be treated as exact global distances.",
+          "The exact distance between group 1 and group 4 is preserved from the original space."
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/unsupervised_learning/quiz_figures/quiz_q093.png"
+      },
+      {
+        "id": "unsupervised_learning_q094",
+        "number": 94,
+        "prompt": "Why does t-SNE use a heavy-tailed Student t-distribution in the low-dimensional space?",
+        "options": [
+          "It directly computes association-rule lift.",
+          "It makes the method supervised.",
+          "It guarantees exact preservation of all global distances.",
+          "It helps reduce the crowding problem and allows moderately distant points to remain separated."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q095",
+        "number": 95,
+        "prompt": "What objective does t-SNE iteratively minimize?",
+        "options": [
+          "Support of association rules.",
+          "BIC of a Gaussian mixture.",
+          "WCSS of K-means centroids.",
+          "Kullback-Leibler divergence between high- and low-dimensional similarity distributions."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q096",
+        "number": 96,
+        "prompt": "Two t-SNE runs with different random seeds produce rotated or rearranged global layouts but similar local neighbourhoods. What is the best conclusion?",
+        "options": [
+          "The stable local relationships are more trustworthy than the exact global arrangement.",
+          "The method has discovered supervised labels.",
+          "One run must be mathematically invalid.",
+          "The data cannot contain any structure."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q097",
+        "number": 97,
+        "prompt": "An anomaly detector threshold is lowered substantially. What trade-off is most likely?",
+        "options": [
+          "The model becomes K-means.",
+          "All anomalies disappear.",
+          "Fewer observations are flagged and false negatives always increase.",
+          "More observations are flagged, increasing sensitivity but often also false positives."
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "unsupervised_learning_q098",
+        "number": 98,
+        "prompt": "Which situation best illustrates a collective anomaly?",
+        "options": [
+          "One impossible sensor reading.",
+          "A sequence of individually ordinary network events that becomes suspicious because of their unusual combined pattern.",
+          "A normal seasonal temperature.",
+          "A cluster centroid at the mean."
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "unsupervised_learning_q099",
+        "number": 99,
+        "prompt": "Why is evaluating unsupervised anomaly detection difficult when ground-truth labels are unavailable?",
+        "options": [
+          "There may be no definitive reference showing which flagged observations are truly abnormal.",
+          "All anomalies must have negative silhouette scores.",
+          "Anomaly scores cannot be calculated without labels.",
+          "Unsupervised models cannot output any alerts."
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "unsupervised_learning_q100",
+        "number": 100,
+        "prompt": "A customer-segmentation solution has the best silhouette at K=5, but K=4 is slightly lower and produces four stable, actionable business segments while K=5 splits one segment without a useful distinction. Which decision is strongest?",
+        "options": [
+          "Choose K=1 to avoid interpretation.",
+          "Always choose K=5 because the silhouette score is mathematically highest.",
+          "Prefer K=4 if stability and business usefulness outweigh the small metric difference.",
+          "Use a supervised accuracy score instead."
+        ],
+        "correctOption": 1
+      }
+    ]
+  }
+}

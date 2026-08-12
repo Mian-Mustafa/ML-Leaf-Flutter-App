@@ -1,0 +1,1213 @@
+{
+  "contentVersion": 1,
+  "moduleId": "data_preprocessing",
+  "title": "Data Preprocessing",
+  "levels": {
+    "easy": [
+      {
+        "id": "data_preprocessing_q001",
+        "number": 1,
+        "prompt": "What is data preprocessing?",
+        "options": [
+          "Training a model without checking the data",
+          "Inspecting, cleaning, transforming, and organising raw data before modelling",
+          "Only removing duplicate rows",
+          "Only scaling numerical features"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q002",
+        "number": 2,
+        "prompt": "In supervised learning, what is a feature?",
+        "options": [
+          "The model's final prediction",
+          "An input variable used by a model",
+          "A missing value",
+          "A performance metric"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q003",
+        "number": 3,
+        "prompt": "What is the target or label?",
+        "options": [
+          "The outcome the model learns to predict",
+          "A unique identifier",
+          "A preprocessing pipeline",
+          "A numerical scaler"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q004",
+        "number": 4,
+        "prompt": "Which of the following is a numerical variable?",
+        "options": [
+          "Contract type",
+          "Internet service",
+          "Monthly charge",
+          "Satisfaction level"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q005",
+        "number": 5,
+        "prompt": "Which of the following is a nominal categorical variable?",
+        "options": [
+          "Age",
+          "Support tickets",
+          "Contract type",
+          "Tenure in months"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q006",
+        "number": 6,
+        "prompt": "Which variable is ordinal in the churn example?",
+        "options": [
+          "Customer ID",
+          "Monthly charge",
+          "Satisfaction",
+          "Signup date"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q007",
+        "number": 7,
+        "prompt": "Which simple imputation method is usually a strong starting point for skewed numerical data?",
+        "options": [
+          "Mean",
+          "Median",
+          "One-hot encoding",
+          "Label encoding"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q008",
+        "number": 8,
+        "prompt": "Which simple imputation method is commonly used for categorical variables?",
+        "options": [
+          "Mean",
+          "Median",
+          "Most frequent value",
+          "Standard deviation"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q009",
+        "number": 9,
+        "prompt": "What does imputation do?",
+        "options": [
+          "Deletes every incomplete record",
+          "Replaces missing values using a defined rule or estimate",
+          "Creates duplicate records",
+          "Measures model accuracy"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q010",
+        "number": 10,
+        "prompt": "What does an exact duplicate mean?",
+        "options": [
+          "Only the identifier is repeated",
+          "Every column in a record is repeated",
+          "Two rows have the same target only",
+          "Two rows have similar but not identical values"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q011",
+        "number": 11,
+        "prompt": "Why should inconsistent labels such as 'M2M' and 'month to month' be standardised?",
+        "options": [
+          "To create more categories",
+          "To ensure one true category is not treated as several categories",
+          "To increase missingness",
+          "To convert the target into text"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q012",
+        "number": 12,
+        "prompt": "What is the IQR?",
+        "options": [
+          "Q1 + Q3",
+          "Q3 - Q1",
+          "Mean - median",
+          "Maximum - minimum"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q013",
+        "number": 13,
+        "prompt": "What should you do first when an IQR rule flags an outlier?",
+        "options": [
+          "Delete it automatically",
+          "Investigate the observation",
+          "Replace it with zero",
+          "Move it to the test set"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q014",
+        "number": 14,
+        "prompt": "Which encoder is usually appropriate for nominal input features with manageable cardinality?",
+        "options": [
+          "LabelEncoder",
+          "OneHotEncoder",
+          "StandardScaler",
+          "RobustScaler"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q015",
+        "number": 15,
+        "prompt": "Which encoder should be used for an ordered categorical feature such as satisfaction?",
+        "options": [
+          "OrdinalEncoder with an explicit order",
+          "LabelEncoder with random codes",
+          "MinMaxScaler",
+          "Normalizer"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q016",
+        "number": 16,
+        "prompt": "What does StandardScaler use?",
+        "options": [
+          "Median and IQR",
+          "Minimum and maximum",
+          "Mean and standard deviation",
+          "Class frequencies"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q017",
+        "number": 17,
+        "prompt": "What does MinMaxScaler typically do when feature_range=(0, 1)?",
+        "options": [
+          "Maps the fitted minimum to 0 and maximum to 1",
+          "Makes every row sum to 1",
+          "Makes the median equal to 0",
+          "Removes all outliers"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q018",
+        "number": 18,
+        "prompt": "Which scaler uses the median and IQR?",
+        "options": [
+          "StandardScaler",
+          "MinMaxScaler",
+          "RobustScaler",
+          "Normalizer"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q019",
+        "number": 19,
+        "prompt": "What does vector normalization scale?",
+        "options": [
+          "Each feature column independently",
+          "Each row or observation vector",
+          "Only the target",
+          "Only missing values"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q020",
+        "number": 20,
+        "prompt": "Why is a train-test split used?",
+        "options": [
+          "To make the training data larger",
+          "To estimate performance on unseen data",
+          "To remove all rare classes",
+          "To create new categorical variables"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q021",
+        "number": 21,
+        "prompt": "What does stratification preserve approximately across train and test sets?",
+        "options": [
+          "The same row order",
+          "The same target-class proportions",
+          "The same missing values",
+          "The same customer IDs"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q022",
+        "number": 22,
+        "prompt": "What is class imbalance?",
+        "options": [
+          "All classes occur equally often",
+          "One target class occurs much less frequently than another",
+          "A feature has a large scale",
+          "The dataset contains text"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q023",
+        "number": 23,
+        "prompt": "Which metric asks: 'Of actual churners, how many were detected?'",
+        "options": [
+          "Precision",
+          "Recall",
+          "Accuracy",
+          "Specificity"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q024",
+        "number": 24,
+        "prompt": "Which metric asks: 'Of predicted churners, how many actually churned?'",
+        "options": [
+          "Precision",
+          "Recall",
+          "Balanced accuracy",
+          "IQR"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q025",
+        "number": 25,
+        "prompt": "What does random oversampling do?",
+        "options": [
+          "Removes minority examples",
+          "Duplicates minority observations",
+          "Duplicates majority observations",
+          "Changes the test-set distribution"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q026",
+        "number": 26,
+        "prompt": "What does SMOTE create?",
+        "options": [
+          "Exact copies of majority examples",
+          "Synthetic minority points between neighbouring minority observations",
+          "New target labels at random",
+          "Only missing-value indicators"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q027",
+        "number": 27,
+        "prompt": "What is data leakage?",
+        "options": [
+          "A missing-value problem only",
+          "Information unavailable at prediction time influences training or evaluation",
+          "A type of scaling",
+          "A way to balance classes"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q028",
+        "number": 28,
+        "prompt": "Where should learned preprocessing parameters be fitted?",
+        "options": [
+          "On the full dataset",
+          "On the test set",
+          "On training data only",
+          "On production data only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q029",
+        "number": 29,
+        "prompt": "What is a Pipeline?",
+        "options": [
+          "A chart for outlier detection",
+          "An ordered chain of preprocessing steps and an estimator",
+          "A type of target encoding",
+          "A class-imbalance metric"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q030",
+        "number": 30,
+        "prompt": "What is the main role of ColumnTransformer?",
+        "options": [
+          "Apply different preprocessing branches to selected columns",
+          "Split the dataset into train and test",
+          "Calculate precision and recall",
+          "Create synthetic minority observations"
+        ],
+        "correctOption": 0
+      }
+    ],
+    "medium": [
+      {
+        "id": "data_preprocessing_q031",
+        "number": 31,
+        "prompt": "A numeric feature contains several extreme values and is strongly right-skewed. Which simple imputation choice best matches the module guidance?",
+        "options": [
+          "Mean imputation",
+          "Median imputation",
+          "Mode imputation",
+          "No imputation is ever allowed"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q032",
+        "number": 32,
+        "prompt": "A customer ID is stored as an integer. How should it normally be interpreted?",
+        "options": [
+          "As a continuous numerical feature",
+          "As an identifier, not a measurable quantity",
+          "As an ordinal target",
+          "As a scaling parameter"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q033",
+        "number": 33,
+        "prompt": "Why can mean imputation be problematic when a feature contains outliers?",
+        "options": [
+          "It is unaffected by extreme values",
+          "It can be pulled toward extreme values and reduce variance",
+          "It creates new categories",
+          "It guarantees leakage"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q034",
+        "number": 34,
+        "prompt": "Which missingness mechanism means missingness depends on observed variables?",
+        "options": [
+          "MCAR",
+          "MAR",
+          "MNAR",
+          "IQR"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q035",
+        "number": 35,
+        "prompt": "Which missingness mechanism may require deeper domain analysis because missingness depends on the unobserved value itself?",
+        "options": [
+          "MCAR",
+          "MAR",
+          "MNAR",
+          "SMOTE"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q036",
+        "number": 36,
+        "prompt": "When may dropping rows with missing values be reasonable?",
+        "options": [
+          "Whenever any value is missing",
+          "When missingness is rare, approximately random, and enough data remains",
+          "Only when the target is imbalanced",
+          "Only after scaling the full dataset"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q037",
+        "number": 37,
+        "prompt": "Why can a missingness indicator be useful?",
+        "options": [
+          "It guarantees a higher accuracy",
+          "The fact that a value was missing may itself contain predictive information",
+          "It replaces the need for imputation",
+          "It balances the target"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q038",
+        "number": 38,
+        "prompt": "Which advanced imputation method uses similar observations to estimate missing values?",
+        "options": [
+          "KNN imputation",
+          "One-hot encoding",
+          "Robust scaling",
+          "Undersampling"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q039",
+        "number": 39,
+        "prompt": "Why must iterative or model-based imputation be fitted inside training folds?",
+        "options": [
+          "To make the test set larger",
+          "To avoid leakage from validation or test information",
+          "To convert text into dates",
+          "To remove class imbalance"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q040",
+        "number": 40,
+        "prompt": "What is a business duplicate?",
+        "options": [
+          "A record that repeats every column exactly",
+          "The same real entity appearing under slightly different formatting or records",
+          "A rare class in the target",
+          "A missing-value mechanism"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q041",
+        "number": 41,
+        "prompt": "Which practice best supports auditable categorical cleaning?",
+        "options": [
+          "Replace values silently",
+          "Use an explicit controlled mapping and retain the mapping logic",
+          "Encode every string with random integers",
+          "Delete rare categories"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q042",
+        "number": 42,
+        "prompt": "A rare category appears only twice. What should you conclude first?",
+        "options": [
+          "It must be a data error",
+          "It must be deleted",
+          "Rarity alone does not prove inconsistency",
+          "It should be converted to zero"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q043",
+        "number": 43,
+        "prompt": "The IQR rule identifies a monthly charge above the upper fence. What does this flag mean?",
+        "options": [
+          "The value is certainly wrong",
+          "The value requires investigation and may still be valid",
+          "The row must be removed before splitting",
+          "The target is imbalanced"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q044",
+        "number": 44,
+        "prompt": "Which outlier treatment is most appropriate when an extreme value is a confirmed data-entry error and the original source can be checked?",
+        "options": [
+          "Correct it from the source",
+          "Always winsorise it",
+          "Always remove the entire feature",
+          "Apply SMOTE"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q045",
+        "number": 45,
+        "prompt": "Why are KNN and SVM often more sensitive to feature scale than many tree-based models?",
+        "options": [
+          "They rely on distances or geometric relationships",
+          "They only accept categorical inputs",
+          "They cannot use training data",
+          "They always perform undersampling"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q046",
+        "number": 46,
+        "prompt": "Why is LabelEncoder usually unsafe for a nominal input such as internet service?",
+        "options": [
+          "It creates missing values",
+          "It can impose an artificial numerical ordering",
+          "It always creates sparse matrices",
+          "It cannot encode binary values"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q047",
+        "number": 47,
+        "prompt": "What does handle_unknown='ignore' do in OneHotEncoder?",
+        "options": [
+          "Deletes unseen records",
+          "Prevents failure on unseen categories at transform time",
+          "Fits new categories using the test set",
+          "Maps unseen categories to the target"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q048",
+        "number": 48,
+        "prompt": "When is drop='first' in one-hot encoding potentially useful?",
+        "options": [
+          "To remove every rare category",
+          "To reduce exact collinearity in some linear models",
+          "To prevent missing values",
+          "To perform ordinal encoding"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q049",
+        "number": 49,
+        "prompt": "Which scaling choice is generally more robust when genuine extreme values should be retained?",
+        "options": [
+          "MinMaxScaler",
+          "StandardScaler",
+          "RobustScaler",
+          "LabelEncoder"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q050",
+        "number": 50,
+        "prompt": "What is the key difference between feature scaling and vector normalization?",
+        "options": [
+          "Scaling operates on columns/features, while vector normalization operates on rows",
+          "They are always identical",
+          "Vector normalization handles only targets",
+          "Feature scaling creates synthetic rows"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q051",
+        "number": 51,
+        "prompt": "A time-ordered transaction dataset must predict future events. Which split is preferred?",
+        "options": [
+          "Random row split",
+          "Train on earlier dates and test on later dates",
+          "Split after fitting the scaler",
+          "Oversample before splitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q052",
+        "number": 52,
+        "prompt": "The same customer has multiple snapshots. Which split helps prevent the same person appearing in both training and test data?",
+        "options": [
+          "Stratified random split only",
+          "Group-aware split by customer ID",
+          "Min-max split",
+          "SMOTE split"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q053",
+        "number": 53,
+        "prompt": "Why is a single random_state not proof that model performance is stable?",
+        "options": [
+          "Random states change feature meanings",
+          "One split can be unrepresentative; cross-validation gives a stronger estimate",
+          "It prevents reproducibility",
+          "It forces equal classes"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q054",
+        "number": 54,
+        "prompt": "Why can accuracy be misleading for a severely imbalanced churn dataset?",
+        "options": [
+          "Accuracy ignores the majority class",
+          "A majority-only model may still appear highly accurate",
+          "Accuracy is the same as recall",
+          "Accuracy requires scaling"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q055",
+        "number": 55,
+        "prompt": "Which metric is often more informative than ROC-AUC when the positive class is very rare?",
+        "options": [
+          "PR-AUC / average precision",
+          "Mean squared error",
+          "R-squared",
+          "IQR"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q056",
+        "number": 56,
+        "prompt": "What is the main risk of random undersampling?",
+        "options": [
+          "It creates synthetic minority points",
+          "It discards majority information that may be useful",
+          "It leaks the target automatically",
+          "It cannot change class ratios"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q057",
+        "number": 57,
+        "prompt": "Why is standard SMOTE risky after arbitrary integer encoding of categorical features?",
+        "options": [
+          "It cannot create numerical values",
+          "Interpolation between category codes can create semantically invalid intermediate values",
+          "It always deletes minority examples",
+          "It makes all features binary"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q058",
+        "number": 58,
+        "prompt": "What is a strong first alternative to resampling for class imbalance?",
+        "options": [
+          "Class weights",
+          "Fit the test set",
+          "Delete the minority class",
+          "Use customer ID as a feature"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q059",
+        "number": 59,
+        "prompt": "Which action is an example of preprocessing leakage?",
+        "options": [
+          "Fit an imputer on training data only",
+          "Fit a scaler before splitting the dataset",
+          "Use a pipeline inside cross-validation",
+          "Transform the test set using training parameters"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q060",
+        "number": 60,
+        "prompt": "Why does saving the complete fitted pipeline reduce training-serving skew?",
+        "options": [
+          "It forces all models to use the same accuracy",
+          "It preserves the same preprocessing rules for training and production predictions",
+          "It removes the need for a test set",
+          "It automatically balances the production target"
+        ],
+        "correctOption": 1
+      }
+    ],
+    "hard": [
+      {
+        "id": "data_preprocessing_q061",
+        "number": 61,
+        "prompt": "A team imputes the median using the entire dataset, then performs an 80/20 split. What is the main methodological problem?",
+        "options": [
+          "The median cannot be used for numerical data",
+          "Test-set information influenced a learned preprocessing parameter",
+          "The split is too large",
+          "Median imputation always causes underfitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q062",
+        "number": 62,
+        "prompt": "A churn feature called 'cancellation_reason' is recorded only after a customer has cancelled. Why is using it as a predictor problematic?",
+        "options": [
+          "It is nominal",
+          "It creates target leakage because it is unavailable at prediction time",
+          "It requires one-hot encoding",
+          "It has too few categories"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q063",
+        "number": 63,
+        "prompt": "A model is trained on December activity to predict churn outcomes that occurred in October. What type of leakage is this?",
+        "options": [
+          "Group leakage",
+          "Temporal leakage",
+          "Resampling leakage",
+          "Feature-scaling leakage"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q064",
+        "number": 64,
+        "prompt": "Feature selection is performed on the full dataset before cross-validation. What is the best correction?",
+        "options": [
+          "Keep the selection fixed because it is not preprocessing",
+          "Move feature selection inside the cross-validation pipeline",
+          "Use more test data",
+          "Replace cross-validation with one split"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q065",
+        "number": 65,
+        "prompt": "SMOTE is applied before the train-test split. Why is this invalid?",
+        "options": [
+          "SMOTE cannot operate on numerical data",
+          "Synthetic information derived from the full dataset can contaminate evaluation",
+          "SMOTE always reduces the sample size",
+          "The test set becomes too small"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q066",
+        "number": 66,
+        "prompt": "Which sequence is most leakage-safe for a supervised tabular problem?",
+        "options": [
+          "Impute → scale → SMOTE → split → train",
+          "Split → fit preprocessing on training data → optionally resample training folds → train → evaluate untouched test data",
+          "Scale full data → split → tune on test",
+          "SMOTE full data → split → encode test separately"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q067",
+        "number": 67,
+        "prompt": "A categorical variable contains the levels 'Low', 'Medium', and 'High' with a defensible order. Which representation best preserves the module's semantics?",
+        "options": [
+          "Random integer labels",
+          "Explicit ordinal encoding in the known order",
+          "One-hot encoding is the only valid choice",
+          "StandardScaler directly on text"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q068",
+        "number": 68,
+        "prompt": "A nominal feature has 20,000 unique categories. Why might one-hot encoding be unattractive?",
+        "options": [
+          "It imposes an ordinal relationship",
+          "It may create thousands of sparse columns",
+          "It cannot handle strings",
+          "It automatically leaks the target"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q069",
+        "number": 69,
+        "prompt": "For a very high-cardinality categorical feature, which alternative requires especially strict leakage control according to the notes?",
+        "options": [
+          "Target encoding with cross-fitting",
+          "Robust scaling",
+          "Median imputation",
+          "L2 normalization"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q070",
+        "number": 70,
+        "prompt": "A new production category was not seen during training. With OneHotEncoder(handle_unknown='ignore'), what happens for that feature's learned indicators?",
+        "options": [
+          "The pipeline refits automatically on production data",
+          "No learned category indicator is activated for the unseen value",
+          "The row is deleted",
+          "The target is guessed from frequency"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q071",
+        "number": 71,
+        "prompt": "A feature has values [10, 11, 12, 13, 1000]. Which scaler is most likely to preserve the central cloud without letting the extreme value dominate the scale parameters?",
+        "options": [
+          "MinMaxScaler",
+          "StandardScaler",
+          "RobustScaler",
+          "LabelEncoder"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "data_preprocessing_q072",
+        "number": 72,
+        "prompt": "Why can MinMaxScaler compress ordinary observations when there is an extreme maximum?",
+        "options": [
+          "It uses median and IQR",
+          "The fitted range is determined by the extreme minimum and maximum",
+          "It normalizes each row",
+          "It removes the maximum before fitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q073",
+        "number": 73,
+        "prompt": "Which statement about new data after MinMaxScaler is correct?",
+        "options": [
+          "New values must always remain in [0,1]",
+          "New values can fall outside the fitted range unless clipping is enabled",
+          "New values are automatically deleted if outside the range",
+          "The scaler refits on each new observation"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q074",
+        "number": 74,
+        "prompt": "A model uses cosine similarity on TF-IDF vectors. Which preprocessing concept is especially relevant?",
+        "options": [
+          "Row-wise L2 normalization",
+          "Target label encoding",
+          "Random undersampling",
+          "Mean imputation of the target"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q075",
+        "number": 75,
+        "prompt": "Why is a StandardScaler parameter considered part of the learned model pipeline?",
+        "options": [
+          "Because it learns training means and standard deviations",
+          "Because it creates target labels",
+          "Because it never uses data",
+          "Because it only formats column names"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q076",
+        "number": 76,
+        "prompt": "An outlier is genuine, important, and should remain in the dataset, but it distorts scale estimates. Which option best matches the notes?",
+        "options": [
+          "Delete the row",
+          "Use robust scaling or a robust model",
+          "Replace it with the class mean",
+          "Move it to the test set"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q077",
+        "number": 77,
+        "prompt": "A z-score rule |z| > 3 is used on a highly skewed distribution. What concern does the module raise?",
+        "options": [
+          "Z-scores require categorical variables",
+          "The rule assumes a roughly normal distribution and is sensitive to extremes",
+          "Z-scores can only detect missing values",
+          "The rule guarantees all flagged points are errors"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q078",
+        "number": 78,
+        "prompt": "A dataset has repeated events for the same customer, and repeated rows are legitimate transactions. Why is drop_duplicates() potentially unsafe as a blanket rule?",
+        "options": [
+          "Duplicates are always useful",
+          "Duplicate handling must respect the unit of analysis; identical events can both be valid",
+          "The function only works on text",
+          "It causes target encoding"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q079",
+        "number": 79,
+        "prompt": "A column contains 'unknown' mixed with numeric values. What is the most defensible first step?",
+        "options": [
+          "Treat 'unknown' as the number 0",
+          "Convert the invalid text marker to missing and handle it explicitly",
+          "Delete the entire dataset",
+          "Ordinal-encode the numeric values"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q080",
+        "number": 80,
+        "prompt": "A customer has 'No internet' but also has a non-null internet-speed value. Which validation approach is most relevant?",
+        "options": [
+          "Cross-field/domain consistency check",
+          "Only z-score detection",
+          "Target stratification",
+          "L1 normalization"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q081",
+        "number": 81,
+        "prompt": "A company wants the test set to reflect actual deployment prevalence. What should it avoid?",
+        "options": [
+          "Stratification",
+          "Artificially balancing or oversampling the test set",
+          "Using a pipeline",
+          "Calculating PR-AUC"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q082",
+        "number": 82,
+        "prompt": "Why can PR-AUC be preferable to ROC-AUC under severe class imbalance?",
+        "options": [
+          "It focuses directly on precision-recall behaviour for the rare positive class",
+          "It ignores false positives",
+          "It is always equal to accuracy",
+          "It requires no predictions"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q083",
+        "number": 83,
+        "prompt": "A retention campaign has a high cost for contacting customers who would not churn. Which metric should receive particular attention?",
+        "options": [
+          "Precision",
+          "Recall only",
+          "R-squared",
+          "IQR"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q084",
+        "number": 84,
+        "prompt": "Failing to identify a true churner is very costly. Which metric should receive particular attention?",
+        "options": [
+          "Recall",
+          "Precision only",
+          "Mean absolute error",
+          "Feature count"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q085",
+        "number": 85,
+        "prompt": "Why is threshold tuning supposed to use validation data rather than the final test set?",
+        "options": [
+          "The test set should remain an unbiased final estimate",
+          "Thresholds cannot be computed from probabilities",
+          "Validation data must always be larger",
+          "Test labels cannot be categorical"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q086",
+        "number": 86,
+        "prompt": "Which setup best protects against leakage when evaluating a pipeline with cross-validation?",
+        "options": [
+          "Fit the scaler once on all data, then cross-validate only the classifier",
+          "Place imputation, encoding, scaling, selection, and any resampling inside the fold-specific pipeline",
+          "Apply SMOTE to the test fold",
+          "Use the test set to choose the best preprocessing method"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q087",
+        "number": 87,
+        "prompt": "What does fit_transform() appropriately do in the module's workflow?",
+        "options": [
+          "Fit and transform the training fold",
+          "Fit on test data and transform training data",
+          "Only calculate accuracy",
+          "Always resample the target"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q088",
+        "number": 88,
+        "prompt": "What should transform() do on the test set?",
+        "options": [
+          "Learn new medians and categories from the test set",
+          "Apply preprocessing rules already learned from training data",
+          "Refit the classifier",
+          "Balance the target"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q089",
+        "number": 89,
+        "prompt": "Why is manually recreating transformations in production risky?",
+        "options": [
+          "It can cause training-serving skew",
+          "It always increases recall",
+          "It prevents sparse matrices",
+          "It changes the target to ordinal"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q090",
+        "number": 90,
+        "prompt": "In the churn case study, why is customer_id excluded from model features while still useful for grouping and traceability?",
+        "options": [
+          "Identifiers can help audit entities but are not meaningful measured predictors",
+          "It is the target",
+          "It contains missingness by design",
+          "It must be scaled with RobustScaler"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q091",
+        "number": 91,
+        "prompt": "In the churn case study, what is the planned treatment for satisfaction?",
+        "options": [
+          "Mean imputation plus StandardScaler",
+          "Mode imputation plus explicit ordinal encoding",
+          "One-hot encoding without order",
+          "SMOTE before splitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q092",
+        "number": 92,
+        "prompt": "In the churn case study, why is RobustScaler used for monthly_charge after investigating extreme values?",
+        "options": [
+          "To delete extreme charges",
+          "To limit scale distortion while retaining plausible extreme values",
+          "To convert charges into categories",
+          "To make the test set balanced"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q093",
+        "number": 93,
+        "prompt": "Why is a 'clean' dataset not necessarily one with zero missing values or zero outliers?",
+        "options": [
+          "Because cleaning is only cosmetic",
+          "Because retained values and transformations should be defensible and reproducible on unseen data",
+          "Because missing values always improve models",
+          "Because outliers must never be examined"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q094",
+        "number": 94,
+        "prompt": "Which statement best describes the module's 'exam-quality principle' for preprocessing?",
+        "options": [
+          "Only classifiers learn from data",
+          "Any operation that estimates quantities from data is a learned component and must be fitted on training data",
+          "Scaling can always use the test set",
+          "Encoders do not learn anything"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q095",
+        "number": 95,
+        "prompt": "A date feature is transformed into 'days since signup' using a reference date after some target outcomes. What question should be checked first?",
+        "options": [
+          "Whether the date is stored as text",
+          "Whether the derived information would have been available at prediction time",
+          "Whether the target is balanced",
+          "Whether the feature is one-hot encoded"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q096",
+        "number": 96,
+        "prompt": "Which split strategy best fits images where several crops come from the same original image?",
+        "options": [
+          "Randomly split all crops",
+          "Group by the original image so related crops stay together",
+          "Stratify only by crop size",
+          "Oversample crops before splitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q097",
+        "number": 97,
+        "prompt": "Which statement correctly compares random oversampling and SMOTE?",
+        "options": [
+          "Both only copy rows",
+          "Random oversampling duplicates minority observations; SMOTE interpolates synthetic minority observations",
+          "SMOTE removes majority rows",
+          "Random oversampling creates new feature values by interpolation"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "data_preprocessing_q098",
+        "number": 98,
+        "prompt": "Why might SMOTE create unrealistic examples in constrained domains?",
+        "options": [
+          "Interpolation can produce points that violate real-world constraints or overlap the majority class",
+          "SMOTE cannot work with any numbers",
+          "It always assigns the wrong label",
+          "It refits StandardScaler"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q099",
+        "number": 99,
+        "prompt": "A pipeline uses class_weight='balanced' in LogisticRegression. What is the purpose?",
+        "options": [
+          "To increase the penalty for minority-class errors without synthesising new data",
+          "To make every feature have equal variance",
+          "To delete majority examples",
+          "To encode the target as strings"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "data_preprocessing_q100",
+        "number": 100,
+        "prompt": "Which final practice best supports reproducible deployment?",
+        "options": [
+          "Save only the classifier and manually redo preprocessing later",
+          "Save the complete fitted preprocessing-and-model pipeline as one object",
+          "Refit scalers on each prediction batch",
+          "Rebalance the test set before every prediction"
+        ],
+        "correctOption": 1
+      }
+    ]
+  }
+}

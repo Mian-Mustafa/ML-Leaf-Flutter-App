@@ -1,0 +1,1213 @@
+{
+  "contentVersion": 1,
+  "moduleId": "foundations",
+  "title": "Introduction to Machine Learning",
+  "levels": {
+    "easy": [
+      {
+        "id": "foundations_q001",
+        "number": 1,
+        "prompt": "Which statement best describes machine learning (ML)?",
+        "options": [
+          "A method that requires every rule to be written manually",
+          "A field in which systems learn useful patterns from data or experience",
+          "A database technology used only for storing examples",
+          "A method for creating hardware without software"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q002",
+        "number": 2,
+        "prompt": "According to the module's simple definition, machine learning teaches a computer mainly by:",
+        "options": [
+          "Examples",
+          "Fixed electrical signals",
+          "Manual calculations only",
+          "Random guessing"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q003",
+        "number": 3,
+        "prompt": "Arthur Samuel's definition emphasizes that computers can learn:",
+        "options": [
+          "Only after every rule is explicitly programmed",
+          "Without being explicitly programmed for every rule",
+          "Only from reinforcement rewards",
+          "Without using any data"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q004",
+        "number": 4,
+        "prompt": "In Tom Mitchell's learning definition, the letter E represents:",
+        "options": [
+          "Error",
+          "Evaluation",
+          "Experience",
+          "Environment"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q005",
+        "number": 5,
+        "prompt": "In Tom Mitchell's learning definition, the letter T represents:",
+        "options": [
+          "Task",
+          "Training set",
+          "Test set",
+          "Target vector"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q006",
+        "number": 6,
+        "prompt": "What is the main role of a learning algorithm?",
+        "options": [
+          "Store only the final prediction",
+          "Search for a useful pattern in data",
+          "Replace the dataset",
+          "Guarantee perfect accuracy"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q007",
+        "number": 7,
+        "prompt": "What is a model in machine learning?",
+        "options": [
+          "The learned mathematical or logical representation",
+          "The raw data before learning",
+          "The performance metric only",
+          "The programming language used"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q008",
+        "number": 8,
+        "prompt": "Which field is the broadest according to the AI-ML-DL relationship?",
+        "options": [
+          "Deep learning",
+          "Machine learning",
+          "Artificial intelligence",
+          "Regression"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q009",
+        "number": 9,
+        "prompt": "Deep learning mainly uses:",
+        "options": [
+          "Fixed tax formulas",
+          "Multi-layer neural networks",
+          "Only unlabeled tables",
+          "Handwritten rules only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q010",
+        "number": 10,
+        "prompt": "Which example can be AI without machine learning?",
+        "options": [
+          "A rule-based chess program",
+          "Linear regression",
+          "House-price regression",
+          "Customer clustering"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q011",
+        "number": 11,
+        "prompt": "In traditional programming, the main source of knowledge is:",
+        "options": [
+          "Rewards from an environment",
+          "Rules written by developers",
+          "Unlabeled data",
+          "Validation scores"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q012",
+        "number": 12,
+        "prompt": "In machine learning, the main source of knowledge is:",
+        "options": [
+          "Patterns learned from data",
+          "Only human-written if-then rules",
+          "Page layout",
+          "Hardware settings"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q013",
+        "number": 13,
+        "prompt": "Supervised learning uses training examples that contain:",
+        "options": [
+          "Inputs with correct answers (labels)",
+          "Inputs without any labels",
+          "Rewards only",
+          "No data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q014",
+        "number": 14,
+        "prompt": "Regression predicts:",
+        "options": [
+          "A continuous numerical value",
+          "Only a category",
+          "A computer program",
+          "A cluster name supplied in advance"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q015",
+        "number": 15,
+        "prompt": "Classification predicts:",
+        "options": [
+          "A continuous numerical scale only",
+          "A category or class",
+          "The size of the training set",
+          "A learning rate"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q016",
+        "number": 16,
+        "prompt": "Unsupervised learning primarily works with:",
+        "options": [
+          "Labeled data only",
+          "Unlabeled data",
+          "Test-set labels only",
+          "Human-written formulas"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q017",
+        "number": 17,
+        "prompt": "Semi-supervised learning combines:",
+        "options": [
+          "Only labeled data",
+          "Only rewards",
+          "A small labeled set and a larger unlabeled set",
+          "Two test sets"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q018",
+        "number": 18,
+        "prompt": "Reinforcement learning is guided by:",
+        "options": [
+          "Rewards received through interaction",
+          "Only class labels",
+          "Fixed database rules",
+          "Page numbers"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q019",
+        "number": 19,
+        "prompt": "In reinforcement learning, the learner or decision-maker is called the:",
+        "options": [
+          "Feature",
+          "Agent",
+          "Label",
+          "Metric"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q020",
+        "number": 20,
+        "prompt": "In reinforcement learning, a policy is:",
+        "options": [
+          "The strategy used to choose actions",
+          "The raw dataset",
+          "The test split",
+          "A target label"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q021",
+        "number": 21,
+        "prompt": "A feature is best defined as:",
+        "options": [
+          "An input variable used by a model",
+          "The final evaluation only",
+          "A row number",
+          "The correct output in every task"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q022",
+        "number": 22,
+        "prompt": "A label or target is:",
+        "options": [
+          "A measurable input property",
+          "The value the model should predict in supervised learning",
+          "A validation fold",
+          "An unlabeled cluster"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q023",
+        "number": 23,
+        "prompt": "An observation (sample/instance) is:",
+        "options": [
+          "One case represented by a row in a dataset",
+          "A column containing only labels",
+          "A performance metric",
+          "A neural-network layer"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q024",
+        "number": 24,
+        "prompt": "The symbol X usually represents the:",
+        "options": [
+          "Target vector",
+          "Feature matrix",
+          "Test score",
+          "Reward"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q025",
+        "number": 25,
+        "prompt": "The main purpose of the training set is to:",
+        "options": [
+          "Fit model parameters",
+          "Provide the final independent estimate",
+          "Be inspected repeatedly after deployment",
+          "Replace validation"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q026",
+        "number": 26,
+        "prompt": "The main purpose of the validation set is to:",
+        "options": [
+          "Guide model selection and tuning",
+          "Serve only as raw unlabeled data",
+          "Report final untouched performance",
+          "Store deployment logs"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q027",
+        "number": 27,
+        "prompt": "The main purpose of the test set is to:",
+        "options": [
+          "Tune hyperparameters repeatedly",
+          "Provide a final independent estimate",
+          "Fit neural-network weights",
+          "Create provisional labels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q028",
+        "number": 28,
+        "prompt": "In 5-fold cross-validation, each fold serves as validation data:",
+        "options": [
+          "Five times",
+          "Once",
+          "Never",
+          "Only after deployment"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q029",
+        "number": 29,
+        "prompt": "Which pattern most strongly indicates overfitting?",
+        "options": [
+          "Poor training and poor validation performance",
+          "Very good training performance but noticeably weaker validation/test performance",
+          "Good and similar training and validation performance",
+          "No model training"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q030",
+        "number": 30,
+        "prompt": "Which pattern most strongly indicates underfitting?",
+        "options": [
+          "Very good training but weak validation",
+          "Poor training and poor validation performance",
+          "Perfect test performance only",
+          "Low training error with high variance"
+        ],
+        "correctOption": 1
+      }
+    ],
+    "medium": [
+      {
+        "id": "foundations_q031",
+        "number": 31,
+        "prompt": "A company must calculate tax using a reliable fixed formula. According to the module, the better approach is usually:",
+        "options": [
+          "Deep learning",
+          "Reinforcement learning",
+          "Ordinary rule-based programming",
+          "Semi-supervised learning"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q032",
+        "number": 32,
+        "prompt": "Why can an ML detector handle varied views of cars better than a simple 'four wheels means car' rule?",
+        "options": [
+          "It learns visual patterns from many labeled examples",
+          "It never needs training data",
+          "It uses only a fixed formula",
+          "It ignores unusual lighting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q033",
+        "number": 33,
+        "prompt": "Which sequence reflects how a deep neural network may build image representations?",
+        "options": [
+          "Objects -> parts -> textures -> edges -> pixels",
+          "Pixels -> edges -> textures -> parts -> objects",
+          "Labels -> rewards -> folds -> clusters -> objects",
+          "Rules -> taxes -> metrics -> outputs -> pixels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q034",
+        "number": 34,
+        "prompt": "If class proportions must be preserved when splitting data, which approach should be used?",
+        "options": [
+          "Chronological splitting",
+          "Stratified splitting",
+          "Group-aware splitting",
+          "Random deployment"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q035",
+        "number": 35,
+        "prompt": "Several rows in a dataset belong to the same person. Which splitting method is most appropriate?",
+        "options": [
+          "Group-aware splitting",
+          "Stratified splitting only",
+          "Chronological splitting in every case",
+          "No split"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q036",
+        "number": 36,
+        "prompt": "For a forecasting problem where future observations are the target, the module recommends:",
+        "options": [
+          "Chronological splitting",
+          "Mixing future data into training",
+          "Repeated test inspection",
+          "Ignoring time order"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q037",
+        "number": 37,
+        "prompt": "To avoid leakage, preprocessing steps should be fitted:",
+        "options": [
+          "On the full dataset before splitting",
+          "On the test set only",
+          "On the training data only",
+          "Separately on every prediction"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q038",
+        "number": 38,
+        "prompt": "Cross-validation is especially useful when:",
+        "options": [
+          "A single validation split would be unstable",
+          "The test set should be tuned repeatedly",
+          "Labels are never available",
+          "A fixed formula already solves the task"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q039",
+        "number": 39,
+        "prompt": "What is the first step in the module's machine-learning workflow?",
+        "options": [
+          "Deploy and monitor",
+          "Define the problem",
+          "Test once",
+          "Tune hyperparameters"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q040",
+        "number": 40,
+        "prompt": "After exploring and preparing the data, what comes next in the workflow?",
+        "options": [
+          "Establish a baseline",
+          "Deploy immediately",
+          "Delete the test set",
+          "Collect rewards"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q041",
+        "number": 41,
+        "prompt": "Why does the workflow recommend a baseline?",
+        "options": [
+          "A complex model should outperform a meaningful simple rule or model",
+          "A baseline replaces all validation",
+          "A baseline guarantees fairness",
+          "A baseline is the final deployment model in every project"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q042",
+        "number": 42,
+        "prompt": "Why must a deployed model be monitored?",
+        "options": [
+          "Real-world data, behavior and policies can change",
+          "Deployment guarantees permanent accuracy",
+          "Monitoring is needed only to increase training-set size",
+          "Test data must be changed every day"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q043",
+        "number": 43,
+        "prompt": "Detecting unusual financial transactions is described as:",
+        "options": [
+          "Only regression",
+          "Unsupervised or supervised anomaly detection",
+          "Only reinforcement learning",
+          "Traditional programming only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q044",
+        "number": 44,
+        "prompt": "Grouping retail customers into segments is most closely associated with:",
+        "options": [
+          "Clustering",
+          "Regression",
+          "Reinforcement rewards",
+          "Fixed formulas"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q045",
+        "number": 45,
+        "prompt": "Which statement is a limitation of machine learning noted in the module?",
+        "options": [
+          "Correlation learned from data automatically proves causation",
+          "Correlation learned from data does not automatically establish causation",
+          "ML never depends on data quality",
+          "Complex models are always easy to audit"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q046",
+        "number": 46,
+        "prompt": "Which situation makes ML a poor choice according to the module?",
+        "options": [
+          "The target can be defined consistently",
+          "A useful action follows from the prediction",
+          "The target cannot be defined or measured consistently",
+          "Representative data are available"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q047",
+        "number": 47,
+        "prompt": "Which action is recommended for reducing underfitting?",
+        "options": [
+          "Use more informative features",
+          "Repeatedly inspect the test set",
+          "Increase leakage",
+          "Remove all training data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q048",
+        "number": 48,
+        "prompt": "Which action is recommended for reducing overfitting?",
+        "options": [
+          "Apply regularization or early stopping",
+          "Make the model more flexible without limit",
+          "Tune only on the test set",
+          "Use noisier features"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q049",
+        "number": 49,
+        "prompt": "High bias typically produces:",
+        "options": [
+          "Low training error and high validation error",
+          "High training and validation errors",
+          "Perfect test scores",
+          "No simplifying assumptions"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q050",
+        "number": 50,
+        "prompt": "High variance typically produces:",
+        "options": [
+          "Low training error but high validation/test error",
+          "High training and validation errors only",
+          "Identical results across all splits",
+          "No sensitivity to training data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q051",
+        "number": 51,
+        "prompt": "Technical 'high bias' in the module refers to:",
+        "options": [
+          "Simplifying prediction error",
+          "Social or demographic unfairness only",
+          "Privacy controls",
+          "Environmental cost"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q052",
+        "number": 52,
+        "prompt": "Which is an example control for fairness?",
+        "options": [
+          "Evaluate group metrics and improve representation",
+          "Repeatedly inspect the test set",
+          "Remove all documentation",
+          "Increase model complexity"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q053",
+        "number": 53,
+        "prompt": "Which is an example privacy control?",
+        "options": [
+          "Data minimization and access control",
+          "Unlimited retention",
+          "Public access to personal data",
+          "Repeated retraining without purpose"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q054",
+        "number": 54,
+        "prompt": "Which control best supports transparency?",
+        "options": [
+          "Model cards, clear notices and documented limitations",
+          "Hidden model purpose",
+          "Removing explanations",
+          "Ignoring affected users"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q055",
+        "number": 55,
+        "prompt": "Which control best supports safety and reliability?",
+        "options": [
+          "Fallback rules and human review",
+          "No stress testing",
+          "Unlimited access",
+          "Ignoring uncertain predictions"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q056",
+        "number": 56,
+        "prompt": "Which control best supports accountability?",
+        "options": [
+          "Named owners, audit logs and escalation routes",
+          "No assigned responsibility",
+          "Only higher accuracy",
+          "More unlabeled data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q057",
+        "number": 57,
+        "prompt": "House-price prediction in the practical example is:",
+        "options": [
+          "Unsupervised clustering",
+          "Supervised regression",
+          "Reinforcement learning",
+          "Multilabel classification"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q058",
+        "number": 58,
+        "prompt": "In the house-price example, the label/target is:",
+        "options": [
+          "Area",
+          "Number of bedrooms",
+          "Recorded sale price",
+          "Property age"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q059",
+        "number": 59,
+        "prompt": "What simple baseline is suggested for the house-price example?",
+        "options": [
+          "Predict the median price",
+          "Predict a random category",
+          "Use the test-set mean after tuning",
+          "Always use a deep neural network"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q060",
+        "number": 60,
+        "prompt": "If the student-performance target is 'support needed: yes/no', the task is:",
+        "options": [
+          "Regression",
+          "Classification",
+          "Clustering",
+          "Dimensionality reduction"
+        ],
+        "correctOption": 1
+      }
+    ],
+    "hard": [
+      {
+        "id": "foundations_q061",
+        "number": 61,
+        "prompt": "A system uses several years of electricity-demand and weather records to predict tomorrow's demand. Which T-E-P combination best matches the module?",
+        "options": [
+          "T = collect weather; E = tomorrow's demand; P = number of features",
+          "T = forecast demand; E = historical demand and weather; P = MAE or RMSE",
+          "T = tune a model; E = MAE; P = historical records",
+          "T = classify weather; E = test set; P = reward"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q062",
+        "number": 62,
+        "prompt": "A decision-tree procedure is applied to training data and produces a trained tree containing learned if-then decisions. Which statement is correct?",
+        "options": [
+          "The procedure is the model and the trained tree is the algorithm",
+          "The procedure is the learning algorithm and the trained tree is the model",
+          "Both are test sets",
+          "Both are performance metrics"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q063",
+        "number": 63,
+        "prompt": "A project predicts a person's exact age in years. Another project predicts one of the bands 'child/adult/senior.' How should these tasks be classified?",
+        "options": [
+          "Both are regression",
+          "Exact age is regression; age band is classification",
+          "Exact age is classification; age band is regression",
+          "Both are clustering"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q064",
+        "number": 64,
+        "prompt": "A retailer has customer records with no known segment labels and wants the system to discover natural groups. Which choice best fits?",
+        "options": [
+          "Supervised regression",
+          "Unsupervised clustering",
+          "Reinforcement learning",
+          "Traditional programming"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q065",
+        "number": 65,
+        "prompt": "In a semi-supervised pipeline, an initial model assigns provisional labels to unlabeled data. What is the key risk highlighted in the module?",
+        "options": [
+          "Provisional labels always become ground truth",
+          "Incorrect pseudo-labels can reinforce the model's own mistakes",
+          "The test set becomes larger automatically",
+          "Reinforcement rewards disappear"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q066",
+        "number": 66,
+        "prompt": "An agent chooses an action that gives a small reward now, but another strategy would yield greater rewards over time. According to the module, reinforcement learning should focus on:",
+        "options": [
+          "Maximizing only the immediate reward",
+          "Maximizing long-term reward",
+          "Minimizing the number of states only",
+          "Converting the task into clustering"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q067",
+        "number": 67,
+        "prompt": "A robot usually chooses a proven route but occasionally tries a new route to discover a potentially better strategy. This is an example of balancing:",
+        "options": [
+          "Bias and privacy",
+          "Exploration and exploitation",
+          "Training and testing",
+          "Regression and classification"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q068",
+        "number": 68,
+        "prompt": "A model uses a student's final examination result to predict whether that same student will pass the examination. What is the main problem?",
+        "options": [
+          "High bias",
+          "Data leakage",
+          "Reinforcement learning",
+          "Group-aware splitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q069",
+        "number": 69,
+        "prompt": "A team keeps changing hyperparameters until performance on one validation set becomes extremely high. Which risk does the module warn about?",
+        "options": [
+          "Overfitting to validation data",
+          "Underfitting the training data automatically",
+          "Removing labels",
+          "Converting regression into clustering"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q070",
+        "number": 70,
+        "prompt": "A development team repeatedly checks the test set after every model change. Why is this methodologically weak?",
+        "options": [
+          "The model may adapt indirectly to the test set, making the final estimate optimistic",
+          "The test set is designed for repeated tuning",
+          "It guarantees better generalization",
+          "It converts the test set into unlabeled data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q071",
+        "number": 71,
+        "prompt": "Which interpretation of the 70/15/15 split is correct?",
+        "options": [
+          "It is mandatory for all ML projects",
+          "It is only an example; percentages vary with dataset size and project needs",
+          "It applies only to reinforcement learning",
+          "It means 70 folds, 15 features and 15 labels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q072",
+        "number": 72,
+        "prompt": "A model uses 5-fold cross-validation during development. Which evaluation sequence is most consistent with the module?",
+        "options": [
+          "Train once on all five folds and tune on the test set",
+          "Rotate each fold as validation, average the five scores, then use the untouched test set after choices are complete",
+          "Use the test set as one of the five folds",
+          "Evaluate only the best training fold"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q073",
+        "number": 73,
+        "prompt": "A model performs well at launch but becomes inaccurate months later because customer behavior changes. Which workflow concept best explains the required response?",
+        "options": [
+          "Deployment is the finish line",
+          "Detect data drift and monitor/retrain when justified",
+          "Reuse the original test score forever",
+          "Remove all validation"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q074",
+        "number": 74,
+        "prompt": "A team chooses a fashionable algorithm before defining the decision to be supported, the cost of errors, or the needed explanation level. Which principle has it violated?",
+        "options": [
+          "Problem first, algorithm second",
+          "Test first, training second",
+          "Reward first, state second",
+          "Label first, feature second"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q075",
+        "number": 75,
+        "prompt": "A dataset is small, biased and does not represent the population where the model will be deployed. What does the module suggest?",
+        "options": [
+          "ML is automatically the best choice",
+          "This is a reason ML may be the wrong choice",
+          "Use the test set as training data",
+          "Increase model complexity only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q076",
+        "number": 76,
+        "prompt": "A prediction error could be unacceptable unless a qualified human reviews each case. According to the module, what should the team conclude?",
+        "options": [
+          "ML should be deployed without safeguards",
+          "ML may be the wrong choice without guaranteed human review",
+          "Remove accountability controls",
+          "Use unlabeled data only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q077",
+        "number": 77,
+        "prompt": "A model has poor training performance and poor validation performance. Which action is most aligned with the module?",
+        "options": [
+          "Use more informative features or a model capable of representing the pattern",
+          "Repeatedly tune on the test set",
+          "Reduce the training data",
+          "Increase leakage"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q078",
+        "number": 78,
+        "prompt": "A model has extremely strong training performance but substantially weaker validation performance. Which diagnosis and response best match the module?",
+        "options": [
+          "High variance/overfitting; consider reducing complexity or applying regularization",
+          "High bias/underfitting; increase regularization",
+          "Good generalization; make no checks",
+          "Unsupervised learning; add rewards"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q079",
+        "number": 79,
+        "prompt": "A model is underfitting because regularization is excessively strong. Which adjustment is specifically suggested?",
+        "options": [
+          "Reduce excessive regularization",
+          "Increase regularization further",
+          "Repeatedly inspect test results",
+          "Remove informative features"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q080",
+        "number": 80,
+        "prompt": "Which intervention is most directly aimed at overfitting rather than underfitting?",
+        "options": [
+          "Early stopping",
+          "Reducing excessive regularization",
+          "Making the model capable of representing more complex patterns",
+          "Increasing insufficient training"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q081",
+        "number": 81,
+        "prompt": "Performance drops sharply for a subgroup and also in a new time period. According to the diagnostic questions, what should be investigated?",
+        "options": [
+          "Distribution shift, data quality and fairness",
+          "Only page formatting",
+          "Whether all labels can be removed",
+          "Whether the algorithm name is fashionable"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q082",
+        "number": 82,
+        "prompt": "A student-risk model has high overall accuracy but misses most at-risk students in a smaller subgroup. What is the best conclusion?",
+        "options": [
+          "Overall accuracy alone is sufficient",
+          "Accuracy is not enough; evaluate subgroup performance and choose metrics/safeguards based on false-positive and false-negative costs",
+          "Remove human review",
+          "Use the subgroup as the test set only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q083",
+        "number": 83,
+        "prompt": "A student-risk model uses a protected characteristic as a shortcut for identifying who may need support. Which response is most consistent with the module?",
+        "options": [
+          "Keep it because accuracy is the only concern",
+          "Avoid protected characteristics as shortcuts and evaluate performance across relevant groups",
+          "Hide the system purpose",
+          "Give unrestricted access to predictions"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q084",
+        "number": 84,
+        "prompt": "A team retrains a very large model every day even though performance has not changed and no new need is identified. Which ethical concern is most directly involved?",
+        "options": [
+          "Environmental impact",
+          "Classification threshold",
+          "Feature vector size only",
+          "Group-aware splitting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q085",
+        "number": 85,
+        "prompt": "Which control set best addresses security and misuse?",
+        "options": [
+          "Threat modeling, secure deployment, monitoring and access restrictions",
+          "Model cards and notices only",
+          "Median-price prediction",
+          "Chronological splitting only"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q086",
+        "number": 86,
+        "prompt": "A house-price system is deployed as if its output were a guaranteed market valuation. Which module recommendation has been ignored?",
+        "options": [
+          "Clearly state that the estimate is not a guaranteed market valuation and monitor market drift",
+          "Always use only area as a feature",
+          "Remove test evaluation",
+          "Convert the target into a cluster"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q087",
+        "number": 87,
+        "prompt": "A property model is intended to predict future house sales. Which split is most appropriate according to the practical example?",
+        "options": [
+          "Time/chronological split",
+          "Randomly mix future sales into training",
+          "Use only the validation set",
+          "No test set"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q088",
+        "number": 88,
+        "prompt": "A house-price model uses only property area and shows large errors. Which interpretation best matches the module?",
+        "options": [
+          "Area alone may be insufficient; adding useful features can reduce error, but poor-quality or leaked information can still make the model unreliable",
+          "Area alone must always be sufficient",
+          "The task should become reinforcement learning",
+          "More features always guarantee causation"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q089",
+        "number": 89,
+        "prompt": "In the practical house-price figure, the star representing a new house is best interpreted as:",
+        "options": [
+          "A learned prediction for a new case",
+          "A validation fold",
+          "A reward signal",
+          "A manually written rule"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q090",
+        "number": 90,
+        "prompt": "What does generalization mean in the module?",
+        "options": [
+          "Memorizing the training set exactly",
+          "Performing well on new observations from the intended real-world population",
+          "Maximizing training accuracy only",
+          "Reusing the test set for tuning"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q091",
+        "number": 91,
+        "prompt": "Results vary greatly across cross-validation folds and random splits. What does the module say this may indicate?",
+        "options": [
+          "Instability or limited data",
+          "Guaranteed fairness",
+          "Perfect generalization",
+          "A fixed deterministic rule"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q092",
+        "number": 92,
+        "prompt": "Which statement best captures the bias-variance trade-off?",
+        "options": [
+          "Reducing one source of error can increase the other, so useful complexity often lies between extreme simplicity and extreme flexibility",
+          "Bias and variance always fall together",
+          "The most complex model always has the best balance",
+          "Bias refers only to demographic unfairness"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q093",
+        "number": 93,
+        "prompt": "A dataset has 200 input variables, and the goal is to represent them with fewer informative dimensions without target labels. Which unsupervised task fits best?",
+        "options": [
+          "Dimensionality reduction",
+          "Classification",
+          "Regression",
+          "Reinforcement learning"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q094",
+        "number": 94,
+        "prompt": "A retailer wants to discover which items commonly occur together in customer purchases. Which unsupervised technique named in the module is most relevant?",
+        "options": [
+          "Association analysis",
+          "Regression",
+          "Early stopping",
+          "Stratified splitting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q095",
+        "number": 95,
+        "prompt": "An image can simultaneously receive the labels 'outdoor,' 'person,' and 'vehicle.' Which classification setting does this illustrate?",
+        "options": [
+          "Binary classification",
+          "Multiclass classification",
+          "Multilabel classification",
+          "Regression"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "foundations_q096",
+        "number": 96,
+        "prompt": "A team standardizes all data using statistics calculated from the full dataset before splitting into training, validation and test sets. Which correction follows the module?",
+        "options": [
+          "Fit preprocessing only on training data, then apply it to validation and test data",
+          "Fit preprocessing only on the test data",
+          "Keep the current method because leakage cannot occur in preprocessing",
+          "Remove the training set"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q097",
+        "number": 97,
+        "prompt": "A medical dataset contains multiple visits from the same patient. What split best reduces the chance that information from one patient appears across training and evaluation subsets?",
+        "options": [
+          "Group-aware splitting",
+          "Stratified splitting only",
+          "Random splitting with no grouping",
+          "Reinforcement splitting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q098",
+        "number": 98,
+        "prompt": "Which statement correctly represents the relationship among AI, ML and DL?",
+        "options": [
+          "Every AI system uses ML and every ML system uses DL",
+          "AI is broad; ML is a major approach within AI; DL is a family of ML methods",
+          "DL is broader than AI",
+          "ML and AI are unrelated"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "foundations_q099",
+        "number": 99,
+        "prompt": "A transparent lawful rule solves a deterministic eligibility calculation exactly. Why might ordinary programming be preferable to ML?",
+        "options": [
+          "It can be simpler, cheaper and more transparent when a reliable rule exists",
+          "ML is required whenever data exist",
+          "Rule-based systems cannot produce outputs",
+          "ML always provides causation"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "foundations_q100",
+        "number": 100,
+        "prompt": "Which sequence is closest to the complete workflow in the module?",
+        "options": [
+          "Define problem -> collect data -> explore/prepare -> establish baseline -> train candidates -> validate/tune -> test once -> deploy/monitor",
+          "Test -> deploy -> collect data -> define problem -> train",
+          "Collect rewards -> cluster -> test repeatedly -> deploy",
+          "Choose fashionable algorithm -> deploy -> define target"
+        ],
+        "correctOption": 0
+      }
+    ]
+  }
+}

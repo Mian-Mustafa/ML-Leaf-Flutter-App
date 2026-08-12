@@ -72,15 +72,23 @@ flutter:
   assets:
     - assets/content/
     - assets/content/lessons/
+    - assets/content/quizzes/
     - assets/images/foundations/
     - assets/images/data_preprocessing/
     - assets/images/supervised_learning/
+    - assets/images/supervised_learning/quiz_figures/
     - assets/images/regression/
+    - assets/images/regression/quiz_figures/
     - assets/images/classification/
+    - assets/images/classification/quiz_figures/
     - assets/images/unsupervised_learning/
+    - assets/images/unsupervised_learning/quiz_figures/
     - assets/images/model_evaluation/
+    - assets/images/model_evaluation/quiz_figures/
     - assets/images/feature_engineering/
+    - assets/images/feature_engineering/quiz_figures/
     - assets/images/ensemble_methods/
+    - assets/images/ensemble_methods/quiz_figures/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

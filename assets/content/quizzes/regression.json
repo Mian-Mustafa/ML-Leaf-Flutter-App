@@ -1,0 +1,1222 @@
+{
+  "contentVersion": 1,
+  "moduleId": "regression",
+  "title": "Regression",
+  "levels": {
+    "easy": [
+      {
+        "id": "regression_q001",
+        "number": 1,
+        "prompt": "What type of target variable is most appropriate for a regression problem?",
+        "options": [
+          "A continuous numerical value",
+          "A class label only",
+          "A binary category only",
+          "An unordered text label"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q002",
+        "number": 2,
+        "prompt": "Simple linear regression uses how many input features in its basic form?",
+        "options": [
+          "Two",
+          "One",
+          "Exactly three",
+          "Any number except one"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q002.png"
+      },
+      {
+        "id": "regression_q003",
+        "number": 3,
+        "prompt": "In house-price prediction, which item is usually the target variable?",
+        "options": [
+          "Number of bedrooms",
+          "Living area",
+          "House price",
+          "Neighborhood name"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q004",
+        "number": 4,
+        "prompt": "Using residual = actual - predicted, which formula is correct?",
+        "options": [
+          "Predicted value - actual value",
+          "Actual value + predicted value",
+          "Predicted value / actual value",
+          "Actual value - predicted value"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q005",
+        "number": 5,
+        "prompt": "If a residual is positive, what happened?",
+        "options": [
+          "The model underpredicted",
+          "The model overpredicted",
+          "The prediction was exact",
+          "The target must be negative"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q006",
+        "number": 6,
+        "prompt": "Ordinary Least Squares (OLS) chooses coefficients mainly by minimizing:",
+        "options": [
+          "The number of features",
+          "The sum of squared residuals",
+          "The target mean",
+          "The number of rows"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q007",
+        "number": 7,
+        "prompt": "In y_hat = b0 + b1x, what does b1 represent?",
+        "options": [
+          "The residual",
+          "The target mean",
+          "The slope",
+          "The sample size"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q008",
+        "number": 8,
+        "prompt": "In a linear regression equation, the intercept is the predicted target when:",
+        "options": [
+          "All residuals are zero",
+          "R-squared is one",
+          "The dataset has one row",
+          "All predictors are zero"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q009",
+        "number": 9,
+        "prompt": "Multiple linear regression differs from simple linear regression because it:",
+        "options": [
+          "Uses more than one predictor",
+          "Can only predict categories",
+          "Has no intercept",
+          "Cannot use numerical data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q010",
+        "number": 10,
+        "prompt": "A degree-2 polynomial regression for one feature can include which additional term?",
+        "options": [
+          "1/x only",
+          "x^2",
+          "log(x) only",
+          "A class label"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q011",
+        "number": 11,
+        "prompt": "Ridge Regression uses which regularization penalty?",
+        "options": [
+          "L1 penalty only",
+          "No penalty",
+          "L2 penalty",
+          "Classification loss"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q012",
+        "number": 12,
+        "prompt": "Lasso Regression is also known as:",
+        "options": [
+          "L2-only regression",
+          "Unregularized regression",
+          "Tree regression",
+          "L1-regularized regression"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q013",
+        "number": 13,
+        "prompt": "Elastic Net combines which two regularization ideas?",
+        "options": [
+          "L1 and L2",
+          "MAE and R-squared",
+          "Bagging and boosting",
+          "Classification and clustering"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q014",
+        "number": 14,
+        "prompt": "What usually happens to Ridge coefficients as regularization strength increases?",
+        "options": [
+          "They all become exactly one",
+          "They shrink toward zero",
+          "They always change sign",
+          "They become class probabilities"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q015",
+        "number": 15,
+        "prompt": "Which method can set some regression coefficients exactly to zero?",
+        "options": [
+          "Ordinary least squares only",
+          "MAE",
+          "Lasso",
+          "R-squared"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q016",
+        "number": 16,
+        "prompt": "A leaf node in a regression decision tree typically predicts:",
+        "options": [
+          "A class name only",
+          "The number of branches",
+          "A correlation coefficient only",
+          "A numerical value such as the mean target in that leaf"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q017",
+        "number": 17,
+        "prompt": "Random Forest Regression produces its final prediction mainly by:",
+        "options": [
+          "Averaging predictions from many trees",
+          "Using only the deepest tree",
+          "Choosing the largest tree prediction",
+          "Summing feature names"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q018",
+        "number": 18,
+        "prompt": "What is bootstrap sampling?",
+        "options": [
+          "Sorting rows by target value",
+          "Sampling training rows with replacement",
+          "Removing all duplicate rows",
+          "Using only the test set"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q019",
+        "number": 19,
+        "prompt": "The central idea of Support Vector Regression (SVR) includes:",
+        "options": [
+          "A confusion matrix",
+          "A class probability threshold",
+          "An epsilon-insensitive tube",
+          "A decision-tree leaf"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q020",
+        "number": 20,
+        "prompt": "Which regression metric is expressed in the same units as the target?",
+        "options": [
+          "MSE only",
+          "Variance only",
+          "Squared residual sum only",
+          "MAE"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q021",
+        "number": 21,
+        "prompt": "MSE stands for:",
+        "options": [
+          "Mean Squared Error",
+          "Median Standard Estimate",
+          "Model Score Efficiency",
+          "Mean Sample Equation"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q022",
+        "number": 22,
+        "prompt": "RMSE is calculated by taking the square root of:",
+        "options": [
+          "MAE",
+          "MSE",
+          "R-squared",
+          "Adjusted R-squared"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q023",
+        "number": 23,
+        "prompt": "An R-squared value of 1 indicates:",
+        "options": [
+          "The model predicts only the mean",
+          "The model is worse than baseline",
+          "Perfect fit on the evaluated data",
+          "The target has no variation"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q024",
+        "number": 24,
+        "prompt": "A negative test R-squared generally means the model is:",
+        "options": [
+          "Perfectly calibrated",
+          "Always underpredicting",
+          "Using too few rows only",
+          "Worse than predicting the target mean as a baseline"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q025",
+        "number": 25,
+        "prompt": "Homoskedasticity means:",
+        "options": [
+          "Residual variance is approximately constant",
+          "All predictors are normally distributed",
+          "All coefficients equal zero",
+          "The target has no outliers"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q026",
+        "number": 26,
+        "prompt": "Multicollinearity refers to:",
+        "options": [
+          "Large residuals only",
+          "Strong relationships among predictors",
+          "Missing target values",
+          "A nonlinear target by definition"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q027",
+        "number": 27,
+        "prompt": "Feature scaling is especially important for methods such as Ridge, Lasso, Elastic Net and:",
+        "options": [
+          "A basic decision tree",
+          "Random Forest only",
+          "SVR",
+          "A target mean baseline"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q028",
+        "number": 28,
+        "prompt": "Why is a train-test split used?",
+        "options": [
+          "To make the target categorical",
+          "To guarantee R-squared equals one",
+          "To remove the need for validation",
+          "To evaluate performance on unseen data"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q029",
+        "number": 29,
+        "prompt": "In k-fold cross-validation, each fold is used as validation data:",
+        "options": [
+          "Once",
+          "Never",
+          "Only after the final test",
+          "At every step simultaneously"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q030",
+        "number": 30,
+        "prompt": "Why should the final test set be protected during model development?",
+        "options": [
+          "To increase training error",
+          "To obtain an unbiased final estimate of generalization",
+          "To create polynomial features",
+          "To calculate only training metrics"
+        ],
+        "correctOption": 1
+      }
+    ],
+    "medium": [
+      {
+        "id": "regression_q031",
+        "number": 31,
+        "prompt": "A fitted model is: Predicted score = 37.9 + 5.6 x study hours. What score is predicted for 7 study hours?",
+        "options": [
+          "43.5",
+          "72.9",
+          "77.1",
+          "83.5"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q032",
+        "number": 32,
+        "prompt": "In multiple regression, a coefficient of -4.2 for age means that, holding the other predictors fixed:",
+        "options": [
+          "Age causes the target to fall by exactly 4.2",
+          "The residual decreases by 4.2 for every row",
+          "The intercept becomes -4.2",
+          "A one-unit increase in age is associated with a 4.2-unit decrease in the predicted target"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q033",
+        "number": 33,
+        "prompt": "If the actual house price is $250,000 and the predicted price is $235,000, what is the residual (actual - predicted)?",
+        "options": [
+          "$15,000",
+          "-$15,000",
+          "$485,000",
+          "$1,064"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q034",
+        "number": 34,
+        "prompt": "A residual-vs-fitted plot becomes wider as fitted values increase, forming a funnel. Which assumption is most directly violated?",
+        "options": [
+          "No multicollinearity",
+          "Homoskedasticity",
+          "Normality of predictors",
+          "Exact linear dependence"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q035",
+        "number": 35,
+        "prompt": "What does the pattern in Figure 2 most strongly suggest?",
+        "options": [
+          "Residual variance is perfectly constant",
+          "There is no model error",
+          "The model has missed nonlinear curvature",
+          "The target is categorical"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q035.png"
+      },
+      {
+        "id": "regression_q036",
+        "number": 36,
+        "prompt": "Which diagnostic plot is commonly used to assess approximate normality of regression residuals?",
+        "options": [
+          "Confusion matrix",
+          "ROC curve",
+          "Dendrogram",
+          "Q-Q plot"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q037",
+        "number": 37,
+        "prompt": "Which statistic is commonly used to diagnose multicollinearity?",
+        "options": [
+          "Variance Inflation Factor (VIF)",
+          "F1-score",
+          "Silhouette score",
+          "Gini impurity"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q038",
+        "number": 38,
+        "prompt": "An interaction term x1*x2 is useful when:",
+        "options": [
+          "Both predictors must be deleted",
+          "The effect of one predictor depends on the value of another predictor",
+          "The target is a class label",
+          "Residuals must be forced to zero"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q039",
+        "number": 39,
+        "prompt": "For two input features x1 and x2, a degree-2 polynomial transformation can create:",
+        "options": [
+          "Only x1 and x2",
+          "Only x1^2 and x2^2",
+          "x1, x2, x1^2, x1*x2, x2^2",
+          "Only x1/x2"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q040",
+        "number": 40,
+        "prompt": "Increasing polynomial degree too far most directly increases the risk of:",
+        "options": [
+          "Guaranteed underfitting",
+          "Eliminating all variance",
+          "Turning regression into clustering",
+          "Overfitting"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q041",
+        "number": 41,
+        "prompt": "What trend is shown in Figure 3?",
+        "options": [
+          "Coefficients shrink toward zero as regularization increases",
+          "All coefficients become larger with alpha",
+          "Regularization changes the target mean only",
+          "Every coefficient becomes exactly zero immediately"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q041.png"
+      },
+      {
+        "id": "regression_q042",
+        "number": 42,
+        "prompt": "If Lasso regularization strength is set excessively high, the most likely result is:",
+        "options": [
+          "Guaranteed perfect test accuracy",
+          "Underfitting because too many coefficients are heavily shrunk or removed",
+          "A deeper decision tree",
+          "No effect on the model"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q043",
+        "number": 43,
+        "prompt": "In a common Elastic Net parameterization, l1_ratio close to 1 makes the model more:",
+        "options": [
+          "Ridge-like only",
+          "Tree-like",
+          "Lasso-like",
+          "Unregularized"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q044",
+        "number": 44,
+        "prompt": "Why should StandardScaler be placed inside a cross-validation pipeline for Ridge or Lasso?",
+        "options": [
+          "So the target becomes standardized automatically in every case",
+          "So the test fold is used to fit the scaler",
+          "So cross-validation is no longer needed",
+          "So scaling parameters are learned only from each training fold and leakage is avoided"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q045",
+        "number": 45,
+        "prompt": "A DecisionTreeRegressor with a very large max_depth is most likely to:",
+        "options": [
+          "Overfit the training data",
+          "Become a linear model",
+          "Ignore all features",
+          "Guarantee lower test error"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q046",
+        "number": 46,
+        "prompt": "Increasing min_samples_leaf in a regression tree generally makes predictions:",
+        "options": [
+          "More complex with smaller leaves",
+          "Smoother and less sensitive to tiny groups of observations",
+          "Identical to OLS",
+          "Exactly zero"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q047",
+        "number": 47,
+        "prompt": "Why does Random Forest use random subsets of features at tree splits?",
+        "options": [
+          "To guarantee every tree is identical",
+          "To remove the need for bootstrap samples",
+          "To make trees less correlated and increase ensemble diversity",
+          "To convert regression into classification"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q048",
+        "number": 48,
+        "prompt": "Out-of-bag (OOB) observations are rows that:",
+        "options": [
+          "Appear in every bootstrap sample",
+          "Belong only to the test set",
+          "Have missing target values",
+          "Were not selected in a particular tree's bootstrap sample"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q049",
+        "number": 49,
+        "prompt": "Compared with one deep decision tree, a Random Forest often improves test performance because averaging mainly reduces:",
+        "options": [
+          "Variance",
+          "The number of target values",
+          "The need for any data",
+          "The dimensionality to one feature"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q050",
+        "number": 50,
+        "prompt": "In SVR, increasing C generally means:",
+        "options": [
+          "A wider epsilon tube is guaranteed",
+          "Violations outside the epsilon tube are penalized more strongly",
+          "All points become support vectors by definition",
+          "The kernel is removed"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q051",
+        "number": 51,
+        "prompt": "If epsilon is increased in SVR while other settings stay fixed, the model generally:",
+        "options": [
+          "Penalizes smaller errors more strongly",
+          "Becomes a decision tree",
+          "Ignores a wider band of small errors",
+          "Removes the intercept"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q051.png"
+      },
+      {
+        "id": "regression_q052",
+        "number": 52,
+        "prompt": "Which SVR kernel is commonly used to model nonlinear relationships without explicitly creating polynomial columns?",
+        "options": [
+          "Linear kernel only",
+          "No kernel",
+          "Bootstrap kernel",
+          "RBF kernel"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q053",
+        "number": 53,
+        "prompt": "Figure 8 shows why MSE and RMSE are more sensitive than MAE to:",
+        "options": [
+          "Large errors and outliers",
+          "Feature names",
+          "Sample order only",
+          "Categorical labels"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q053.png"
+      },
+      {
+        "id": "regression_q054",
+        "number": 54,
+        "prompt": "A model makes absolute errors of 2, 4, 6 and 8. What is the MAE?",
+        "options": [
+          "10",
+          "5",
+          "20",
+          "4"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q055",
+        "number": 55,
+        "prompt": "Residuals are 2, -2, 4 and -4. What is the RMSE approximately?",
+        "options": [
+          "2.00",
+          "5.00",
+          "3.16",
+          "10.00"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q056",
+        "number": 56,
+        "prompt": "If SSE = 200 and SST = 1000, what is R-squared?",
+        "options": [
+          "0.20",
+          "1.20",
+          "-0.80",
+          "0.80"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q057",
+        "number": 57,
+        "prompt": "Adjusted R-squared may decrease after adding a new predictor when:",
+        "options": [
+          "The new predictor does not improve fit enough to justify added complexity",
+          "The predictor is always useful",
+          "The dataset has a test set",
+          "MAE is reported"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q058",
+        "number": 58,
+        "prompt": "Two models have nearly equal mean cross-validation RMSE. Which additional evidence is most useful for choosing the more stable model?",
+        "options": [
+          "Higher training error only",
+          "Lower variation in RMSE across folds",
+          "More predictors regardless of need",
+          "A larger test set used repeatedly during tuning"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q059",
+        "number": 59,
+        "prompt": "Which is a clear example of data leakage?",
+        "options": [
+          "Fitting a scaler only on training data",
+          "Using cross-validation on training data",
+          "Fitting a scaler on the full dataset before the train-test split",
+          "Keeping the test set protected"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q060",
+        "number": 60,
+        "prompt": "For numerical targets, a simple baseline regressor often predicts:",
+        "options": [
+          "A random class label",
+          "The maximum feature value",
+          "The R-squared score",
+          "The training-target mean"
+        ],
+        "correctOption": 3
+      }
+    ],
+    "hard": [
+      {
+        "id": "regression_q061",
+        "number": 61,
+        "prompt": "A linear model has acceptable R-squared but its residual plot shows a strong U-shape. What is the most defensible next step?",
+        "options": [
+          "Investigate nonlinear terms or a more suitable nonlinear model",
+          "Ignore the plot because R-squared is acceptable",
+          "Delete the target variable",
+          "Increase test-set reuse"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q062",
+        "number": 62,
+        "prompt": "Residuals measured over time show long positive and negative runs plus significant autocorrelation. Which assumption is most directly threatened?",
+        "options": [
+          "Homoskedasticity only",
+          "Independence of errors",
+          "No multicollinearity",
+          "Feature scaling"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q063",
+        "number": 63,
+        "prompt": "Why is heteroskedasticity especially important for classical linear-regression inference?",
+        "options": [
+          "It always makes coefficients exactly zero",
+          "It guarantees the target is nonlinear",
+          "It can make standard errors and significance tests unreliable if not handled appropriately",
+          "It makes every prediction negative"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q064",
+        "number": 64,
+        "prompt": "Which statement correctly distinguishes leverage from a large residual?",
+        "options": [
+          "Leverage and residual are identical quantities",
+          "A large residual always means high leverage",
+          "Leverage is calculated from the target only",
+          "Leverage concerns unusual predictor values, while a large residual concerns unusual prediction error"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q065",
+        "number": 65,
+        "prompt": "Cook's distance is primarily used to identify observations that:",
+        "options": [
+          "May have strong influence on the fitted regression model",
+          "Have the smallest target values",
+          "Have exactly zero residuals",
+          "Guarantee homoskedasticity"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q066",
+        "number": 66,
+        "prompt": "An important variable is omitted and is correlated with an included predictor. Which problem may result?",
+        "options": [
+          "Automatic feature scaling",
+          "Biased coefficient estimates due to model misspecification/endogeneity",
+          "Guaranteed coefficient sparsity",
+          "Lower bootstrap variance only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q067",
+        "number": 67,
+        "prompt": "With severe multicollinearity, which outcome is plausible in OLS?",
+        "options": [
+          "All residuals become exactly zero",
+          "R-squared must be negative",
+          "Individual coefficients become unstable even when overall predictions can remain reasonably good",
+          "The target becomes categorical"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q068",
+        "number": 68,
+        "prompt": "Why are standardized coefficients sometimes compared in multiple regression?",
+        "options": [
+          "They prove causal importance",
+          "They eliminate all multicollinearity",
+          "They make residual diagnostics unnecessary",
+          "They put predictors measured on different scales on a more comparable basis"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q069",
+        "number": 69,
+        "prompt": "A Ridge objective is defined here as SSE + lambda*(b1^2 + b2^2). If SSE = 40, b1 = 3, b2 = -2 and lambda = 4, what is the objective value?",
+        "options": [
+          "92",
+          "52",
+          "68",
+          "40"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q070",
+        "number": 70,
+        "prompt": "A Lasso objective is defined here as SSE + lambda*(|b1| + |b2|). If SSE = 40, b1 = 3, b2 = -2 and lambda = 2, what is the objective value?",
+        "options": [
+          "60",
+          "50",
+          "42",
+          "65"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q071",
+        "number": 71,
+        "prompt": "Use this Elastic Net penalty definition: lambda*[rho*sum|b| + (1-rho)*sum(b^2)]. For b = (2,-1), lambda = 2, rho = 0.5 and SSE = 20, what is the total objective?",
+        "options": [
+          "24",
+          "33",
+          "28",
+          "20"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q072",
+        "number": 72,
+        "prompt": "For one original feature x, a degree-3 PolynomialFeatures transformation (excluding the bias column) produces:",
+        "options": [
+          "x^3 only",
+          "x and 3x only",
+          "x, log(x), sqrt(x)",
+          "x, x^2, x^3"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q073",
+        "number": 73,
+        "prompt": "For two predictors x1 and x2, which term specifically represents a degree-2 interaction?",
+        "options": [
+          "x1*x2",
+          "x1 + x2",
+          "x1/x2",
+          "x1 - x2"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q074",
+        "number": 74,
+        "prompt": "Why can high-degree polynomial regression be dangerous for extrapolation?",
+        "options": [
+          "It cannot fit nonlinear data",
+          "Polynomial terms can grow rapidly outside the observed range and produce unrealistic predictions",
+          "It always has zero coefficients",
+          "Cross-validation becomes mathematically impossible"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q075",
+        "number": 75,
+        "prompt": "A model has training R-squared = 0.99 and test R-squared = 0.58. What is the clearest diagnosis?",
+        "options": [
+          "Likely perfect generalization",
+          "Guaranteed underfitting",
+          "Likely overfitting",
+          "No train-test gap"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q076",
+        "number": 76,
+        "prompt": "A model performs poorly on both training and cross-validation sets. Which diagnosis is most likely?",
+        "options": [
+          "Test leakage only",
+          "Perfect bias-variance balance",
+          "Excessive final-test protection",
+          "Underfitting or insufficient model capacity"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q077",
+        "number": 77,
+        "prompt": "Based only on Figure 4, which candidate has the lowest mean cross-validation RMSE?",
+        "options": [
+          "Random Forest",
+          "Linear",
+          "Ridge",
+          "Polynomial degree 2"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q077.png"
+      },
+      {
+        "id": "regression_q078",
+        "number": 78,
+        "prompt": "Why is repeatedly selecting models based on the same test-set score a methodological error?",
+        "options": [
+          "It guarantees underfitting",
+          "The test set gradually becomes part of the tuning process, making the final estimate optimistic",
+          "It makes cross-validation scores negative",
+          "It removes all residuals"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q079",
+        "number": 79,
+        "prompt": "During 5-fold cross-validation of a pipeline with imputation, scaling and Ridge Regression, what should happen inside each fold?",
+        "options": [
+          "Preprocessing is fit once on the full dataset before folds are created",
+          "The validation fold is used to fit the scaler",
+          "Preprocessing is fit on that fold's training portion, then applied to its validation portion",
+          "The final test set is added to every training fold"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q080",
+        "number": 80,
+        "prompt": "A business wants an error metric that is less dominated by a few extremely expensive houses. Which metric is the most natural first choice?",
+        "options": [
+          "MSE",
+          "SSE",
+          "Squared error of the largest house only",
+          "MAE"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q081",
+        "number": 81,
+        "prompt": "A safety-critical application wants large prediction mistakes to receive disproportionately high penalty. Which metric better reflects that preference?",
+        "options": [
+          "RMSE",
+          "MAE only",
+          "Median residual sign",
+          "R-squared alone"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q082",
+        "number": 82,
+        "prompt": "What is the ideal pattern in an actual-vs-predicted plot?",
+        "options": [
+          "All points on a horizontal line",
+          "Points close to the 45-degree diagonal",
+          "A funnel around the y-axis",
+          "Two completely separate clusters by default"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q082.png"
+      },
+      {
+        "id": "regression_q083",
+        "number": 83,
+        "prompt": "Two regression models have identical R-squared. Why might one still be clearly preferable?",
+        "options": [
+          "Identical R-squared guarantees identical predictions",
+          "R-squared already proves causation",
+          "Residual patterns, MAE/RMSE, stability and practical constraints can differ",
+          "No other diagnostics are valid"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q084",
+        "number": 84,
+        "prompt": "Which scenario can produce a negative test R-squared?",
+        "options": [
+          "The model has SSE = 0",
+          "Predictions exactly equal actual values",
+          "The target has one perfectly predicted value only",
+          "The model's squared error exceeds the error from predicting the test-target mean baseline"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q085",
+        "number": 85,
+        "prompt": "For n = 20 observations, p = 3 predictors and R-squared = 0.80, adjusted R-squared is approximately 1 - [(1-0.80)(19)/(16)] =:",
+        "options": [
+          "0.7625",
+          "0.9500",
+          "0.8000",
+          "0.2375"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q086",
+        "number": 86,
+        "prompt": "Figure 5 shows five tree predictions: 210, 230, 220, 240 and 200 ($000s). What is the Random Forest prediction if they are equally averaged?",
+        "options": [
+          "$240,000",
+          "$220,000",
+          "$200,000",
+          "$1,100,000"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q086.png"
+      },
+      {
+        "id": "regression_q087",
+        "number": 87,
+        "prompt": "A bootstrap sample used for one Random Forest tree usually:",
+        "options": [
+          "Contains every row exactly once",
+          "Contains only outliers",
+          "Contains the same number of draws as the training set and can repeat some rows",
+          "Is created from the final test set"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q088",
+        "number": 88,
+        "prompt": "Reducing max_features in a Random Forest often increases tree diversity because:",
+        "options": [
+          "Every tree receives all features in the same order",
+          "Bootstrap sampling is disabled",
+          "The target is standardized",
+          "Different trees are forced to consider different subsets of predictors at splits"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q089",
+        "number": 89,
+        "prompt": "Why does a single fully grown regression tree often have high variance?",
+        "options": [
+          "Small changes in the training data can lead to very different split structures",
+          "Its prediction is always linear",
+          "It averages hundreds of models",
+          "It cannot fit interactions"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q090",
+        "number": 90,
+        "prompt": "A regression tree is evaluating candidate splits. Which split should it prefer?",
+        "options": [
+          "The split with the longest feature name",
+          "The split that gives the greatest reduction in within-node squared error/variance",
+          "The split that creates the most leaves immediately regardless of error",
+          "The split with the highest target mean only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q091",
+        "number": 91,
+        "prompt": "A terminal leaf contains target values 200, 220 and 250. If the tree uses the mean target, what prediction does the leaf return?",
+        "options": [
+          "220.00",
+          "250.00",
+          "223.33",
+          "670.00"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q092",
+        "number": 92,
+        "prompt": "For epsilon-insensitive SVR loss L = max(0, |y - f(x)| - epsilon), if |y - f(x)| = 5 and epsilon = 2, what is the loss?",
+        "options": [
+          "5",
+          "2",
+          "7",
+          "3"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/regression/quiz_figures/quiz_q092.png"
+      },
+      {
+        "id": "regression_q093",
+        "number": 93,
+        "prompt": "What is a likely effect of choosing a very small C in SVR?",
+        "options": [
+          "The model tolerates more tube violations in exchange for stronger regularization/smoother fit",
+          "Every training point must be fit exactly",
+          "Gamma automatically becomes infinite",
+          "The epsilon tube disappears"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q094",
+        "number": 94,
+        "prompt": "With an RBF SVR, an excessively large gamma often makes the influence of each point very local, increasing the risk of:",
+        "options": [
+          "Guaranteed linearity",
+          "Overfitting",
+          "Underfitting in every dataset",
+          "Removing support vectors"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q095",
+        "number": 95,
+        "prompt": "A scatter plot shows a smooth nonlinear relationship between x and y. Which candidate is most directly designed to capture this without manually generating x^2 and x^3 terms?",
+        "options": [
+          "Simple linear regression only",
+          "Target-mean baseline",
+          "SVR with an RBF kernel",
+          "Adjusted R-squared"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q096",
+        "number": 96,
+        "prompt": "Why is feature scaling particularly important for SVR?",
+        "options": [
+          "Decision-tree splits require standardized units",
+          "Scaling guarantees no outliers",
+          "Scaling makes epsilon unnecessary",
+          "Kernel/distance calculations and regularization can be dominated by features with larger numerical scales"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "regression_q097",
+        "number": 97,
+        "prompt": "A house-price dataset has missing numerical values and a categorical neighborhood column. Which workflow best avoids leakage?",
+        "options": [
+          "Fit imputation and encoding inside a pipeline using training folds only",
+          "Impute and encode using the full dataset before splitting",
+          "Drop the target before scoring and reuse the test set for tuning",
+          "Fit all preprocessing on the test set first"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "regression_q098",
+        "number": 98,
+        "prompt": "A Random Forest reports a feature as highly important for predicting price. What conclusion is justified?",
+        "options": [
+          "The feature definitely causes price changes",
+          "The feature is predictively useful in this model, but importance alone does not establish causation",
+          "The feature has no correlation with any other predictor",
+          "The model is free from bias"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "regression_q099",
+        "number": 99,
+        "prompt": "After deploying a house-price regression model, which monitoring activity is most appropriate?",
+        "options": [
+          "Stop evaluating once the initial test score is recorded",
+          "Refit preprocessing on future labels before they arrive",
+          "Track input drift, error metrics and subgroup performance over time",
+          "Assume feature importance will never change"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "regression_q100",
+        "number": 100,
+        "prompt": "Model A has slightly lower CV RMSE than Model B, but Model B is much simpler, faster and easier to explain. Which principle should guide the final choice?",
+        "options": [
+          "Always choose the model with the most parameters",
+          "Always choose the lowest training error",
+          "Ignore cross-validation and deployment needs",
+          "The best model depends on predictive performance plus operational and interpretability requirements"
+        ],
+        "correctOption": 3
+      }
+    ]
+  }
+}

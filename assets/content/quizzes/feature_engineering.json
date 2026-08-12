@@ -1,0 +1,1222 @@
+{
+  "contentVersion": 1,
+  "moduleId": "feature_engineering",
+  "title": "Feature Engineering",
+  "levels": {
+    "easy": [
+      {
+        "id": "feature_engineering_q001",
+        "number": 1,
+        "prompt": "In a machine-learning dataset, what is a feature?",
+        "options": [
+          "The final model score",
+          "A training algorithm",
+          "An input property used to describe an observation",
+          "A row that contains no target"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q002",
+        "number": 2,
+        "prompt": "What does one observation usually correspond to in a tabular dataset?",
+        "options": [
+          "One feature column only",
+          "One validation fold",
+          "One model coefficient",
+          "One complete row"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q003",
+        "number": 3,
+        "prompt": "What is the target variable?",
+        "options": [
+          "The feature with the largest value",
+          "Any input column",
+          "A transformed training row",
+          "The output the model is expected to predict"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q004",
+        "number": 4,
+        "prompt": "In a feature matrix X, what do the columns normally represent?",
+        "options": [
+          "Predictions",
+          "Features",
+          "Loss values",
+          "Observations"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q005",
+        "number": 5,
+        "prompt": "What is the main purpose of feature engineering?",
+        "options": [
+          "To guarantee 100% accuracy",
+          "To replace validation with training",
+          "To create, transform, represent, or select inputs so useful patterns are easier to learn",
+          "To remove the need for a model"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q006",
+        "number": 6,
+        "prompt": "Which is a useful feature that can be extracted from a sale date?",
+        "options": [
+          "Final prediction error",
+          "Model learning rate",
+          "Test-set accuracy",
+          "Month of sale"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q007",
+        "number": 7,
+        "prompt": "If a rectangle has length and width columns, which engineered feature represents its area?",
+        "options": [
+          "length + target",
+          "width \u00f7 label",
+          "length \u00d7 width",
+          "length \u2212 prediction"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q008",
+        "number": 8,
+        "prompt": "An interaction feature is mainly used to represent:",
+        "options": [
+          "A missing-value count only",
+          "A random train-test split",
+          "A combined effect in which one feature's effect may depend on another",
+          "A duplicated target column"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q009",
+        "number": 9,
+        "prompt": "For one original feature x, which term is introduced by a degree-2 polynomial expansion?",
+        "options": [
+          "The target y",
+          "log(x) only",
+          "x\u00b2",
+          "1/x only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q010",
+        "number": 10,
+        "prompt": "What does binning a numerical variable do?",
+        "options": [
+          "Replaces exact values with interval or group membership",
+          "Turns the target into text",
+          "Deletes every continuous feature",
+          "Calculates a model coefficient"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q011",
+        "number": 11,
+        "prompt": "Which pandas function is commonly used for quantile/equal-frequency binning?",
+        "options": [
+          "pivot()",
+          "merge()",
+          "qcut()",
+          "dropna()"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q012",
+        "number": 12,
+        "prompt": "Which logarithmic transformation is directly suitable for non-negative data that includes zero?",
+        "options": [
+          "1/log(x)",
+          "log10(x-1)",
+          "ln(x) with no adjustment",
+          "log1p(x)"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q013",
+        "number": 13,
+        "prompt": "Look at the distribution. How should it be described?",
+        "options": [
+          "Right-skewed",
+          "Uniform",
+          "Perfectly symmetric",
+          "Left-skewed"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q013.png"
+      },
+      {
+        "id": "feature_engineering_q014",
+        "number": 14,
+        "prompt": "For a right-skewed feature, the longer tail is mainly on the:",
+        "options": [
+          "Right side",
+          "Both sides equally",
+          "Left side",
+          "Centre only"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q015",
+        "number": 15,
+        "prompt": "Which text representation records how often vocabulary words occur in each document?",
+        "options": [
+          "Min-max scaling",
+          "PCA",
+          "RFE",
+          "Bag-of-Words"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q016",
+        "number": 16,
+        "prompt": "What do bigrams represent in text feature engineering?",
+        "options": [
+          "Two numerical targets",
+          "Sequences of two consecutive tokens",
+          "Two principal components",
+          "Two train-test splits"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q017",
+        "number": 17,
+        "prompt": "Which is an aggregated customer feature?",
+        "options": [
+          "Average order value across a customer's purchases",
+          "The test accuracy",
+          "The model intercept",
+          "A random row number"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q018",
+        "number": 18,
+        "prompt": "Standardization (z-score scaling) is based mainly on the feature's:",
+        "options": [
+          "Mean and standard deviation",
+          "Target and prediction",
+          "Median only",
+          "Minimum and category labels"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q019",
+        "number": 19,
+        "prompt": "Min-max scaling commonly maps training values into which range?",
+        "options": [
+          "Any four categories",
+          "1 to 10 only",
+          "0 to 1",
+          "-100 to 100"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q020",
+        "number": 20,
+        "prompt": "Which scaling method is generally more resistant to extreme outliers?",
+        "options": [
+          "MinMaxScaler only",
+          "RobustScaler",
+          "OneHotEncoder",
+          "StandardScaler"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q021",
+        "number": 21,
+        "prompt": "Which encoding is a strong baseline for low-cardinality nominal categories?",
+        "options": [
+          "Log transformation",
+          "Ordinal encoding with an invented order",
+          "One-hot encoding",
+          "PCA"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q022",
+        "number": 22,
+        "prompt": "Which encoding should be used only when categories have a real order such as Low < Medium < High?",
+        "options": [
+          "Polynomial encoding",
+          "Ordinal encoding",
+          "Random encoding",
+          "Feature hashing only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q023",
+        "number": 23,
+        "prompt": "What is the purpose of feature selection?",
+        "options": [
+          "Keep useful inputs while removing weak or redundant ones",
+          "Mix training and test information",
+          "Replace all features with the target",
+          "Increase the number of features at any cost"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q024",
+        "number": 24,
+        "prompt": "Pearson correlation is primarily a measure of:",
+        "options": [
+          "Model runtime",
+          "Category count",
+          "Linear association",
+          "Missing-value frequency"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q025",
+        "number": 25,
+        "prompt": "What does Recursive Feature Elimination (RFE) do repeatedly?",
+        "options": [
+          "Creates only date features",
+          "Adds random targets",
+          "Shuffles the test set",
+          "Fits a model and removes the weakest feature(s)"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q026",
+        "number": 26,
+        "prompt": "Why can Lasso be used for feature selection?",
+        "options": [
+          "Its L1 penalty can shrink some coefficients exactly to zero",
+          "It makes every coefficient equal",
+          "It sorts data by date",
+          "It always creates one-hot columns"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q027",
+        "number": 27,
+        "prompt": "A high feature-importance score generally suggests that:",
+        "options": [
+          "The trained model relies more strongly on that feature",
+          "The feature must be the target",
+          "The feature is definitely causal",
+          "The feature has no predictive role"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q028",
+        "number": 28,
+        "prompt": "What pattern does the chart illustrate as dimensions increase?",
+        "options": [
+          "Every distance becomes zero",
+          "Feature space always becomes smaller",
+          "Feature-space size can grow exponentially",
+          "The target disappears"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q028.png"
+      },
+      {
+        "id": "feature_engineering_q029",
+        "number": 29,
+        "prompt": "Feature leakage occurs when training uses information that:",
+        "options": [
+          "Would not be available at the real prediction moment",
+          "Comes from valid training features",
+          "Was collected before the prediction moment",
+          "Is stored in a numerical column"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q030",
+        "number": 30,
+        "prompt": "A scikit-learn pipeline is best described as:",
+        "options": [
+          "A chart of feature importance only",
+          "A target-encoding table",
+          "A list of test predictions",
+          "An ordered sequence of transformations followed by an estimator"
+        ],
+        "correctOption": 3
+      }
+    ],
+    "medium": [
+      {
+        "id": "feature_engineering_q031",
+        "number": 31,
+        "prompt": "A house dataset contains sale_year and year_built. Which engineered feature is most directly meaningful for price modelling?",
+        "options": [
+          "house_age_at_sale = sale_year \u2212 year_built",
+          "sale_year \u00f7 model_depth",
+          "year_built + validation_score",
+          "sale_year \u00d7 target_price"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q032",
+        "number": 32,
+        "prompt": "What is the strongest evidence that a newly created feature is genuinely useful?",
+        "options": [
+          "It has a very large numerical value",
+          "It improves performance on proper validation while remaining meaningful and leakage-free",
+          "It uses information from the test set",
+          "It increases training accuracy only"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q033",
+        "number": 33,
+        "prompt": "When creating a ratio feature A/B, which practical check is essential?",
+        "options": [
+          "Always round A to zero",
+          "Fit the ratio only on the test set",
+          "Handle zero or near-zero values in B",
+          "Use the target as B"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q034",
+        "number": 34,
+        "prompt": "In an interaction plot, what pattern commonly indicates that the effect of one variable changes across levels of another?",
+        "options": [
+          "A single horizontal axis",
+          "Identical intercepts and slopes",
+          "Non-parallel lines",
+          "Perfectly parallel lines"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q035",
+        "number": 35,
+        "prompt": "For two original features x1 and x2, a degree-2 polynomial expansion with no bias contains how many columns?",
+        "options": [
+          "8",
+          "2",
+          "5",
+          "3"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q036",
+        "number": 36,
+        "prompt": "What is a common consequence of choosing an unnecessarily high polynomial degree?",
+        "options": [
+          "Automatic removal of multicollinearity",
+          "No increase in feature count",
+          "Overfitting and unstable extrapolation",
+          "Guaranteed better generalisation"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q037",
+        "number": 37,
+        "prompt": "A feature ranges from 0 to 100 and is divided into five equal-width bins. What is the bin width?",
+        "options": [
+          "5",
+          "20",
+          "10",
+          "25"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q038",
+        "number": 38,
+        "prompt": "What information is typically lost when exact numerical values are replaced by bins?",
+        "options": [
+          "The training target",
+          "Every possible ordering",
+          "The existence of all observations",
+          "Within-bin detail"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q039",
+        "number": 39,
+        "prompt": "Under log10 transformation, the sequence 10, 100, 1000 becomes:",
+        "options": [
+          "1, 2, 3",
+          "0, 1, 2",
+          "10, 20, 30",
+          "100, 10000, 1000000"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q040",
+        "number": 40,
+        "prompt": "Which statement about log transformation is correct?",
+        "options": [
+          "It guarantees a normal distribution",
+          "It compresses extreme values but does not remove outliers",
+          "It reverses the rank order of positive values",
+          "It deletes all outliers automatically"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q041",
+        "number": 41,
+        "prompt": "Which power transformation can handle zero and negative values without requiring all inputs to be strictly positive?",
+        "options": [
+          "Box-Cox",
+          "Square root only",
+          "Yeo-Johnson",
+          "Natural log only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q042",
+        "number": 42,
+        "prompt": "A distribution with a long tail toward smaller values is:",
+        "options": [
+          "Right-skewed",
+          "Left-skewed (negative skew)",
+          "Uniform",
+          "Necessarily normal"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q043",
+        "number": 43,
+        "prompt": "Why is shift(1) commonly used before a rolling mean in time-dependent feature engineering?",
+        "options": [
+          "To ensure the rolling feature uses past values rather than the current/future value",
+          "To standardize the target",
+          "To remove the time index",
+          "To sort categories alphabetically"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q044",
+        "number": 44,
+        "prompt": "What concept is illustrated by representing hours around a circle?",
+        "options": [
+          "One-hot encoding of the target",
+          "RFE",
+          "Min-max scaling",
+          "Cyclical encoding with sine/cosine components"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q044.png"
+      },
+      {
+        "id": "feature_engineering_q045",
+        "number": 45,
+        "prompt": "Why can TF-IDF be more informative than raw word counts?",
+        "options": [
+          "It emphasizes terms frequent in a document but relatively rare across documents",
+          "It converts text directly into the target",
+          "It removes all vocabulary terms",
+          "It gives every word the same weight"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q046",
+        "number": 46,
+        "prompt": "What is the main advantage of n-gram features over simple unigrams?",
+        "options": [
+          "They eliminate sparsity completely",
+          "They capture limited local word order and phrases",
+          "They require no vocabulary",
+          "They always produce fewer columns"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q047",
+        "number": 47,
+        "prompt": "To predict customer-level churn from transaction rows, which aggregation is logically appropriate?",
+        "options": [
+          "Group transactions by customer ID and summarize past behaviour",
+          "Group by the target label only",
+          "Average all customers together into one row",
+          "Use future transactions after churn"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q048",
+        "number": 48,
+        "prompt": "When can an aggregated feature cause temporal leakage?",
+        "options": [
+          "When it summarizes events that occur after the prediction time",
+          "When it counts only historical events",
+          "When it is calculated per customer",
+          "When it is stored as a number"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q049",
+        "number": 49,
+        "prompt": "What makes a feature 'domain-based'?",
+        "options": [
+          "It is always a polynomial term",
+          "It can only be created in healthcare",
+          "It encodes meaningful knowledge about the real-world process being modelled",
+          "It must come from the target"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q050",
+        "number": 50,
+        "prompt": "Which model is especially sensitive to unscaled feature magnitudes because it relies on distance?",
+        "options": [
+          "Decision tree",
+          "Naive category lookup",
+          "Rule-based splitter only",
+          "K-nearest neighbours"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q051",
+        "number": 51,
+        "prompt": "Why do decision trees usually need less feature scaling than KNN or SVM?",
+        "options": [
+          "Their splits depend mainly on ordering and thresholds rather than distance magnitude",
+          "They cannot accept numerical data",
+          "They always standardize automatically",
+          "They internally convert every feature to text"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q052",
+        "number": 52,
+        "prompt": "What is a major drawback of one-hot encoding a very high-cardinality categorical feature?",
+        "options": [
+          "It can only represent two categories",
+          "It always leaks the target",
+          "It can create a very high-dimensional sparse matrix",
+          "It imposes a false ordinal ranking"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q053",
+        "number": 53,
+        "prompt": "Target encoding must be handled carefully because it:",
+        "options": [
+          "Always produces k binary columns",
+          "Requires PCA first",
+          "Uses target statistics and can leak outcome information if fitted incorrectly",
+          "Never uses the target"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q054",
+        "number": 54,
+        "prompt": "Which feature-selection family scores features before the final predictive model is trained?",
+        "options": [
+          "Embedded methods only",
+          "Permutation prediction",
+          "Filter methods",
+          "Wrapper methods"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q055",
+        "number": 55,
+        "prompt": "Two predictors have correlation 0.97 and carry nearly the same information. What is a common feature-selection response?",
+        "options": [
+          "Use the target as a replacement",
+          "Duplicate both several times",
+          "Consider removing one after checking validation and domain meaning",
+          "Always remove both"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q056",
+        "number": 56,
+        "prompt": "Why should RFE be placed inside the cross-validation workflow?",
+        "options": [
+          "So validation rows help choose features directly",
+          "So it can see the final test labels",
+          "So feature ranking is learned only from each training fold",
+          "So scaling is never needed"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q057",
+        "number": 57,
+        "prompt": "What trend does the chart show as Lasso alpha increases?",
+        "options": [
+          "Fewer features tend to remain selected",
+          "All coefficients become larger",
+          "More features must be selected",
+          "Feature count stays exactly constant"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q057.png"
+      },
+      {
+        "id": "feature_engineering_q058",
+        "number": 58,
+        "prompt": "Permutation importance for a feature is commonly computed as:",
+        "options": [
+          "Test score \u00f7 feature variance",
+          "Baseline validation score \u2212 score after shuffling that feature",
+          "Training loss + target mean",
+          "Number of categories \u00d7 coefficient"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q059",
+        "number": 59,
+        "prompt": "Why is standardization usually performed before PCA when numerical features have very different units?",
+        "options": [
+          "Otherwise large-unit variables can dominate the variance structure",
+          "Standardization makes components equal to the target",
+          "PCA cannot process positive values",
+          "It guarantees PC1 explains 100%"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q060",
+        "number": 60,
+        "prompt": "How are nested pipeline parameters referenced in GridSearchCV?",
+        "options": [
+          "step_name__parameter_name",
+          "step_name.parameter_name only",
+          "parameter_name/step_name",
+          "target__feature"
+        ],
+        "correctOption": 0
+      }
+    ],
+    "hard": [
+      {
+        "id": "feature_engineering_q061",
+        "number": 61,
+        "prompt": "Using the validation curve, which polynomial degree gives the best generalisation choice among those shown?",
+        "options": [
+          "Degree 3",
+          "Degree 5",
+          "Degree 1",
+          "Degree 4"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q061.png"
+      },
+      {
+        "id": "feature_engineering_q062",
+        "number": 62,
+        "prompt": "According to the PCA chart, what is the minimum number of components needed to retain at least 90% cumulative explained variance?",
+        "options": [
+          "2",
+          "1",
+          "3",
+          "5"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q062.png"
+      },
+      {
+        "id": "feature_engineering_q063",
+        "number": 63,
+        "prompt": "From the correlation matrix, which pair is the strongest candidate for redundancy review?",
+        "options": [
+          "X2 and X3",
+          "X1 and X4",
+          "X3 and X4",
+          "X1 and X2"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q063.png"
+      },
+      {
+        "id": "feature_engineering_q064",
+        "number": 64,
+        "prompt": "The feature outcome_confirmed is created after the business outcome occurs. What does its unusually high permutation importance most strongly suggest?",
+        "options": [
+          "Potential target leakage",
+          "Guaranteed causality",
+          "A need to add more post-outcome features",
+          "Correct scaling"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q064.png"
+      },
+      {
+        "id": "feature_engineering_q065",
+        "number": 65,
+        "prompt": "The four bins have almost equal observation counts. Which binning strategy most likely produced this pattern?",
+        "options": [
+          "Random target encoding",
+          "Equal-frequency (quantile) binning",
+          "Equal-width binning necessarily",
+          "PCA"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/feature_engineering/quiz_figures/feature_engineering_q065.png"
+      },
+      {
+        "id": "feature_engineering_q066",
+        "number": 66,
+        "prompt": "For y = 10 + 2X1 + 3X2 + 0.5(X1\u00d7X2), what is y when X1=4 and X2=2?",
+        "options": [
+          "24",
+          "28",
+          "18",
+          "32"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q067",
+        "number": 67,
+        "prompt": "Why is centering numeric variables often useful before creating interaction terms for a linear model?",
+        "options": [
+          "It guarantees the interaction coefficient becomes zero",
+          "It converts every variable into a category",
+          "It can improve main-effect interpretation and reduce multicollinearity with product terms",
+          "It removes the need for validation"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q068",
+        "number": 68,
+        "prompt": "For n=4 original features and maximum polynomial degree d=2, how many polynomial columns are generated including the bias term?",
+        "options": [
+          "20",
+          "10",
+          "8",
+          "15"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q069",
+        "number": 69,
+        "prompt": "Why should polynomial features often be followed by scaling before fitting a regularized linear model?",
+        "options": [
+          "Scaling removes all interactions",
+          "Polynomial terms are categorical",
+          "Regularization only works on integers",
+          "Squared/cubic terms can have much larger magnitudes than original features"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q070",
+        "number": 70,
+        "prompt": "If a target was transformed with log1p(y), which function returns predictions to the original scale?",
+        "options": [
+          "StandardScaler()",
+          "log10()",
+          "sqrt()",
+          "expm1()"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q071",
+        "number": 71,
+        "prompt": "A numerical feature contains meaningful negative values, zero, and positive values with strong skew. Which learned power transform is the most directly suitable?",
+        "options": [
+          "Box-Cox",
+          "Natural log without shift",
+          "Yeo-Johnson",
+          "Reciprocal only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q072",
+        "number": 72,
+        "prompt": "Why must the lambda parameter of a learned power transformation be estimated from training data only?",
+        "options": [
+          "Power transforms cannot be used in pipelines",
+          "Lambda is the target label",
+          "Training data never contain skewness",
+          "Estimating it from all data would let validation/test distribution information influence preprocessing"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q073",
+        "number": 73,
+        "prompt": "A forecasting feature rolling_mean_7 is computed using values from t-6 through t, while the target is value at t. What is the correct fix?",
+        "options": [
+          "Shuffle time order",
+          "Shift the series first so the rolling window ends at t-1",
+          "Fit the rolling mean on the test set",
+          "Increase the window to 30 including t"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q074",
+        "number": 74,
+        "prompt": "A dataset contains repeated customers over time. What is the safest way to create each customer's lag_1 feature?",
+        "options": [
+          "Sort by customer and time, then shift separately within each customer",
+          "Shift the full dataset without grouping",
+          "Sort by target and shift",
+          "Use the next customer's value"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q075",
+        "number": 75,
+        "prompt": "A TF-IDF vectorizer is fitted on the full dataset before cross-validation. Why is this methodologically unsafe?",
+        "options": [
+          "The matrix becomes dense",
+          "TF-IDF requires labels",
+          "Cross-validation cannot use text",
+          "The vocabulary and document-frequency statistics use validation-fold information"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q076",
+        "number": 76,
+        "prompt": "A TF-IDF matrix has 50,000 sparse columns and 2,000 documents. Which strategy directly addresses excessive dimensionality while preserving a compressed representation?",
+        "options": [
+          "Duplicating rare terms",
+          "Truncated SVD",
+          "Adding more n-grams without selection",
+          "Converting every value to a date"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q077",
+        "number": 77,
+        "prompt": "Why is ordinary target-mean encoding performed on the same rows used to compute the category mean risky?",
+        "options": [
+          "It always reduces dimensionality to zero",
+          "It is identical to one-hot encoding",
+          "It creates no numerical values",
+          "Each row's target can influence its own encoded feature, causing leakage/overfitting"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q078",
+        "number": 78,
+        "prompt": "Which design makes a customer 'average spend' feature valid for predicting behaviour at time t?",
+        "options": [
+          "Use post-cancellation refunds",
+          "Use the test target to fill missing values",
+          "Use only transactions available up to time t",
+          "Use the customer's complete future lifetime purchases"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q079",
+        "number": 79,
+        "prompt": "A debt-to-income feature is defined as monthly_debt / monthly_income. What additional engineering rule is necessary?",
+        "options": [
+          "Recalculate it from test labels",
+          "Multiply the ratio by the target",
+          "Define safe handling for zero or invalid income values",
+          "Always clip it to exactly 1"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q080",
+        "number": 80,
+        "prompt": "A feature is standardized using training mean 50 and standard deviation 10. What z-score should be applied to a test value of 70?",
+        "options": [
+          "7.0",
+          "1.0",
+          "0.2",
+          "2.0"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q081",
+        "number": 81,
+        "prompt": "Why should the test set NOT be re-standardized using its own mean and standard deviation?",
+        "options": [
+          "It would make all values negative",
+          "The test set must remain categorical",
+          "The deployed transformation must use parameters learned from training, and test-specific fitting contaminates evaluation",
+          "Standardization is only for targets"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q082",
+        "number": 82,
+        "prompt": "A one-hot encoder encounters a previously unseen category at prediction time. Which pipeline option is commonly used to avoid a failure?",
+        "options": [
+          "shuffle_categories='always'",
+          "drop_all='true'",
+          "handle_unknown='ignore'",
+          "fit_on_target='yes'"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q083",
+        "number": 83,
+        "prompt": "For high-cardinality target encoding, which approach best reduces leakage during model evaluation?",
+        "options": [
+          "Sort categories by test accuracy",
+          "Compute category means using the entire dataset once",
+          "Use the test labels to stabilize rare categories",
+          "Out-of-fold encoding learned within training folds"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q084",
+        "number": 84,
+        "prompt": "A nominal feature has 100,000 categories. Which compact encoding may be considered, with careful validation for information loss/collisions?",
+        "options": [
+          "PCA on raw strings",
+          "Hashing encoding",
+          "Polynomial expansion",
+          "Ordinary ordinal ranking by category name"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q085",
+        "number": 85,
+        "prompt": "Why must supervised feature selection be nested inside cross-validation?",
+        "options": [
+          "Otherwise validation information can influence which features are chosen, producing optimistic scores",
+          "It guarantees all features are selected",
+          "It makes the test set larger",
+          "It prevents the model from fitting training data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q086",
+        "number": 86,
+        "prompt": "A predictor has Pearson correlation near zero with the target but shows a strong U-shaped relationship. What is the best conclusion?",
+        "options": [
+          "Do not discard it solely on Pearson correlation; nonlinear value may remain",
+          "It is certainly leaked",
+          "Replace it with the target",
+          "It must be useless"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q087",
+        "number": 87,
+        "prompt": "Two predictors are highly correlated. Which statement is most accurate?",
+        "options": [
+          "They may be redundant, but removal should be validated because model behaviour and domain meaning matter",
+          "Both must always be deleted",
+          "Their target correlations must be identical",
+          "Correlation proves causation"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q088",
+        "number": 88,
+        "prompt": "RFE starts with 20 features, removes 2 features per round, and stops at 6. How many elimination rounds are required?",
+        "options": [
+          "14",
+          "6",
+          "8",
+          "7"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q089",
+        "number": 89,
+        "prompt": "Why is RFE computationally expensive compared with a simple filter method?",
+        "options": [
+          "It requires the test set in every round",
+          "It repeatedly refits an estimator as features are removed",
+          "It cannot use coefficients",
+          "It calculates no feature rankings"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q090",
+        "number": 90,
+        "prompt": "Lasso repeatedly selects different members of a strongly correlated predictor group across folds. Which method may provide more stable grouped selection?",
+        "options": [
+          "Unregularized target leakage",
+          "MinMaxScaler alone",
+          "Random binning",
+          "Elastic Net"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q091",
+        "number": 91,
+        "prompt": "Why should predictors usually be scaled before Lasso-based feature selection?",
+        "options": [
+          "Lasso cannot accept negative values",
+          "Scaling converts L1 into L2",
+          "The L1 penalty acts on coefficient magnitudes, which are affected by feature units",
+          "Scaling guarantees every coefficient is nonzero"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q092",
+        "number": 92,
+        "prompt": "Why can permutation importance underestimate the importance of two strongly correlated features?",
+        "options": [
+          "Correlated features cannot be shuffled",
+          "Permutation importance always uses training labels incorrectly",
+          "When one is shuffled, the other may substitute for much of the same information",
+          "The baseline score becomes exactly zero"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q093",
+        "number": 93,
+        "prompt": "A permutation-importance score is slightly negative. What is the most defensible interpretation?",
+        "options": [
+          "Shuffling occasionally improved the score; the feature may be noise, unstable, or affected by sampling variation",
+          "The feature must be the target",
+          "The model has perfect accuracy",
+          "The feature is guaranteed harmful and causal"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "feature_engineering_q094",
+        "number": 94,
+        "prompt": "Which statement correctly distinguishes global and local SHAP explanations?",
+        "options": [
+          "Neither relates to trained-model predictions",
+          "Global SHAP summarizes feature influence across many observations; local SHAP explains an individual prediction",
+          "Global SHAP is only for one row; local SHAP is only for the full dataset",
+          "Both are identical to Pearson correlation"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q095",
+        "number": 95,
+        "prompt": "In PCA, what is the difference between loadings and scores?",
+        "options": [
+          "Loadings are row counts; scores are missing values",
+          "There is no difference",
+          "Loadings are weights/directions for original variables; scores are transformed coordinates of observations",
+          "Loadings are targets; scores are labels"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q096",
+        "number": 96,
+        "prompt": "After centering, a dataset has n=8 observations and p=12 features. What is the maximum number of non-zero principal components?",
+        "options": [
+          "8",
+          "20",
+          "7",
+          "12"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q097",
+        "number": 97,
+        "prompt": "Why can PCA sometimes hurt prediction even when it preserves most total variance?",
+        "options": [
+          "PCA always uses target labels",
+          "Principal components are always correlated",
+          "A low-variance direction discarded by PCA may still be highly predictive of the target",
+          "PCA cannot reduce dimensions"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "feature_engineering_q098",
+        "number": 98,
+        "prompt": "If each dimension is divided into 10 intervals, how many cells are formed in a 6-dimensional feature space?",
+        "options": [
+          "60",
+          "1,000,000",
+          "100,000",
+          "600"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "feature_engineering_q099",
+        "number": 99,
+        "prompt": "Why can KNN become less reliable in very high-dimensional spaces?",
+        "options": [
+          "KNN automatically removes dimensions",
+          "All features become categorical",
+          "Every observation becomes identical",
+          "Distances can concentrate so nearest and farthest neighbours become less distinguishable"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "feature_engineering_q100",
+        "number": 100,
+        "prompt": "Which workflow best prevents leakage while handling mixed numeric/categorical data and tuning a model?",
+        "options": [
+          "Split raw data; build numeric/categorical transformers in a ColumnTransformer; place it and the estimator in a Pipeline; tune the pipeline within CV; evaluate once on untouched test data",
+          "Fit separate preprocessing rules to every validation row",
+          "Encode and scale the entire dataset first; select features using all labels; then split",
+          "Tune on the test set until accuracy is highest"
+        ],
+        "correctOption": 0
+      }
+    ]
+  }
+}

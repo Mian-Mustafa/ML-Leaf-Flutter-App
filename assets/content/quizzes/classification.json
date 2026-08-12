@@ -1,0 +1,1225 @@
+{
+  "contentVersion": 1,
+  "moduleId": "classification",
+  "title": "Classification",
+  "levels": {
+    "easy": [
+      {
+        "id": "classification_q001",
+        "number": 1,
+        "prompt": "What is the main purpose of a classification model?",
+        "options": [
+          "Compress a dataset without labels",
+          "Predict an exact continuous number",
+          "Generate random samples",
+          "Predict a category or class label"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q002",
+        "number": 2,
+        "prompt": "Which task is a classification problem?",
+        "options": [
+          "Predicting a house price",
+          "Predicting tomorrow’s temperature",
+          "Predicting Spam vs Not spam",
+          "Predicting monthly sales revenue"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q003",
+        "number": 3,
+        "prompt": "A problem with exactly two mutually exclusive classes is called:",
+        "options": [
+          "Multilabel classification",
+          "Clustering",
+          "Regression",
+          "Binary classification"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q004",
+        "number": 4,
+        "prompt": "Which example is multiclass classification?",
+        "options": [
+          "Fraud vs Genuine",
+          "Predicting a person’s age",
+          "Photo tagged Beach + Sunset + People",
+          "Cat vs Dog vs Bird"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q005",
+        "number": 5,
+        "prompt": "Which example best represents multilabel classification?",
+        "options": [
+          "A flower is one of three species",
+          "A student receives one grade category",
+          "An email is either Spam or Not spam",
+          "An image can be tagged Car, Night, and Rain at the same time"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q006",
+        "number": 6,
+        "prompt": "In supervised classification, the input variables used by the model are called:",
+        "options": [
+          "Classes",
+          "Thresholds",
+          "Labels",
+          "Features"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q007",
+        "number": 7,
+        "prompt": "Using Figure A and the rule “predict positive if p ≥ 0.50,” which email is predicted negative?",
+        "options": [
+          "Email B only",
+          "Email A only",
+          "Emails B and C",
+          "Email C only"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q007.png"
+      },
+      {
+        "id": "classification_q008",
+        "number": 8,
+        "prompt": "In binary classification, labels coded as 0 and 1 usually represent:",
+        "options": [
+          "Two categories",
+          "Continuous quantities",
+          "Probabilities",
+          "Feature values"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q009",
+        "number": 9,
+        "prompt": "Which function converts the linear score in binary logistic regression into a probability between 0 and 1?",
+        "options": [
+          "Square-root function",
+          "Sigmoid function",
+          "Gini function",
+          "Euclidean function"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q010",
+        "number": 10,
+        "prompt": "K-nearest neighbours classifies a new point mainly by examining:",
+        "options": [
+          "Only the global class average",
+          "The labels of nearby training points",
+          "A sequence of decision-tree splits",
+          "The largest regression residual"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q011",
+        "number": 11,
+        "prompt": "Why is feature scaling usually important for KNN?",
+        "options": [
+          "KNN is based on distances between observations",
+          "KNN requires probabilities to sum to 1",
+          "Scaling removes the need to choose K",
+          "Scaling creates new class labels"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q012",
+        "number": 12,
+        "prompt": "In a decision tree, the first node containing the training data is called the:",
+        "options": [
+          "Root node",
+          "Leaf node",
+          "Support vector",
+          "Bootstrap node"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q013",
+        "number": 13,
+        "prompt": "A decision-tree node has Gini impurity equal to 0. What does this mean?",
+        "options": [
+          "No split is possible because features are missing",
+          "The node is perfectly pure",
+          "The classes are evenly mixed",
+          "The model has zero accuracy"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q014",
+        "number": 14,
+        "prompt": "A Random Forest Classifier is best described as:",
+        "options": [
+          "An ensemble of many randomized decision trees",
+          "A linear probability model",
+          "One very deep decision tree",
+          "A distance-only classifier"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q015",
+        "number": 15,
+        "prompt": "Bootstrap sampling in a random forest selects training observations:",
+        "options": [
+          "With replacement",
+          "Only once per observation",
+          "Only from the minority class",
+          "Without replacement"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q016",
+        "number": 16,
+        "prompt": "The main idea of a Support Vector Machine classifier is to find:",
+        "options": [
+          "A random threshold for each feature",
+          "The class with the largest prior only",
+          "A boundary with a large margin between classes",
+          "The nearest centroid only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q017",
+        "number": 17,
+        "prompt": "The training points closest to an SVM decision boundary are called:",
+        "options": [
+          "Support vectors",
+          "Residuals",
+          "Bootstrap samples",
+          "Leaf nodes"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q018",
+        "number": 18,
+        "prompt": "Why is Naive Bayes called “naive”?",
+        "options": [
+          "It uses no training data",
+          "It assumes features are conditionally independent given the class",
+          "It ignores the target label",
+          "It cannot calculate probabilities"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q019",
+        "number": 19,
+        "prompt": "Gradient boosting builds its ensemble primarily by:",
+        "options": [
+          "Training all trees independently and averaging once",
+          "Removing difficult examples after each tree",
+          "Adding weak learners sequentially to correct earlier errors",
+          "Selecting only the nearest neighbours"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q020",
+        "number": 20,
+        "prompt": "A decision boundary is:",
+        "options": [
+          "The number of features in the dataset",
+          "A probability calibration method",
+          "The final test set",
+          "A line or surface where a classifier changes its predicted class"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q021",
+        "number": 21,
+        "prompt": "A model output P(y=1|x)=0.80 is best interpreted as:",
+        "options": [
+          "A predicted probability/score for class 1",
+          "A guarantee that the prediction is correct",
+          "80% model accuracy",
+          "The number of positive samples"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q022",
+        "number": 22,
+        "prompt": "What usually happens when a binary classification threshold is lowered?",
+        "options": [
+          "Fewer cases are labelled positive",
+          "The test set becomes larger",
+          "The trained model coefficients change automatically",
+          "More cases are labelled positive"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q023",
+        "number": 23,
+        "prompt": "According to Figure B, which class is the minority class?",
+        "options": [
+          "Genuine",
+          "Cannot be determined",
+          "Fraud",
+          "Both are equal"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q023.png"
+      },
+      {
+        "id": "classification_q024",
+        "number": 24,
+        "prompt": "A true positive (TP) occurs when:",
+        "options": [
+          "An actual negative is predicted negative",
+          "An actual positive is predicted positive",
+          "An actual negative is predicted positive",
+          "An actual positive is predicted negative"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q025",
+        "number": 25,
+        "prompt": "A false positive (FP) occurs when:",
+        "options": [
+          "An actual positive is predicted positive",
+          "An actual positive is predicted negative",
+          "An actual negative is predicted positive",
+          "An actual negative is predicted negative"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q026",
+        "number": 26,
+        "prompt": "A false negative (FN) occurs when:",
+        "options": [
+          "An actual negative is predicted negative",
+          "An actual negative is predicted positive",
+          "An actual positive is predicted negative",
+          "An actual positive is predicted positive"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q027",
+        "number": 27,
+        "prompt": "Accuracy is calculated as:",
+        "options": [
+          "TP / (TP + FN)",
+          "TN / (TN + FP)",
+          "(TP + TN) / Total",
+          "TP / (TP + FP)"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q028",
+        "number": 28,
+        "prompt": "Precision answers which question?",
+        "options": [
+          "Of all actual positives, how many were found?",
+          "Of all predicted positives, how many were truly positive?",
+          "Of all negatives, how many were rejected?",
+          "How balanced are the class sizes?"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q029",
+        "number": 29,
+        "prompt": "Recall (sensitivity) is:",
+        "options": [
+          "TP / (TP + FN)",
+          "TN / (TN + FP)",
+          "(TP + TN) / Total",
+          "TP / (TP + FP)"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q030",
+        "number": 30,
+        "prompt": "The F1-score is the harmonic mean of:",
+        "options": [
+          "ROC-AUC and PR-AUC",
+          "Accuracy and specificity",
+          "Precision and recall",
+          "Sensitivity and sample size"
+        ],
+        "correctOption": 2
+      }
+    ],
+    "medium": [
+      {
+        "id": "classification_q031",
+        "number": 31,
+        "prompt": "For Figure A, which emails are predicted positive at threshold 0.50?",
+        "options": [
+          "Email C only",
+          "Email A only",
+          "Emails A and B",
+          "Emails B and C"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q031.png"
+      },
+      {
+        "id": "classification_q032",
+        "number": 32,
+        "prompt": "A multiclass classifier outputs probabilities [0.15, 0.62, 0.23] for classes A, B, and C. Using the usual argmax rule, what is the prediction?",
+        "options": [
+          "Class C",
+          "Class B",
+          "No class because no probability is 1.0",
+          "Class A"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q033",
+        "number": 33,
+        "prompt": "In One-vs-Rest (OvR) multiclass classification with four classes, how many binary classifiers are typically trained?",
+        "options": [
+          "2",
+          "6",
+          "12",
+          "4"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q034",
+        "number": 34,
+        "prompt": "In One-vs-One (OvO) classification with four classes, how many pairwise binary classifiers are required?",
+        "options": [
+          "8",
+          "6",
+          "16",
+          "4"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q035",
+        "number": 35,
+        "prompt": "Binary Relevance handles a multilabel problem by:",
+        "options": [
+          "Forcing exactly one label per item",
+          "Combining all label sets into one regression target",
+          "Training one independent binary classifier per label",
+          "Using only the most frequent label"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q036",
+        "number": 36,
+        "prompt": "What distinguishes a Classifier Chain from Binary Relevance?",
+        "options": [
+          "It does not use binary classifiers",
+          "It requires exactly two labels",
+          "It ignores label dependencies completely",
+          "It can use predictions of earlier labels as features for later labels"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q037",
+        "number": 37,
+        "prompt": "Label Powerset transforms a multilabel problem by:",
+        "options": [
+          "Converting labels into continuous targets",
+          "Dropping rare labels",
+          "Averaging all label probabilities",
+          "Treating each distinct label combination as a multiclass label"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q038",
+        "number": 38,
+        "prompt": "In logistic regression, exp(β) for a one-unit feature increase is commonly interpreted as the:",
+        "options": [
+          "Recall",
+          "Euclidean distance",
+          "Gini impurity",
+          "Odds ratio"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q039",
+        "number": 39,
+        "prompt": "Why is binary cross-entropy (log loss) suitable for logistic regression training?",
+        "options": [
+          "It evaluates probability predictions and heavily penalizes confident wrong predictions",
+          "It maximizes tree depth",
+          "It counts nearest neighbours",
+          "It removes all class imbalance automatically"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q040",
+        "number": 40,
+        "prompt": "Compared with K=1, using a much larger K in KNN usually produces:",
+        "options": [
+          "No change to the decision boundary",
+          "A decision tree instead of KNN",
+          "A more jagged boundary with lower bias",
+          "A smoother decision boundary with higher bias"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q041",
+        "number": 41,
+        "prompt": "Which distance metric sums absolute coordinate differences?",
+        "options": [
+          "Euclidean distance",
+          "Cosine probability",
+          "Manhattan distance",
+          "Gini distance"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q042",
+        "number": 42,
+        "prompt": "Based on Figure C, what class is the query point Q most likely to receive for K=3?",
+        "options": [
+          "A new third class",
+          "Class A",
+          "Class B",
+          "Cannot be predicted because K must equal 1"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q042.png"
+      },
+      {
+        "id": "classification_q043",
+        "number": 43,
+        "prompt": "A decision tree chooses a split that ideally:",
+        "options": [
+          "Produces the largest number of leaves immediately",
+          "Maximizes training sample duplication",
+          "Makes child nodes more mixed",
+          "Produces the greatest reduction in impurity"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q044",
+        "number": 44,
+        "prompt": "Which hyperparameter directly limits how deep a decision tree can grow?",
+        "options": [
+          "max_depth",
+          "gamma",
+          "n_neighbors",
+          "learning_rate"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q045",
+        "number": 45,
+        "prompt": "What is the purpose of out-of-bag (OOB) evaluation in a random forest?",
+        "options": [
+          "Select the SVM kernel",
+          "Estimate performance using observations not included in each tree’s bootstrap sample",
+          "Calculate logistic coefficients",
+          "Scale all features before each split"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q046",
+        "number": 46,
+        "prompt": "Why is standardization generally less critical for Random Forest than for KNN or SVM?",
+        "options": [
+          "Tree splits depend mainly on feature ordering and thresholds, not Euclidean scale",
+          "Bootstrap sampling performs standardization",
+          "Random Forest automatically converts all features to probabilities",
+          "All tree features must already be binary"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q047",
+        "number": 47,
+        "prompt": "According to Figure D, what is the random forest’s majority-vote prediction?",
+        "options": [
+          "Approve",
+          "Tie",
+          "Cannot be predicted without feature scaling",
+          "Reject"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q047.png"
+      },
+      {
+        "id": "classification_q048",
+        "number": 48,
+        "prompt": "In a soft-margin SVM, choosing a lower value of C generally:",
+        "options": [
+          "Makes gamma equal to zero",
+          "Allows more training violations and favors a wider margin",
+          "Forces zero training errors at any cost",
+          "Changes the task into regression"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q049",
+        "number": 49,
+        "prompt": "For an RBF SVM, a very high gamma means:",
+        "options": [
+          "Every point influences the entire feature space equally",
+          "The margin is always linear",
+          "Feature scaling becomes irrelevant",
+          "Each training point has a very local influence"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q050",
+        "number": 50,
+        "prompt": "In Figure E, the dashed lines mainly indicate:",
+        "options": [
+          "Decision-tree leaves",
+          "KNN neighborhoods",
+          "The SVM margin boundaries",
+          "Class priors"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q050.png"
+      },
+      {
+        "id": "classification_q051",
+        "number": 51,
+        "prompt": "Which Naive Bayes variant is usually the most natural starting choice for non-negative word counts?",
+        "options": [
+          "Linear SVM",
+          "Gaussian NB",
+          "Multinomial NB",
+          "Bernoulli NB"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q052",
+        "number": 52,
+        "prompt": "Which Naive Bayes variant is designed for binary present/absent features?",
+        "options": [
+          "Multinomial NB only",
+          "Gaussian NB",
+          "Complement regression",
+          "Bernoulli NB"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q053",
+        "number": 53,
+        "prompt": "In gradient boosting, decreasing the learning rate usually means:",
+        "options": [
+          "Each new tree contributes less, so more trees may be needed",
+          "Each tree becomes deeper automatically",
+          "The model stops using residual/error information",
+          "All trees can be trained independently"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q054",
+        "number": 54,
+        "prompt": "Why do standard decision trees often create axis-aligned decision boundaries?",
+        "options": [
+          "They always use softmax",
+          "They maximize an SVM margin",
+          "They use Euclidean circles around points",
+          "Each split compares one feature with a threshold"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q055",
+        "number": 55,
+        "prompt": "A classifier is well calibrated when:",
+        "options": [
+          "Its accuracy is exactly 70%",
+          "Among cases predicted near 0.70, roughly 70% are actually positive",
+          "All predicted probabilities are 0 or 1",
+          "Its ROC curve is diagonal"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q056",
+        "number": 56,
+        "prompt": "Which metric most strongly penalizes a confident wrong probability such as p=0.99 when the true class is 0?",
+        "options": [
+          "Sample count",
+          "Specificity only",
+          "Log loss",
+          "Accuracy only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q057",
+        "number": 57,
+        "prompt": "The Brier score for binary classification is based on:",
+        "options": [
+          "The Manhattan distance among labels",
+          "Mean squared error between predicted probabilities and outcomes",
+          "The maximum SVM margin",
+          "The number of tree leaves"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q058",
+        "number": 58,
+        "prompt": "Where should a classification threshold normally be tuned?",
+        "options": [
+          "On future deployment labels only",
+          "On validation data",
+          "On the final test set repeatedly",
+          "On the answer key"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q059",
+        "number": 59,
+        "prompt": "For a dataset with a very rare positive class, which curve is often especially informative?",
+        "options": [
+          "Precision-Recall curve",
+          "Only the training-loss curve",
+          "A regression residual plot",
+          "A histogram of feature names"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q060",
+        "number": 60,
+        "prompt": "Using Figure F, what is the precision of the positive class?",
+        "options": [
+          "50/(50+5) = 90.9%",
+          "35/(35+10) = 77.8%",
+          "35/(35+5) = 87.5%",
+          "85/100 = 85%"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q060.png"
+      }
+    ],
+    "hard": [
+      {
+        "id": "classification_q061",
+        "number": 61,
+        "prompt": "Using Figure F, what is the positive-class recall?",
+        "options": [
+          "35/40 = 87.5%",
+          "35/45 ≈ 77.8%",
+          "50/55 ≈ 90.9%",
+          "85/100 = 85%"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q061.png"
+      },
+      {
+        "id": "classification_q062",
+        "number": 62,
+        "prompt": "According to Figure G, which threshold minimizes the shown validation-set expected error cost?",
+        "options": [
+          "0.30",
+          "All three have equal cost",
+          "0.50",
+          "0.70"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q062.png"
+      },
+      {
+        "id": "classification_q063",
+        "number": 63,
+        "prompt": "Using Figure F, what is the specificity?",
+        "options": [
+          "(35+50)/100 = 85%",
+          "35/(35+10) ≈ 77.8%",
+          "35/(35+5) = 87.5%",
+          "50/(50+5) ≈ 90.9%"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q063.png"
+      },
+      {
+        "id": "classification_q064",
+        "number": 64,
+        "prompt": "A classifier has recall = 0% and specificity = 100%. What is its balanced accuracy?",
+        "options": [
+          "50%",
+          "25%",
+          "100%",
+          "0%"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q065",
+        "number": 65,
+        "prompt": "Which metric is designed to summarize all four confusion-matrix cells and is often useful under class imbalance?",
+        "options": [
+          "Mean absolute error",
+          "R-squared",
+          "Silhouette score",
+          "Matthews correlation coefficient (MCC)"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q066",
+        "number": 66,
+        "prompt": "A multiclass model performs very well on common classes but poorly on a rare class. Which averaging method will expose the rare class weakness most clearly by giving each class equal weight?",
+        "options": [
+          "Micro average",
+          "Weighted average",
+          "Overall accuracy only",
+          "Macro average"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q067",
+        "number": 67,
+        "prompt": "Why can weighted F1 look strong even when a rare class has poor F1?",
+        "options": [
+          "Common classes receive more weight according to their support",
+          "Weighted F1 ignores all common classes",
+          "Weighted F1 uses no class frequencies",
+          "Weighted F1 is identical to macro F1 in every dataset"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q068",
+        "number": 68,
+        "prompt": "Why is exact match ratio (subset accuracy) very strict in multilabel classification?",
+        "options": [
+          "A sample is counted correct only when the entire predicted label set exactly matches the true set",
+          "It gives partial credit for each correct label",
+          "It ignores all false positives",
+          "It evaluates only one label per sample"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q069",
+        "number": 69,
+        "prompt": "Hamming loss in multilabel classification measures:",
+        "options": [
+          "The fraction of individual label decisions that are incorrect",
+          "Only the number of perfectly predicted samples",
+          "The number of unique label combinations",
+          "The margin width of an SVM"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q070",
+        "number": 70,
+        "prompt": "For true labels {A,B,C} and predicted labels {A,C,D}, what is the Jaccard similarity?",
+        "options": [
+          "2/3 ≈ 0.67",
+          "3/4 = 0.75",
+          "1.00",
+          "2/4 = 0.50"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q071",
+        "number": 71,
+        "prompt": "What is a key reason to use Classifier Chains instead of Binary Relevance?",
+        "options": [
+          "To eliminate the need for thresholds",
+          "To guarantee perfect calibration",
+          "To convert classification into clustering",
+          "To model dependencies among labels"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q072",
+        "number": 72,
+        "prompt": "In a multiclass confusion matrix, recall for class k is computed as:",
+        "options": [
+          "Correct predictions of class k divided by all predicted instances of class k",
+          "Correct predictions of class k divided by all actual instances of class k",
+          "All diagonal entries divided by all samples",
+          "False positives of class k divided by all negatives"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q073",
+        "number": 73,
+        "prompt": "In an OvR classifier for class “Cat,” what is the negative class during that binary training problem?",
+        "options": [
+          "Only Bird",
+          "A random half of the dataset",
+          "Only Dog",
+          "All non-Cat classes combined"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q074",
+        "number": 74,
+        "prompt": "A logistic model has linear score z = ln(3). What probability does the sigmoid produce?",
+        "options": [
+          "3.00",
+          "0.50",
+          "0.75",
+          "0.25"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q075",
+        "number": 75,
+        "prompt": "A logistic classifier outputs p=0.64 for a sample. What happens if the positive threshold is raised from 0.50 to 0.70?",
+        "options": [
+          "The prediction changes from positive to negative",
+          "The probability automatically changes to 0.70",
+          "The sample remains positive at both thresholds",
+          "The model retrains itself"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q076",
+        "number": 76,
+        "prompt": "Why can KNN performance degrade in very high-dimensional spaces?",
+        "options": [
+          "Distances can become less informative as dimensions increase",
+          "KNN starts using Gini impurity",
+          "KNN cannot store training data",
+          "High dimensions force K=1"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q077",
+        "number": 77,
+        "prompt": "In distance-weighted KNN, closer neighbours usually:",
+        "options": [
+          "Receive zero voting weight",
+          "Receive greater voting weight",
+          "Are excluded from classification",
+          "Change the target into a continuous value"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q078",
+        "number": 78,
+        "prompt": "Why should K not be selected by repeatedly checking the final test set?",
+        "options": [
+          "It leaks test information into model selection and biases the final estimate",
+          "The test set contains no labels",
+          "K must always equal the number of classes",
+          "KNN cannot run on a test set"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q079",
+        "number": 79,
+        "prompt": "A decision-tree node contains 6 positive and 4 negative samples. What is its Gini impurity?",
+        "options": [
+          "0.48",
+          "0.60",
+          "1.00",
+          "0.24"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q080",
+        "number": 80,
+        "prompt": "Why is pruning used in decision trees?",
+        "options": [
+          "To standardize every feature",
+          "To calculate SVM support vectors",
+          "To create more branches than the training data require",
+          "To reduce overfitting by simplifying the tree"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q081",
+        "number": 81,
+        "prompt": "In a large bootstrap sample used by a random forest, approximately what percentage of the original training observations appear at least once on average?",
+        "options": [
+          "50.0%",
+          "100%",
+          "36.8%",
+          "63.2%"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q082",
+        "number": 82,
+        "prompt": "For an observation to contribute to its own OOB prediction in a random forest, the prediction should use:",
+        "options": [
+          "Only trees whose bootstrap samples did not include that observation",
+          "Only trees whose bootstrap samples included it many times",
+          "The single deepest tree",
+          "All trees after refitting on the full dataset"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q083",
+        "number": 83,
+        "prompt": "Why should impurity-based random-forest feature importance not be interpreted as proof of causation?",
+        "options": [
+          "Predictive split usefulness does not establish a causal relationship",
+          "Feature importance is always zero",
+          "Causation is guaranteed only when accuracy is high",
+          "Random forests never use features"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q084",
+        "number": 84,
+        "prompt": "For a linear SVM with ||w|| = 4, the geometric margin width 2/||w|| equals:",
+        "options": [
+          "0.25",
+          "0.50",
+          "2.00",
+          "8.00"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q085",
+        "number": 85,
+        "prompt": "Which statement best distinguishes hard-margin from soft-margin SVM?",
+        "options": [
+          "Soft margin requires zero training errors; hard margin permits many",
+          "They are identical except for feature scaling",
+          "Hard margin allows no violations when separation is feasible; soft margin permits some violations controlled by C",
+          "Hard margin uses kernels; soft margin cannot"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q086",
+        "number": 86,
+        "prompt": "Why can an RBF kernel help SVM classify data that are not linearly separable in the original feature space?",
+        "options": [
+          "It converts every label into a continuous target",
+          "It removes all support vectors",
+          "It guarantees zero test error",
+          "It measures similarity as if points were mapped into a higher-dimensional space where nonlinear separation can be represented"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q087",
+        "number": 87,
+        "prompt": "Why is Laplace/additive smoothing used in Naive Bayes?",
+        "options": [
+          "To maximize the SVM margin",
+          "To prevent unseen feature values from assigning zero probability to a class",
+          "To force all priors to 0.50",
+          "To reduce the number of labels"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q088",
+        "number": 88,
+        "prompt": "Why are log probabilities commonly used in Naive Bayes calculations?",
+        "options": [
+          "To create bootstrap samples",
+          "To avoid numerical underflow and turn products into sums",
+          "To make probabilities exceed 1",
+          "To eliminate the need for priors"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "classification_q089",
+        "number": 89,
+        "prompt": "In gradient boosting, what does each new weak learner primarily try to do?",
+        "options": [
+          "Correct the errors/negative-gradient signal left by the current ensemble",
+          "Use a new random label definition",
+          "Estimate only class priors",
+          "Replace all previous learners"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q090",
+        "number": 90,
+        "prompt": "Which combination is generally more conservative against overfitting in gradient boosting?",
+        "options": [
+          "Higher threshold only, with no change to training",
+          "One tree with no loss function",
+          "Very high learning rate with very deep trees and no validation",
+          "Smaller learning rate with controlled tree depth and validation-based early stopping"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "classification_q091",
+        "number": 91,
+        "prompt": "Figure H shows the model curve mostly below the perfect-calibration diagonal. What does this indicate?",
+        "options": [
+          "The model is overconfident: predicted probabilities are higher than observed frequencies",
+          "The model cannot rank cases at all",
+          "The model is underconfident: observed frequencies are always higher",
+          "The model has perfect calibration"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q091.png"
+      },
+      {
+        "id": "classification_q092",
+        "number": 92,
+        "prompt": "A fraud team can investigate only 100 alerts per day. Which threshold-selection principle is most appropriate?",
+        "options": [
+          "Choose a validation-set threshold that balances the primary metric with the 100-alert operational capacity",
+          "Choose the threshold that maximizes training accuracy only",
+          "Tune on the final test set until exactly 100 alerts appear",
+          "Always use 0.50 regardless of alert volume"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q093",
+        "number": 93,
+        "prompt": "Why is PR-AUC often more informative than ROC-AUC when positives are extremely rare?",
+        "options": [
+          "ROC-AUC cannot be computed for binary data",
+          "PR-AUC is identical to accuracy",
+          "It directly emphasizes precision and recall for the positive class and is sensitive to false-positive burden",
+          "PR-AUC uses no thresholds"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q094",
+        "number": 94,
+        "prompt": "What are the axes of the ROC curve?",
+        "options": [
+          "Threshold on x-axis and Accuracy on y-axis",
+          "Precision on x-axis and Recall on y-axis",
+          "False Positive Rate on x-axis and True Positive Rate on y-axis",
+          "Specificity on x-axis and F1 on y-axis"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q095",
+        "number": 95,
+        "prompt": "What does a Precision-Recall curve plot across thresholds?",
+        "options": [
+          "TP against TN counts only",
+          "Accuracy against specificity",
+          "Precision against recall",
+          "Feature importance against tree depth"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q096",
+        "number": 96,
+        "prompt": "In a disease-screening problem where missing a true disease case is much more costly than a false alarm, which threshold adjustment is generally reasonable?",
+        "options": [
+          "Raise the threshold to maximize specificity regardless of recall",
+          "Remove all positive training cases",
+          "Lower the positive threshold to increase recall",
+          "Keep 0.50 because thresholds should never change"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "classification_q097",
+        "number": 97,
+        "prompt": "Using Figure I, which model achieved the highest malignant-class recall on the displayed WDBC test split?",
+        "options": [
+          "SVM",
+          "Decision Tree",
+          "Random Forest",
+          "Logistic Regression"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/classification/quiz_figures/quiz_q097.png"
+      },
+      {
+        "id": "classification_q098",
+        "number": 98,
+        "prompt": "In the WDBC project, why were Logistic Regression and SVM placed in a StandardScaler pipeline while the tree models could use raw numeric features?",
+        "options": [
+          "Logistic Regression optimization and SVM margins are affected by feature scale, whereas tree splits are far less scale-sensitive",
+          "Tree models cannot accept numeric features",
+          "Scaling is required only when there are missing values",
+          "Random Forest automatically converts features into text"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q099",
+        "number": 99,
+        "prompt": "The WDBC project had 71 TN, 1 FP, 1 FN, and 41 TP for the selected model. Which statement is correct?",
+        "options": [
+          "One malignant sample was missed and predicted benign",
+          "One benign sample was missed and predicted benign",
+          "There were no classification errors",
+          "The model detected only one malignant sample"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "classification_q100",
+        "number": 100,
+        "prompt": "Why must preprocessing, model selection, and threshold tuning avoid using the final test set in the WDBC project?",
+        "options": [
+          "Because thresholds cannot be applied to test probabilities",
+          "Because classification metrics can only be computed on training data",
+          "To preserve the test set as an unbiased estimate of performance on unseen data",
+          "Because the test set has no features"
+        ],
+        "correctOption": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,1222 @@
+{
+  "contentVersion": 1,
+  "moduleId": "supervised_learning",
+  "title": "Supervised Learning",
+  "levels": {
+    "easy": [
+      {
+        "id": "supervised_learning_q001",
+        "number": 1,
+        "prompt": "What best describes supervised learning?",
+        "options": [
+          "Learning a mapping from labelled examples to predict outputs for new cases",
+          "Learning only by receiving rewards and penalties",
+          "Storing examples without using known answers",
+          "Discovering structure in completely unlabelled data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q002",
+        "number": 2,
+        "prompt": "In supervised learning, what provides the 'supervision' during training?",
+        "options": [
+          "Random feature values",
+          "Known target labels",
+          "Model deployment logs",
+          "Unlabelled test records"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q003",
+        "number": 3,
+        "prompt": "What is a feature?",
+        "options": [
+          "A score used only after deployment",
+          "The final answer the model must predict",
+          "A type of test-set error",
+          "A measurable input property used by the model"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q004",
+        "number": 4,
+        "prompt": "What is the target label?",
+        "options": [
+          "The correct value or category the model must learn to predict",
+          "A feature that must always be numerical",
+          "A preprocessing setting chosen before training",
+          "A prediction made on unseen data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q005",
+        "number": 5,
+        "prompt": "Which task predicts a continuous numerical value?",
+        "options": [
+          "Clustering",
+          "Multilabel tagging",
+          "Classification",
+          "Regression"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q006",
+        "number": 6,
+        "prompt": "Which task predicts a category or class?",
+        "options": [
+          "Averaging",
+          "Regression",
+          "Classification",
+          "Dimensionality reduction"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q007",
+        "number": 7,
+        "prompt": "What is the main purpose of the training set?",
+        "options": [
+          "Choose the final report title",
+          "Fit model parameters and preprocessing steps",
+          "Provide the one final unbiased score",
+          "Store only minority-class examples"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q008",
+        "number": 8,
+        "prompt": "What is the main purpose of the validation set?",
+        "options": [
+          "Fit the final test labels",
+          "Choose models, features, thresholds and hyperparameters",
+          "Provide new labels for deployment",
+          "Replace the training set completely"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q009",
+        "number": 9,
+        "prompt": "What is the main purpose of the test set?",
+        "options": [
+          "Select features during model development",
+          "Fit TF-IDF vocabulary before splitting",
+          "Tune hyperparameters repeatedly",
+          "Provide one final unbiased evaluation after all choices are complete"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q010",
+        "number": 10,
+        "prompt": "According to the illustrated split, what percentage of data is used for training?",
+        "options": [
+          "15%",
+          "20%",
+          "50%",
+          "70%"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q010.png"
+      },
+      {
+        "id": "supervised_learning_q011",
+        "number": 11,
+        "prompt": "A spam-versus-not-spam problem is an example of:",
+        "options": [
+          "Multiclass classification",
+          "Regression",
+          "Binary classification",
+          "Multilabel classification"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q012",
+        "number": 12,
+        "prompt": "Classifying a news article as sport, business, technology, or health is:",
+        "options": [
+          "Regression",
+          "Multiclass classification",
+          "Binary classification",
+          "Multilabel classification"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q013",
+        "number": 13,
+        "prompt": "Tagging one image with 'person', 'car', and 'street' at the same time is:",
+        "options": [
+          "Simple regression",
+          "Single-label classification",
+          "Binary classification",
+          "Multilabel classification"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q014",
+        "number": 14,
+        "prompt": "What does generalization mean?",
+        "options": [
+          "Memorizing every training record",
+          "Performing well on new data not used during training",
+          "Maximizing training score only",
+          "Using the test set for tuning"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q015",
+        "number": 15,
+        "prompt": "Which pattern is a typical sign of overfitting?",
+        "options": [
+          "The model uses only one feature",
+          "Excellent training performance but much weaker validation/test performance",
+          "Training and validation scores are both strong and close",
+          "Training and validation performance are both poor"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q016",
+        "number": 16,
+        "prompt": "Which algorithm is mainly used for simple continuous numerical prediction with a weighted straight-line relationship?",
+        "options": [
+          "K-nearest neighbours classification",
+          "Linear regression",
+          "Logistic regression",
+          "Naive Bayes"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q017",
+        "number": 17,
+        "prompt": "Despite its name, logistic regression is primarily a:",
+        "options": [
+          "Regression-only algorithm",
+          "Classification algorithm",
+          "Clustering algorithm",
+          "Data-splitting method"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q018",
+        "number": 18,
+        "prompt": "Which model makes predictions by following a sequence of if-then splits?",
+        "options": [
+          "Naive Bayes",
+          "Linear regression",
+          "K-fold cross-validation",
+          "Decision tree"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q019",
+        "number": 19,
+        "prompt": "How does a random forest make a classification prediction?",
+        "options": [
+          "All features are averaged before training",
+          "The test set supplies the label",
+          "Many trees vote",
+          "One tree is always selected as the winner"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q020",
+        "number": 20,
+        "prompt": "How does K-nearest neighbours classify a new example?",
+        "options": [
+          "It ignores the training examples after fitting",
+          "It selects the widest-margin hyperplane only",
+          "It uses the labels of the nearest stored examples",
+          "It fits one global straight line"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q021",
+        "number": 21,
+        "prompt": "What does an SVM try to find for classification?",
+        "options": [
+          "A decision boundary with a wide margin between classes",
+          "A sequence of bootstrap averages only",
+          "A random subset of labels",
+          "A target column inside the features"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q022",
+        "number": 22,
+        "prompt": "Which algorithm combines feature evidence using probability and is often effective for text classification?",
+        "options": [
+          "Linear regression",
+          "Principal component analysis",
+          "K-means",
+          "Naive Bayes"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q023",
+        "number": 23,
+        "prompt": "Which Naive Bayes variant is suitable for word counts or non-negative text-frequency features?",
+        "options": [
+          "Linear Naive Bayes",
+          "Bernoulli Naive Bayes",
+          "Multinomial Naive Bayes",
+          "Gaussian Naive Bayes"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q024",
+        "number": 24,
+        "prompt": "Which Naive Bayes variant is suitable for binary word-present/word-absent features?",
+        "options": [
+          "Bernoulli Naive Bayes",
+          "Random Forest Bayes",
+          "Multinomial Naive Bayes",
+          "Gaussian Naive Bayes"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q025",
+        "number": 25,
+        "prompt": "Which Naive Bayes variant is suitable for continuous features that are approximately Gaussian within each class?",
+        "options": [
+          "Bernoulli Naive Bayes",
+          "Multinomial Naive Bayes",
+          "Logistic Naive Bayes",
+          "Gaussian Naive Bayes"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q026",
+        "number": 26,
+        "prompt": "What is class imbalance?",
+        "options": [
+          "Every class has exactly the same number of examples",
+          "Some target classes appear much more often than others",
+          "The training set is larger than the test set",
+          "The model has too many numerical features"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q027",
+        "number": 27,
+        "prompt": "What is data leakage?",
+        "options": [
+          "The training loss is larger than zero",
+          "The dataset contains missing values only",
+          "The model has too few parameters",
+          "The model uses information it should not have at prediction or evaluation time"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q028",
+        "number": 28,
+        "prompt": "When is supervised learning generally appropriate?",
+        "options": [
+          "When no labels exist and discovering structure is the goal",
+          "When the target is undefined and inconsistent",
+          "When a clear target exists and reliable labels can be collected",
+          "When historical examples are completely irrelevant to future cases"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q029",
+        "number": 29,
+        "prompt": "What does a loss function do?",
+        "options": [
+          "Converts prediction mistakes into a numerical measure",
+          "Creates new target labels automatically",
+          "Guarantees perfect generalization",
+          "Splits the dataset into classes"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q030",
+        "number": 30,
+        "prompt": "In a classifier, what is a decision threshold?",
+        "options": [
+          "A cutoff used to convert a probability or score into a class",
+          "A coefficient learned only by linear regression",
+          "The number of rows in the training set",
+          "A rule that permanently removes the validation set"
+        ],
+        "correctOption": 0
+      }
+    ],
+    "medium": [
+      {
+        "id": "supervised_learning_q031",
+        "number": 31,
+        "prompt": "Which statement correctly distinguishes a model parameter from a hyperparameter?",
+        "options": [
+          "Hyperparameters are target labels and parameters are features",
+          "Parameters are learned from training data; hyperparameters are set or tuned outside normal fitting",
+          "Parameters are chosen on the test set; hyperparameters are always learned automatically",
+          "Both are learned only from the validation set"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q032",
+        "number": 32,
+        "prompt": "Which pairing of task and common loss is stated in the module?",
+        "options": [
+          "Regression - log loss; binary classification - mean squared error",
+          "Regression - recall; binary classification - MAE",
+          "Regression - mean squared error; binary classification - log loss",
+          "Regression - accuracy; binary classification - R-squared"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q033",
+        "number": 33,
+        "prompt": "In 5-fold cross-validation, how many times is the model trained with a different fold used for validation?",
+        "options": [
+          "Once",
+          "Twice",
+          "Ten times",
+          "Five times"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q034",
+        "number": 34,
+        "prompt": "Why is stratified splitting useful in classification?",
+        "options": [
+          "It guarantees equal class sizes in the original dataset",
+          "It prevents every form of data leakage",
+          "It removes the need for a validation set",
+          "It keeps approximately the same class proportions in each split"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q035",
+        "number": 35,
+        "prompt": "When should group-aware splitting be used?",
+        "options": [
+          "When records from the same person, customer, patient, device, campaign, or related group must not cross splits",
+          "Only when the dataset has exactly two classes",
+          "Whenever the model is linear regression",
+          "Whenever all features are numerical"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q036",
+        "number": 36,
+        "prompt": "What is the correct time-aware splitting strategy when predicting the future?",
+        "options": [
+          "Train on earlier records and test on later records",
+          "Use the test set to fit temporal features",
+          "Train on future records and test on earlier records",
+          "Randomly mix all time periods before splitting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q037",
+        "number": 37,
+        "prompt": "The figure shows training error falling while validation error eventually rises. Which region corresponds to the best generalization?",
+        "options": [
+          "Near the minimum validation error before it rises",
+          "At the highest model complexity",
+          "At the point where training error is smallest regardless of validation error",
+          "Only in the underfitting region"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q037.png"
+      },
+      {
+        "id": "supervised_learning_q038",
+        "number": 38,
+        "prompt": "Which response is appropriate when overfitting is caused by excessive model complexity?",
+        "options": [
+          "Increase complexity further",
+          "Fit preprocessing on all available data",
+          "Use the test set for more tuning",
+          "Reduce complexity or use regularization"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q039",
+        "number": 39,
+        "prompt": "Which algorithm generally requires feature scaling because it relies directly on distances?",
+        "options": [
+          "Decision tree",
+          "Random forest",
+          "Naive Bayes in every variant",
+          "K-nearest neighbours"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q040",
+        "number": 40,
+        "prompt": "In the sigmoid figure, a weighted feature score of about 0 maps to approximately what class-1 probability?",
+        "options": [
+          "1.00",
+          "0.25",
+          "0.50",
+          "0.00"
+        ],
+        "correctOption": 2,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q040.png"
+      },
+      {
+        "id": "supervised_learning_q041",
+        "number": 41,
+        "prompt": "Using the decision-tree figure, what is the prediction when an email contains suspicious words and has many links?",
+        "options": [
+          "Regression value",
+          "Review / likely spam",
+          "Not spam",
+          "Spam"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q041.png"
+      },
+      {
+        "id": "supervised_learning_q042",
+        "number": 42,
+        "prompt": "In the random-forest figure, three of four trees vote 'Spam'. What is the forest prediction?",
+        "options": [
+          "Spam",
+          "A continuous probability only",
+          "Not spam",
+          "Tie - no prediction"
+        ],
+        "correctOption": 0,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q042.png"
+      },
+      {
+        "id": "supervised_learning_q043",
+        "number": 43,
+        "prompt": "Why is standardization usually important for KNN?",
+        "options": [
+          "Large-scale features can dominate distance calculations",
+          "KNN requires all labels to become continuous",
+          "It converts KNN into a tree model",
+          "Standardization prevents any possibility of overfitting"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q044",
+        "number": 44,
+        "prompt": "What is a likely effect of choosing a very small K in KNN?",
+        "options": [
+          "It can overfit",
+          "It always underfits",
+          "It removes the need for scaling",
+          "It guarantees stable probabilities"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q045",
+        "number": 45,
+        "prompt": "In an SVM, what does the C hyperparameter control?",
+        "options": [
+          "The percentage of data used for testing",
+          "The number of target classes only",
+          "The TF-IDF vocabulary size",
+          "The trade-off between a wider margin and training errors"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q046",
+        "number": 46,
+        "prompt": "For an SVM with an RBF kernel, which settings help control nonlinear boundaries?",
+        "options": [
+          "Number of bootstrap trees",
+          "Only the class label names",
+          "Train/test ratio and random seed only",
+          "Kernel and gamma"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q047",
+        "number": 47,
+        "prompt": "What key simplifying assumption does Naive Bayes make?",
+        "options": [
+          "All classes have equal frequency",
+          "Features are conditionally independent given the class",
+          "All features are identical",
+          "The target must be continuous"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q048",
+        "number": 48,
+        "prompt": "If interpretability is important and the tabular relationship can be explained with simple rules, which model is a reasonable starting choice?",
+        "options": [
+          "A very deep random forest only",
+          "An unlabeled clustering model",
+          "KNN with a huge K",
+          "A small decision tree"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q049",
+        "number": 49,
+        "prompt": "Which is a valid supervised-learning application pair from the module?",
+        "options": [
+          "Retail: cluster customers for regression and PCA for classification",
+          "Healthcare: discover unlabeled disease groups for regression and remove labels for classification",
+          "Finance: generate random labels for regression and clustering for classification",
+          "Retail: predict sales for regression and churn/not churn for classification"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q050",
+        "number": 50,
+        "prompt": "The class-imbalance chart contains 950 not-spam and 50 spam emails. A classifier that always predicts 'not spam' would have what accuracy?",
+        "options": [
+          "100%",
+          "5%",
+          "50%",
+          "95%"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q050.png"
+      },
+      {
+        "id": "supervised_learning_q051",
+        "number": 51,
+        "prompt": "In spam filtering, what is a false positive?",
+        "options": [
+          "Spam incorrectly allowed into the inbox",
+          "A legitimate email correctly predicted as not spam",
+          "A legitimate email incorrectly predicted as spam",
+          "A spam email correctly predicted as spam"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q052",
+        "number": 52,
+        "prompt": "In spam filtering, what is a false negative?",
+        "options": [
+          "A legitimate email incorrectly predicted as spam",
+          "A spam email incorrectly predicted as not spam",
+          "A spam email correctly predicted as spam",
+          "A legitimate email correctly predicted as not spam"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q053",
+        "number": 53,
+        "prompt": "Which is a recommended response to class imbalance?",
+        "options": [
+          "Remove the minority class",
+          "Report accuracy alone",
+          "Fit synthetic samples using the test set",
+          "Adjust class weights or the decision threshold"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q054",
+        "number": 54,
+        "prompt": "Why are duplicate campaign emails appearing in both training and test sets a problem?",
+        "options": [
+          "They guarantee fair evaluation",
+          "They make all features categorical",
+          "They always decrease training accuracy",
+          "They can inflate the test score"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q055",
+        "number": 55,
+        "prompt": "What risk is illustrated by training data collected from only one organization?",
+        "options": [
+          "Perfect calibration",
+          "Noisy labels are automatically corrected",
+          "Guaranteed class balance",
+          "Sampling bias and poor generalization to other users"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q056",
+        "number": 56,
+        "prompt": "What is concept drift in the spam example?",
+        "options": [
+          "The model's code syntax changes",
+          "The test set is made larger than the training set",
+          "Spam language changes over time, causing deployed performance to fall",
+          "The training set becomes exactly balanced"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q057",
+        "number": 57,
+        "prompt": "Which situation is preprocessing leakage?",
+        "options": [
+          "Fitting preprocessing only on training folds",
+          "Testing once after all decisions are complete",
+          "Fitting a TF-IDF vocabulary or scaler on all data before evaluation",
+          "Using stratified splitting"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q058",
+        "number": 58,
+        "prompt": "Which situation is time leakage?",
+        "options": [
+          "Using only features available when the email arrives",
+          "Using future sender reputation to predict an earlier email",
+          "Training on older emails and testing on newer emails",
+          "Grouping related campaigns before splitting"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q059",
+        "number": 59,
+        "prompt": "Which sequence best matches the practical email-spam pipeline?",
+        "options": [
+          "Incoming email -> clustering -> remove features -> regression -> no prediction",
+          "Incoming email -> test set -> target leakage -> random label -> deployment",
+          "Incoming email -> fit on test data -> create labels -> discard model",
+          "Incoming email -> clean text -> convert words to numbers -> train/use classifier -> predict probability -> spam/not spam"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q059.png"
+      },
+      {
+        "id": "supervised_learning_q060",
+        "number": 60,
+        "prompt": "What is the main purpose of TF-IDF in the email example?",
+        "options": [
+          "Convert email text into sparse numerical features that emphasize informative words",
+          "Replace the need for a classifier",
+          "Guarantee perfectly calibrated probabilities",
+          "Create the correct spam labels"
+        ],
+        "correctOption": 0
+      }
+    ],
+    "hard": [
+      {
+        "id": "supervised_learning_q061",
+        "number": 61,
+        "prompt": "Which scenario is the clearest example of target leakage?",
+        "options": [
+          "Using number of links present in the incoming email",
+          "Using sender domain available before prediction",
+          "Using a spam flag created after human review as an input feature for predicting spam at arrival time",
+          "Using email length measured when the message arrives"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q062",
+        "number": 62,
+        "prompt": "Which scenario is selection leakage?",
+        "options": [
+          "Using validation data to tune a threshold",
+          "Repeatedly using the test set to choose features or models",
+          "Fitting the final model after selecting hyperparameters",
+          "Reporting the untouched test result once"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q063",
+        "number": 63,
+        "prompt": "Which scenario is train-test contamination?",
+        "options": [
+          "A near-duplicate email appears in both training and test sets",
+          "Class proportions are preserved with stratification",
+          "The model sees only training examples during fitting",
+          "The test set is evaluated after model selection"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q064",
+        "number": 64,
+        "prompt": "A dataset contains many emails from the same campaign template. What is the safest split design?",
+        "options": [
+          "Fit TF-IDF on the full dataset before creating groups",
+          "Put all campaign emails into both train and test",
+          "Randomly split individual emails without checking duplicates",
+          "Group by campaign/template before splitting"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q065",
+        "number": 65,
+        "prompt": "Why should TF-IDF be fitted inside a pipeline using only training data in each fit?",
+        "options": [
+          "To ensure the test set influences vocabulary selection",
+          "To prevent preprocessing leakage and keep evaluation reproducible",
+          "To make every email have the same number of words",
+          "To turn classification into regression"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q066",
+        "number": 66,
+        "prompt": "Which baseline set best matches the module's email-spam comparison?",
+        "options": [
+          "Multinomial Naive Bayes, Logistic Regression, Linear SVM, and a tree/forest comparison",
+          "Only one very deep decision tree",
+          "K-means, PCA, DBSCAN, and hierarchical clustering",
+          "Linear regression, ARIMA, and k-means"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q067",
+        "number": 67,
+        "prompt": "In the example code, what is the purpose of stratify=y in train_test_split?",
+        "options": [
+          "Force all spam emails into the training set",
+          "Fit class weights automatically",
+          "Preserve approximately the same spam proportion in train and test sets",
+          "Sort emails chronologically"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q068",
+        "number": 68,
+        "prompt": "In the example logistic-regression pipeline, what is the purpose of class_weight='balanced'?",
+        "options": [
+          "Make TF-IDF values sum to one",
+          "Guarantee zero false positives",
+          "Adjust learning to account for class-frequency imbalance",
+          "Convert binary labels into continuous targets"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q069",
+        "number": 69,
+        "prompt": "In the confusion matrix, which number represents false positives for spam?",
+        "options": [
+          "180",
+          "10",
+          "15",
+          "95"
+        ],
+        "correctOption": 1,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q069.png"
+      },
+      {
+        "id": "supervised_learning_q070",
+        "number": 70,
+        "prompt": "Using the confusion matrix (TN=180, FP=10, FN=15, TP=95), what is the accuracy to two decimal places?",
+        "options": [
+          "0.95",
+          "0.86",
+          "0.92",
+          "0.91"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q071",
+        "number": 71,
+        "prompt": "Using the same confusion matrix, what is spam precision approximately?",
+        "options": [
+          "0.95",
+          "0.91",
+          "0.92",
+          "0.86"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q072",
+        "number": 72,
+        "prompt": "Using the same confusion matrix, what is spam recall approximately?",
+        "options": [
+          "0.91",
+          "0.92",
+          "0.95",
+          "0.86"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q073",
+        "number": 73,
+        "prompt": "Using precision ≈ 0.91 and recall ≈ 0.86, what is the F1-score approximately?",
+        "options": [
+          "0.97",
+          "0.92",
+          "0.88",
+          "0.78"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q074",
+        "number": 74,
+        "prompt": "According to the evaluation-score chart, which metric is the lowest?",
+        "options": [
+          "F1-score",
+          "Accuracy",
+          "Precision",
+          "Recall"
+        ],
+        "correctOption": 3,
+        "figureAsset": "assets/images/supervised_learning/quiz_figures/quiz_q074.png"
+      },
+      {
+        "id": "supervised_learning_q075",
+        "number": 75,
+        "prompt": "Why might a spam system prefer especially high precision?",
+        "options": [
+          "To reduce legitimate emails incorrectly placed in spam",
+          "To make the model ignore class imbalance",
+          "To catch every spam message regardless of false positives",
+          "To increase the number of duplicate emails"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q076",
+        "number": 76,
+        "prompt": "If false positives are more costly than false negatives, what model-control action is explicitly supported by the module?",
+        "options": [
+          "Add the target label as an input feature",
+          "Use the test set repeatedly until false positives disappear",
+          "Remove validation and cross-validation",
+          "Change the decision threshold to reflect the different error costs"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q077",
+        "number": 77,
+        "prompt": "A genuine discount email is incorrectly classified as spam. Which improvement is suggested?",
+        "options": [
+          "Remove all legitimate discount emails from the dataset",
+          "Adjust the threshold and/or add sender/domain reputation and improve labels",
+          "Use future sender reputation from after delivery",
+          "Duplicate the email into both train and test"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q078",
+        "number": 78,
+        "prompt": "Spam with neutral wording and a malicious link is missed. Which improvement is suggested?",
+        "options": [
+          "Lower data quality to increase variation",
+          "Use fewer relevant features",
+          "Add URL, sender and attachment features and collect newer spam examples",
+          "Fit the model on test labels"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q079",
+        "number": 79,
+        "prompt": "A model trained mainly on English email performs poorly on other languages. What is the recommended response?",
+        "options": [
+          "Collect multilingual data or build language-aware pipelines",
+          "Remove all text features",
+          "Ignore language distribution",
+          "Use the test set as training data"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q080",
+        "number": 80,
+        "prompt": "Near-identical campaign messages appear on both sides of a split. What should be done?",
+        "options": [
+          "Group by campaign/template before splitting",
+          "Switch every label to 'spam'",
+          "Fit the scaler on the full dataset",
+          "Increase the model depth"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q081",
+        "number": 81,
+        "prompt": "Which set of quantities should be monitored after deploying the spam classifier?",
+        "options": [
+          "Only the original test accuracy forever",
+          "Only the number of model parameters",
+          "Only training loss from the original dataset",
+          "Precision, recall, complaint rate and class distribution"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q082",
+        "number": 82,
+        "prompt": "When does probability calibration matter most?",
+        "options": [
+          "When the model is never used to make decisions",
+          "When labels are unavailable",
+          "When the quality of predicted probabilities matters for decisions",
+          "When all outputs are continuous regression values only"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q083",
+        "number": 83,
+        "prompt": "Why should concept drift be tracked after deployment?",
+        "options": [
+          "Spammers can change wording, domains and tactics, reducing performance",
+          "The target class automatically disappears over time",
+          "Cross-validation permanently prevents drift",
+          "A fixed model is guaranteed to improve with age"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q084",
+        "number": 84,
+        "prompt": "Why should a spam system provide a safe recovery path?",
+        "options": [
+          "So the model can use post-review labels during the original prediction",
+          "So all false negatives become false positives",
+          "So users can restore legitimate messages that were wrongly filtered",
+          "So test data can be reused for tuning"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q085",
+        "number": 85,
+        "prompt": "Why is recording preprocessing, splitting and modelling decisions considered professional practice?",
+        "options": [
+          "It supports reproducibility and model quality",
+          "It removes the need for validation",
+          "It makes every algorithm interpretable",
+          "It guarantees a higher training score"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q086",
+        "number": 86,
+        "prompt": "Why must random-forest feature importance be interpreted carefully?",
+        "options": [
+          "Correlated or high-cardinality features can make importance values misleading",
+          "Random forests do not use features",
+          "Importance values are target labels",
+          "Feature importance is always identical for every dataset"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q087",
+        "number": 87,
+        "prompt": "Which limitation of random forests is stated in the module?",
+        "options": [
+          "They cannot model nonlinear patterns",
+          "They use only one decision tree",
+          "Probability estimates may require calibration",
+          "They always require extensive scaling"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q088",
+        "number": 88,
+        "prompt": "Which limitation is associated with linear regression?",
+        "options": [
+          "It is sensitive to outliers and multicollinearity",
+          "It cannot output numerical predictions",
+          "It uses nearest-neighbour distances",
+          "It always requires class labels"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q089",
+        "number": 89,
+        "prompt": "How can logistic regression represent more complex decision patterns than a simple linear boundary?",
+        "options": [
+          "Remove all regularization choices",
+          "Use the test target as a feature",
+          "Transform or engineer features before fitting the linear score",
+          "Replace probabilities with continuous regression labels"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q090",
+        "number": 90,
+        "prompt": "Which hyperparameters directly control decision-tree complexity in the module?",
+        "options": [
+          "Maximum depth, minimum samples per split/leaf, and split criterion",
+          "TF-IDF n-grams, SVM gamma, and K",
+          "Only number of output classes",
+          "Only train/test ratio"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q091",
+        "number": 91,
+        "prompt": "Why can KNN perform poorly in very high-dimensional spaces?",
+        "options": [
+          "KNN becomes a linear regression model",
+          "Distance-based similarity becomes less effective as dimensionality grows",
+          "KNN stops storing training examples",
+          "High dimensions automatically create perfect margins"
+        ],
+        "correctOption": 1
+      },
+      {
+        "id": "supervised_learning_q092",
+        "number": 92,
+        "prompt": "Which statement about SVM probability outputs is correct?",
+        "options": [
+          "SVM cannot make classification predictions",
+          "SVM always outputs perfectly calibrated probabilities",
+          "SVM requires no tuning or feature scaling",
+          "Raw SVM outputs are not naturally calibrated probabilities"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q093",
+        "number": 93,
+        "prompt": "Which limitation of Naive Bayes is highlighted?",
+        "options": [
+          "It requires a deep tree structure",
+          "It is always too slow for text",
+          "Its probability estimates may be overconfident",
+          "It cannot use binary features"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q094",
+        "number": 94,
+        "prompt": "Why should a professional workflow compare multiple suitable algorithms under the same preprocessing, split and evaluation criteria?",
+        "options": [
+          "No algorithm is best for every dataset, so validation evidence should support the choice",
+          "Different algorithms must use different evaluation metrics so scores cannot be compared",
+          "The most popular algorithm is always correct",
+          "The test set should choose the algorithm repeatedly"
+        ],
+        "correctOption": 0
+      },
+      {
+        "id": "supervised_learning_q095",
+        "number": 95,
+        "prompt": "A team tunes hyperparameters until validation performance is excellent, then checks the untouched test set once. Which statement is most accurate?",
+        "options": [
+          "The validation set should be discarded before tuning",
+          "This is selection leakage by definition",
+          "This follows the intended separation of validation for choices and test for final evaluation",
+          "The test set should have been used during every tuning round"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q096",
+        "number": 96,
+        "prompt": "A model predicts future email risk. Which feature/split combination is leakage-safe?",
+        "options": [
+          "Fit TF-IDF on all future and past data before splitting",
+          "Use post-review spam flags as features",
+          "Use only information available at arrival time, train on earlier emails, and test on later emails",
+          "Use future sender reputation and random time mixing"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q097",
+        "number": 97,
+        "prompt": "A model has 99% training accuracy but 78% validation accuracy, and the gap grows as complexity increases. What is the most likely diagnosis?",
+        "options": [
+          "Good generalization",
+          "Underfitting only",
+          "Perfect calibration",
+          "Overfitting"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q098",
+        "number": 98,
+        "prompt": "A dataset has 950 not-spam and 50 spam emails. Why is 95% accuracy from an always-not-spam model unacceptable?",
+        "options": [
+          "It proves the model has perfect spam recall",
+          "It means the classes are balanced",
+          "95% accuracy is mathematically impossible",
+          "It misses the entire minority spam class despite a high overall accuracy"
+        ],
+        "correctOption": 3
+      },
+      {
+        "id": "supervised_learning_q099",
+        "number": 99,
+        "prompt": "Which workflow is most defensible for developing the email classifier?",
+        "options": [
+          "Use test data for feature engineering -> train once -> ignore deployment monitoring",
+          "Fit preprocessing on all data -> test repeatedly -> select model -> define target last",
+          "Define target -> collect/inspect labels -> leakage-safe feature pipeline -> proper split -> compare/tune on validation/CV -> test once -> monitor after deployment",
+          "Choose the most complex model -> duplicate rare emails into test -> report training score"
+        ],
+        "correctOption": 2
+      },
+      {
+        "id": "supervised_learning_q100",
+        "number": 100,
+        "prompt": "Which feature should NOT be used to predict spam at the moment a new email arrives?",
+        "options": [
+          "Sender domain available at arrival",
+          "Number of links in the incoming email",
+          "Message text available at arrival",
+          "A spam flag produced by a human review after delivery"
+        ],
+        "correctOption": 3
+      }
+    ]
+  }
+}

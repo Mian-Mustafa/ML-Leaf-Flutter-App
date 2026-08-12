@@ -11,6 +11,8 @@ import '../features/lessons/lesson_list_screen.dart';
 import '../features/modules/modules_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/progress/progress_screen.dart';
+import '../features/quizzes/quiz_level_screen.dart';
+import '../features/quizzes/quiz_assessment_screen.dart';
 import '../features/quizzes/quizzes_screen.dart';
 import '../features/search/search_screen.dart';
 import '../features/settings/about_screen.dart';
@@ -28,10 +30,7 @@ final GoRouter appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/splash',
   routes: [
-    GoRoute(
-      path: '/splash',
-      builder: (context, state) => const SplashScreen(),
-    ),
+    GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
     GoRoute(
       path: '/onboarding',
       builder: (context, state) => const OnboardingScreen(),
@@ -102,6 +101,22 @@ final GoRouter appRouter = GoRouter(
       path: '/quizzes',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const QuizzesScreen(),
+      routes: [
+        GoRoute(
+          path: ':moduleId',
+          builder: (context, state) =>
+              QuizLevelScreen(moduleId: state.pathParameters['moduleId']!),
+          routes: [
+            GoRoute(
+              path: ':difficultyId',
+              builder: (context, state) => QuizAssessmentScreen(
+                moduleId: state.pathParameters['moduleId']!,
+                startingLevelId: state.pathParameters['difficultyId']!,
+              ),
+            ),
+          ],
+        ),
+      ],
     ),
     GoRoute(
       path: '/flashcards',
