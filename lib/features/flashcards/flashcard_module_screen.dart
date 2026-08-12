@@ -244,51 +244,149 @@ class FlashcardVisualScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(view.title)),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.xl),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 360),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: background,
-                      borderRadius: AppRadius.brLg,
-                    ),
-                    child: imagePath == null
-                        ? Icon(view.icon, size: 72, color: foreground)
-                        : ClipRRect(
-                            borderRadius: AppRadius.brLg,
-                            child: Image.asset(
-                              imagePath,
-                              fit: BoxFit.cover,
-                              errorBuilder: (_, _, _) =>
-                                  Icon(view.icon, size: 72, color: foreground),
-                            ),
-                          ),
-                  ),
-                ),
-                AppSpacing.gapLg,
-                Text(
-                  module?.title ?? 'Flashcards',
-                  style: theme.textTheme.titleMedium,
-                  textAlign: TextAlign.center,
-                ),
-                AppSpacing.gapSm,
-                const StatusBadge(
-                  label: 'Image pending',
-                  icon: Icons.image_outlined,
-                  tone: BadgeTone.neutral,
-                ),
-              ],
+      body: imagePath == null
+          ? _PendingFlashcardVisual(
+              moduleTitle: module?.title ?? 'Flashcards',
+              background: background,
+              foreground: foreground,
+              icon: view.icon,
+            )
+          : _ZoomableFlashcardImage(
+              imagePath: imagePath,
+              fallbackColor: background,
+              fallbackIcon: view.icon,
+              fallbackIconColor: foreground,
             ),
+    );
+  }
+}
+
+class _PendingFlashcardVisual extends StatelessWidget {
+  const _PendingFlashcardVisual({
+    required this.moduleTitle,
+    required this.background,
+    required this.foreground,
+    required this.icon,
+  });
+
+  final String moduleTitle;
+  final Color background;
+  final Color foreground;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.xl),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 360),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AspectRatio(
+                aspectRatio: 1,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: background,
+                    borderRadius: AppRadius.brLg,
+                  ),
+                  child: Icon(icon, size: 72, color: foreground),
+                ),
+              ),
+              AppSpacing.gapLg,
+              Text(
+                moduleTitle,
+                style: theme.textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+              AppSpacing.gapSm,
+              const StatusBadge(
+                label: 'Image pending',
+                icon: Icons.image_outlined,
+                tone: BadgeTone.neutral,
+              ),
+            ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ZoomableFlashcardImage extends StatefulWidget {
+  const _ZoomableFlashcardImage({
+    required this.imagePath,
+    required this.fallbackColor,
+    required this.fallbackIcon,
+    required this.fallbackIconColor,
+  });
+
+  final String imagePath;
+  final Color fallbackColor;
+  final IconData fallbackIcon;
+  final Color fallbackIconColor;
+
+  @override
+  State<_ZoomableFlashcardImage> createState() =>
+      _ZoomableFlashcardImageState();
+}
+
+class _ZoomableFlashcardImageState extends State<_ZoomableFlashcardImage> {
+  final _controller = TransformationController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _resetZoom() {
+    _controller.value = Matrix4.identity();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Stack(
+          children: [
+            InteractiveViewer(
+              transformationController: _controller,
+              minScale: 1,
+              maxScale: 5,
+              boundaryMargin: const EdgeInsets.all(AppSpacing.xxxl),
+              child: SizedBox(
+                width: constraints.maxWidth,
+                height: constraints.maxHeight,
+                child: Image.asset(
+                  widget.imagePath,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, _, _) => DecoratedBox(
+                    decoration: BoxDecoration(color: widget.fallbackColor),
+                    child: Icon(
+                      widget.fallbackIcon,
+                      size: 72,
+                      color: widget.fallbackIconColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              right: AppSpacing.md,
+              bottom: AppSpacing.md,
+              child: IconButton.filledTonal(
+                tooltip: 'Reset image zoom',
+                onPressed: _resetZoom,
+                icon: const Icon(Icons.center_focus_strong_outlined),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -385,7 +483,75 @@ class _FlashcardViewOption {
   final _FlashcardViewTone tone;
 }
 
-const Map<String, String> _flashcardImagePaths = {};
+const Map<String, String> _flashcardImagePaths = {
+  'foundations/explode': 'assets/images/foundations/flashcard_explode_view.png',
+  'foundations/xray': 'assets/images/foundations/flashcard_xray_view.png',
+  'foundations/handwritten':
+      'assets/images/foundations/flashcard_handwritten_view.png',
+  'foundations/sticky-notes':
+      'assets/images/foundations/flashcard_sticky_notes_view.png',
+  'data_preprocessing/explode':
+      'assets/images/data_preprocessing/flashcard_explode_view.png',
+  'data_preprocessing/xray':
+      'assets/images/data_preprocessing/flashcard_xray_view.png',
+  'data_preprocessing/handwritten':
+      'assets/images/data_preprocessing/flashcard_handwritten_view.png',
+  'data_preprocessing/sticky-notes':
+      'assets/images/data_preprocessing/flashcard_sticky_notes_view.png',
+  'supervised_learning/explode':
+      'assets/images/supervised_learning/flashcard_explode_view.png',
+  'supervised_learning/xray':
+      'assets/images/supervised_learning/flashcard_xray_view.png',
+  'supervised_learning/handwritten':
+      'assets/images/supervised_learning/flashcard_handwritten_view.png',
+  'supervised_learning/sticky-notes':
+      'assets/images/supervised_learning/flashcard_sticky_notes_view.png',
+  'regression/explode': 'assets/images/regression/flashcard_explode_view.png',
+  'regression/xray': 'assets/images/regression/flashcard_xray_view.png',
+  'regression/handwritten':
+      'assets/images/regression/flashcard_handwritten_view.png',
+  'regression/sticky-notes':
+      'assets/images/regression/flashcard_sticky_notes_view.png',
+  'classification/explode':
+      'assets/images/classification/flashcard_explode_view.png',
+  'classification/xray': 'assets/images/classification/flashcard_xray_view.png',
+  'classification/handwritten':
+      'assets/images/classification/flashcard_handwritten_view.png',
+  'classification/sticky-notes':
+      'assets/images/classification/flashcard_sticky_notes_view.png',
+  'unsupervised_learning/explode':
+      'assets/images/unsupervised_learning/flashcard_explode_view.png',
+  'unsupervised_learning/xray':
+      'assets/images/unsupervised_learning/flashcard_xray_view.png',
+  'unsupervised_learning/handwritten':
+      'assets/images/unsupervised_learning/flashcard_handwritten_view.png',
+  'unsupervised_learning/sticky-notes':
+      'assets/images/unsupervised_learning/flashcard_sticky_notes_view.png',
+  'model_evaluation/explode':
+      'assets/images/model_evaluation/flashcard_explode_view.png',
+  'model_evaluation/xray':
+      'assets/images/model_evaluation/flashcard_xray_view.png',
+  'model_evaluation/handwritten':
+      'assets/images/model_evaluation/flashcard_handwritten_view.png',
+  'model_evaluation/sticky-notes':
+      'assets/images/model_evaluation/flashcard_sticky_notes_view.png',
+  'feature_engineering/explode':
+      'assets/images/feature_engineering/flashcard_explode_view.png',
+  'feature_engineering/xray':
+      'assets/images/feature_engineering/flashcard_xray_view.png',
+  'feature_engineering/handwritten':
+      'assets/images/feature_engineering/flashcard_handwritten_view.png',
+  'feature_engineering/sticky-notes':
+      'assets/images/feature_engineering/flashcard_sticky_notes_view.png',
+  'ensemble_methods/explode':
+      'assets/images/ensemble_methods/flashcard_explode_view.png',
+  'ensemble_methods/xray':
+      'assets/images/ensemble_methods/flashcard_xray_view.png',
+  'ensemble_methods/handwritten':
+      'assets/images/ensemble_methods/flashcard_handwritten_view.png',
+  'ensemble_methods/sticky-notes':
+      'assets/images/ensemble_methods/flashcard_sticky_notes_view.png',
+};
 
 const _flashcardViews = [
   _FlashcardViewOption(
