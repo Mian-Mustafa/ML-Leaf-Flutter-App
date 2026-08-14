@@ -11,7 +11,17 @@ void main() {
     final repo = ModuleRepository(loader: rootBundle.loadString);
     final modules = await repo.loadModules();
 
-    expect(modules.length, 10);
+    expect(modules.map((m) => m.id), <String>[
+      'foundations',
+      'data_preprocessing',
+      'supervised_learning',
+      'regression',
+      'classification',
+      'unsupervised_learning',
+      'model_evaluation',
+      'feature_engineering',
+      'ensemble_methods',
+    ]);
 
     final ids = modules.map((m) => m.id).toSet();
     expect(ids.length, modules.length, reason: 'module ids must be unique');

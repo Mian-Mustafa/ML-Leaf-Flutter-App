@@ -4,6 +4,9 @@ abstract final class StorageKeys {
   // SharedPreferences
   static const String onboardingComplete = 'onboarding_complete';
   static const String themeMode = 'theme_mode'; // 'light' | 'dark' | 'system'
+  static const String bookmarkedLessonIds = 'bookmarked_lesson_ids';
+  static const String completedLessonIds = 'completed_lesson_ids';
+  static const String quizAttempts = 'quiz_attempts';
 
   // Hive boxes (used from Phase 2 onwards)
   static const String progressBox = 'progress_box';

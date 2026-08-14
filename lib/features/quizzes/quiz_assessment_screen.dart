@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/semantic_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/widgets/empty_state_view.dart';
+import '../progress/progress_providers.dart';
 import 'quiz_models.dart';
 import 'quiz_providers.dart';
 
@@ -60,13 +61,16 @@ class _QuizAssessmentScreenState extends ConsumerState<QuizAssessmentScreen> {
     );
     if (shouldSubmit != true || !mounted) return;
 
-    setState(
-      () => _result = LevelQuizResult.evaluate(
-        difficulty: difficulty,
-        questions: questions,
-        answers: _answers,
-      ),
+    final result = LevelQuizResult.evaluate(
+      difficulty: difficulty,
+      questions: questions,
+      answers: _answers,
     );
+    await ref
+        .read(studyProgressProvider.notifier)
+        .recordQuizAttempt(moduleId: widget.moduleId, result: result);
+    if (!mounted) return;
+    setState(() => _result = result);
   }
 
   @override

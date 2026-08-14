@@ -6,14 +6,15 @@ import '../../core/constants/app_spacing.dart';
 import '../../core/widgets/bookmark_button.dart';
 import '../../core/widgets/empty_state_view.dart';
 import '../../core/widgets/status_badge.dart';
+import '../bookmarks/bookmark_providers.dart';
+import '../progress/progress_providers.dart';
 import 'lesson.dart';
 import 'lesson_providers.dart';
 import 'widgets/lesson_content_view.dart';
 
 /// Lesson reader (FR-05): gradient hero, structured content, key points,
 /// completion and bookmark, plus a scroll-linked reading-progress bar.
-/// Completion/bookmark are session-local here; they bind to the Hive progress
-/// store in the progress phase.
+/// Completion and bookmarks persist locally on the device.
 class LessonDetailScreen extends ConsumerStatefulWidget {
   const LessonDetailScreen({
     super.key,
@@ -31,8 +32,6 @@ class LessonDetailScreen extends ConsumerStatefulWidget {
 class _LessonDetailScreenState extends ConsumerState<LessonDetailScreen> {
   final _scrollController = ScrollController();
   final _readProgress = ValueNotifier<double>(0);
-  bool _bookmarked = false;
-  bool _completed = false;
 
   @override
   void initState() {
@@ -42,8 +41,46 @@ class _LessonDetailScreenState extends ConsumerState<LessonDetailScreen> {
 
   void _onScroll() {
     final max = _scrollController.position.maxScrollExtent;
-    _readProgress.value =
-        max <= 0 ? 0 : (_scrollController.offset / max).clamp(0.0, 1.0);
+    _readProgress.value = max <= 0
+        ? 0
+        : (_scrollController.offset / max).clamp(0.0, 1.0);
+  }
+
+  Future<void> _toggleBookmark() async {
+    final wasSaved = ref
+        .read(bookmarkedLessonIdsProvider)
+        .contains(widget.lessonId);
+    await ref
+        .read(bookmarkedLessonIdsProvider.notifier)
+        .toggle(widget.lessonId);
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          wasSaved ? 'Bookmark removed.' : 'Lesson saved to bookmarks.',
+        ),
+      ),
+    );
+  }
+
+  Future<void> _toggleCompletion() async {
+    final wasCompleted = ref
+        .read(studyProgressProvider)
+        .completedLessonIds
+        .contains(widget.lessonId);
+    await ref
+        .read(studyProgressProvider.notifier)
+        .toggleLessonCompletion(widget.lessonId);
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          wasCompleted ? 'Lesson marked as incomplete.' : 'Lesson completed.',
+        ),
+      ),
+    );
   }
 
   @override
@@ -57,19 +94,21 @@ class _LessonDetailScreenState extends ConsumerState<LessonDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final lessonAsync = ref.watch(lessonProvider(
-      (moduleId: widget.moduleId, lessonId: widget.lessonId),
-    ));
+    final lessonAsync = ref.watch(
+      lessonProvider((moduleId: widget.moduleId, lessonId: widget.lessonId)),
+    );
+    final bookmarked = ref
+        .watch(bookmarkedLessonIdsProvider)
+        .contains(widget.lessonId);
+    final completed = ref
+        .watch(studyProgressProvider)
+        .completedLessonIds
+        .contains(widget.lessonId);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lesson'),
-        actions: [
-          BookmarkButton(
-            saved: _bookmarked,
-            onToggle: () => setState(() => _bookmarked = !_bookmarked),
-          ),
-        ],
+        actions: [BookmarkButton(saved: bookmarked, onToggle: _toggleBookmark)],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(3),
           child: ValueListenableBuilder<double>(
@@ -78,8 +117,7 @@ class _LessonDetailScreenState extends ConsumerState<LessonDetailScreen> {
               value: value,
               minHeight: 3,
               backgroundColor: theme.colorScheme.surfaceContainerHighest,
-              valueColor:
-                  AlwaysStoppedAnimation(theme.colorScheme.primary),
+              valueColor: AlwaysStoppedAnimation(theme.colorScheme.primary),
             ),
           ),
         ),
@@ -103,8 +141,8 @@ class _LessonDetailScreenState extends ConsumerState<LessonDetailScreen> {
           return _LessonBody(
             lesson: lesson,
             scrollController: _scrollController,
-            completed: _completed,
-            onToggleComplete: () => setState(() => _completed = !_completed),
+            completed: completed,
+            onToggleComplete: _toggleCompletion,
           );
         },
       ),
@@ -134,7 +172,11 @@ class _LessonBody extends StatelessWidget {
         _LessonHero(lesson: lesson),
         Padding(
           padding: const EdgeInsets.fromLTRB(
-              AppSpacing.md, AppSpacing.lg, AppSpacing.md, AppSpacing.xxl),
+            AppSpacing.md,
+            AppSpacing.lg,
+            AppSpacing.md,
+            AppSpacing.xxl,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -148,10 +190,7 @@ class _LessonBody extends StatelessWidget {
                 _CommonMistakes(items: lesson.commonMistakes),
               ],
               const SizedBox(height: AppSpacing.xl),
-              _CompleteButton(
-                completed: completed,
-                onToggle: onToggleComplete,
-              ),
+              _CompleteButton(completed: completed, onToggle: onToggleComplete),
             ],
           ),
         ),
@@ -175,30 +214,43 @@ class _LessonHero extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      decoration:
-          BoxDecoration(gradient: BrandGradient.surface(theme.brightness)),
+      decoration: BoxDecoration(
+        gradient: BrandGradient.surface(theme.brightness),
+      ),
       padding: const EdgeInsets.fromLTRB(
-          AppSpacing.md, AppSpacing.md, AppSpacing.md, AppSpacing.lg),
+        AppSpacing.md,
+        AppSpacing.md,
+        AppSpacing.md,
+        AppSpacing.lg,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Lesson ${lesson.order}',
-              style: theme.textTheme.labelMedium
-                  ?.copyWith(color: theme.colorScheme.primary)),
+          Text(
+            'Lesson ${lesson.order}',
+            style: theme.textTheme.labelMedium?.copyWith(
+              color: theme.colorScheme.primary,
+            ),
+          ),
           const SizedBox(height: AppSpacing.xxs),
           Text(lesson.title, style: theme.textTheme.headlineSmall),
           const SizedBox(height: AppSpacing.xs),
           Text(
             lesson.summary,
-            style: theme.textTheme.bodyMedium
-                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: AppSpacing.md),
           Wrap(
             spacing: AppSpacing.xs,
             runSpacing: AppSpacing.xs,
             children: [
-              StatusBadge(label: lesson.difficulty.label, icon: icon, tone: tone),
+              StatusBadge(
+                label: lesson.difficulty.label,
+                icon: icon,
+                tone: tone,
+              ),
               StatusBadge(
                 label: '${lesson.readingMinutes} min read',
                 icon: Icons.schedule_rounded,
@@ -223,9 +275,11 @@ class _CompleteButton extends StatelessWidget {
       width: double.infinity,
       child: FilledButton.icon(
         onPressed: onToggle,
-        icon: Icon(completed
-            ? Icons.check_circle_rounded
-            : Icons.check_circle_outline_rounded),
+        icon: Icon(
+          completed
+              ? Icons.check_circle_rounded
+              : Icons.check_circle_outline_rounded,
+        ),
         label: Text(completed ? 'Completed' : 'Mark as complete'),
         style: completed
             ? FilledButton.styleFrom(
@@ -257,8 +311,11 @@ class _KeyPoints extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.key_rounded,
-                  size: 18, color: theme.colorScheme.primary),
+              Icon(
+                Icons.key_rounded,
+                size: 18,
+                color: theme.colorScheme.primary,
+              ),
               const SizedBox(width: AppSpacing.xs),
               Text('Key points', style: theme.textTheme.titleSmall),
             ],
@@ -270,11 +327,15 @@ class _KeyPoints extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.check_rounded,
-                      size: 18, color: theme.colorScheme.primary),
+                  Icon(
+                    Icons.check_rounded,
+                    size: 18,
+                    color: theme.colorScheme.primary,
+                  ),
                   const SizedBox(width: AppSpacing.xs),
                   Expanded(
-                      child: Text(point, style: theme.textTheme.bodyMedium)),
+                    child: Text(point, style: theme.textTheme.bodyMedium),
+                  ),
                 ],
               ),
             ),
@@ -303,8 +364,11 @@ class _CommonMistakes extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(Icons.error_outline_rounded,
-                  size: 18, color: theme.colorScheme.onSurfaceVariant),
+              Icon(
+                Icons.error_outline_rounded,
+                size: 18,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
               const SizedBox(width: AppSpacing.xs),
               Text('Common mistakes', style: theme.textTheme.titleSmall),
             ],
@@ -318,7 +382,8 @@ class _CommonMistakes extends StatelessWidget {
                 children: [
                   Text('•  ', style: theme.textTheme.bodyMedium),
                   Expanded(
-                      child: Text(item, style: theme.textTheme.bodyMedium)),
+                    child: Text(item, style: theme.textTheme.bodyMedium),
+                  ),
                 ],
               ),
             ),

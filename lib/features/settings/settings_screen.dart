@@ -4,10 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/constants/app_info.dart';
 import '../../core/providers/app_providers.dart';
+import '../bookmarks/bookmark_providers.dart';
+import '../progress/progress_providers.dart';
 
 /// Settings (FR-12, FR-14, FR-15): theme control, data reset and trust
-/// information. Theme switching is fully wired in Phase 1; reset acts on
-/// preferences now and will extend to Hive study data in Phase 2.
+/// information. Theme switching and the local study reset are fully wired.
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -53,8 +54,9 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.restart_alt_rounded),
             title: const Text('Reset study data'),
-            subtitle:
-                const Text('Clear progress, quiz history, bookmarks and cards'),
+            subtitle: const Text(
+              'Clear progress, quiz history, bookmarks and cards',
+            ),
             onTap: () => _confirmReset(context, ref),
           ),
           const Divider(),
@@ -72,7 +74,10 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.tag_rounded),
             title: const Text('Version'),
-            trailing: Text(AppInfo.versionName, style: theme.textTheme.bodySmall),
+            trailing: Text(
+              AppInfo.versionName,
+              style: theme.textTheme.bodySmall,
+            ),
           ),
         ],
       ),
@@ -102,10 +107,10 @@ class SettingsScreen extends ConsumerWidget {
     );
 
     if (confirmed != true) return;
-    // Phase 1: clears preferences only. Hive study boxes are cleared here in
-    // Phase 2 once the progress store exists.
     await ref.read(preferencesServiceProvider).clear();
     ref.invalidate(themeModeProvider);
+    ref.invalidate(bookmarkedLessonIdsProvider);
+    ref.invalidate(studyProgressProvider);
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Your study data has been reset.')),
@@ -125,8 +130,10 @@ class _SectionLabel extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
       child: Text(
         text.toUpperCase(),
-        style: theme.textTheme.labelMedium
-            ?.copyWith(color: theme.colorScheme.primary, letterSpacing: 0.8),
+        style: theme.textTheme.labelMedium?.copyWith(
+          color: theme.colorScheme.primary,
+          letterSpacing: 0.8,
+        ),
       ),
     );
   }

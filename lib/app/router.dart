@@ -6,6 +6,7 @@ import '../features/flashcards/flashcard_module_screen.dart';
 import '../features/flashcards/flashcards_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/interview/interview_screen.dart';
+import '../features/interview/interview_practice_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lesson_list_screen.dart';
 import '../features/modules/modules_screen.dart';
@@ -144,6 +145,18 @@ final GoRouter appRouter = GoRouter(
       path: '/interview',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const InterviewScreen(),
+      routes: [
+        GoRoute(
+          path: ':trackId',
+          builder: (context, state) => InterviewPracticeScreen(
+            trackId: state.pathParameters['trackId']!,
+            initialQuestionIndex:
+                (int.tryParse(state.uri.queryParameters['question'] ?? '1') ??
+                    1) -
+                1,
+          ),
+        ),
+      ],
     ),
     GoRoute(
       path: '/bookmarks',
