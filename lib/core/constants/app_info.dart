@@ -12,7 +12,7 @@ abstract final class AppInfo {
   static const String versionName = '1.0.0';
 
   /// Placeholder — replace before any Play release and never change afterwards.
-  static const String packageId = 'com.example.mlleaf';
+  static const String packageId = 'com.mlleaf.app';
 
   static const String supportEmail = 'mustafa39078@gmail.com';
   static const String copyright = '© 2026 ML Leaf';

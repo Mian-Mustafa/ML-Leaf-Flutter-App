@@ -1,4 +1,4 @@
-package com.example.mlleaf
+package com.mlleaf.app
 
 import io.flutter.embedding.android.FlutterActivity
 

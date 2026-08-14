@@ -37,8 +37,8 @@ Before publishing:
    or its Play Console developer entity.
 3. Add that active URL to the Privacy policy field in Play Console and keep the
    hosted text, in-app text, and Data safety declaration consistent.
-4. Confirm the final application ID is not `com.example.mlleaf`; it is a
-   development placeholder and must be replaced before a Play release.
+4. Confirm the final application ID is `com.mlleaf.app`, which uses the
+   ML Leaf domain namespace and must remain unchanged after a Play release.
 5. Complete the rest of Play Console's App content declarations, including ads,
    target audience and content, and content rating, based on the final release.
 
