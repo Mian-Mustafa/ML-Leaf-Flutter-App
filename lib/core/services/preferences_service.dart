@@ -68,6 +68,22 @@ class PreferencesService {
     return _prefs.setStringList(StorageKeys.completedLessonIds, completedIds);
   }
 
+  Set<String> get completedInterviewTrackIds {
+    final completedIds =
+        _prefs.getStringList(StorageKeys.completedInterviewTrackIds) ??
+        const <String>[];
+    return completedIds.where((id) => id.trim().isNotEmpty).toSet();
+  }
+
+  Future<void> setCompletedInterviewTrackIds(Iterable<String> ids) {
+    final completedIds =
+        ids.where((id) => id.trim().isNotEmpty).toSet().toList()..sort();
+    return _prefs.setStringList(
+      StorageKeys.completedInterviewTrackIds,
+      completedIds,
+    );
+  }
+
   List<QuizAttemptRecord> get quizAttempts {
     final encoded = _prefs.getString(StorageKeys.quizAttempts);
     if (encoded == null || encoded.isEmpty) return const <QuizAttemptRecord>[];

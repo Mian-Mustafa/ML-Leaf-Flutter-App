@@ -6,6 +6,8 @@ abstract final class StorageKeys {
   static const String themeMode = 'theme_mode'; // 'light' | 'dark' | 'system'
   static const String bookmarkedLessonIds = 'bookmarked_lesson_ids';
   static const String completedLessonIds = 'completed_lesson_ids';
+  static const String completedInterviewTrackIds =
+      'completed_interview_track_ids';
   static const String quizAttempts = 'quiz_attempts';
 
   // Hive boxes (used from Phase 2 onwards)

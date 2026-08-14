@@ -14,6 +14,6 @@ abstract final class AppInfo {
   /// Placeholder — replace before any Play release and never change afterwards.
   static const String packageId = 'com.example.mlleaf';
 
-  static const String supportEmail = 'support@example.com';
+  static const String supportEmail = 'mustafa39078@gmail.com';
   static const String copyright = '© 2026 ML Leaf';
 }

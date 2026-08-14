@@ -1,16 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/semantic_colors.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/widgets/app_progress_bar.dart';
 import '../../core/widgets/status_badge.dart';
+import '../progress/progress_providers.dart';
 import 'interview_data.dart';
 import 'interview_models.dart';
 
-class InterviewPracticeScreen extends StatefulWidget {
+class InterviewPracticeScreen extends ConsumerStatefulWidget {
   const InterviewPracticeScreen({
     super.key,
     required this.trackId,
@@ -21,11 +23,12 @@ class InterviewPracticeScreen extends StatefulWidget {
   final int initialQuestionIndex;
 
   @override
-  State<InterviewPracticeScreen> createState() =>
+  ConsumerState<InterviewPracticeScreen> createState() =>
       _InterviewPracticeScreenState();
 }
 
-class _InterviewPracticeScreenState extends State<InterviewPracticeScreen> {
+class _InterviewPracticeScreenState
+    extends ConsumerState<InterviewPracticeScreen> {
   late final InterviewTrack _track;
   late final Stopwatch _stopwatch;
   Timer? _ticker;
@@ -67,6 +70,11 @@ class _InterviewPracticeScreenState extends State<InterviewPracticeScreen> {
       _completed = true;
       _stopwatch.stop();
     });
+    unawaited(
+      ref
+          .read(studyProgressProvider.notifier)
+          .markInterviewTrackComplete(_track.id),
+    );
   }
 
   void _restartRound() {

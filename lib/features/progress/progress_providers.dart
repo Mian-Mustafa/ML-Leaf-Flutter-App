@@ -20,6 +20,9 @@ class StudyProgressNotifier extends Notifier<StudyProgressState> {
     final preferences = ref.watch(preferencesServiceProvider);
     return StudyProgressState(
       completedLessonIds: Set.unmodifiable(preferences.completedLessonIds),
+      completedInterviewTrackIds: Set.unmodifiable(
+        preferences.completedInterviewTrackIds,
+      ),
       quizAttempts: preferences.quizAttempts,
     );
   }
@@ -30,6 +33,7 @@ class StudyProgressNotifier extends Notifier<StudyProgressState> {
 
     state = StudyProgressState(
       completedLessonIds: Set.unmodifiable(completed),
+      completedInterviewTrackIds: state.completedInterviewTrackIds,
       quizAttempts: state.quizAttempts,
     );
     await ref.read(preferencesServiceProvider).setCompletedLessonIds(completed);
@@ -54,9 +58,28 @@ class StudyProgressNotifier extends Notifier<StudyProgressState> {
 
     state = StudyProgressState(
       completedLessonIds: state.completedLessonIds,
+      completedInterviewTrackIds: state.completedInterviewTrackIds,
       quizAttempts: List.unmodifiable(attempts),
     );
     await ref.read(preferencesServiceProvider).setQuizAttempts(attempts);
+  }
+
+  Future<void> markInterviewTrackComplete(String trackId) async {
+    final normalizedTrackId = trackId.trim();
+    if (normalizedTrackId.isEmpty ||
+        state.completedInterviewTrackIds.contains(normalizedTrackId)) {
+      return;
+    }
+
+    final completed = {...state.completedInterviewTrackIds, normalizedTrackId};
+    state = StudyProgressState(
+      completedLessonIds: state.completedLessonIds,
+      completedInterviewTrackIds: Set.unmodifiable(completed),
+      quizAttempts: state.quizAttempts,
+    );
+    await ref
+        .read(preferencesServiceProvider)
+        .setCompletedInterviewTrackIds(completed);
   }
 }
 

@@ -21,7 +21,7 @@ void main() {
     expect(service.bookmarkedLessonIds, {'lesson-1', 'lesson-2'});
   });
 
-  test('persists lesson completion and recent quiz attempts', () async {
+  test('persists lesson, interview, and quiz progress', () async {
     final service = PreferencesService(await SharedPreferences.getInstance());
     final attempt = QuizAttemptRecord(
       moduleId: 'foundations',
@@ -32,9 +32,16 @@ void main() {
     );
 
     await service.setCompletedLessonIds(['lesson-2', 'lesson-1', 'lesson-1']);
+    await service.setCompletedInterviewTrackIds([
+      'mock',
+      '',
+      'foundations',
+      'mock',
+    ]);
     await service.setQuizAttempts([attempt]);
 
     expect(service.completedLessonIds, {'lesson-1', 'lesson-2'});
+    expect(service.completedInterviewTrackIds, {'foundations', 'mock'});
     expect(service.quizAttempts, hasLength(1));
     expect(service.quizAttempts.single.correct, 23);
     expect(service.quizAttempts.single.difficultyId, 'easy');

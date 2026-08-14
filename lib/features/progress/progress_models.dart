@@ -1,4 +1,5 @@
 import '../../core/models/quiz_attempt_record.dart';
+import '../interview/interview_data.dart';
 import '../lessons/lesson.dart';
 import '../modules/module.dart';
 import '../quizzes/quiz_models.dart';
@@ -7,15 +8,18 @@ import '../quizzes/quiz_models.dart';
 class StudyProgressState {
   const StudyProgressState({
     required this.completedLessonIds,
+    required this.completedInterviewTrackIds,
     required this.quizAttempts,
   });
 
   factory StudyProgressState.empty() => const StudyProgressState(
     completedLessonIds: <String>{},
+    completedInterviewTrackIds: <String>{},
     quizAttempts: <QuizAttemptRecord>[],
   );
 
   final Set<String> completedLessonIds;
+  final Set<String> completedInterviewTrackIds;
   final List<QuizAttemptRecord> quizAttempts;
 
   Map<String, QuizAttemptRecord> get latestQuizAttempts {
@@ -54,6 +58,8 @@ class StudyDashboard {
     required this.modules,
     required this.totalLessons,
     required this.completedLessons,
+    required this.totalInterviewTracks,
+    required this.completedInterviewTracks,
     required this.latestQuizAttempts,
     required this.recentQuizAttempts,
   });
@@ -61,6 +67,8 @@ class StudyDashboard {
   final List<ModuleStudyProgress> modules;
   final int totalLessons;
   final int completedLessons;
+  final int totalInterviewTracks;
+  final int completedInterviewTracks;
   final List<QuizAttemptRecord> latestQuizAttempts;
   final List<QuizAttemptRecord> recentQuizAttempts;
 
@@ -79,6 +87,11 @@ class StudyDashboard {
       totalLessons == 0 ? 0 : completedLessons / totalLessons;
   double get quizCoverage =>
       totalQuizLevels == 0 ? 0 : attemptedQuizLevels / totalQuizLevels;
+  double get interviewCompletion => totalInterviewTracks == 0
+      ? 0
+      : completedInterviewTracks / totalInterviewTracks;
+  double get combinedCompletion =>
+      (lessonCompletion + quizCoverage + interviewCompletion) / 3;
   double get quizAccuracy => answeredQuizQuestions == 0
       ? 0
       : correctQuizAnswers / answeredQuizQuestions;
@@ -90,6 +103,10 @@ class StudyDashboard {
   }) {
     final latestAttempts = progress.latestQuizAttempts;
     final moduleProgress = <ModuleStudyProgress>[];
+    final interviewTrackIds = <String>{
+      ...InterviewData.tracks.map((track) => track.id),
+      InterviewData.mockInterview.id,
+    };
     var totalLessons = 0;
     var completedLessons = 0;
 
@@ -118,10 +135,16 @@ class StudyDashboard {
       );
     }
 
+    final completedInterviewTracks = progress.completedInterviewTrackIds
+        .where(interviewTrackIds.contains)
+        .length;
+
     return StudyDashboard(
       modules: List.unmodifiable(moduleProgress),
       totalLessons: totalLessons,
       completedLessons: completedLessons,
+      totalInterviewTracks: interviewTrackIds.length,
+      completedInterviewTracks: completedInterviewTracks,
       latestQuizAttempts: List.unmodifiable(latestAttempts.values.toList()),
       recentQuizAttempts: List.unmodifiable(
         progress.quizAttempts.take(4).toList(),

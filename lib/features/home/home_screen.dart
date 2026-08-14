@@ -9,10 +9,11 @@ import '../../core/widgets/app_card.dart';
 import '../../core/widgets/app_progress_bar.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/status_badge.dart';
+import '../progress/progress_providers.dart';
 
 /// Home screen (FR-03): the best next study actions without overwhelming the
-/// learner. Continue Learning, progress and recent-score surfaces render their
-/// "ready" states now and bind to real data in later phases.
+/// learner. The progress snapshot reflects lessons, quizzes, and interview
+/// practice from the shared learner state.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
@@ -24,7 +25,11 @@ class HomeScreen extends ConsumerWidget {
           const _HomeHeader(),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(
-                AppSpacing.md, AppSpacing.lg, AppSpacing.md, AppSpacing.xl),
+              AppSpacing.md,
+              AppSpacing.lg,
+              AppSpacing.md,
+              AppSpacing.xl,
+            ),
             sliver: SliverList.list(
               children: [
                 const _ContinueLearningCard(),
@@ -61,12 +66,17 @@ class _HomeHeader extends StatelessWidget {
       title: const Text(AppInfo.appName),
       flexibleSpace: FlexibleSpaceBar(
         background: DecoratedBox(
-          decoration:
-              BoxDecoration(gradient: BrandGradient.surface(theme.brightness)),
+          decoration: BoxDecoration(
+            gradient: BrandGradient.surface(theme.brightness),
+          ),
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.md, 64, AppSpacing.md, AppSpacing.md),
+                AppSpacing.md,
+                64,
+                AppSpacing.md,
+                AppSpacing.md,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,8 +112,10 @@ class _ContinueLearningCard extends StatelessWidget {
           CircleAvatar(
             radius: 24,
             backgroundColor: theme.colorScheme.primaryContainer,
-            child: Icon(Icons.play_arrow_rounded,
-                color: theme.colorScheme.onPrimaryContainer),
+            child: Icon(
+              Icons.play_arrow_rounded,
+              color: theme.colorScheme.onPrimaryContainer,
+            ),
           ),
           AppSpacing.gapMd,
           Expanded(
@@ -119,42 +131,68 @@ class _ContinueLearningCard extends StatelessWidget {
               ],
             ),
           ),
-          Icon(Icons.chevron_right_rounded,
-              color: theme.colorScheme.onSurfaceVariant),
+          Icon(
+            Icons.chevron_right_rounded,
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ],
       ),
     );
   }
 }
 
-class _ProgressSnapshotCard extends StatelessWidget {
+class _ProgressSnapshotCard extends ConsumerWidget {
   const _ProgressSnapshotCard();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final dashboard = ref.watch(studyDashboardProvider).valueOrNull;
+    final completion = dashboard?.combinedCompletion ?? 0;
+    final isComplete = completion >= 1;
+    final hasStarted = completion > 0;
+
     return AppCard(
       onTap: () => context.go('/progress'),
-      semanticLabel: 'Your progress. Opens the progress screen.',
+      semanticLabel:
+          'Your progress: ${(completion * 100).round()} percent complete across modules, quizzes, and interviews. Opens the progress screen.',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.insights_rounded,
-                  color: theme.colorScheme.primary, size: 20),
+              Icon(
+                Icons.insights_rounded,
+                color: theme.colorScheme.primary,
+                size: 20,
+              ),
               const SizedBox(width: AppSpacing.xs),
               Text('Your progress', style: theme.textTheme.titleSmall),
               const Spacer(),
-              const StatusBadge(
-                label: 'Just started',
-                icon: Icons.eco_rounded,
-                tone: BadgeTone.info,
+              StatusBadge(
+                label: isComplete
+                    ? 'Complete'
+                    : hasStarted
+                    ? 'In progress'
+                    : 'Just started',
+                icon: isComplete
+                    ? Icons.verified_rounded
+                    : hasStarted
+                    ? Icons.trending_up_rounded
+                    : Icons.eco_rounded,
+                tone: isComplete
+                    ? BadgeTone.success
+                    : hasStarted
+                    ? BadgeTone.info
+                    : BadgeTone.info,
               ),
             ],
           ),
           AppSpacing.gapMd,
-          const AppProgressBar(value: 0, label: 'Lessons completed'),
+          AppProgressBar(
+            value: completion,
+            label: 'Modules, quizzes & interviews',
+          ),
         ],
       ),
     );
@@ -167,12 +205,39 @@ class _ToolsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const tools = [
-      (_ToolTile(label: 'Modules', icon: Icons.grid_view_rounded, route: '/modules', go: true)),
-      (_ToolTile(label: 'Quizzes', icon: Icons.quiz_outlined, route: '/quizzes')),
-      (_ToolTile(label: 'Flashcards', icon: Icons.style_outlined, route: '/flashcards')),
-      (_ToolTile(label: 'Interview', icon: Icons.work_outline_rounded, route: '/interview')),
-      (_ToolTile(label: 'Search', icon: Icons.search_rounded, route: '/search', go: true)),
-      (_ToolTile(label: 'Progress', icon: Icons.insights_rounded, route: '/progress', go: true)),
+      (_ToolTile(
+        label: 'Modules',
+        icon: Icons.grid_view_rounded,
+        route: '/modules',
+        go: true,
+      )),
+      (_ToolTile(
+        label: 'Quizzes',
+        icon: Icons.quiz_outlined,
+        route: '/quizzes',
+      )),
+      (_ToolTile(
+        label: 'Flashcards',
+        icon: Icons.style_outlined,
+        route: '/flashcards',
+      )),
+      (_ToolTile(
+        label: 'Interview',
+        icon: Icons.work_outline_rounded,
+        route: '/interview',
+      )),
+      (_ToolTile(
+        label: 'Search',
+        icon: Icons.search_rounded,
+        route: '/search',
+        go: true,
+      )),
+      (_ToolTile(
+        label: 'Progress',
+        icon: Icons.insights_rounded,
+        route: '/progress',
+        go: true,
+      )),
     ];
     return GridView.count(
       shrinkWrap: true,
@@ -214,8 +279,11 @@ class _ToolTile extends StatelessWidget {
           Icon(icon, color: theme.colorScheme.primary),
           const SizedBox(width: AppSpacing.sm),
           Expanded(child: Text(label, style: theme.textTheme.titleSmall)),
-          Icon(Icons.chevron_right_rounded,
-              color: theme.colorScheme.onSurfaceVariant, size: 20),
+          Icon(
+            Icons.chevron_right_rounded,
+            color: theme.colorScheme.onSurfaceVariant,
+            size: 20,
+          ),
         ],
       ),
     );
