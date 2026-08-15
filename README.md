@@ -1,72 +1,80 @@
-# MLleaf — Learn Machine Learning
+# ML Leaf
 
-An **offline-first** Flutter (Android) app for learning machine learning:
-structured lessons, Python examples, quizzes, flashcards, interview questions,
-search, bookmarks and local progress tracking. No accounts, no network, no ads.
+ML Leaf is an offline-first Flutter app for learning machine learning through
+structured lessons, quizzes, flashcards, interview practice, and local progress
+tracking.
 
-> Grow Your Machine Learning Skills, One Concept at a Time
+> Grow Your Machine Learning Skills, One Concept at a Time.
 
-This repository implements the **MLleaf Enhanced Documentation Plan (v1.0)**.
+## Features
 
-## Tech stack
+- Nine machine-learning modules, from foundations and data preprocessing to
+  model evaluation, feature engineering, and ensemble methods.
+- Offline lesson content with key points, code examples, and supporting visual
+  assets.
+- Per-module quizzes with easy, medium, and hard difficulty levels.
+- Flashcards and visual review modes for core concepts.
+- Five interview-practice tracks plus a mock interview round.
+- Search across lessons, quiz questions, and interview prompts.
+- Bookmarks for lessons and local learning-history controls.
+- A combined Home progress indicator that equally reflects lesson completion,
+  quiz-level completion, and completed interview tracks.
+- Light, dark, and system themes, plus in-app About, privacy, and data-reset
+  screens.
 
-| Concern          | Choice                                  |
-|------------------|-----------------------------------------|
-| Framework        | Flutter / Dart                          |
-| State management | Riverpod                                |
-| Navigation       | GoRouter (stateful shell + branches)    |
-| Content          | Versioned JSON assets (offline)         |
-| Local study data | Hive                                    |
-| Small settings   | SharedPreferences (theme, onboarding)   |
-| Release format   | Android App Bundle (.aab)               |
+## Tech Stack
 
-## Project layout
+| Area | Technology |
+| --- | --- |
+| Framework | Flutter and Dart |
+| State management | Riverpod |
+| Navigation | GoRouter with a stateful navigation shell |
+| Course content | Bundled JSON and image assets |
+| Local state | SharedPreferences; Hive is initialized for local storage support |
+| Code rendering | flutter_highlight |
+| Android application ID | `com.mlleaf.app` |
 
-```
+## Project Structure
+
+```text
 lib/
-├── main.dart              # startup: Hive + preferences, then runApp
-├── app/                   # app root, theme (design system), router, nav shell
-├── core/
-│   ├── constants/         # colours, product info, storage keys
-│   ├── providers/         # Riverpod providers (prefs, theme, onboarding)
-│   ├── services/          # PreferencesService
-│   └── widgets/           # shared widgets
-└── features/              # feature-first: onboarding, home, modules, lessons,
-                           # quizzes, flashcards, interview, search, bookmarks,
-                           # progress, settings, splash
-assets/content/            # lessons / quizzes / flashcards / interview_questions
+  app/                 App setup, routing, theme, and navigation shell
+  core/                Shared models, services, providers, constants, widgets
+  features/            Feature-first screens and state
+    bookmarks/         Saved lesson bookmarks
+    flashcards/        Module flashcards and visual review
+    home/              Home dashboard and combined progress snapshot
+    interview/         Practice tracks and mock interview
+    lessons/           Lesson models, repositories, lists, and reader
+    modules/           Course module catalogue
+    progress/          Learner progress and dashboard metrics
+    quizzes/           Quiz banks, levels, and assessment flow
+    search/            Unified study-content search
+    settings/          Theme, privacy, reset, and About screens
+assets/content/        Bundled module, lesson, and quiz JSON
+assets/images/         Course and quiz visual assets
+docs/                  Google Play privacy and Data Safety checklist
+test/                  Unit and widget tests
 ```
 
-## Build status
+## Requirements
 
-- **Phase 1 (complete):** project scaffold, design system (light/dark),
-  navigation shell, splash + onboarding, working theme switching, trust screens
-  (About / Privacy), and placeholders for every specified feature. Runnable
-  shell — `flutter analyze` clean, smoke test passing, debug APK builds.
-- **UI/UX upgrade (complete):** design-token layer (spacing / radius / motion /
-  sizes), semantic-colour `ThemeExtension`, reusable components (`AppCard`,
-  `StatusBadge`, `AppProgressBar`, `EmptyStateView`, `SectionHeader`,
-  `BookmarkButton`), branded gradients, page transitions and micro-animations,
-  a WCAG 2.1 AA contrast pass (all pairs ≥4.5:1) and screen-reader semantics.
-- **Next:** Phase 2 — content models (Lesson/Quiz/Flashcard/Progress), JSON
-  schema + repositories, Hive persistence, content validation.
+- Flutter SDK with Dart `^3.11.1`
+- Android device/emulator, Windows, Chrome, or Edge for local runs
 
-### Design tokens & components
-
-- `core/constants/app_spacing.dart` — `AppSpacing`, `AppRadius`, `AppSizes`
-- `core/constants/app_motion.dart` — `AppMotion` (durations + curves)
-- `app/semantic_colors.dart` — success / warning / info via `context.semantic`
-- `app/brand_gradient.dart` — leaf-inspired header/hero gradients
-- `core/widgets/` — the reusable component set (states per design system §13.5)
-
-## Running
+## Run Locally
 
 ```bash
 flutter pub get
-flutter run            # on an Android emulator or device
+flutter devices
+flutter run -d <device-id>
 ```
 
-Useful checks:
+For example, use `flutter run` after selecting an Android device or emulator.
+The app is designed to work offline after installation because course content is
+bundled with the app.
+
+## Validate the Project
 
 ```bash
 flutter analyze
@@ -74,13 +82,53 @@ flutter test
 flutter build apk --debug
 ```
 
-## Notes
+The automated suite covers bundled course content, quiz structure, interview
+content, local preference persistence, progress calculations, search indexing,
+and core widget rendering.
 
-- **Package ID** is the placeholder `com.example.mlleaf` — must be set to a real
-  reverse-domain ID before any Play release, and never changed afterwards.
-- **Offline-first:** startup and all core learning flows never touch the
-  network. (Fonts are intentionally the bundled system typography for this
-  reason — no runtime font fetching.)
-- If pub cache (`C:`) and this project (`E:`) are on different drives, Kotlin's
-  incremental compile cache is disabled for Android builds. Harmless, but
-  rebuilds are slower.
+## Android Builds
+
+Create an Android App Bundle for Google Play:
+
+```bash
+flutter build appbundle
+```
+
+Output:
+
+```text
+build/app/outputs/bundle/release/app-release.aab
+```
+
+Create an APK for direct device installation and testing:
+
+```bash
+flutter build apk --release
+```
+
+Output:
+
+```text
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+Use the `.aab` file for Google Play Console. Use the `.apk` file for direct
+installation on an Android device. Before any Play upload, replace the current
+debug signing configuration with a private upload key. Keep the keystore and
+its passwords outside this repository. The application ID `com.mlleaf.app`
+must not change after the first Play release.
+
+## Privacy and Google Play
+
+ML Leaf has no account, advertising, analytics, crash-reporting, or network
+client dependency in its release build. Learner progress, bookmarks, quiz
+history, interview completion, and settings stay on the device.
+
+Read [the Google Play Data Safety checklist](docs/google_play_data_safety.md)
+before publishing. It includes the current Data Safety declaration, privacy
+policy hosting requirements, and release checks. The in-app privacy policy must
+also be published at a stable public HTTPS URL before Play submission.
+
+## Support
+
+Contact: [mustafa39078@gmail.com](mailto:mustafa39078@gmail.com)

@@ -30,15 +30,22 @@ class HomeScreen extends ConsumerWidget {
               AppSpacing.md,
               AppSpacing.xl,
             ),
-            sliver: SliverList.list(
-              children: [
-                const _ContinueLearningCard(),
-                AppSpacing.gapMd,
-                const _ProgressSnapshotCard(),
-                AppSpacing.gapXl,
-                const SectionHeader('Study tools'),
-                const _ToolsGrid(),
-              ],
+            sliver: SliverToBoxAdapter(
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1180),
+                  child: const Column(
+                    children: [
+                      _ContinueLearningCard(),
+                      AppSpacing.gapMd,
+                      _ProgressSnapshotCard(),
+                      AppSpacing.gapXl,
+                      SectionHeader('Study tools'),
+                      _ToolsGrid(),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ],
@@ -239,14 +246,30 @@ class _ToolsGrid extends StatelessWidget {
         go: true,
       )),
     ];
-    return GridView.count(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
-      mainAxisSpacing: AppSpacing.sm,
-      crossAxisSpacing: AppSpacing.sm,
-      childAspectRatio: 2.4,
-      children: tools,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final crossAxisCount = width >= 1060
+            ? 4
+            : width >= 700
+            ? 3
+            : 2;
+        final childAspectRatio = width >= 1060
+            ? 3.1
+            : width >= 700
+            ? 2.6
+            : 2.4;
+
+        return GridView.count(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisCount: crossAxisCount,
+          mainAxisSpacing: AppSpacing.sm,
+          crossAxisSpacing: AppSpacing.sm,
+          childAspectRatio: childAspectRatio,
+          children: tools,
+        );
+      },
     );
   }
 }
